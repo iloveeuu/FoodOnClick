@@ -12,9 +12,9 @@
 
             customer.InsertCustomer()
         ElseIf ddlType.SelectedValue = "Restaurant" Then
-            Dim restaurant As Restaurant = New Restaurant(txtUser.Text.Trim(), txtPass.Text.Trim())
+            Dim merchant As Merchant = New Merchant(txtUser.Text.Trim(), txtPass.Text.Trim())
 
-            restaurant.InsertRestaurant()
+            merchant.InsertMerchant()
         ElseIf ddlType.SelectedValue = "Rider" Then
             Dim rider As Rider = New Rider(txtUser.Text.Trim(), txtPass.Text.Trim())
 
