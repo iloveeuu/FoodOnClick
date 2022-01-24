@@ -46,8 +46,8 @@
 			<td>
 				<asp:DropDownList ID="ddlType" runat="server">
 					<asp:ListItem value="Customer" selected="True">Customer</asp:ListItem>  
-					<asp:ListItem value="Restaurant" selected="True">Restaurant</asp:ListItem>  
-					<asp:ListItem value="Delivery Rider" selected="True">Rider</asp:ListItem>  
+					<asp:ListItem value="Restaurant">Restaurant</asp:ListItem>  
+					<asp:ListItem value="Delivery Rider">Rider</asp:ListItem>  
 				</asp:DropDownList>
 			</td>
 		</tr>
