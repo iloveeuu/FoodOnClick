@@ -5,9 +5,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Sign Up Food On Click</title>
+    <link href="CSS/design.css" rel="stylesheet" />
 </head>
 <body>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <h1>Food On Click</h1>
 <h3>Sign Up</h3>
 <br/>
