@@ -137,6 +137,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="systemAdministrator\admin.js" />
+    <Content Include="systemAdministrator\adminManageApprovalViewAccounts.aspx" />
+    <Content Include="systemAdministrator\adminManageApprovalViewApprovals.aspx" />
+    <Content Include="systemAdministrator\adminManageFeedbacks.aspx" />
+    <Content Include="systemAdministrator\adminManageOrders.aspx" />
+    <Content Include="systemAdministrator\adminManageSupportIssues.aspx" />
+    <Content Include="systemAdministrator\stylecss.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -178,6 +185,9 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="signUp.aspx" />
+    <Content Include="systemAdministrator\adminHome.aspx" />
+    <Content Include="systemAdministrator\adminManageApproval.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
@@ -191,6 +201,11 @@
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Class\Customer.vb" />
+    <Compile Include="Class\Merchant.vb" />
+    <Compile Include="Class\Restaurant.vb" />
+    <Compile Include="Class\Rider.vb" />
+    <Compile Include="Class\User.vb" />
     <Compile Include="Contact.aspx.designer.vb">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
@@ -227,12 +242,61 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="signUp.aspx.designer.vb">
+      <DependentUpon>signUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="signUp.aspx.vb">
+      <DependentUpon>signUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Site.Master.designer.vb">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.vb">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageApproval.aspx.designer.vb">
+      <DependentUpon>adminManageApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageApproval.aspx.vb">
+      <DependentUpon>adminManageApproval.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageApprovalViewAccounts.aspx.designer.vb">
+      <DependentUpon>adminManageApprovalViewAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageApprovalViewAccounts.aspx.vb">
+      <DependentUpon>adminManageApprovalViewAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageApprovalViewApprovals.aspx.designer.vb">
+      <DependentUpon>adminManageApprovalViewApprovals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageApprovalViewApprovals.aspx.vb">
+      <DependentUpon>adminManageApprovalViewApprovals.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageFeedbacks.aspx.designer.vb">
+      <DependentUpon>adminManageFeedbacks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageFeedbacks.aspx.vb">
+      <DependentUpon>adminManageFeedbacks.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageOrders.aspx.designer.vb">
+      <DependentUpon>adminManageOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageOrders.aspx.vb">
+      <DependentUpon>adminManageOrders.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageSupportIssues.aspx.designer.vb">
+      <DependentUpon>adminManageSupportIssues.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="systemAdministrator\adminManageSupportIssues.aspx.vb">
+      <DependentUpon>adminManageSupportIssues.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.vb">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -282,6 +346,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CSS\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
