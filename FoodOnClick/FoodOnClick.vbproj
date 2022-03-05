@@ -137,6 +137,16 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="css\design.css" />
+    <Content Include="css\stylecss.css" />
+    <Content Include="customerCart.aspx" />
+    <Content Include="customerCheckOut.aspx" />
+    <Content Include="customerFoodList.aspx" />
+    <Content Include="customerHome.aspx" />
+    <Content Include="customerReservationOrder.aspx" />
+    <Content Include="customerRestaurant.aspx" />
+    <Content Include="customerSearch.aspx" />
+    <Content Include="customerSelectedFood.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -149,7 +159,12 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="login.aspx" />
+    <Content Include="Masterpage.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="restaurantHome.aspx" />
+    <Content Include="restaurantMenu.aspx" />
+    <Content Include="riderHome.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -178,6 +193,8 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SendMailExample.aspx" />
+    <Content Include="signUp.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
@@ -191,12 +208,74 @@
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Class\Customer.vb" />
+    <Compile Include="Class\Merchant.vb" />
+    <Compile Include="Class\Restaurant.vb" />
+    <Compile Include="Class\Rider.vb" />
+    <Compile Include="Class\SMTP.vb" />
+    <Compile Include="Class\User.vb" />
     <Compile Include="Contact.aspx.designer.vb">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.vb">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="customerCart.aspx.designer.vb">
+      <DependentUpon>customerCart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerCart.aspx.vb">
+      <DependentUpon>customerCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerCheckOut.aspx.designer.vb">
+      <DependentUpon>customerCheckOut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerCheckOut.aspx.vb">
+      <DependentUpon>customerCheckOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerFoodList.aspx.designer.vb">
+      <DependentUpon>customerFoodList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerFoodList.aspx.vb">
+      <DependentUpon>customerFoodList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerHome.aspx.designer.vb">
+      <DependentUpon>customerHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerHome.aspx.vb">
+      <DependentUpon>customerHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerReservationOrder.aspx.designer.vb">
+      <DependentUpon>customerReservationOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerReservationOrder.aspx.vb">
+      <DependentUpon>customerReservationOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerRestaurant.aspx.designer.vb">
+      <DependentUpon>customerRestaurant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerRestaurant.aspx.vb">
+      <DependentUpon>customerRestaurant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerSearch.aspx.designer.vb">
+      <DependentUpon>customerSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerSearch.aspx.vb">
+      <DependentUpon>customerSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerSelectedFood.aspx.designer.vb">
+      <DependentUpon>customerSelectedFood.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerSelectedFood.aspx.vb">
+      <DependentUpon>customerSelectedFood.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
@@ -207,6 +286,20 @@
     </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.designer.vb">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.vb">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Masterpage.Master.designer.vb">
+      <DependentUpon>Masterpage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Masterpage.Master.vb">
+      <DependentUpon>Masterpage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -226,6 +319,34 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="restaurantHome.aspx.designer.vb">
+      <DependentUpon>restaurantHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="restaurantHome.aspx.vb">
+      <DependentUpon>restaurantHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="riderHome.aspx.designer.vb">
+      <DependentUpon>riderHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="riderHome.aspx.vb">
+      <DependentUpon>riderHome.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SendMailExample.aspx.designer.vb">
+      <DependentUpon>SendMailExample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SendMailExample.aspx.vb">
+      <DependentUpon>SendMailExample.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="signUp.aspx.designer.vb">
+      <DependentUpon>signUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="signUp.aspx.vb">
+      <DependentUpon>signUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.vb">
       <DependentUpon>Site.Master</DependentUpon>
@@ -282,6 +403,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="My Project\PublishProfiles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
