@@ -48,9 +48,6 @@
     </style>--%>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    
-    </style>
     <title></title>
             <link rel="stylesheet" href="./css/stylecss.css">
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -59,7 +56,7 @@
 <body id="mainBody" style="transition: 0 7s;">
     <form id="form1" runat="server">
         <ul class="topnav">
-          <li><asp:ImageButton ID="ibtnHome" runat="server" ImageUrl="~/Images/logo.png" /></li>
+          <li><asp:ImageButton ID="ibtnHome" runat="server" Width="50px" Height="50px" ImageUrl="~/Images/logo.png" /></li>
           <li>
               <asp:HyperLink ID="hlHome" class="active" runat="server">Home</asp:HyperLink></li>
           <li class="right"><asp:HyperLink ID="hlLoginSignUp" runat="server">Login/Sign Up</asp:HyperLink></li>
