@@ -1,33 +1,42 @@
-﻿@media screen and (max-width: 600px) {
-    .header {
-        width: 100%;
-        background-color: red;
-        height: 90px;
-        vertical-align: middle;
-        display: inline-flex;
+﻿body {
+    margin: 0;
+}
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+    ul.topnav li {
+        float: left;
     }
-}
-body {
-    margin-left: 20% !important;
-    margin-right: 20% !important;
-    margin: 0px;
-}
-.header {
-    width: 100%;
-    background-color: ghostwhite;
-    height: 180px;
-    vertical-align: middle;
-    display: inline-flex;
-}
-.ProjectIcon {
-    width: 20%;
-    height:100%;
-}
-.MenuIcon {
-    width: 50%;
-    height: 100%;
-}
-.UserIcon {
-    width: 29%;
-    height: 100%;
+
+        ul.topnav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+            ul.topnav li a:hover:not(.active) {
+                background-color: #111;
+            }
+
+            ul.topnav li a.active {
+                background-color: #04AA6D;
+            }
+
+        ul.topnav li.right {
+            float: right;
+        }
+
+@media screen and (max-width: 400px) {
+    ul.topnav li.right,
+    ul.topnav li {
+        float: none;
+    }
 }
