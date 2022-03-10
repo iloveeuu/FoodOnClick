@@ -4,30 +4,72 @@
 
 <html>
 <head runat="server">
+
+   <%-- <script type="text/javascript">
+
+        function openNav() {
+            document.getElementById("side_slide").style.right = "0px";
+            document.getElementById("mainBody").style.right = "-125px";
+
+            document.getElementById("body_overlay").style.right = "block";
+        }
+
+        function closeNav() {
+            document.getElementById("side_slide").style.right = "-250px";
+            document.getElementById("mainBody").style.right = "0px";
+
+            document.getElementById("body_overlay").style.display = "none";
+        }
+
+        function openMenuSliderTree(x) {
+
+            if (x.id == 'menu-item-2') {
+                if ($('#menu-item-2').hasClass('hover') == true) {
+                    $('#menu-item-2').removeClass('hover');
+                    document.getElementById("submenu-sub-item-2").style.display = "none";
+                }
+                else {
+                    $('#menu-item-2').addClass('hover');
+                    document.getElementById("submenu-sub-item-2").style.display = "block";
+                }
+            }
+        }
+    </script>
+
+    <style>
+        #side_slide {
+            background-color: greenyellow;
+            border-color: black;
+        }
+
+        body {
+            text-rendering: optimizeLegibility;
+        }
+    </style>--%>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>asdsad</title>
+    <style>
+    
+    </style>
+    <title></title>
             <link rel="stylesheet" href="./css/stylecss.css">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body id="mainBody" style="transition: 0 7s;">
     <form id="form1" runat="server">
-        <div>
-            <div class="header">
-                <div class="ProjectIcon">
-                    <asp:Button runat="server" Text="Main Img"/>
-                </div>
-                <div class="MenuIcon">
-                    <asp:Button ID="btnHome" runat="server" Text="Home" />
-                </div>
-                <div class="UserIcon">
-                    <asp:Button ID="btnShoppingCart" runat="server" Text="Cart"/>
-                    <asp:Button ID="btnUsername" runat="server" Text="Login/Signup" />
-                </div>
-            </div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        <ul class="topnav">
+          <li><asp:ImageButton ID="ibtnHome" runat="server" ImageUrl="~/Images/logo.png" /></li>
+          <li>
+              <asp:HyperLink ID="hlHome" class="active" runat="server">Home</asp:HyperLink></li>
+          <li class="right"><asp:HyperLink ID="hlLoginSignUp" runat="server">Login/Sign Up</asp:HyperLink></li>
+          <li class="right">
+              <asp:HyperLink ID="hlCart" runat="server">Cart</asp:HyperLink></li>
+        </ul>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-        </div>
     </form>
 </body>
+
 </html>

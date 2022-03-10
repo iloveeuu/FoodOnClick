@@ -32,31 +32,40 @@ Partial Public Class Masterpage
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''btnHome control.
+    '''ibtnHome control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnHome As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents ibtnHome As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''btnShoppingCart control.
+    '''hlHome control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnShoppingCart As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents hlHome As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''btnUsername control.
+    '''hlLoginSignUp control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnUsername As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents hlLoginSignUp As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''hlCart control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hlCart As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''ContentPlaceHolder1 control.
