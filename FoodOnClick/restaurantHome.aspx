@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="CSS/design.css" rel="stylesheet" />
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table id="tableStyle">
 		<tr>
 			<td>
@@ -29,4 +29,28 @@
 			</td>
 		</tr>
 	</table>
+	<asp:Repeater ID="rptRestaurant" runat="server" OnItemDataBound="rptRestaurant_ItemDataBound">
+		<ItemTemplate>
+			<table>
+				<tr>
+					<td colspan="3">
+						<asp:Label runat="server" ID="resName"></asp:Label>
+					</td>
+					<td>
+						<asp:Button runat="server" ID="btnSelect" Text="Select"/>
+					</td>
+					<td>
+						<asp:Button runat="server" ID="btnEdit" Text="Edit"/>
+					</td>
+					<td>
+						<asp:Button runat="server" ID="btnDelete" Text="Delete"/>
+					</td>
+				</tr>
+			</table>
+		</ItemTemplate>
+	</asp:Repeater>
+	<div class="alignTxtMid">
+	<asp:Label runat="server" ID="lblNothing" Text="Currently no restaurants registered" Visible="False"></asp:Label>
+		</div>
+	<asp:Button runat="server" ID="btnAdd" Width="100%" Text="Add Restaurant" OnClick="btnAdd_Click"/>
 </asp:Content>

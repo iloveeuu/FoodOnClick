@@ -13,58 +13,84 @@ Option Explicit On
 
 Partial Public Class restaurantHome
 
-
     '''<summary>
-    '''Image1 control.
+    '''restaurantHomeMenuBar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
+    Protected WithEvents restaurantHomeMenuBar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Label1 control.
+    '''restaurantHomeLoginSignup control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents restaurantHomeLoginSignup As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''lblPerson control.
+    '''restaurantHomeAddBranch control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblPerson As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents restaurantHomeAddBranch As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''txtNoPerson control.
+    '''restaurantHomeselectBanchRestaurant control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtNoPerson As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents restaurantHomeselectBanchRestaurant As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''btnPreOrder control.
+    '''restaurantHomeSelectButton control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnPreOrder As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents restaurantHomeSelectButton As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnConfirm control.
+    '''restaurantHomeEditButton control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnConfirm As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents restaurantHomeEditButton As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''rptRestaurant control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rptRestaurant As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''lblNothing control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNothing As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnAdd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
 End Class

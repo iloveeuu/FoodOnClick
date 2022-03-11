@@ -163,6 +163,7 @@
     <Content Include="Masterpage.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="restaurantHome.aspx" />
+    <Content Include="restaurantInfo.aspx" />
     <Content Include="restaurantMenu.aspx" />
     <Content Include="riderHome.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -195,6 +196,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="SendMailExample.aspx" />
     <Content Include="signUp.aspx" />
+    <Content Include="signUpMerchant.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
@@ -209,6 +211,7 @@
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Class\Customer.vb" />
+    <Compile Include="Class\Encryption.vb" />
     <Compile Include="Class\Merchant.vb" />
     <Compile Include="Class\Restaurant.vb" />
     <Compile Include="Class\Rider.vb" />
@@ -327,6 +330,13 @@
       <DependentUpon>restaurantHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="restaurantInfo.aspx.designer.vb">
+      <DependentUpon>restaurantInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="restaurantInfo.aspx.vb">
+      <DependentUpon>restaurantInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="riderHome.aspx.designer.vb">
       <DependentUpon>riderHome.aspx</DependentUpon>
     </Compile>
@@ -347,6 +357,9 @@
     <Compile Include="signUp.aspx.vb">
       <DependentUpon>signUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="signUpMerchant.aspx.designer.vb">
+      <DependentUpon>signUpMerchant.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.designer.vb">
       <DependentUpon>Site.Master</DependentUpon>

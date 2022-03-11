@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class User
-
+    Protected int_userId As Integer
     Protected str_firstName As String
     Protected str_lastName As String
     Protected str_address As String
@@ -12,6 +12,14 @@ Public Class User
     Protected str_username As String
     Protected str_password As String
     Protected str_email As String
+    Public Property userId() As Integer
+        Get
+            userId = int_userId
+        End Get
+        Set(ByVal Value As Integer)
+            int_userId = Value
+        End Set
+    End Property
     Public Property firstName() As String
         Get
             firstName = str_firstName
@@ -127,7 +135,7 @@ Public Class User
     Public Function CheckUserLoginAccess() As String
         Dim returnMsg As String = ""
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "SELECT * from UserAccount where LOWER(username) = @username and password = @password"
+        Dim Query As String = "SELECT * from UserAccount where LOWER(email) = @email and password = @password and LOWER(status) = 'approved'"
         Using conn As New SqlConnection(connectionString)
 
             Using comm As New SqlCommand()
@@ -136,7 +144,7 @@ Public Class User
                     .Connection = conn
                     .CommandType = CommandType.Text
                     .CommandText = Query
-                    .Parameters.Add("@username", SqlDbType.NVarChar).Value = Me.str_username.ToLower()
+                    .Parameters.Add("@email", SqlDbType.NVarChar).Value = Me.str_username.ToLower()
                     .Parameters.Add("@password", SqlDbType.NVarChar).Value = Me.str_password
                 End With
                 Try
