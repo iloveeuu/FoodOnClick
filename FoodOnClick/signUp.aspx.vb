@@ -9,7 +9,7 @@ Public Class signUp
 
     End Sub
 
-    Protected Sub btnSignUp_Click(sender As Object, e As EventArgs) Handles btnSignUp.Click
+    Protected Sub btnSignUpCustomer_Click(sender As Object, e As EventArgs) Handles btnSignUpCustomer.Click
 
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
@@ -27,41 +27,43 @@ Public Class signUp
         Else
             con.Close()
 
-            con.Open()
-            cmd = New SqlCommand("INSERT INTO UserAccount
-                                 values ('" & txtFirstName.Text & "','" & txtLastName.Text & "',
-                                 '" & txtAddress.Text & "', '" & txtContactNo.Text & "', '" & gender & "'
-                                 ,'" & txtDOB.Text & "', '" & ddlUserType.Text & "', '" & txtUsername.Text & "'
-                                 ,'" & txtPass.Text & "' ,'" & txtEmail.Text & "')", con)
-
-            If (txtFirstName.Text = "" Or txtLastName.Text = "" Or txtAddress.Text = "" Or txtContactNo.Text = "" Or txtDOB.Text = "" Or ddlUserType.Text = "" Or txtUsername.Text = "" Or txtPass.Text = "" Or txtEmail.Text = "") Then
+            If (txtFirstName.Text.Trim() = "" Or txtLastName.Text.Trim() = "" Or txtAddress.Text.Trim() = "" Or txtContactNo.Text.Trim() = "" Or txtDOB.Text.Trim() = "" Or txtUsername.Text.Trim() = "" Or txtPass.Text.Trim() = "" Or txtEmail.Text.Trim() = "") Then
                 MsgBox("Please enter the correct details!")
             Else
-                cmd.ExecuteNonQuery()
+                Dim pass As Encryption = New Encryption(txtPass.Text.Trim())
+                Dim encrypted As String = pass.Encrypt()
+
+                Dim customer As Customer = New Customer(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender _
+                                 , txtDOB.Text.Trim(), "customer", txtUsername.Text.Trim(), encrypted, txtEmail.Text.Trim())
+
+                customer.InsertCustomer()
                 MsgBox("Successfully Stored", MsgBoxStyle.Information, "Success")
-                Response.Redirect("Contact.aspx")
+                Response.Redirect("Login.aspx")
             End If
-            con.Close()
         End If
+    End Sub
 
-        If ddlUserType.SelectedValue = "Customer" Then
-            Dim customer As Customer = New Customer(txtUsername.Text.Trim(), txtPass.Text.Trim())
+    Protected Sub btnSignUpMerchant_Click(sender As Object, e As EventArgs) Handles btnSignUpMerchant.Click
 
-            customer.InsertCustomer()
-        ElseIf ddlUserType.SelectedValue = "Restaurant" Then
-            Dim merchant As Merchant = New Merchant(txtUsername.Text.Trim(), txtPass.Text.Trim())
+        If (txtFirstName.Text.Trim() = "" Or txtLastName.Text.Trim() = "" Or txtAddress.Text.Trim() = "" Or txtContactNo.Text.Trim() = "" Or txtDOB.Text.Trim() = "" Or txtUsername.Text.Trim() = "" Or txtPass.Text.Trim() = "" Or txtEmail.Text.Trim() = "") Then
+            MsgBox("Please enter the correct details!")
+        Else
 
-            merchant.InsertMerchant()
-        ElseIf ddlUserType.SelectedValue = "Rider" Then
-            Dim rider As Rider = New Rider(txtUsername.Text.Trim(), txtPass.Text.Trim())
+            Session("FirstName") = txtFirstName.Text.Trim()
+            Session("LastName") = txtLastName.Text.Trim()
+            Session("Address") = txtAddress.Text.Trim()
+            Session("ContactNo") = txtContactNo.Text.Trim()
+            Session("DOB") = txtDOB.Text.Trim()
+            Session("Username") = txtUsername.Text.Trim()
+            Session("Pass") = txtPass.Text.Trim()
+            Session("Email") = txtEmail.Text.Trim()
 
-            rider.InsertRider()
+            Response.Redirect("signUpMerchant.aspx")
         End If
     End Sub
 
     Protected Sub RadioButtonM_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonM.CheckedChanged
         gender = "Male"
-
     End Sub
 
     Protected Sub RadioButtonF_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonF.CheckedChanged

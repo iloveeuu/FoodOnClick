@@ -5,12 +5,13 @@ Public Class User
     Protected str_firstName As String
     Protected str_lastName As String
     Protected str_address As String
-    Protected int_phone As Integer
+    Protected str_phone As String
     Protected str_gender As String
     Protected str_dateOfBirth As String
     Protected str_type As String
     Protected str_username As String
     Protected str_password As String
+    Protected str_email As String
     Public Property firstName() As String
         Get
             firstName = str_firstName
@@ -35,12 +36,12 @@ Public Class User
             str_address = Value
         End Set
     End Property
-    Public Property phone() As Integer
+    Public Property phone() As String
         Get
-            phone = int_phone
+            phone = str_phone
         End Get
-        Set(ByVal Value As Integer)
-            int_phone = Value
+        Set(ByVal Value As String)
+            str_phone = Value
         End Set
     End Property
     Public Property gender() As String
@@ -84,27 +85,43 @@ Public Class User
         End Set
     End Property
 
+    Public Property email() As String
+        Get
+            email = str_email
+        End Get
+        Set(ByVal Value As String)
+            str_email = Value
+        End Set
+    End Property
+
+    Public Sub New()
+        str_firstName = ""
+        str_lastName = ""
+        str_address = ""
+        str_phone = ""
+        str_gender = ""
+        str_dateOfBirth = ""
+        str_type = ""
+        str_username = ""
+        str_password = ""
+    End Sub
 
     Public Sub New(ByVal username As String, ByVal password As String)
         str_username = username
         str_password = password
     End Sub
 
-    Public Sub New()
-        str_username = ""
-        str_password = ""
-    End Sub
-
-    Public Sub New(ByVal firstName As String, ByVal lastName As String, ByVal address As String, ByVal phone As Integer, ByVal gender As String, ByVal dateOfBirth As String, ByVal type As String, ByVal username As String, ByVal password As String)
+    Public Sub New(ByVal firstName As String, ByVal lastName As String, ByVal address As String, ByVal phone As Integer, ByVal gender As String, ByVal dateOfBirth As String, ByVal type As String, ByVal username As String, ByVal password As String, ByVal email As String)
         str_firstName = firstName
         str_lastName = lastName
         str_address = address
-        int_phone = phone
+        str_phone = phone
         str_gender = gender
         str_dateOfBirth = dateOfBirth
         str_type = type
         str_username = username
         str_password = password
+        str_email = email
     End Sub
 
     Public Function CheckUserLoginAccess() As String

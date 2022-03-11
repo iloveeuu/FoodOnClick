@@ -41,15 +41,6 @@ Partial Public Class Masterpage
     Protected WithEvents ibtnHome As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''hlHome control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlHome As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''hlLoginSignUp control.
     '''</summary>
     '''<remarks>

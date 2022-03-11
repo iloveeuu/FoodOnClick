@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class signUp
 
     '''<summary>
-    '''form2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents form2 As Global.System.Web.UI.HtmlControls.HtmlForm
-
-    '''<summary>
     '''txtUsername control.
     '''</summary>
     '''<remarks>
@@ -113,20 +104,20 @@ Partial Public Class signUp
     Protected WithEvents txtAddress As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''ddlUserType control.
+    '''btnSignUpMerchant control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlUserType As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents btnSignUpMerchant As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnSignUp control.
+    '''btnSignUpCustomer control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnSignUp As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnSignUpCustomer As Global.System.Web.UI.WebControls.Button
 End Class

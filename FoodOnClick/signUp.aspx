@@ -1,20 +1,16 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="signUp.aspx.vb" Inherits="FoodOnClick.signUp" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+﻿<%@ Page Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="signUp.aspx.vb" Inherits="FoodOnClick.signUp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+	
     <title>Sign Up Food On Click</title>
-    <link href="CSS/design.css" rel="stylesheet" />
-</head>
-<body>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <h1>Food On Click</h1>
     <h3>Sign Up</h3>
     <br />
     <hr />
     <br />
-    <form id="form2" runat="server">
         <table id="tableStyle">
             <tr>
                 <td>Username:
@@ -78,10 +74,10 @@
                 <td>Address :
                 </td>
                 <td>
-                    <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtAddress"  runat="server" TextMode="MultiLine"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td>User Type:
                 </td>
                 <td>
@@ -91,13 +87,14 @@
                         <asp:ListItem Value="Delivery Rider">Rider</asp:ListItem>
                     </asp:DropDownList>
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td>
-                    <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" />
+                    <%--<asp:Button ID="btnSignUpRider" runat="server" Text="Sign Up as Rider" />--%>
+                    <asp:Button ID="btnSignUpMerchant" runat="server" Text="Sign Up as Merchant" />
+                    <asp:Button ID="btnSignUpCustomer" runat="server" Text="Sign Up as Customer" />
                 </td>
                 <td></td>
             </tr>
         </table>
-    </form>
-</body>
+</asp:Content>

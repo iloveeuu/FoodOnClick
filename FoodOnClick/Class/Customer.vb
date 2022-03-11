@@ -5,20 +5,21 @@ Public Class Customer
 
     Inherits User
 
-    Protected str_type As String
+    'Protected str_type As String
 
-    Public Property type() As String
-        Get
-            type = str_type
-        End Get
-        Set(ByVal Value As String)
-            str_type = Value
-        End Set
-    End Property
+    'Public Property type() As String
+    '    Get
+    '        type = str_type
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        str_type = Value
+    '    End Set
+    'End Property
 
-    Public Sub New(ByVal username As String, ByVal password As String)
-        MyBase.New(username, password)
-        str_type = "Customer"
+    Public Sub New(ByVal sFirstName As String, ByVal sLastName As String, ByVal sAddress As String, ByVal sContactNo As String _
+            , ByVal sGender As String, ByVal sDOB As String, ByVal sType As String, ByVal sUsername As String, ByVal sPass As String, ByVal sEmail As String)
+        MyBase.New(sFirstName, sLastName, sAddress, sContactNo, sGender, sDOB, sType, sUsername, sPass, sEmail)
+        'str_type = "customer"
     End Sub
 
     Public Sub InsertCustomer()
