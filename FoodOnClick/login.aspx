@@ -28,7 +28,11 @@
             <td colspan="2">
                 <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" style="width:100%"/>
             </td>
-            <td></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" OnClick="btnSignUp_Click" style="width:100%"/>
+            </td>
         </tr>
     </table>
 </asp:Content>

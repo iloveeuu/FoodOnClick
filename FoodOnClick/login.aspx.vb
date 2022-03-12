@@ -24,4 +24,8 @@
                 Response.Redirect("customerHome.aspx")
         End Select
     End Sub
+
+    Protected Sub btnSignUp_Click(sender As Object, e As EventArgs)
+        Response.Redirect("signUp.aspx")
+    End Sub
 End Class

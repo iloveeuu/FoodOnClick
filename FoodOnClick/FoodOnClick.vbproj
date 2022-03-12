@@ -159,9 +159,12 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Images\background-purple.jpg" />
+    <Content Include="Images\logo.png" />
     <Content Include="login.aspx" />
     <Content Include="Masterpage.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="restaurantBranch.aspx" />
     <Content Include="restaurantHome.aspx" />
     <Content Include="restaurantInfo.aspx" />
     <Content Include="restaurantMenu.aspx" />
@@ -322,6 +325,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="restaurantBranch.aspx.designer.vb">
+      <DependentUpon>restaurantBranch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="restaurantBranch.aspx.vb">
+      <DependentUpon>restaurantBranch.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="restaurantHome.aspx.designer.vb">
       <DependentUpon>restaurantHome.aspx</DependentUpon>
