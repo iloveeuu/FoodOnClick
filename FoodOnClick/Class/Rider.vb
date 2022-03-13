@@ -15,9 +15,10 @@ Public Class Rider
         End Set
     End Property
 
-    Public Sub New(ByVal username As String, ByVal password As String)
-        MyBase.New(username, password)
-        str_type = "Rider"
+    Public Sub New(ByVal sFirstName As String, ByVal sLastName As String, ByVal sAddress As String, ByVal sContactNo As String _
+            , ByVal sGender As String, ByVal sDOB As String, ByVal sType As String, ByVal sUsername As String, ByVal sPass As String, ByVal sEmail As String)
+        MyBase.New(sFirstName, sLastName, sAddress, sContactNo, sGender, sDOB, sType, sUsername, sPass, sEmail)
+        'str_type = "customer"
     End Sub
 
     Public Sub InsertRider()
@@ -33,7 +34,7 @@ Public Class Rider
                     .CommandText = Query
                     .Parameters.Add("@username", SqlDbType.NVarChar).Value = MyBase.str_username
                     .Parameters.Add("@Name", SqlDbType.NVarChar).Value = MyBase.str_password
-                    .Parameters.Add("@Type", SqlDbType.VarChar).Value = str_type
+                    .Parameters.Add("@Type", SqlDbType.VarChar).Value = MyBase.str_type
                 End With
                 Try
                     conn.Open()
