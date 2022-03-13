@@ -1,5 +1,11 @@
 ﻿body {
+    font-family: courier, serif;
     margin: 0;
+}
+
+h1 {
+    margin: 0;
+    text-align:center;
 }
 
 ul.topnav {
@@ -34,9 +40,77 @@ ul.topnav li.right {
 float: right;
 }
 
+body {
+    /* The image used */
+    /* background: url("../Images/background-purple.jpg"); */
+    min-height: 100%;
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+#tableStyle {
+    width: 60%;
+    height: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#tableStyle td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.custBtnImage {
+    border: 5px solid;
+    width:100px; 
+    height:100px;
+}
+
+.custBtnDiv {
+    background-color: #00008B;
+    width: 80px;
+    margin: auto;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#masterText {
+    position:    absolute;
+    bottom:      20px;
+    font-size:   150%;
+    color:       #fff;
+    padding:     0 20px;
+    width:       80%;
+    line-height: 150%;
+    background:  rgb(0, 0, 0);
+    background:  rgba(0, 0, 0, 0.7);
+}
+
+/* For Phone */
 @media screen and (max-width: 600px) {
-    ul.topnav li.right,
-    ul.topnav li {
+    ul .topnav li.right, ul.topnav li {
         float: none;
+    }
+    #masterText {
+        position: absolute;
+        bottom: 10px;
+        font-size: 100%;
+        color: #fff;
+        padding: 0 20px;
+        width: 80%;
+        line-height: 100%;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.7);
     }
 }

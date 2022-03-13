@@ -14,29 +14,20 @@ Option Explicit On
 Partial Public Class customerHome
 
     '''<summary>
-    '''imgAnnouncement control.
+    '''lbtnDelivery control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents imgAnnouncement As Global.System.Web.UI.WebControls.Image
+    Protected WithEvents lbtnDelivery As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''ibtnDelivery control.
+    '''lbtnReservation control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ibtnDelivery As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
-    '''ibtnReservation control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ibtnReservation As Global.System.Web.UI.WebControls.ImageButton
+    Protected WithEvents lbtnReservation As Global.System.Web.UI.WebControls.LinkButton
 End Class

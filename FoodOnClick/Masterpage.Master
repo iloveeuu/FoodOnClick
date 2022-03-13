@@ -46,25 +46,50 @@
             text-rendering: optimizeLegibility;
         }
     </style>--%>
+    <meta charset="utf-8">
+    <title>Food On Click</title>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+        rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+
     <link rel="stylesheet" href="./css/stylecss.css">
+    
+    <%--<link rel="stylesheet" href="./css/stylecss2.css">--%>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body id="mainBody" style="transition: 0 7s; background-image:src()">
+<%--<body id="mainBody" style="transition: 0 7s;">--%>
+<body>
+ 
     <form id="form1" runat="server">
+        
         <ul class="topnav">
           <li><asp:ImageButton ID="ibtnHome" runat="server" Width="50px" Height="50px" ImageUrl="~/Images/logo.png" /></li>
           <%--<li><asp:HyperLink ID="hlHome" class="active" runat="server">Home</asp:HyperLink></li>--%>
-          <li class="right"><asp:HyperLink ID="hlLoginSignUp" runat="server">Login/Sign Up</asp:HyperLink></li>
+          <li class="right"><asp:HyperLink ID="hlLoginSignUp" CssClass="lnkSubmit" runat="server">Login/Sign Up</asp:HyperLink></li>
           <li class="right"><asp:HyperLink ID="hlCart" runat="server">Cart</asp:HyperLink></li>
         </ul>
 
+        
+
+        <div class="logo">
+        <h1>Food on <span class="danger">Click</span></h1>
+        </div>
+        <br/>
+        <hr/>
+        <br/>
+
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            
             </asp:ContentPlaceHolder>
     </form>
-</body>
 
+    <div>
+        <span id="masterText">We provide you services for delivery, reservation, pre-order and recurring order. We are currently in our final year project. Hopefully our application will be helpful to you all.</span>
+        <asp:Image ID="Image1"  runat="server" Width="100%" ImageUrl="~/Images/pexels-cottonbro-4604599.jpg" />
+    </div>
+    
+</body>
+<script src="Scripts/JavaScript.js"></script>
 </html>
