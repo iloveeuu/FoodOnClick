@@ -200,6 +200,7 @@
     <Content Include="SendMailExample.aspx" />
     <Content Include="signUp.aspx" />
     <Content Include="signUpMerchant.aspx" />
+    <Content Include="ssssxxxxxxxxxxxxxxx.txt" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
