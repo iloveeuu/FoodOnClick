@@ -1,0 +1,136 @@
+﻿body {
+    font-family: courier, serif;
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+    text-align: center;
+    color: #92248F;
+}
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #800080;
+}
+
+ul.topnav li {
+    float: left;
+}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {
+    background-color: #111;
+}
+
+ul.topnav li a.active {
+    background-color: #00008B;
+}
+
+ul.topnav li.right {
+float: right;
+}
+
+body {
+    /* The image used */
+    /* background: url("../Images/background-purple.jpg"); */
+    min-height: 100%;
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+#tableStyle {
+    width: 40%;
+    height: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#tableStyle td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.custBtnImage {
+    border: 5px solid;
+    border-color: #BA55D3;
+    width: 200px;
+    height: 200px;
+}
+
+.custBtnDiv {
+    background-color: #BA55D3;
+    width: 180px;
+    margin: auto;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#masterText {
+    position:    absolute;
+    bottom:      20px;
+    font-size:   150%; 
+    color:       #fff;
+    padding:     0 20px;
+    width:       80%;
+    line-height: 150%;
+    background:  rgb(0, 0, 0);
+    background:  rgba(0, 0, 0, 0.7);
+}
+
+/* For Phone */
+@media screen and (max-width: 800px) {
+    ul .topnav li.right, ul.topnav li {
+        float: none;
+    }
+    #masterText {
+        position: absolute;
+        bottom: 10px;
+        font-size: 100%;
+        color: #fff;
+        padding: 0 20px;
+        width: 80%;
+        line-height: 100%;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.7);
+    }
+}
+.alignTxtMid {
+    text-align: center;
+}
+
+input[type="submit"] {
+    border-radius: 12px;
+    color: white;
+    background-color: #800080;
+    transition-duration: 0.4s;
+    border: 2px solid #800080;
+}
+
+    input[type="submit"]:hover {
+        border-radius: 12px;
+        color: black;
+        background-color: white;
+        /*border: 2px solid #800080;*/
+    }
