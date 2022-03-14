@@ -12,17 +12,19 @@
                 <asp:TextBox ID="txtUser" runat="server"></asp:TextBox>
             </td>
         </tr>
-        <tr>
-            <td colspan="2">
-                <asp:HyperLink runat="server" ID="hpForgetPassword" NavigateUrl="~/login.aspx" Text="Forget Password"></asp:HyperLink>
-            </td>
-        </tr>
+
         <tr>
             <td>Password:
             </td>
             <td>
                 <asp:TextBox ID="txtPass" runat="server" TextMode="Password"></asp:TextBox>
             </td>
+        </tr>
+                <tr>
+            <td>
+                
+            </td>
+            <td><asp:HyperLink runat="server" ID="hpForgetPassword" NavigateUrl="~/login.aspx" Text="Forget Password"></asp:HyperLink></td>
         </tr>
         <tr>
             <td colspan="2">

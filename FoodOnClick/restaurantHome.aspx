@@ -3,7 +3,7 @@
     <link href="CSS/design.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table id="tableStyle">
+    <%--<table id="tableStyle">
 		<tr>
 			<td>
 				<asp:TextBox  ID="restaurantHomeMenuBar" runat="server"> </asp:TextBox>
@@ -28,7 +28,7 @@
 				<asp:Button ID="restaurantHomeEditButton" runat="server" Text="Edit"/>
 			</td>
 		</tr>
-	</table>
+	</table>--%>
 	<asp:Repeater ID="rptRestaurant" runat="server" OnItemDataBound="rptRestaurant_ItemDataBound" OnItemCommand="rptRestaurant_ItemCommand">
 		<ItemTemplate>
 			<table>
