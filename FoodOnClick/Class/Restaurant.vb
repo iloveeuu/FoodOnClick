@@ -8,6 +8,7 @@ Public Class Restaurant
     Protected int_restaurantId As Integer
     Protected str_restaurantName As String
     Protected str_restaurantType As String
+    Protected str_restaurantStatus As String
 
 
     Public Property restaurantId() As Integer
@@ -33,6 +34,14 @@ Public Class Restaurant
         End Get
         Set(ByVal Value As String)
             str_restaurantType = Value
+        End Set
+    End Property
+    Public Property restaurantStatus() As String
+        Get
+            restaurantStatus = str_restaurantStatus
+        End Get
+        Set(ByVal Value As String)
+            str_restaurantStatus = Value
         End Set
     End Property
     Public Property type() As String
@@ -69,7 +78,6 @@ Public Class Restaurant
                     conn.Open()
                     comm.ExecuteNonQuery()
                 Catch ex As SqlException
-                    Dim a As String = ex.Message
                 End Try
             End Using
         End Using
@@ -93,11 +101,46 @@ Public Class Restaurant
                     conn.Open()
                     Dim reader As SqlDataReader = comm.ExecuteReader
                     While reader.Read()
-                        Me.restaurantId = reader("restaurantId")
-                        Me.restaurantName = reader("name")
-                        Me.restaurantType = reader("type")
-                        Me.userId = reader("userId")
-                        returnObject.Add(Me)
+                        Dim tempObject As Restaurant = New Restaurant()
+                        tempObject.restaurantId = reader("restaurantId")
+                        tempObject.restaurantName = reader("name")
+                        tempObject.restaurantType = reader("description")
+                        tempObject.userId = reader("userId")
+                        returnObject.Add(tempObject)
+                    End While
+
+                Catch ex As SqlException
+
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+
+    Public Function RetrieveRestaurantInfoByRestaurantId()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As Restaurant = New Restaurant
+        Dim Query As String = "SELECT * from restaurant where restaurantID = @restaurantid"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@restaurantid", SqlDbType.Int).Value = Me.restaurantId
+                End With
+                Try
+                    'Dim tempObj As Restaurant = New Restaurant()
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        returnObject.restaurantId = reader("restaurantID")
+                        returnObject.restaurantName = reader("name")
+                        returnObject.restaurantType = reader("description")
+                        returnObject.userId = reader("userId")
+                        returnObject.restaurantStatus = reader("status")
                     End While
 
                 Catch ex As SqlException

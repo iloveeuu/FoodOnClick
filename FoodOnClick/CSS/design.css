@@ -1,47 +1,46 @@
 #tableStyle {
-    width:50%;
-    height:50%;
-  }
-table {
-	margin-left:auto;
-	margin-right: auto;
+    width: 50%;
+    height: 50%;
 }
-  
-  body {
 
-	  min-height: 100%;
-	  /* Full height */
-	  height: 100%; 
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
 
-	  /* Center and scale the image nicely */
-	  background-position: center;
-	  background-repeat: repeat;
-	  background-size: cover;
-  }
-  
-  h1
-  {
-	  text-align: center;
-	  color: #1F9B2C;
-  }
-  
-  h3
-  {
-	  text-align: center;
-	  color: #20D934;
-  }
-  
-  .loginText
-  {
-	  font-weight: bold;
-	  font-size: 18pt;
-  }
-  
-  .table-bordered{
-	width:70%;
-    border:3px solid green;
-    margin-top:20px;
-	border-left: 3px solid green;
-	border-right: 3px solid green;
-  }
+body {
+    min-height: 100%;
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
 
+h1 {
+    text-align: center;
+    color: #1F9B2C;
+}
+
+h3 {
+    text-align: center;
+    color: #20D934;
+}
+
+.loginText {
+    font-weight: bold;
+    font-size: 18pt;
+}
+
+.table-bordered {
+    width: 70%;
+    border: 3px solid green;
+    margin-top: 20px;
+    border-left: 3px solid green;
+    border-right: 3px solid green;
+}
+
+.alignTxtMid {
+    text-align: center;
+}

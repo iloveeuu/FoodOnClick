@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table id="tableStyle">
         <tr>
-            <td>Username:
+            <td>Email:
             </td>
             <td>
                 <asp:TextBox ID="txtUser" runat="server"></asp:TextBox>

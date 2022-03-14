@@ -29,15 +29,15 @@
 			</td>
 		</tr>
 	</table>
-	<asp:Repeater ID="rptRestaurant" runat="server" OnItemDataBound="rptRestaurant_ItemDataBound">
+	<asp:Repeater ID="rptRestaurant" runat="server" OnItemDataBound="rptRestaurant_ItemDataBound" OnItemCommand="rptRestaurant_ItemCommand">
 		<ItemTemplate>
 			<table>
 				<tr>
 					<td colspan="3">
-						<asp:Label runat="server" ID="resName"></asp:Label>
+						<asp:Label runat="server" ID="resName" Text='<%#Eval("restaurantName") %>'></asp:Label>
 					</td>
 					<td>
-						<asp:Button runat="server" ID="btnSelect" Text="Select"/>
+						<asp:Button runat="server" ID="btnSelect" Text="Select" CommandName="Select" CommandArgument='<%#Eval("restaurantId") %>'/>
 					</td>
 					<td>
 						<asp:Button runat="server" ID="btnEdit" Text="Edit"/>
