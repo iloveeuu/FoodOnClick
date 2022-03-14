@@ -44,3 +44,18 @@ h3 {
 .alignTxtMid {
     text-align: center;
 }
+input[type="submit"] {
+    border-radius: 12px;
+    color: white;
+    background-color: #800080;
+    transition-duration: 0.4s;
+    border: 2px solid #800080;
+}
+input[type="submit"]:hover {
+    border-radius: 12px;
+    color: black;
+    background-color: white;
+    /*border: 2px solid #800080;*/
+}
+
+
