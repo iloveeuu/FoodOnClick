@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="restaurantHome.aspx.vb" Inherits="FoodOnClick.restaurantHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="CSS/design.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--<table id="tableStyle">
@@ -52,5 +51,10 @@
 	<div class="alignTxtMid">
 	<asp:Label runat="server" ID="lblNothing" Text="Currently no restaurants registered" Visible="False"></asp:Label>
 		</div>
-	<asp:Button runat="server" ID="btnAdd" Width="100%" Text="Add Restaurant" OnClick="btnAdd_Click"/>
+	<table id="tableStyle">
+		<tr>
+			<td><asp:Button runat="server" ID="btnAdd" Width="100%" Text="Add Restaurant" OnClick="btnAdd_Click"/></td>
+		</tr>
+	</table>
+	
 </asp:Content>
