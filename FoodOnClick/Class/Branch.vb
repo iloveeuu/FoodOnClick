@@ -84,6 +84,9 @@ Public Class Branch
         MyBase.userId = userId
         MyBase.restaurantId = restaurantId
     End Sub
+    Public Sub New(ByVal branchid As Integer)
+        Me.branchId = branchid
+    End Sub
     Public Sub New(ByVal halal As String, ByVal restaurantId As Integer, ByVal address As String, ByVal postalCode As String, ByVal status As String, ByVal city As String, ByVal cuisineid As String, Optional ByVal branchid As Integer = 0)
         Me.halal = halal
         MyBase.restaurantId = restaurantId
@@ -114,6 +117,30 @@ Public Class Branch
                     .Parameters.Add("@status", SqlDbType.VarChar).Value = Me.branchStatus
                     .Parameters.Add("@city", SqlDbType.VarChar).Value = Me.branchCity
                     .Parameters.Add("@cuisineid", SqlDbType.VarChar).Value = Me.branchCuisineId
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                Catch ex As SqlException
+                    bool = ex.Message
+                End Try
+            End Using
+        End Using
+        Return bool
+    End Function
+    Public Function DeleteBranch() As String
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "DELETE FROM Branch where branchid = @branchid and status <> 'In Business'"
+        Dim bool As String = "True"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
                     .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
                 End With
                 Try
