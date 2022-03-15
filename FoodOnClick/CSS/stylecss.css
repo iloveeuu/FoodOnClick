@@ -54,7 +54,7 @@ body {
 }
 
 #tableStyle {
-    width: 40%;
+    width: 20%;
     height: 60%;
     margin-left: auto;
     margin-right: auto;
@@ -87,16 +87,51 @@ table {
     text-decoration: none;
 }
 
-#masterText {
-    position:    absolute;
-    bottom:      20px;
-    font-size:   150%; 
-    color:       #fff;
-    padding:     0 20px;
-    width:       80%;
-    line-height: 150%;
-    background:  rgb(0, 0, 0);
-    background:  rgba(0, 0, 0, 0.7);
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    width:50%;
+    padding: 20px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.col-20 {
+    float: left;
+    width: 20%;
+    margin-top: 6px;
+}
+
+.col-30 {
+    float: left;
+    width: 30%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.image {
+    position: relative;
+    width: 100%; /* for IE 6 */
+}
+
+.masterText {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    font-size:2vw;
+    width: 100%;
+    color: white;
+    font: bold 24px/45px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
 }
 
 /* For Phone */
@@ -104,33 +139,44 @@ table {
     ul .topnav li.right, ul.topnav li {
         float: none;
     }
-    #masterText {
-        position: absolute;
-        bottom: 10px;
-        font-size: 100%;
-        color: #fff;
-        padding: 0 20px;
+
+    .col-20, .col-30, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+    .fullText {
+        width: 100%;
+    }
+
+    .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
         width: 80%;
-        line-height: 100%;
-        background: rgb(0, 0, 0);
-        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
     }
-}
-.alignTxtMid {
-    text-align: center;
+
 }
 
-input[type="submit"] {
-    border-radius: 12px;
-    color: white;
-    background-color: #800080;
-    transition-duration: 0.4s;
-    border: 2px solid #800080;
-}
+    .alignTxtMid {
+        text-align: right;
+    }
 
-    input[type="submit"]:hover {
+    input[type="submit"] {
         border-radius: 12px;
-        color: black;
-        background-color: white;
-        /*border: 2px solid #800080;*/
+        color: white;
+        background-color: #800080;
+        transition-duration: 0.4s;
+        border: 2px solid #800080;
     }
+
+        input[type="submit"]:hover {
+            border-radius: 12px;
+            color: black;
+            background-color: white;
+            /*border: 2px solid #800080;*/
+        }
+
+
+

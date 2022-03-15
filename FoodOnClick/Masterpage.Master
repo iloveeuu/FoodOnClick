@@ -69,6 +69,7 @@
           <%--<li><asp:HyperLink ID="hlHome" class="active" runat="server">Home</asp:HyperLink></li>--%>
           <li class="right"><asp:HyperLink ID="hlLoginSignUp" CssClass="lnkSubmit" runat="server">Login/Sign Up</asp:HyperLink></li>
           <%--<li class="right"><asp:HyperLink ID="hlCart" runat="server">Cart</asp:HyperLink></li>--%>
+            <li class="right"><asp:HyperLink ID="hlLogOut" Visible="false" runat="server" >Log Out</asp:HyperLink></li>
         </ul>
 
         
@@ -85,9 +86,10 @@
             </asp:ContentPlaceHolder>
     </form>
 
-    <div>
-        <span id="masterText">We are developing food delivery, dine-in reservation, dine-in pre-order, drive thru pre order, recurring delivery order application. We are currently in our final year project. Hopefully our application will be helpful to you all.</span>
+    <div class="image">
         <asp:Image ID="Image1"  runat="server" Width="100%" ImageUrl="~/Images/pexels-cottonbro-4604599.jpg" />
+
+        <span class="masterText">Food on Click:<br />FYP-22-S1-20P<br />We are developing an application for food delivery and table reservation</span>
     </div>
     
 </body>
