@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class customerHome
+Partial Public Class customerHistory
 
     '''<summary>
     '''btnProfile control.
@@ -23,29 +23,20 @@ Partial Public Class customerHome
     Protected WithEvents btnProfile As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnHistory control.
+    '''btnHome control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnHistory As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnHome As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''lbtnDelivery control.
+    '''gvReservation control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbtnDelivery As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''lbtnReservation control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbtnReservation As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents gvReservation As Global.System.Web.UI.WebControls.GridView
 End Class

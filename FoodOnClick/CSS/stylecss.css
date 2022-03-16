@@ -1,9 +1,19 @@
 ﻿body {
     font-family: courier, serif;
-    margin: 0;
+    margin: 0; 
+    /* background: url("../Images/background-purple.jpg"); */
+    min-height: 100%;
+    /* Full height */
+    height: 100%;
 }
 
 h1 {
+    margin: 0;
+    text-align: center;
+    color: #92248F;
+}
+
+h2 {
     margin: 0;
     text-align: center;
     color: #92248F;
@@ -41,18 +51,6 @@ ul.topnav li.right {
 float: right;
 }
 
-body {
-    /* The image used */
-    /* background: url("../Images/background-purple.jpg"); */
-    min-height: 100%;
-    /* Full height */
-    height: 100%;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: repeat;
-    background-size: cover;
-}
-
 #tableStyle {
     width: 20%;
     height: 60%;
@@ -68,6 +66,14 @@ body {
 table {
     margin-left: auto;
     margin-right: auto;
+}
+
+.textWidthCustSearch {
+    width:77%
+}
+
+.ddlWidthCustSearch {
+    width:80%
 }
 
 .custBtnImage {
@@ -96,6 +102,7 @@ table {
     margin-right:auto;
 }
 
+
 .col-20 {
     float: left;
     width: 20%;
@@ -105,6 +112,19 @@ table {
 .col-30 {
     float: left;
     width: 30%;
+    margin-top: 6px;
+}
+
+.col-50 {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+}
+
+.col-100 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
     margin-top: 6px;
 }
 
@@ -134,18 +154,30 @@ table {
     padding: 10px;
 }
 
+#gvSearch {
+    width:70%;
+}
+
+.alignRight {
+    align-content:baseline;
+}
+
 /* For Phone */
 @media screen and (max-width: 800px) {
     ul .topnav li.right, ul.topnav li {
         float: none;
     }
 
-    .col-20, .col-30, input[type=submit] {
+    .col-20, .col-30, col-50, input[type=submit] {
         width: 100%;
         margin-top: 0;
     }
-    .fullText {
-        width: 100%;
+    .textWidthCustSearch {
+        width: 100%
+    }
+
+    .ddlWidthCustSearch {
+        width: 100%
     }
 
     .container {
@@ -159,24 +191,24 @@ table {
 
 }
 
-    .alignTxtMid {
-        text-align: right;
-    }
+.alignTxtMid {
+    text-align: right;
+}
 
-    input[type="submit"] {
-        border-radius: 12px;
-        color: white;
-        background-color: #800080;
-        transition-duration: 0.4s;
-        border: 2px solid #800080;
-    }
+input[type="submit"] {
+    border-radius: 12px;
+    color: white;
+    background-color: #800080;
+    transition-duration: 0.4s;
+    border: 2px solid #800080;
+}
 
-        input[type="submit"]:hover {
-            border-radius: 12px;
-            color: black;
-            background-color: white;
-            /*border: 2px solid #800080;*/
-        }
+input[type="submit"]:hover {
+    border-radius: 12px;
+    color: black;
+    background-color: white;
+    /*border: 2px solid #800080;*/
+}
 
 
 
