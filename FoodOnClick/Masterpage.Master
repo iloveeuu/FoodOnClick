@@ -67,9 +67,11 @@
         <ul class="topnav">
           <li><asp:ImageButton ID="ibtnHome" runat="server" Width="250px" Height="50px" ImageUrl="~/Images/logo.png" /></li>
           <%--<li><asp:HyperLink ID="hlHome" class="active" runat="server">Home</asp:HyperLink></li>--%>
-          <li class="right"><asp:HyperLink ID="hlLoginSignUp" CssClass="lnkSubmit" runat="server">Login/Sign Up</asp:HyperLink></li>
+                <li class="right">
+                    <asp:LinkButton ID="lbLoginSignUp" runat="server" OnClick="lbLoginSignUp_Click">Login/Sign Up</asp:LinkButton></li>
           <%--<li class="right"><asp:HyperLink ID="hlCart" runat="server">Cart</asp:HyperLink></li>--%>
-            <li class="right"><asp:HyperLink ID="hlLogOut" Visible="false" runat="server" >Log Out</asp:HyperLink></li>
+            <li class="right">
+                <asp:LinkButton ID="lblLogOut" runat="server" OnClick="lblLogOut_Click">Log Out</asp:LinkButton></li>
         </ul>
 
         
