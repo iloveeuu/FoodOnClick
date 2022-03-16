@@ -84,6 +84,7 @@ Public Class Branch
         MyBase.userId = userId
         MyBase.restaurantId = restaurantId
     End Sub
+
     Public Sub New(ByVal branchid As Integer)
         Me.branchId = branchid
     End Sub
@@ -277,6 +278,43 @@ Public Class Branch
                         tempobj.restaurantType = reader("description")
                         tempobj.userId = reader("userId")
                         returnObject.Add(tempobj)
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+
+    Public Function RetrieveRestaurantBranchInfoByBranchId()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As Branch = New Branch
+        Dim Query As String = "SELECT * from branch join restaurant on restaurant.restaurantid = branch.restaurantid where branch.branchid = @branchid"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        returnObject.branchId = reader("branchId")
+                        returnObject.branchAddress = reader("address")
+                        returnObject.halal = reader("halal")
+                        returnObject.branchPostalcode = reader("postalcode")
+                        returnObject.branchStatus = reader("status")
+                        returnObject.branchCuisineId = reader("cuisineTypeID")
+                        returnObject.branchCity = reader("city")
+                        returnObject.restaurantId = reader("restaurantId")
+                        returnObject.restaurantName = reader("name")
+                        returnObject.restaurantType = reader("description")
+                        returnObject.userId = reader("userId")
                     End While
                 Catch ex As SqlException
                 End Try

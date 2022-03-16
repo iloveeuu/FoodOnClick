@@ -12,7 +12,7 @@
             ddlCuisine.DataBind()
             If (Session("branchid")) Is Nothing Then
                 btnSubmit.Text = "Create branch"
-                lbltitle.Text = "Create branch for " & singleArrOfRestaurant.restaurantName
+                lbltitle.Text = "Create menu for " & singleArrOfRestaurant.restaurantName
             Else
                 clsRestaurantInfo.branchId = Convert.ToInt32(Session("branchid"))
                 Dim editInfo As Branch = clsRestaurantInfo.RetrieveAllBranchInfoByBranchId

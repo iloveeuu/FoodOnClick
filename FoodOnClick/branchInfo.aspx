@@ -7,23 +7,23 @@
         <tr>
             <td colspan="2">
                 <h1>
-                    <asp:Label runat="server" ID="lbltitle" Width="95%"></asp:Label></h1>
+                    <asp:Label runat="server" ID="lbltitle" Width="100%"></asp:Label></h1>
             </td>
         </tr>
         <tr>
-            <td>City:</td>
+            <td>Location:</td>
             <td>
-                <asp:TextBox runat="server" ID="txtCity" placeholder="e.g Ang Mo Kio" Width="95%"></asp:TextBox></td>
+                <asp:TextBox runat="server" ID="txtCity" placeholder="e.g Ang Mo Kio" Width="100%"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Address:</td>
             <td>
-                <asp:TextBox runat="server" ID="txtaddress" Width="95%"></asp:TextBox></td>
+                <asp:TextBox runat="server" ID="txtaddress" Width="100%"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Postal Code:</td>
             <td>
-                <asp:TextBox runat="server" ID="txtpostalcode" Width="95%"></asp:TextBox></td>
+                <asp:TextBox runat="server" ID="txtpostalcode" Width="100%"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Cuisine:</td>

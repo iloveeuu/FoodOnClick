@@ -16,10 +16,10 @@
             Dim city As String = DataBinder.Eval(e.Item.DataItem, "branchCity").ToString()
             Dim name As Label = TryCast(e.Item.FindControl("branchName"), Label)
             name.Text = name.Text & " - " & city
-            If (DataBinder.Eval(e.Item.DataItem, "branchStatus").ToString() = "In Business") Then
-                Dim btnDelete As Button = TryCast(e.Item.FindControl("btnDelete"), Button)
-                btnDelete.Enabled = False
-            End If
+            'If (DataBinder.Eval(e.Item.DataItem, "branchStatus").ToString() = "In Business") Then
+            '    Dim btnDelete As Button = TryCast(e.Item.FindControl("btnDelete"), Button)
+            '    btnDelete.Enabled = False
+            'End If
         End If
     End Sub
 
@@ -36,6 +36,10 @@
                     MsgBox("Successfully deleted branch", MsgBoxStyle.Information, "Success")
                 End If
             End If
+        ElseIf (e.CommandName = "Select") Then
+            System.Web.HttpContext.Current.Session("branchid") = e.CommandArgument.ToString()
+            Response.Redirect("branchMenu.aspx")
+
         End If
     End Sub
 

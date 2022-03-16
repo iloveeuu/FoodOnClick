@@ -23,9 +23,9 @@
                     <td>
                         <asp:Button runat="server" ID="btnEdit" Text="Edit" CommandName="Edit" CommandArgument='<%#Eval("branchId") %>' />
                     </td>
-                    <td>
+<%--                    <td>
                         <asp:Button runat="server" ID="btnDelete" Text="Delete" CommandName="Delete" CommandArgument='<%#Eval("branchId") %>'/>
-                    </td>
+                    </td>--%>
                 </tr>
             </table>
         </ItemTemplate>
