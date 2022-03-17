@@ -42,18 +42,17 @@
                             "<body>" &
                             "<p>Dear " & lblRestName.Text & ",</p>" &
                             "<p>At " & lblAddress.Text & ",</p>" &
-                            "<br/><br/>" &
+                            "<br/>" &
                             "<p>You have reservation from " & Session("firstname") & " " & Session("lastname") & " at " & txtDate.Text.Trim() & " time " & txtTime.Text.Trim() & " for " & txtPax.Text.Trim() & " pax </p>" &
                             "<p>Please check your reservation list and response the status</p>" &
-                            "<br/><br/>" &
+                            "<br/>" &
                             "<p>Regards,</p>" &
                             "<p>Food on Click</p>" &
                             "</body>" &
                             "</html>"
 
         Dim smtp As SMTP = New SMTP()
-        'Session("email")
-        Dim email() As String = {"will.ariez@gmail.com"}
+        Dim email() As String = {Session("email")}
         smtp.SendMail(email, subject, body, Nothing, True)
 
         MsgBox("Reservation Created, Please Wait for Confirmation")

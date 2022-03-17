@@ -38,10 +38,14 @@
     End Sub
 
     Protected Sub btnProfile_Click(sender As Object, e As EventArgs)
+        Session("userid") = Session("userid")
+        Session("email") = Session("email")
         Response.Redirect("customerProfile.aspx")
     End Sub
 
     Protected Sub btnHistory_Click(sender As Object, e As EventArgs)
+        Session("userid") = Session("userid")
+        Session("email") = Session("email")
         Response.Redirect("customerHistory.aspx")
     End Sub
 End Class
