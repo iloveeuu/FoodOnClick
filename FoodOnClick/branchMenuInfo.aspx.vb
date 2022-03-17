@@ -63,6 +63,7 @@ Public Class branchMenuInfo
             Else
                 MsgBox(msg, MsgBoxStyle.Information, "Error")
             End If
+
         ElseIf (btnSubmit.Text = "Update menu") Then
             Dim imageUrl As String = ""
             If (FileUpload.HasFile) Then
@@ -77,7 +78,7 @@ Public Class branchMenuInfo
             Else
                 imageUrl = imgurl.Value
             End If
-            Dim clsMenu As Menu = New Menu(txtName.Text.Trim(), txtDescription.Text.Trim(), txtCost.Text.Trim(), imageUrl, ddlStatus.SelectedValue, ddlDiscount.SelectedValue, ddlFoodType.SelectedValue, txtProtein.Text.Trim(), txtEnergy.Text.Trim(), txtCarbonhydrate.Text.Trim(), txtGlucose.Text.Trim(), txtFats.Text.Trim(), txtSodium.Text.Trim())
+            Dim clsMenu As Menu = New Menu(txtName.Text.Trim(), txtDescription.Text.Trim(), txtCost.Text.Trim(), imageUrl, ddlStatus.SelectedValue, ddlDiscount.SelectedValue, Convert.ToInt32(Session("branchid")), ddlFoodType.SelectedValue, txtProtein.Text.Trim(), txtEnergy.Text.Trim(), txtCarbonhydrate.Text.Trim(), txtGlucose.Text.Trim(), txtFats.Text.Trim(), txtSodium.Text.Trim(), Convert.ToInt32(Session("menuid")))
             Dim msg As String = clsMenu.UpdateMenu()
             If (msg = "True") Then
                 MsgBox("Successfully updated menu", MsgBoxStyle.Information, "Success")
