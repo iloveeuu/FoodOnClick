@@ -23,6 +23,24 @@ Partial Public Class branchInfo
     Protected WithEvents lbltitle As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''txtEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtPassword control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPassword As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''txtCity control.
     '''</summary>
     '''<remarks>
@@ -75,6 +93,24 @@ Partial Public Class branchInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlStatus As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''txtStart control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtStart As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtEnd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtEnd As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btnCancel control.

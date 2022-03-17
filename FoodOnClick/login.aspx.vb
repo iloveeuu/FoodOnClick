@@ -22,6 +22,16 @@
                 Response.Redirect("restaurantHome.aspx")
             Case "Customer"
                 Response.Redirect("customerHome.aspx")
+            Case Else
+                Dim clsBranch As Branch = New Branch(username.Trim(), encrypted)
+                If (clsBranch.CheckBranchLogin() = "True") Then
+                    Response.Redirect("branchMenu.aspx")
+                Else
+                    'No user found, can display no user found msg or smth'
+
+                End If
+
+
         End Select
     End Sub
 

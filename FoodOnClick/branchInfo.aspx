@@ -11,6 +11,16 @@
             </td>
         </tr>
         <tr>
+            <td>Email:</td>
+            <td>
+                <asp:TextBox runat="server" ID="txtEmail" Width="100%"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td>
+                <asp:TextBox runat="server" ID="txtPassword" Width="100%"></asp:TextBox></td>
+        </tr>
+        <tr>
             <td>Location:</td>
             <td>
                 <asp:TextBox runat="server" ID="txtCity" placeholder="e.g Ang Mo Kio" Width="100%"></asp:TextBox></td>
@@ -48,6 +58,16 @@
                     <asp:ListItem Value="In Business">In Business</asp:ListItem>
                     <asp:ListItem Value="Closed">Closed</asp:ListItem>
                 </asp:DropDownList></td>
+        </tr>
+        <tr>
+            <td>Time Start:</td>
+            <td>
+                <asp:TextBox runat="server" ID="txtStart" TextMode="Time" Width="100%"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td>Time End:</td>
+            <td>
+                <asp:TextBox runat="server" ID="txtEnd" TextMode="Time" Width="100%"></asp:TextBox></td>
         </tr>
         <tr>
             <td>
