@@ -152,7 +152,15 @@ Public Class User
                     Dim reader As SqlDataReader = comm.ExecuteReader
                     While reader.Read()
                         returnMsg = reader("type")
-                        System.Web.HttpContext.Current.Session("userid") = reader("userId")
+                        System.Web.HttpContext.Current.Session("userid") = reader("userid")
+                        System.Web.HttpContext.Current.Session("firstname") = reader("firstName")
+                        System.Web.HttpContext.Current.Session("lastname") = reader("lastName")
+                        System.Web.HttpContext.Current.Session("address") = reader("address")
+                        System.Web.HttpContext.Current.Session("phonenum") = reader("phoneNum")
+                        System.Web.HttpContext.Current.Session("gender") = reader("gender")
+                        System.Web.HttpContext.Current.Session("dateofbirth") = reader("dateofBirth")
+                        System.Web.HttpContext.Current.Session("type") = reader("type")
+                        System.Web.HttpContext.Current.Session("email") = reader("email")
                     End While
 
                 Catch ex As SqlException

@@ -23,15 +23,6 @@ Partial Public Class login
     Protected WithEvents txtUser As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''hpForgetPassword control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hpForgetPassword As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''txtPass control.
     '''</summary>
     '''<remarks>
@@ -39,6 +30,15 @@ Partial Public Class login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPass As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''hpForgetPassword control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hpForgetPassword As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''btnLogin control.

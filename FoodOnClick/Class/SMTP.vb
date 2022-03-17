@@ -58,7 +58,7 @@ Public Class SMTP
         Temp_ServerPort = ServerPort
         Temp_EnableSSl = EnableSSl
     End Sub
-    Public Function SendMail(ByVal ToAddressies As String(), ByVal Subject As String, ByVal BodyText As String, Optional ByVal AttachedFiles As String() = Nothing) As Boolean
+    Public Function SendMail(ByVal ToAddressies As String(), ByVal Subject As String, ByVal BodyText As String, Optional ByVal AttachedFiles As String() = Nothing, Optional ByVal isBodyHTML As Boolean = False) As Boolean
         Temp_ErrorText = ""
         Dim Mail As New MailMessage
         Dim SMTP As New SmtpClient(Temp_SMTPSERVER)
@@ -69,7 +69,9 @@ Public Class SMTP
         For i As Int16 = 0 To ToAddressies.Length - 1
             Mail.To.Add(ToAddressies(i))
         Next i
+
         Mail.Body = BodyText
+        Mail.IsBodyHtml = isBodyHTML
         Mail.Attachments.Clear()
 
         If AttachedFiles IsNot Nothing Then

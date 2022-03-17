@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\FoodOnClick",
+    "\\FoodOnClick\\Class",
+    "\\FoodOnClick\\CSS",
+    "\\FoodOnClick\\Images"
   ],
-  "SelectedNode": "\\FoodOnClick.sln",
+  "SelectedNode": "\\FoodOnClick\\FoodOnClick.sln",
   "PreviewInSolutionExplorer": false
 }

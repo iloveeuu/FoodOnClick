@@ -37,6 +37,25 @@ FoodOnClick
  Returns the Asp log object.
  </summary>
 </member>
+<<<<<<< HEAD
+=======
+<member name="T:FoodOnClick.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:FoodOnClick.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:FoodOnClick.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+>>>>>>> 70c56fe2edf66f34e23a1c18e8dc671b619d25c3
 <member name="F:FoodOnClick.customerCart._lblListOrders">
 <summary>
 lblListOrders control.
@@ -127,6 +146,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<<<<<<< HEAD
 <member name="F:FoodOnClick.customerHome._imgAnnouncement">
 <summary>
 imgAnnouncement control.
@@ -139,15 +159,26 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FoodOnClick.customerHome._ibtnDelivery">
 <summary>
 ibtnDelivery control.
+=======
+<member name="F:FoodOnClick.customerHome._lbtnDelivery">
+<summary>
+lbtnDelivery control.
+>>>>>>> 70c56fe2edf66f34e23a1c18e8dc671b619d25c3
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<<<<<<< HEAD
 <member name="F:FoodOnClick.customerHome._ibtnReservation">
 <summary>
 ibtnReservation control.
+=======
+<member name="F:FoodOnClick.customerHome._lbtnReservation">
+<summary>
+lbtnReservation control.
+>>>>>>> 70c56fe2edf66f34e23a1c18e8dc671b619d25c3
 </summary>
 <remarks>
 Auto-generated field.
@@ -424,6 +455,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<<<<<<< HEAD
+=======
+<member name="F:FoodOnClick.Masterpage._Image1">
+<summary>
+Image1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+>>>>>>> 70c56fe2edf66f34e23a1c18e8dc671b619d25c3
 <member name="F:FoodOnClick.restaurantHome._restaurantHomeMenuBar">
 <summary>
 restaurantHomeMenuBar control.
@@ -748,6 +791,72 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<<<<<<< HEAD
+=======
+<member name="F:FoodOnClick.adminHome._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.adminManageApproval._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.adminManageApprovalViewAccounts._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.adminManageApprovalViewApprovals._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.adminManageFeedbacks._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.adminManageOrders._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.adminManageSupportIssues._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+>>>>>>> 70c56fe2edf66f34e23a1c18e8dc671b619d25c3
 <member name="F:FoodOnClick.Site_Mobile._Head1">
 <summary>
 Head1 control.
@@ -802,6 +911,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<<<<<<< HEAD
 <member name="F:FoodOnClick.WebForm1._form1">
 <summary>
 form1 control.
@@ -811,5 +921,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+=======
+>>>>>>> 70c56fe2edf66f34e23a1c18e8dc671b619d25c3
 </members>
 </doc>

@@ -1,9 +1,8 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="restaurantHome.aspx.vb" Inherits="FoodOnClick.restaurantHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="CSS/design.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table id="tableStyle">
+    <%--<table id="tableStyle">
 		<tr>
 			<td>
 				<asp:TextBox  ID="restaurantHomeMenuBar" runat="server"> </asp:TextBox>
@@ -28,16 +27,16 @@
 				<asp:Button ID="restaurantHomeEditButton" runat="server" Text="Edit"/>
 			</td>
 		</tr>
-	</table>
-	<asp:Repeater ID="rptRestaurant" runat="server" OnItemDataBound="rptRestaurant_ItemDataBound">
+	</table>--%>
+	<asp:Repeater ID="rptRestaurant" runat="server" OnItemDataBound="rptRestaurant_ItemDataBound" OnItemCommand="rptRestaurant_ItemCommand">
 		<ItemTemplate>
 			<table>
 				<tr>
 					<td colspan="3">
-						<asp:Label runat="server" ID="resName"></asp:Label>
+						<asp:Label runat="server" ID="resName" Text='<%#Eval("restaurantName") %>'></asp:Label>
 					</td>
 					<td>
-						<asp:Button runat="server" ID="btnSelect" Text="Select"/>
+						<asp:Button runat="server" ID="btnSelect" Text="Select" CommandName="Select" CommandArgument='<%#Eval("restaurantId") %>'/>
 					</td>
 					<td>
 						<asp:Button runat="server" ID="btnEdit" Text="Edit"/>
@@ -52,5 +51,10 @@
 	<div class="alignTxtMid">
 	<asp:Label runat="server" ID="lblNothing" Text="Currently no restaurants registered" Visible="False"></asp:Label>
 		</div>
-	<asp:Button runat="server" ID="btnAdd" Width="100%" Text="Add Restaurant" OnClick="btnAdd_Click"/>
+	<table id="tableStyle">
+		<tr>
+			<td><asp:Button runat="server" ID="btnAdd" Width="100%" Text="Add Restaurant" OnClick="btnAdd_Click"/></td>
+		</tr>
+	</table>
+	
 </asp:Content>

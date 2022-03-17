@@ -41,22 +41,22 @@ Partial Public Class Masterpage
     Protected WithEvents ibtnHome As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''hlLoginSignUp control.
+    '''lbLoginSignUp control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hlLoginSignUp As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents lbLoginSignUp As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''hlCart control.
+    '''lblLogOut control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hlCart As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents lblLogOut As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''ContentPlaceHolder1 control.
@@ -66,4 +66,13 @@ Partial Public Class Masterpage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ContentPlaceHolder1 As Global.System.Web.UI.WebControls.ContentPlaceHolder
+
+    '''<summary>
+    '''Image1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
 End Class

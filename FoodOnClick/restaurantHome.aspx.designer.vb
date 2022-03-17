@@ -14,60 +14,6 @@ Option Explicit On
 Partial Public Class restaurantHome
 
     '''<summary>
-    '''restaurantHomeMenuBar control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents restaurantHomeMenuBar As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''restaurantHomeLoginSignup control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents restaurantHomeLoginSignup As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''restaurantHomeAddBranch control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents restaurantHomeAddBranch As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''restaurantHomeselectBanchRestaurant control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents restaurantHomeselectBanchRestaurant As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''restaurantHomeSelectButton control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents restaurantHomeSelectButton As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''restaurantHomeEditButton control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents restaurantHomeEditButton As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''rptRestaurant control.
     '''</summary>
     '''<remarks>
