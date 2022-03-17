@@ -21,14 +21,21 @@ Public Class branchMenuInfo
                 btnSubmit.Text = "Create menu"
                 lbltitle.Text = "Create menu for " & singleArrOfRestaurant.restaurantName & " - " & singleArrOfRestaurant.branchCity
             Else
-                'clsRestaurantInfo.branchId = Convert.ToInt32(Session("branchid"))
-                'Dim editInfo As Branch = clsRestaurantInfo.RetrieveAllBranchInfoByBranchId
-                'txtpostalcode.Text = editInfo.branchPostalcode
-                'txtCity.Text = editInfo.branchCity
-                'txtaddress.Text = editInfo.branchAddress
-                'ddlStatus.SelectedValue = editInfo.branchStatus
-                'ddlHalal.SelectedValue = editInfo.halal
-                'ddlCuisine.SelectedValue = editInfo.branchCuisineId
+                ddlMenuInfo.menuId = Convert.ToInt32(Session("menuid"))
+                Dim editInfo As Menu = ddlMenuInfo.RetrieveAllMenuInfoByMenuId()
+                txtName.Text = editInfo.menuName
+                txtDescription.Text = editInfo.menuDescription
+                txtCost.Text = editInfo.menuCost
+                ddlStatus.SelectedValue = editInfo.menuStatusId
+                ddlDiscount.SelectedValue = editInfo.menuDiscountId
+                ddlFoodType.SelectedValue = editInfo.menuFoodTypeId
+                txtProtein.Text = editInfo.menuProtein
+                txtEnergy.Text = editInfo.menuEnergy
+                txtCarbonhydrate.Text = editInfo.menuCarbonhydrate
+                txtGlucose.Text = editInfo.menuGlucose
+                txtFats.Text = editInfo.menuFats
+                txtSodium.Text = editInfo.menuSodium
+                imgurl.Value = editInfo.menuImage
                 btnSubmit.Text = "Update menu"
                 lbltitle.Text = "Update menu for " & singleArrOfRestaurant.restaurantName & " - " & singleArrOfRestaurant.branchCity
             End If
@@ -57,14 +64,27 @@ Public Class branchMenuInfo
                 MsgBox(msg, MsgBoxStyle.Information, "Error")
             End If
         ElseIf (btnSubmit.Text = "Update menu") Then
-            'Dim clsBranch As Menu = New Menu()
-            'Dim msg As String = clsBranch.UpdateBranch()
-            'If (msg = "True") Then
-            '    MsgBox("Successfully updated branch", MsgBoxStyle.Information, "Success")
-            '    Response.Redirect("branch.aspx")
-            'Else
-            '    MsgBox(msg, MsgBoxStyle.Information, "Error")
-            'End If
+            Dim imageUrl As String = ""
+            If (FileUpload.HasFile) Then
+                Dim ID As String = Guid.NewGuid().ToString("N").Substring(0, 10)
+                Dim testImageName As Menu = New Menu(ID)
+                While (Not testImageName.CheckImageNameIsUnique())
+                    ID = Guid.NewGuid().ToString("N").Substring(0, 10)
+                    testImageName = New Menu(ID)
+                End While
+                FileUpload.SaveAs(Server.MapPath("images//menu//" + ID + Path.GetExtension(FileUpload.FileName)))
+                imageUrl = ID + Path.GetExtension(FileUpload.FileName)
+            Else
+                imageUrl = imgurl.Value
+            End If
+            Dim clsMenu As Menu = New Menu(txtName.Text.Trim(), txtDescription.Text.Trim(), txtCost.Text.Trim(), imageUrl, ddlStatus.SelectedValue, ddlDiscount.SelectedValue, ddlFoodType.SelectedValue, txtProtein.Text.Trim(), txtEnergy.Text.Trim(), txtCarbonhydrate.Text.Trim(), txtGlucose.Text.Trim(), txtFats.Text.Trim(), txtSodium.Text.Trim())
+            Dim msg As String = clsMenu.UpdateMenu()
+            If (msg = "True") Then
+                MsgBox("Successfully updated menu", MsgBoxStyle.Information, "Success")
+                Response.Redirect("branchMenu.aspx")
+            Else
+                MsgBox(msg, MsgBoxStyle.Information, "Error")
+            End If
         End If
     End Sub
 

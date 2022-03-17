@@ -16,7 +16,10 @@
     End Sub
 
     Protected Sub rptBranch_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
-
+        If (e.CommandName = "Edit") Then
+            System.Web.HttpContext.Current.Session("menuid") = e.CommandArgument.ToString()
+            Response.Redirect("branchMenuInfo.aspx")
+        End If
     End Sub
 
     Protected Sub btnAdd_Click(sender As Object, e As EventArgs)

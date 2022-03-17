@@ -101,4 +101,5 @@
             </td>
         </tr>
     </table>
+    <asp:HiddenField runat="server" ID="imgurl"/>
 </asp:Content>

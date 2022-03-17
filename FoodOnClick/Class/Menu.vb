@@ -251,6 +251,21 @@ Public Class Menu
     End Sub
     Public Sub New()
     End Sub
+    Public Sub New(ByVal name As String, ByVal description As String, ByVal cost As Decimal, ByVal image As String, ByVal statusid As Integer, ByVal discountid As Integer, ByVal foodtypeid As Integer, ByVal protein As Decimal, ByVal energy As Decimal, ByVal carbohydrate As Decimal, ByVal glucose As Decimal, ByVal fats As Decimal, ByVal sodium As Decimal)
+        Me.menuName = name
+        Me.menuDescription = description
+        Me.menuCost = cost
+        Me.menuImage = image
+        Me.menuStatusId = statusid
+        Me.menuDiscountId = discountid
+        Me.menuFoodTypeId = foodtypeid
+        Me.menuProtein = protein
+        Me.menuEnergy = energy
+        Me.menuCarbonhydrate = carbohydrate
+        Me.menuGlucose = glucose
+        Me.menuFats = fats
+        Me.menuSodium = sodium
+    End Sub
     Public Sub New(ByVal name As String, ByVal description As String, ByVal cost As Decimal, ByVal image As String, ByVal statusid As Integer, ByVal discountid As Integer, ByVal branchid As Integer, ByVal foodtypeid As Integer, ByVal protein As Decimal, ByVal energy As Decimal, ByVal carbohydrate As Decimal, ByVal glucose As Decimal, ByVal fats As Decimal, ByVal sodium As Decimal)
         Me.menuName = name
         Me.menuDescription = description
@@ -268,6 +283,43 @@ Public Class Menu
         Me.menuSodium = sodium
     End Sub
 
+    Public Function UpdateMenu() As String
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "UPDATE menu set name=@name,description=@description, cost=@cost,image=@image, statusid=@statusid, discountid=@discountid,foodtypeid=@foodtypeid,protein=@protein,energy=@energy,carbonhydrate=@carbonhydrate,glucose=@glucose,fats=@fats,sodium=@sodium where menuid=@menuid"
+        Dim bool As String = "True"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@name", SqlDbType.VarChar).Value = Me.menuName
+                    .Parameters.Add("@description", SqlDbType.VarChar).Value = Me.menuDescription
+                    .Parameters.Add("@cost", SqlDbType.Decimal).Value = Me.menuCost
+                    .Parameters.Add("@image", SqlDbType.VarChar).Value = Me.menuImage
+                    .Parameters.Add("@statusid", SqlDbType.Int).Value = Me.menuStatusId
+                    .Parameters.Add("@discountid", SqlDbType.Int).Value = Me.menuDiscountId
+                    .Parameters.Add("@foodtypeid", SqlDbType.Int).Value = Me.menuFoodTypeId
+                    .Parameters.Add("@protein", SqlDbType.Decimal).Value = Me.menuProtein
+                    .Parameters.Add("@energy", SqlDbType.Decimal).Value = Me.menuEnergy
+                    .Parameters.Add("@carbonhydrate", SqlDbType.Decimal).Value = Me.menuCarbonhydrate
+                    .Parameters.Add("@glucose", SqlDbType.Decimal).Value = Me.menuGlucose
+                    .Parameters.Add("@fats", SqlDbType.Decimal).Value = Me.menuFats
+                    .Parameters.Add("@sodium", SqlDbType.Decimal).Value = Me.menuSodium
+                    .Parameters.Add("@menuid", SqlDbType.Int).Value = Me.menuId
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                Catch ex As SqlException
+                    bool = ex.Message
+                End Try
+            End Using
+        End Using
+        Return bool
+    End Function
     Public Function CreateMenu() As String
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim Query As String = "INSERT INTO menu values(@name,@description,@cost,@image,@statusid,@discountid,@branchid,@foodtypeid,@protein,@energy,@carbonhydrate,@glucose,@fats,@sodium)"
@@ -304,6 +356,46 @@ Public Class Menu
             End Using
         End Using
         Return bool
+    End Function
+    Public Function RetrieveAllMenuInfoByMenuId()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As Menu = New Menu
+        Dim Query As String = "SELECT * from menu join menudiscount on menu.discountid = menudiscount.menu_discount_id join menustatus on menu.statusid = menustatus.menu_status_id join foodtype on menu.foodtypeid = foodtype.foodtypeid where menu.menuid = @menuid"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@menuid", SqlDbType.VarChar).Value = Me.menuId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        returnObject.menuName = reader("name")
+                        returnObject.menuDescription = reader("description")
+                        returnObject.menuCost = reader("cost")
+                        returnObject.menuImage = reader("image")
+                        returnObject.menuStatusId = reader("statusid")
+                        'returnObject.FKmenuStatusType = reader("type")
+                        returnObject.menuDiscountId = reader("discountid")
+                        returnObject.branchId = reader("branchid")
+                        returnObject.menuFoodTypeId = reader("foodtypeid")
+                        returnObject.menuProtein = reader("protein")
+                        returnObject.menuEnergy = reader("energy")
+                        returnObject.menuCarbonhydrate = reader("carbonhydrate")
+                        returnObject.menuGlucose = reader("glucose")
+                        returnObject.menuFats = reader("fats")
+                        returnObject.menuSodium = reader("sodium")
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
     End Function
 
 #End Region
