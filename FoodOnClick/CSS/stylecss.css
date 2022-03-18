@@ -6,19 +6,16 @@
     /* Full height */
     height: 100%;
 }
-
 h1 {
     margin: 0;
     text-align: center;
     color: #92248F;
 }
-
 h2 {
     margin: 0;
     text-align: center;
     color: #92248F;
 }
-
 ul.topnav {
     list-style-type: none;
     margin: 0;
@@ -26,11 +23,9 @@ ul.topnav {
     overflow: hidden;
     background-color: #800080;
 }
-
 ul.topnav li {
     float: left;
 }
-
 ul.topnav li a {
     display: block;
     color: white;
@@ -38,51 +33,41 @@ ul.topnav li a {
     padding: 14px 16px;
     text-decoration: none;
 }
-
 ul.topnav li a:hover:not(.active) {
     background-color: #111;
 }
-
 ul.topnav li a.active {
     background-color: #00008B;
 }
-
 ul.topnav li.right {
 float: right;
 }
-
 #tableStyle {
     width: 20%;
     height: 60%;
     margin-left: auto;
     margin-right: auto;
 }
-
 #tableStyle td {
     text-align: center;
     vertical-align: middle;
 }
-
 table {
     margin-left: auto;
     margin-right: auto;
 }
-
 .textWidthCustSearch {
     width:77%
 }
-
 .ddlWidthCustSearch {
     width:80%
 }
-
 .custBtnImage {
     border: 5px solid;
     border-color: #BA55D3;
     width: 200px;
     height: 200px;
 }
-
 .custBtnDiv {
     background-color: #BA55D3;
     width: 180px;
@@ -92,7 +77,6 @@ table {
     padding: 14px 16px;
     text-decoration: none;
 }
-
 .container {
     border-radius: 5px;
     background-color: #f2f2f2;
@@ -101,111 +85,87 @@ table {
     margin-left:auto;
     margin-right:auto;
 }
-
-
 .col-20 {
     float: left;
     width: 20%;
     margin-top: 6px;
 }
-
 .col-30 {
     float: left;
     width: 30%;
     margin-top: 6px;
 }
-
 .col-50 {
     float: left;
     width: 50%;
     margin-top: 6px;
 }
-
 .col-100 {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
     margin-top: 6px;
 }
-
 /* Clear floats after the columns */
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
-
 .image {
     position: relative;
     width: 100%; /* for IE 6 */
 }
-
 .masterText {
     position: absolute;
     top: 200px;
     left: 0;
     font-size:2vw;
     width: 100%;
-    width: 100%;
+    width: 99%;
     color: white;
     font: bold 24px/45px Helvetica, Sans-Serif;
     letter-spacing: -1px;
     background: rgb(0, 0, 0); /* fallback color */
     background: rgba(0, 0, 0, 0.7);
     padding: 10px;
+    padding-left: 10px;
 }
 
 #gvSearch {
-    width:70%;
-}
-
-.alignRight {
-    align-content:baseline;
-}
-
-#gvReservation th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-#gvSearch th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-/* For Phone */
-@media screen and (max-width: 800px) {
-    ul .topnav li.right, ul.topnav li {
-        float: none;
-    }
-
-    .col-20, .col-30, col-50, input[type=submit] {
-        width: 100%;
-        margin-top: 0;
-    }
-    .textWidthCustSearch {
-        width: 100%
-    }
-
-    .ddlWidthCustSearch {
-        width: 100%
-    }
-
-    .container {
-        border-radius: 5px;
-        background-color: #f2f2f2;
-        width: 80%;
-        padding: 20px;
-        margin-left: auto;
+@@ -199,6 +199,30 @@ table {
         margin-right: auto;
     }
 
+    .custBtnImage {
+        border: 5px solid;
+        border-color: #BA55D3;
+        width: 80px;
+        height: 80px;
+    }
+
+    .custBtnDiv {
+        background-color: #BA55D3;
+        width: 100px;
+        margin: auto;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .masterText {
+        padding: 2px;
+    }
+
+    #gvSearch {
+        width: 100%;
+    }
 }
 
 .alignTxtMid {
     text-align: right;
 }
-
 input[type="submit"] {
     border-radius: 12px;
     color: white;
@@ -213,13 +173,13 @@ input[type="submit"] {
     transition-duration: 0.4s;
     border: 2px solid #800080;
 }
-
 input[type="submit"]:hover {
     border-radius: 12px;
     color: black;
     background-color: white;
     /*border: 2px solid #800080;*/
 }
+
 
 div.signup-page h3 {
     text-align: center;
