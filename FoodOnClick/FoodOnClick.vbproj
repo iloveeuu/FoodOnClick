@@ -220,6 +220,7 @@
     <Content Include="SystemAdministrator\adminManageOrders.aspx" />
     <Content Include="SystemAdministrator\adminManageSupportIssues.aspx" />
     <Content Include="SystemAdministrator\stylecss.css" />
+    <Content Include="testConnection.txt" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
