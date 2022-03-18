@@ -9,57 +9,54 @@ Public Class signUp
 
     End Sub
 
-    Protected Sub btnSignUpCustomer_Click(sender As Object, e As EventArgs) Handles btnSignUpCustomer.Click
+    Protected Sub btnSignUp_Click(sender As Object, e As EventArgs) Handles btnSignUp.Click
 
-        Dim con As New SqlConnection
-        Dim cmd As New SqlCommand
-        Dim dr As SqlDataReader
+        Dim newUser As User = New User()
+        Dim newUserAdd As Boolean
 
-        con.ConnectionString = "Data Source=foodonclick.mssql.somee.com;Initial Catalog=foodonclick;User ID=fypfoodonclick_SQLLogin_1;Password=eeq5c9sxpx;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-        con.Open()
-        cmd.Connection = con
-        cmd.CommandText = "select * from UserAccount where email = '" & txtEmail.Text & "'"
 
-        dr = cmd.ExecuteReader
-        If dr.HasRows Then
-            MsgBox("Email Already Exists", MsgBoxStyle.Critical)
-            con.Close()
-        Else
-            con.Close()
+        newUserAdd = newUser.addNewUserAccount(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender, txtDOB.Text.Trim(),
+                             ddlUserType.Text, txtPass.Text.Trim(), txtEmail.Text.Trim(), "Vetting")
 
-            If (txtFirstName.Text.Trim() = "" Or txtLastName.Text.Trim() = "" Or txtAddress.Text.Trim() = "" Or txtContactNo.Text.Trim() = "" Or txtDOB.Text.Trim() = "" Or txtUsername.Text.Trim() = "" Or txtPass.Text.Trim() = "" Or txtEmail.Text.Trim() = "") Then
-                MsgBox("Please enter the correct details!")
-            Else
-                Dim pass As Encryption = New Encryption(txtPass.Text.Trim())
-                Dim encrypted As String = pass.Encrypt()
-
-                Dim customer As Customer = New Customer(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender _
-                                 , txtDOB.Text.Trim(), "customer", txtUsername.Text.Trim(), encrypted, txtEmail.Text.Trim())
-
-                customer.InsertCustomer()
-                MsgBox("Successfully Stored", MsgBoxStyle.Information, "Success")
-                Response.Redirect("Login.aspx")
-            End If
+        If newUserAdd = True And ddlUserType.Text.Equals("Restaurant") Then
+            Response.Redirect("restaurantUploadDocuments.aspx")
+            sendAdminEmail(txtEmail.Text.Trim(), ddlUserType.Text)
+        ElseIf newUserAdd = True Then
+            sendAdminEmail(txtEmail.Text.Trim(), ddlUserType.Text)
+            Response.Redirect("login.aspx")
         End If
+
     End Sub
 
-    Protected Sub btnSignUpMerchant_Click(sender As Object, e As EventArgs) Handles btnSignUpMerchant.Click
 
-        If (txtFirstName.Text.Trim() = "" Or txtLastName.Text.Trim() = "" Or txtAddress.Text.Trim() = "" Or txtContactNo.Text.Trim() = "" Or txtDOB.Text.Trim() = "" Or txtUsername.Text.Trim() = "" Or txtPass.Text.Trim() = "" Or txtEmail.Text.Trim() = "") Then
-            MsgBox("Please enter the correct details!")
-        Else
+    Protected Sub sendAdminEmail(useremail, usertype)
 
-            Session("FirstName") = txtFirstName.Text.Trim()
-            Session("LastName") = txtLastName.Text.Trim()
-            Session("Address") = txtAddress.Text.Trim()
-            Session("ContactNo") = txtContactNo.Text.Trim()
-            Session("DOB") = txtDOB.Text.Trim()
-            Session("Username") = txtUsername.Text.Trim()
-            Session("Pass") = txtPass.Text.Trim()
-            Session("Email") = txtEmail.Text.Trim()
+        Dim subject As String = "New User (" & useremail & " " & usertype & ", )"
 
-            Response.Redirect("signUpMerchant.aspx")
-        End If
+        Dim body As String = "<html> " &
+                            "<body>" &
+                            "<p>Dear System Administrato</p>" &
+                            "<p>New User Alert</p>" &
+                            "<br/>" &
+                            "<p>You have new user " & useremail & " " & usertype & " </p>" &
+                            "<p>Please login to approve/reject user access</p>" &
+                            "<br/>" &
+                            "<p>Regards,</p>" &
+                            "<p>Food on Click</p>" &
+                            "</body>" &
+                            "</html>"
+
+        Dim smtp As SMTP = New SMTP()
+        Dim email() As String = {Session("email")}
+
+        smtp.SendMail(email, subject, body, Nothing, True)
+
+        MsgBox("New user account Created, Please Wait for administrator's approval")
+
+    End Sub
+
+    Protected Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Response.Redirect("login.aspx")
     End Sub
 
     Protected Sub RadioButtonM_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonM.CheckedChanged

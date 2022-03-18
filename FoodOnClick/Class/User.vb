@@ -171,4 +171,47 @@ Public Class User
         Return returnMsg
     End Function
 
+    Public Function addNewUserAccount(txtFirstName, txtlastName, txtAddress, txtContactNo, txtGender, txtDOB, accountType, txtPass, txtEmail, status) As Boolean
+
+        Dim con As New SqlConnection
+        Dim cmd As New SqlCommand
+        Dim dr As SqlDataReader
+
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        con.ConnectionString = connectionString
+        con.Open()
+        cmd.Connection = con
+        cmd.CommandText = "select * from UserAccount where email = '" & txtEmail & "'"
+        Dim returnValue As Boolean
+
+        dr = cmd.ExecuteReader
+        If dr.HasRows Then
+            MsgBox("Email Already Exists", MsgBoxStyle.Critical)
+            returnValue = False
+            con.Close()
+        Else
+            con.Close()
+
+            con.Open()
+            Dim pass As Encryption = New Encryption(txtPass)
+            Dim encrypted As String = pass.Encrypt()
+
+            cmd = New SqlCommand("INSERT INTO UserAccount
+                                 values ('" & txtFirstName & "','" & txtlastName & "',
+                                 '" & txtAddress & "', '" & txtContactNo & "', '" & txtGender & "'
+                                 ,'" & txtDOB & "', '" & accountType & "'
+                                 ,'" & encrypted & "' ,'" & txtEmail & "', '" & "VETTING" & "')", con)
+
+            If (txtFirstName = "" Or txtlastName = "" Or txtEmail = "" Or txtContactNo = "" Or txtPass = "" Or txtEmail = "" Or txtGender = "") Then
+                MsgBox("Please enter the correct details!")
+            Else
+                cmd.ExecuteNonQuery()
+                MsgBox("Successfully Stored", MsgBoxStyle.Information, "Success")
+                returnValue = True
+            End If
+            con.Close()
+        End If
+        Return returnValue
+    End Function
+
 End Class

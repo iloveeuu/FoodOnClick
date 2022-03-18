@@ -146,6 +146,7 @@ table {
     left: 0;
     font-size:2vw;
     width: 100%;
+    width: 100%;
     color: white;
     font: bold 24px/45px Helvetica, Sans-Serif;
     letter-spacing: -1px;
@@ -219,6 +220,15 @@ input[type="submit"]:hover {
     background-color: white;
     /*border: 2px solid #800080;*/
 }
+
+div.signup-page h3 {
+    text-align: center;
+}
+
+div.signUpMerchant-page h3 {
+    text-align: center;
+}
+
 
 
 

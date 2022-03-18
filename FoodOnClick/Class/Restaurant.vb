@@ -151,5 +151,67 @@ Public Class Restaurant
         Return returnObject
     End Function
 
+    Public Function getUserId()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim cmd As New SqlCommand
+        Dim userid1 As Integer
+
+        'cmd.CommandText = "select MAX(userid) from UserAccount where type = 'Restaurant' "
+        Using conn As New SqlConnection(connectionString)
+            conn.Open()
+
+            cmd = New SqlCommand("select MAX(userid) from UserAccount where type = 'Restaurant' ", conn)
+            userid1 = cmd.ExecuteScalar()
+
+            conn.Close()
+        End Using
+        Return userid1
+    End Function
+
+    Public Function insertRestaurantDetails(restaurantName, description)
+        Dim con As New SqlConnection
+        Dim cmd As New SqlCommand
+
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        'Dim Query As String = "insert into Restaurant (name, description, userid, status) values (@name, @description, @userid, @status) "
+        con.ConnectionString = connectionString
+        con.Open()
+        cmd = New SqlCommand("INSERT INTO Restaurant (name, description, userid, status) values ('" & restaurantName & "', '" & description & "' , 
+                             '" & getUserId() & "', '" & "In Business" & "')", con)
+        Try
+            cmd.ExecuteNonQuery()
+            con.Close()
+        Catch ex As SqlException
+        End Try
+    End Function
+
+
+    Public Function uploadRestaurantDocuments(url, type)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "insert into Document (type, url, userid) values (@type, @url, @userid) "
+        getUserId()
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@type", SqlDbType.NVarChar).Value = type
+                    .Parameters.Add("@url", SqlDbType.NVarChar).Value = url
+                    .Parameters.Add("@userid", SqlDbType.Int).Value = getUserId()
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+    End Function
+
+
 
 End Class
