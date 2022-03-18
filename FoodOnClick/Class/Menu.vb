@@ -251,7 +251,7 @@ Public Class Menu
     End Sub
     Public Sub New()
     End Sub
-    Public Sub New(ByVal name As String, ByVal description As String, ByVal cost As Decimal, ByVal image As String, ByVal statusid As Integer, ByVal discountid As Integer, ByVal foodtypeid As Integer, ByVal protein As Decimal, ByVal energy As Decimal, ByVal carbohydrate As Decimal, ByVal glucose As Decimal, ByVal fats As Decimal, ByVal sodium As Decimal)
+    Public Sub New(ByVal name As String, ByVal description As String, ByVal cost As Decimal, ByVal image As String, ByVal statusid As Integer, ByVal discountid As Integer, ByVal branchid As Integer, ByVal foodtypeid As Integer, ByVal protein As Decimal, ByVal energy As Decimal, ByVal carbohydrate As Decimal, ByVal glucose As Decimal, ByVal fats As Decimal, ByVal sodium As Decimal, ByVal menuid As Integer)
         Me.menuName = name
         Me.menuDescription = description
         Me.menuCost = cost
@@ -265,6 +265,7 @@ Public Class Menu
         Me.menuGlucose = glucose
         Me.menuFats = fats
         Me.menuSodium = sodium
+        Me.menuId = menuid
     End Sub
     Public Sub New(ByVal name As String, ByVal description As String, ByVal cost As Decimal, ByVal image As String, ByVal statusid As Integer, ByVal discountid As Integer, ByVal branchid As Integer, ByVal foodtypeid As Integer, ByVal protein As Decimal, ByVal energy As Decimal, ByVal carbohydrate As Decimal, ByVal glucose As Decimal, ByVal fats As Decimal, ByVal sodium As Decimal)
         Me.menuName = name

@@ -133,6 +133,8 @@
     <Content Include="About.aspx" />
     <Content Include="branch.aspx" />
     <Content Include="branchInfo.aspx" />
+    <Content Include="branchMenu.aspx" />
+    <Content Include="branchMenuInfo.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -145,7 +147,9 @@
     <Content Include="customerCart.aspx" />
     <Content Include="customerCheckOut.aspx" />
     <Content Include="customerFoodList.aspx" />
+    <Content Include="customerHistory.aspx" />
     <Content Include="customerHome.aspx" />
+    <Content Include="customerReservation.aspx" />
     <Content Include="customerReservationOrder.aspx" />
     <Content Include="customerRestaurant.aspx" />
     <Content Include="customerSearch.aspx" />
@@ -163,7 +167,11 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Images\background-purple.jpg" />
+    <Content Include="Images\background.jpg" />
+    <Content Include="Images\delivery.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\pexels-cottonbro-4604599.jpg" />
+    <Content Include="Images\reservation.png" />
     <Content Include="login.aspx" />
     <Content Include="Masterpage.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -239,12 +247,29 @@
       <DependentUpon>branchInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="branchMenu.aspx.designer.vb">
+      <DependentUpon>branchMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="branchMenu.aspx.vb">
+      <DependentUpon>branchMenu.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="branchMenuInfo.aspx.designer.vb">
+      <DependentUpon>branchMenuInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="branchMenuInfo.aspx.vb">
+      <DependentUpon>branchMenuInfo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Class\Branch.vb" />
     <Compile Include="Class\Customer.vb" />
     <Compile Include="Class\Encryption.vb" />
+    <Compile Include="Class\Menu.vb" />
     <Compile Include="Class\Merchant.vb" />
+    <Compile Include="Class\Reservation.vb" />
     <Compile Include="Class\Restaurant.vb" />
     <Compile Include="Class\Rider.vb" />
+    <Compile Include="Class\Search.vb" />
     <Compile Include="Class\SMTP.vb" />
     <Compile Include="Class\User.vb" />
     <Compile Include="Contact.aspx.designer.vb">
@@ -275,11 +300,25 @@
       <DependentUpon>customerFoodList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="customerHistory.aspx.designer.vb">
+      <DependentUpon>customerHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerHistory.aspx.vb">
+      <DependentUpon>customerHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="customerHome.aspx.designer.vb">
       <DependentUpon>customerHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="customerHome.aspx.vb">
       <DependentUpon>customerHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerReservation.aspx.designer.vb">
+      <DependentUpon>customerReservation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerReservation.aspx.vb">
+      <DependentUpon>customerReservation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="customerReservationOrder.aspx.designer.vb">
@@ -502,6 +541,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\menu\" />
     <Folder Include="My Project\PublishProfiles\" />
   </ItemGroup>
   <PropertyGroup>

@@ -16,12 +16,18 @@
             Else
                 clsRestaurantInfo.branchId = Convert.ToInt32(Session("branchid"))
                 Dim editInfo As Branch = clsRestaurantInfo.RetrieveAllBranchInfoByBranchId
+                Dim pass As Encryption = New Encryption(editInfo.branchPassword)
+                Dim decrypted As String = pass.Decrypt()
+                txtEmail.Text = editInfo.branchEmail
+                txtPassword.Text = decrypted
                 txtpostalcode.Text = editInfo.branchPostalcode
                 txtCity.Text = editInfo.branchCity
                 txtaddress.Text = editInfo.branchAddress
                 ddlStatus.SelectedValue = editInfo.branchStatus
                 ddlHalal.SelectedValue = editInfo.halal
                 ddlCuisine.SelectedValue = editInfo.branchCuisineId
+                txtStart.Text = editInfo.branchStartTime
+                txtEnd.Text = editInfo.branchEndTime
                 btnSubmit.Text = "Update branch"
                 lbltitle.Text = "Update branch for " & singleArrOfRestaurant.restaurantName
             End If
@@ -29,8 +35,10 @@
     End Sub
 
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs)
+        Dim pass As Encryption = New Encryption(txtPassword.Text)
+        Dim encrypted As String = pass.Encrypt()
         If (btnSubmit.Text = "Create branch") Then
-            Dim clsBranch As Branch = New Branch(ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue)
+            Dim clsBranch As Branch = New Branch(txtEmail.Text.Trim(), encrypted, txtStart.Text.Trim(), txtEnd.Text.Trim(), ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue)
             Dim msg As String = clsBranch.CreateBranch()
             If (msg = "True") Then
                 MsgBox("Successfully created branch", MsgBoxStyle.Information, "Success")
@@ -39,7 +47,7 @@
                 MsgBox(msg, MsgBoxStyle.Information, "Error")
             End If
         ElseIf (btnSubmit.Text = "Update branch") Then
-            Dim clsBranch As Branch = New Branch(ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue, Convert.ToInt32(Session("branchid")))
+            Dim clsBranch As Branch = New Branch(txtEmail.Text.Trim(), encrypted, txtStart.Text.Trim(), txtEnd.Text.Trim(), ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue, Convert.ToInt32(Session("branchid")))
             Dim msg As String = clsBranch.UpdateBranch()
             If (msg = "True") Then
                 MsgBox("Successfully updated branch", MsgBoxStyle.Information, "Success")
