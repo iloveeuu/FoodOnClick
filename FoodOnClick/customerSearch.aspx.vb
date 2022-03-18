@@ -9,6 +9,15 @@
                 Dim clsBranch As Branch = New Branch()
                 ddlCategory.DataSource = clsBranch.RetrieveAllCuisineType()
                 ddlCategory.DataBind()
+
+                ddlCategory.Items.Insert(0, New ListItem("Please select", ""))
+                ddlCategory.SelectedIndex = 0
+
+                ddlHalal.Items.Insert(0, New ListItem("Please select", ""))
+                ddlHalal.SelectedIndex = 0
+
+                ddlType.Items.Insert(0, New ListItem("Please select", ""))
+                ddlType.SelectedIndex = 0
             End If
         End If
     End Sub
@@ -40,8 +49,8 @@
 
         If Session("orderType") = "reservation" Then
             'ddlType.SelectedItem.ToString()
-            Dim clsSearch As Search = New Search(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedItem.ToString(), "",
-                                           txtDishName.Text.Trim(), ddlHalal.SelectedItem.ToString(), dblMinPrice, dblMaxPrice)
+            Dim clsSearch As Search = New Search(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedValue.ToString(), "",
+                                           txtDishName.Text.Trim(), ddlHalal.SelectedValue.ToString(), dblMinPrice, dblMaxPrice)
             dtSearch = clsSearch.GetSearchReservation()
 
             gvSearch.DataSource = dtSearch

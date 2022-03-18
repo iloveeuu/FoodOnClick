@@ -123,10 +123,10 @@
 	
 	<br />
 	<br />
-	<div>
-		<asp:GridView ID="gvSearch" OnRowCommand="gvSearch_RowCommand" Width="70%" runat="server" AutoGenerateColumns="false" Height="100%">
+	<div style="overflow-x:auto;">
+		<asp:GridView ID="gvSearch" OnRowCommand="gvSearch_RowCommand" Width="60%" runat="server" AutoGenerateColumns="false" Height="100%">
                 <Columns>
-                    <asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="30%" />
+                    <asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="20%" />
                     <asp:BoundField DataField="halal" HeaderText="Halal" HeaderStyle-Width="10%" />
                     <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="40%" />
                     <asp:BoundField DataField="dishName" HeaderText="Menu" HeaderStyle-Width="40%" />

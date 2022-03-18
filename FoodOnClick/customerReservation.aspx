@@ -78,7 +78,7 @@
 		</tr>
 		<tr>
 			<td>
-				<asp:Button ID="btnYes" runat="server" Text="Yes" />
+				<asp:Button ID="btnYes" runat="server" Text="Yes" OnClick="btnYes_Click"/>
 			</td>
 			<td>
 				<asp:Button ID="btnNo" runat="server" Text="No" OnClick="btnNo_Click"/>

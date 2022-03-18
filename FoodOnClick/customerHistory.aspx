@@ -16,8 +16,9 @@
         <h2>Reservation History</h2>
     </div>
     <br/>
-    <div>
-		<asp:GridView ID="gvReservation" Width="70%" runat="server" AutoGenerateColumns="false" Height="100%">
+    <div style="overflow-x:auto;">
+        <%--CssClass="table table-responsive table-striped"--%>
+		<asp:GridView ID="gvReservation" Width="70%" runat="server" AutoGenerateColumns="false" Height="100%" >
                 <Columns>
                     <asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="30%" />
                     <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="40%" />

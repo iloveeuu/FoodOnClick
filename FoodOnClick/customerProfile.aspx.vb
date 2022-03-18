@@ -16,15 +16,17 @@
         Dim customer As Customer = New Customer()
         Dim data As Customer = customer.GetCustomerDetail(Session("userid"), Session("email"))
 
-        lblEmail.Text = data.email
+        lblEmail.Text = Session("email")
         txtFirstName.Text = data.firstName
         txtLastName.Text = data.lastName
         txtPhone.Text = data.phone
         txtAddress.Text = data.address
 
         If data.gender = "Male" Then
+            gender = "Male"
             rbMale.Checked = True
         ElseIf data.gender = "Female" Then
+            gender = "Female"
             rbFemale.Checked = True
         End If
         txtDOB.Text = data.dateOfBirth
@@ -44,7 +46,7 @@
 
     Protected Sub btnUpdate_Click(sender As Object, e As EventArgs)
 
-        If txtFirstName.Text.Trim() = "" Or txtLastName.Text.Trim() = "" Or txtPhone.Text.Trim() = "" Or txtAddress.Text.Trim() = "" Or gender = "" Or gender Is Nothing Or txtDOB.Text.Trim() = "" Then
+        If txtFirstName.Text.Trim() = "" Or txtLastName.Text.Trim() = "" Or txtPhone.Text.Trim() = "" Or txtAddress.Text.Trim() = "" Or gender = "" Or txtDOB.Text.Trim() = "" Then
             errorText.Attributes("style") = "display: block; text-align: center; color:red;"
         Else
             Dim customer As Customer = New Customer()

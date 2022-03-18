@@ -58,4 +58,18 @@
         MsgBox("Reservation Created, Please Wait for Confirmation")
         Response.Redirect("customerHome.aspx")
     End Sub
+
+    Protected Sub btnYes_Click(sender As Object, e As EventArgs)
+
+        Session("userid") = Session("userid")
+        Session("email") = Session("email")
+        Session("branchid") = Session("branchid")
+        Session("restName") = Session("restName")
+        Session("halal") = Session("halal")
+        Session("address") = Session("address")
+        Session("pax") = txtPax.Text.Trim()
+        Session("date") = txtDate.Text.Trim()
+
+        Response.Redirect("customerPreOrder.aspx")
+    End Sub
 End Class
