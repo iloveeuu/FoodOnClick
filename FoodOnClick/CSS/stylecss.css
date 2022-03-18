@@ -162,6 +162,16 @@ table {
     align-content:baseline;
 }
 
+#gvReservation th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+#gvSearch th, td {
+    text-align: left;
+    padding: 8px;
+}
+
 /* For Phone */
 @media screen and (max-width: 800px) {
     ul .topnav li.right, ul.topnav li {
