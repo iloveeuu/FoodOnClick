@@ -177,6 +177,10 @@ table {
     width: 50%
 }
 
+.gvPreOrder {
+    width: 40%
+}
+
 #gvSearch th, td {
     text-align: center;
     padding: 8px;
