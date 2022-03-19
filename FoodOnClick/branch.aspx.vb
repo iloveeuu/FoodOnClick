@@ -3,8 +3,11 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If (Not Page.IsPostBack) Then
-            If Session("userid") Is Nothing Or Session("restaurantid") Is Nothing Then
+            If Session("userid") Is Nothing Then
                 Response.Redirect("login.aspx")
+            Else
+                Dim getRestaurantId As User = New User(Convert.ToInt32(Session("userid")))
+                Session("restaurantid") = Convert.ToInt32(getRestaurantId.getResId())
             End If
         End If
         binddata()
@@ -50,8 +53,8 @@
 
     Protected Sub binddata()
         Dim clsBranch As Branch = New Branch(Convert.ToInt32(Session("userid").ToString()), Convert.ToInt32(Session("restaurantid").ToString()))
-        clsBranch.RetrieveRestaurantInfoByRestaurantId()
-        lblTitle.Text = clsBranch.restaurantName & " Branches"
+        Dim title As Restaurant = clsBranch.RetrieveRestaurantInfoByRestaurantId()
+        lblTitle.Text = title.restaurantName & " Branches"
         Dim listOfBranch As List(Of Branch) = clsBranch.RetrieveBranchInfo()
         If listOfBranch.Count() > 0 Then
             rptBranch.DataSource = listOfBranch

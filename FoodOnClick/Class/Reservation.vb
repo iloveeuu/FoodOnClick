@@ -2,7 +2,7 @@
 Imports System.Data.SqlClient
 
 Public Class Reservation
-    Inherits User
+    Inherits Branch
 
     Dim str_reservationId As Int32
     Dim str_preordermeals As String
@@ -100,8 +100,19 @@ Public Class Reservation
     Public Sub New()
     End Sub
 
+
     Public Sub New(ByVal userid As Int32)
         Me.userid = userid
+    End Sub
+
+    Public Sub New(ByVal branchid As Integer, ByVal date1 As Date)
+        Me.branchId = branchid
+        Me.dtdate = date1
+    End Sub
+
+    Public Sub New(ByVal reservationid As Integer, ByVal status As String)
+        Me.reservationId = reservationid
+        Me.status = status
     End Sub
 
     Public Sub New(ByVal preordermeals As String, ByVal dtdate As Date,
@@ -113,7 +124,7 @@ Public Class Reservation
         Me.pax = pax
         Me.status = status
         Me.branchId = branchId
-        Me.userId = userid
+        Me.userid = userid
         Me.batchid = batchid
     End Sub
 
@@ -276,33 +287,4 @@ Public Class Reservation
         Return returnObject
     End Function
 
-    Public Sub CancelReservation()
-        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-
-        Dim dtReservation = New DataTable()
-
-        Dim Query As String = "Update reservation set status = 'Cancelled' " &
-                                " where userID = @userId And reservationID = @reservationID And status = 'Pending' "
-
-        Using conn As New SqlConnection(connectionString)
-
-            Using comm As New SqlCommand()
-                With comm
-                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
-                    .Connection = conn
-                    .CommandType = CommandType.Text
-                    .CommandText = Query
-                    .Parameters.Add("@userId", SqlDbType.Int).Value = Me.userid
-                    .Parameters.Add("@reservationID", SqlDbType.Int).Value = Me.reservationId
-                End With
-                Try
-                    conn.Open()
-                    comm.ExecuteNonQuery()
-                    conn.Close()
-                Catch ex As SqlException
-                    Throw ex
-                End Try
-            End Using
-        End Using
-    End Sub
 End Class

@@ -19,7 +19,7 @@
             Case "Rider"
                 Response.Redirect("riderHome.aspx")
             Case "Restaurant"
-                Response.Redirect("restaurantHome.aspx")
+                Response.Redirect("branch.aspx")
             Case "Customer"
                 Response.Redirect("customerHome.aspx")
             Case Else
