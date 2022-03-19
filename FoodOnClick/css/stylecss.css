@@ -19,6 +19,12 @@ h2 {
     color: #92248F;
 }
 
+h3 {
+    margin: 0;
+    text-align: center;
+    color: #92248F;
+}
+
 ul.topnav {
     list-style-type: none;
     margin: 0;
@@ -145,8 +151,7 @@ table {
     top: 200px;
     left: 0;
     font-size:2vw;
-    width: 100%;
-    width: 100%;
+    width: 99%;
     color: white;
     font: bold 24px/45px Helvetica, Sans-Serif;
     letter-spacing: -1px;
@@ -155,21 +160,29 @@ table {
     padding: 10px;
 }
 
-#gvSearch {
-    width:70%;
-}
-
 .alignRight {
     align-content:baseline;
 }
 
 #gvReservation th, td {
-    text-align: left;
+    text-align: center;
     padding: 8px;
 }
 
+.gvSearch {
+    width: 70%;
+}
+
+.gvMenu {
+    width: 50%
+}
+
+.gvPreOrder {
+    width: 40%
+}
+
 #gvSearch th, td {
-    text-align: left;
+    text-align: center;
     padding: 8px;
 }
 
@@ -200,6 +213,39 @@ table {
         margin-right: auto;
     }
 
+    .custBtnImage {
+        border: 5px solid;
+        border-color: #BA55D3;
+        width: 80px;
+        height: 80px;
+    }
+
+    .custBtnDiv {
+        background-color: #BA55D3;
+        width: 100px;
+        margin: auto;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .masterText {
+        padding: 2px;
+    }
+
+    .gvSearch {
+        width: 95%;
+    }
+
+    .gvMenu {
+        width: 95%
+    }
+
+    .gvPreOrder {
+        width: 95%
+    }
+
 }
 
 .alignTxtMid {
@@ -228,6 +274,16 @@ div.signup-page h3 {
 div.signUpMerchant-page h3 {
     text-align: center;
 }
+.tableStyle {
+    width: 20%;
+    height: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+    .tableStyle td {
+        text-align: center;
+        vertical-align: middle;
+    }
 
 
 

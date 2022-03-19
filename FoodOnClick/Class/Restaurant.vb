@@ -9,6 +9,7 @@ Public Class Restaurant
     Protected str_restaurantName As String
     Protected str_restaurantType As String
     Protected str_restaurantStatus As String
+    Protected str_restaurantDescription As String
 
 
     Public Property restaurantId() As Integer
@@ -26,6 +27,14 @@ Public Class Restaurant
         End Get
         Set(ByVal Value As String)
             str_restaurantName = Value
+        End Set
+    End Property
+    Public Property restaurantDescription() As String
+        Get
+            restaurantDescription = str_restaurantDescription
+        End Get
+        Set(ByVal Value As String)
+            str_restaurantDescription = Value
         End Set
     End Property
     Public Property restaurantType() As String

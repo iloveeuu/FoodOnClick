@@ -39,4 +39,9 @@
             lblNothing.Visible = True
         End If
     End Sub
+
+    Protected Sub btnReservations_Click(sender As Object, e As EventArgs)
+        System.Web.HttpContext.Current.Session("branchid") = Convert.ToInt32(Session("branchid").ToString())
+        Response.Redirect("branchReservation.aspx")
+    End Sub
 End Class
