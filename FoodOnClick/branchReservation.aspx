@@ -26,12 +26,12 @@
             <asp:BoundField DataField="status" HeaderText="Status" HeaderStyle-Width="20%" />
             <asp:TemplateField ShowHeader="false">
                 <ItemTemplate>
-                    <asp:Button runat="server" CssClass="btn1" ID="btnApprove" Text="Confirm" UseSubmitBehavior="false" Visible='<%# If(Eval("Status").ToString() = "Pending", True, False) %>' CommandName="Approve" CommandArgument='<%#Eval("reservationid")%>' />
+                    <asp:Button runat="server" CssClass="btn1" ID="btnApprove" Text="Approve" UseSubmitBehavior="false" Visible='<%# If(Eval("Status").ToString() = "Pending", True, False) %>' CommandName="Approve" CommandArgument='<%#Eval("reservationid")%>' />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField ShowHeader="false">
                 <ItemTemplate>
-                    <asp:Button runat="server" CssClass="btn1" ID="btnReject" Text="Cancel" UseSubmitBehavior="false" Visible='<%# If(Eval("Status").ToString() = "Pending", True, False) %>' CommandName="Reject" CommandArgument='<%#Eval("reservationid")%>' />
+                    <asp:Button runat="server" CssClass="btn1" ID="btnReject" Text="Reject" UseSubmitBehavior="false" Visible='<%# If(Eval("Status").ToString() = "Pending", True, False) %>' CommandName="Reject" CommandArgument='<%#Eval("reservationid")%>' />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

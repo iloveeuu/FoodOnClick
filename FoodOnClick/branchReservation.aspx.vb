@@ -56,23 +56,23 @@
 
     Protected Sub gvReservation_RowCommand(sender As Object, e As GridViewCommandEventArgs)
         If (e.CommandName = "Approve") Then
-            Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument), "Confirmed")
+            Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument), "Approved")
             Dim userInfo As Reservation = clsReservation.RetrieveReservationEmail()
             If (Not userInfo.status = "Pending") Then
                 MsgBox("Unable to confirm reservation. Refreshing page")
             Else
                 If (clsReservation.UpdateReservation() = "True") Then
-                    sendEmail(userInfo, "CONFIRMED")
+                    sendEmail(userInfo, "APPROVED")
                 End If
             End If
         ElseIf (e.CommandName = "Reject") Then
-            Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument), "Cancelled")
+            Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument), "Rejected")
             Dim userInfo As Reservation = clsReservation.RetrieveReservationEmail()
             If (Not userInfo.status = "Pending") Then
                 MsgBox("Unable to cancel reservation. Refreshing page")
             Else
                 If (clsReservation.UpdateReservation() = "True") Then
-                    sendEmail(userInfo, "CANCELLED")
+                    sendEmail(userInfo, "REJECTED")
                 End If
             End If
         End If
@@ -148,23 +148,23 @@
 
     Protected Sub gvReservationUpcoming_RowCommand(sender As Object, e As GridViewCommandEventArgs)
         If (e.CommandName = "Approve") Then
-            Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument), "Confirmed")
+            Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument), "Approved")
             Dim userInfo As Reservation = clsReservation.RetrieveReservationEmail()
             If (Not userInfo.status = "Pending") Then
                 MsgBox("Unable to confirm reservation. Refreshing page")
             Else
                 If (clsReservation.UpdateReservation() = "True") Then
-                    sendEmail(userInfo, "CONFIRMED")
+                    sendEmail(userInfo, "APPROVED")
                 End If
             End If
         ElseIf (e.CommandName = "Reject") Then
-            Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument), "Cancelled")
+            Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument), "Rejected")
             Dim userInfo As Reservation = clsReservation.RetrieveReservationEmail()
             If (Not userInfo.status = "Pending") Then
                 MsgBox("Unable to cancel reservation. Refreshing page")
             Else
                 If (clsReservation.UpdateReservation() = "True") Then
-                    sendEmail(userInfo, "CANCELLED")
+                    sendEmail(userInfo, "REJECTED")
                 End If
             End If
         End If
