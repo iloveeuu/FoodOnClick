@@ -343,7 +343,7 @@ Public Class Reservation
 
     Public Function RetrieveReservationEmail() As Reservation
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "SELECT uc.firstName,uc.lastName,uc.phoneNum,uc.email,r.preordermeals,r.date," &
+        Dim Query As String = "SELECT uc.firstName,uc.lastName,uc.phoneNum,uc.email,r.status,r.preordermeals,r.date," &
                               "r.time,r.pax,b.city,b.postalcode,b.address,rc.name,rc.description from useraccount as uc" &
                               " join reservation as r on uc.userid = r.userid join branch as b on b.branchid = r.branchid" &
                               " join restaurant as rc on rc.restaurantid = b.restaurantid where r.reservationid = @id"
@@ -371,6 +371,7 @@ Public Class Reservation
                         obj.preordermeals = reader("preordermeals")
                         obj.dt_date = reader("date")
                         obj.strtime = reader("time").ToString()
+                        obj.status = reader("status")
                         obj.pax = reader("pax")
                         obj.branchCity = reader("city")
                         obj.branchPostalcode = reader("postalcode")

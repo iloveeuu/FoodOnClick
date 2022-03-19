@@ -113,6 +113,9 @@ Public Class User
         str_username = ""
         str_password = ""
     End Sub
+    Public Sub New(ByVal userid As Integer)
+        Me.userId = userid
+    End Sub
 
     Public Sub New(ByVal username As String, ByVal password As String)
         str_username = username
@@ -131,6 +134,34 @@ Public Class User
         str_password = password
         str_email = email
     End Sub
+    Public Function getResId() As String
+        Dim returnMsg As String = ""
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "SELECT restaurantid from restaurant join useraccount on restaurant.userid = useraccount.userid where useraccount.userid = @id"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@id", SqlDbType.NVarChar).Value = Me.userId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        returnMsg = reader("restaurantid")
+                    End While
+
+                Catch ex As SqlException
+                    returnMsg = ex.Message
+                End Try
+            End Using
+        End Using
+        Return returnMsg
+    End Function
 
     Public Function CheckUserLoginAccess() As String
         Dim returnMsg As String = ""
