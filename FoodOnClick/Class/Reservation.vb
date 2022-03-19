@@ -106,6 +106,11 @@ Public Class Reservation
         Me.userid = userid
     End Sub
 
+    Public Sub New(ByVal branchid As Integer, ByVal date1 As Date)
+        Me.branchId = branchid
+        Me.dtdate = date1
+    End Sub
+
     Public Sub New(ByVal reservationid As Integer, ByVal status As String)
         Me.reservationId = reservationid
         Me.status = status
@@ -211,7 +216,7 @@ Public Class Reservation
         Dim Query As String = "SELECT re.reservationid, re.preordermeals, re.pax, re.date, re.time, re.status, u.firstname from branch as b " &
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join reservation as re on re.branchId = b.branchId " &
-                                " inner join useraccount as u on u.userid = re.userid where date = @date order by time asc"
+                                " inner join useraccount as u on u.userid = re.userid where b.branchid = @branchid and date = @date order by time asc"
 
         Using conn As New SqlConnection(connectionString)
 
@@ -221,7 +226,8 @@ Public Class Reservation
                     .Connection = conn
                     .CommandType = CommandType.Text
                     .CommandText = Query
-                    .Parameters.Add("@date", SqlDbType.Date).Value = Date.Today
+                    .Parameters.Add("@date", SqlDbType.Date).Value = Me.dtdate
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
                 End With
                 Try
                     conn.Open()
@@ -247,7 +253,7 @@ Public Class Reservation
         Dim Query As String = "SELECT re.reservationid, re.preordermeals, re.pax, re.date, re.time, re.status, u.firstname from branch as b " &
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join reservation as re on re.branchId = b.branchId " &
-                                " inner join useraccount as u on u.userid = re.userid where date > @date order by date, time"
+                                " inner join useraccount as u on u.userid = re.userid where b.branchid = @branchid and date > @date order by date, time"
 
         Using conn As New SqlConnection(connectionString)
 
@@ -257,7 +263,8 @@ Public Class Reservation
                     .Connection = conn
                     .CommandType = CommandType.Text
                     .CommandText = Query
-                    .Parameters.Add("@date", SqlDbType.Date).Value = Date.Today
+                    .Parameters.Add("@date", SqlDbType.Date).Value = Me.dtdate
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
                 End With
                 Try
                     conn.Open()
@@ -283,7 +290,7 @@ Public Class Reservation
         Dim Query As String = "SELECT re.reservationid, re.preordermeals, re.pax, re.date, re.time, re.status, u.firstname from branch as b " &
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join reservation as re on re.branchId = b.branchId " &
-                                " inner join useraccount as u on u.userid = re.userid where date < @date order by date, time"
+                                " inner join useraccount as u on u.userid = re.userid where b.branchid = @branchid and date < @date order by date, time"
 
         Using conn As New SqlConnection(connectionString)
 
@@ -293,7 +300,8 @@ Public Class Reservation
                     .Connection = conn
                     .CommandType = CommandType.Text
                     .CommandText = Query
-                    .Parameters.Add("@date", SqlDbType.Date).Value = Date.Today
+                    .Parameters.Add("@date", SqlDbType.Date).Value = Me.dtdate
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
                 End With
                 Try
                     conn.Open()

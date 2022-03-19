@@ -404,7 +404,7 @@ Public Class Menu
     Public Function RetrieveMenuInfo()
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim returnObject As List(Of Menu) = New List(Of Menu)
-        Dim Query As String = "SELECT * from menu"
+        Dim Query As String = "SELECT * from menu where branchid = @branchid"
         Using conn As New SqlConnection(connectionString)
 
             Using comm As New SqlCommand()
@@ -413,8 +413,7 @@ Public Class Menu
                     .Connection = conn
                     .CommandType = CommandType.Text
                     .CommandText = Query
-                    .Parameters.Add("@userid", SqlDbType.Int).Value = MyBase.userId
-                    .Parameters.Add("@restaurantid", SqlDbType.Int).Value = MyBase.restaurantId
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
                 End With
                 Try
                     conn.Open()
