@@ -59,6 +59,24 @@ Partial Public Class customerReservation
     Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
+    '''lblOpenTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOpenTime As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblCloseTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCloseTime As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtDate control.
     '''</summary>
     '''<remarks>
@@ -84,6 +102,15 @@ Partial Public Class customerReservation
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTime As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''rvTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rvTime As Global.System.Web.UI.WebControls.RangeValidator
 
     '''<summary>
     '''btnReserve control.

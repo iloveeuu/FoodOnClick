@@ -127,7 +127,7 @@ Public Class Customer
                     .CommandType = CommandType.Text
                     .CommandText = Query
                     .Parameters.Add("@userID", SqlDbType.Int).Value = iUserId
-                    .Parameters.Add("@email", SqlDbType.Int).Value = sEmail
+                    .Parameters.Add("@email", SqlDbType.NVarChar).Value = sEmail
                 End With
                 Try
                     'Dim tempObj As Restaurant = New Restaurant()

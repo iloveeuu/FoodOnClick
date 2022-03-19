@@ -158,6 +158,15 @@ Partial Public Class customerSearch
     Protected WithEvents txtMinPrice As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''CompareValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
     '''Label2 control.
     '''</summary>
     '''<remarks>
@@ -174,6 +183,15 @@ Partial Public Class customerSearch
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMaxPrice As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''CompareValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
     '''btnSearch control.

@@ -65,7 +65,7 @@
              <asp:Label ID="Label8" runat="server" CssClass="textWidthCustSearch" Text="Food Type:"></asp:Label>
           </div>
           <div class="col-30">
-			<asp:DropDownList ID="ddlType" CssClass="ddlWidthCustSearch" runat="server"></asp:DropDownList>
+			<asp:DropDownList ID="ddlType" CssClass="ddlWidthCustSearch" runat="server"  DataTextField="FKmenuFoodType" DataValueField="FKmenuFoodTypeId"></asp:DropDownList>
           </div>
         </div>
         <div class="row">
@@ -106,12 +106,16 @@
 			</div>
           <div class="col-30">
 				<asp:TextBox ID="txtMinPrice" CssClass="textWidthCustSearch" runat="server" TextMode="Number"></asp:TextBox>
+			  <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="txtMinPrice" ErrorMessage="Cannot less than 0" Operator="GreaterThanEqual" 
+					Type="Integer" ValueToCompare="0" ForeColor="Red" />
 			  </div>
 			<div class="col-20">
 				<asp:Label ID="Label2" runat="server" Text="Max. Price:"></asp:Label>
 			</div>
           <div class="col-30">
 				<asp:TextBox ID="txtMaxPrice" CssClass="textWidthCustSearch" runat="server" TextMode="Number"></asp:TextBox>
+			  <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="txtMaxPrice" ErrorMessage="Cannot less than 0" Operator="GreaterThanEqual" 
+					Type="Integer" ValueToCompare="0" ForeColor="Red" />
 			  </div>
         </div>
 		<div class="row">
@@ -124,12 +128,13 @@
 	<br />
 	<br />
 	<div style="overflow-x:auto;">
-		<asp:GridView ID="gvSearch" OnRowCommand="gvSearch_RowCommand" Width="60%" runat="server" AutoGenerateColumns="false" Height="100%">
+		<asp:GridView ID="gvSearch" Class="gvSearch" OnRowCommand="gvSearch_RowCommand" OnRowDataBound="gvSearch_RowDataBound" runat="server" AutoGenerateColumns="false" Height="100%">
                 <Columns>
                     <asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="20%" />
-                    <asp:BoundField DataField="halal" HeaderText="Halal" HeaderStyle-Width="10%" />
-                    <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="40%" />
-                    <asp:BoundField DataField="dishName" HeaderText="Menu" HeaderStyle-Width="40%" />
+                    <asp:BoundField DataField="halal" HeaderText="Halal" HeaderStyle-Width="5%" />
+                    <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="30%" />
+                    <asp:BoundField DataField="dishName" HeaderText="Menu" HeaderStyle-Width="30%" />
+                    <asp:BoundField DataField="price" HeaderText="Price ($)" HeaderStyle-Width="15%" />
                     <asp:TemplateField>
                         <ItemTemplate>
                             <asp:Button ID="btnReserve" runat="server" Text="Reserve" CommandArgument='<%# Container.DataItemIndex %>'   CommandName="doReservation"/>
@@ -137,11 +142,11 @@
                             <asp:HiddenField ID="hfUserId" runat="server" Value='<%# Eval("firstname") %>' />
                             <asp:HiddenField ID="hfBranchId" runat="server" Value='<%# Eval("branchid") %>' />
                             <asp:HiddenField ID="hfEmail" runat="server" Value='<%# Eval("email") %>' />
+                            <asp:HiddenField ID="hfTimeOpen" runat="server" Value='<%# Eval("time_open") %>' />
+                            <asp:HiddenField ID="hfTimeClosed" runat="server" Value='<%# Eval("time_closed") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    
                 </Columns>
-               
             </asp:GridView>
 	</div>
 	<br />

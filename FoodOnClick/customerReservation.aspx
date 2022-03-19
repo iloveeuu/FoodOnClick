@@ -42,6 +42,22 @@
 			  </div>
         </div>
 		<div class="row">
+          <div class="col-50" style="text-align: right;" >
+			  Open Time:
+          </div>
+			<div class="col-50">
+				<asp:Label ID="lblOpenTime" runat="server"></asp:Label>
+			  </div>
+        </div>
+		<div class="row">
+          <div class="col-50" style="text-align: right;" >
+			  Close Time:
+          </div>
+			<div class="col-50">
+				<asp:Label ID="lblCloseTime" runat="server"></asp:Label>
+			  </div>
+        </div>
+		<div class="row">
           <div class="col-50"  style="text-align: right;" >
 			 Reserve Date:
           </div>
@@ -57,6 +73,9 @@
           </div>
 			<div class="col-50">
 				<asp:TextBox ID="txtTime" CssClass="textWidth"  Width="30%" runat="server" TextMode="Time"></asp:TextBox>
+				<asp:RangeValidator runat="server" ID="rvTime" ErrorMessage="Must be between opening and closing time" 
+					ForeColor="Red"
+					ControlToValidate="txtTime" Type="String"/>
 			  </div>
         </div>
 		<div class="row">

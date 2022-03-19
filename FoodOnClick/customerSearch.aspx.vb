@@ -10,6 +10,10 @@
                 ddlCategory.DataSource = clsBranch.RetrieveAllCuisineType()
                 ddlCategory.DataBind()
 
+                Dim clsMenu As Menu = New Menu()
+                ddlType.DataSource = clsMenu.RetrieveAllMenuFoodType()
+                ddlType.DataBind()
+
                 ddlCategory.Items.Insert(0, New ListItem("Please select", ""))
                 ddlCategory.SelectedIndex = 0
 
@@ -49,8 +53,8 @@
 
         If Session("orderType") = "reservation" Then
             'ddlType.SelectedItem.ToString()
-            Dim clsSearch As Search = New Search(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedValue.ToString(), "",
-                                           txtDishName.Text.Trim(), ddlHalal.SelectedValue.ToString(), dblMinPrice, dblMaxPrice)
+            Dim clsSearch As Search = New Search(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedItem.ToString(), ddlType.SelectedItem.ToString(),
+                                           txtDishName.Text.Trim(), ddlHalal.SelectedItem.ToString(), dblMinPrice, dblMaxPrice)
             dtSearch = clsSearch.GetSearchReservation()
 
             gvSearch.DataSource = dtSearch
@@ -61,11 +65,12 @@
 
     Protected Sub gvSearch_RowCommand(sender As Object, e As GridViewCommandEventArgs)
         Dim Index As Int32 = -1
-        Dim gvRow As GridViewRow = Nothing
         Dim hRestaurantId As HiddenField = Nothing
         Dim hBranchId As HiddenField = Nothing
         Dim hUserId As HiddenField = Nothing
         Dim hEmail As HiddenField = Nothing
+        Dim hTimeOpen As HiddenField = Nothing
+        Dim hTImeClosed As HiddenField = Nothing
         Dim sRestaurantId As String = ""
         Dim sUserId As String = ""
         Dim sBranchId As String = ""
@@ -75,6 +80,8 @@
         Dim sHalal As String = ""
         Dim sAddress As String = ""
         Dim sDishName As String = ""
+        Dim sTimeOpen As String = ""
+        Dim sTimeClosed As String = ""
 
         If e.CommandName = "doReservation" Then
 
@@ -92,6 +99,12 @@
             hEmail = gvSearch.Rows(Index).FindControl("hfEmail")
             sEmail = hEmail.Value
 
+            hTimeOpen = gvSearch.Rows(Index).FindControl("hfTimeOpen")
+            sTimeOpen = hTimeOpen.Value
+
+            hTImeClosed = gvSearch.Rows(Index).FindControl("hfTimeClosed")
+            sTimeClosed = hTImeClosed.Value
+
             sRestName = gvSearch.Rows(Index).Cells(0).Text
             sHalal = gvSearch.Rows(Index).Cells(1).Text
             sAddress = gvSearch.Rows(Index).Cells(2).Text
@@ -103,6 +116,8 @@
             Session("restName") = sRestName
             Session("halal") = sHalal
             Session("address") = sAddress
+            Session("timeOpen") = sTimeOpen
+            Session("timeClosed") = sTimeClosed
 
             Response.Redirect("customerReservation.aspx")
         End If
@@ -115,5 +130,43 @@
 
     Protected Sub btnHome_Click(sender As Object, e As EventArgs)
         Response.Redirect("customerHome.aspx")
+    End Sub
+
+    Protected Sub gvSearch_RowDataBound(sender As Object, e As GridViewRowEventArgs)
+        Dim hBranchId As HiddenField = Nothing
+        Dim hPrevBranchId As HiddenField = Nothing
+        Dim sBranchID As String = ""
+        Dim sPreviousBranchID As String = ""
+
+
+        For i As Integer = gvSearch.Rows.Count - 1 To 1 Step -1
+            Dim row As GridViewRow = gvSearch.Rows(i)
+            Dim previousRow As GridViewRow = gvSearch.Rows(i - 1)
+
+            hBranchId = gvSearch.Rows(i).FindControl("hfBranchId")
+            sBranchID = hBranchId.Value.ToString()
+
+            hPrevBranchId = gvSearch.Rows(i - 1).FindControl("hfBranchId")
+            sPreviousBranchID = hPrevBranchId.Value.ToString()
+
+            'merge only if branch id same
+            If sBranchID = sPreviousBranchID Then
+                For j As Integer = 0 To row.Cells.Count - 1
+                    If j = 4 Then
+                        Dim test As Int16 = 0
+                    End If
+                    If row.Cells(j).Text = previousRow.Cells(j).Text Then
+                        If previousRow.Cells(j).RowSpan = 0 Then
+                            If row.Cells(j).RowSpan = 0 Then
+                                previousRow.Cells(j).RowSpan += 2
+                            Else
+                                previousRow.Cells(j).RowSpan = row.Cells(j).RowSpan + 1
+                            End If
+                            row.Cells(j).Visible = False
+                        End If
+                    End If
+                Next
+            End If
+        Next
     End Sub
 End Class
