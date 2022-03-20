@@ -131,7 +131,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="adminstratorManageRegistrations.aspx.aspx" />
+    <Content Include="administratorHome.aspx" />
+    <Content Include="administratorManageRegistrations.aspx" />
     <Content Include="branch.aspx" />
     <Content Include="branchInfo.aspx" />
     <Content Include="branchMenu.aspx" />
@@ -226,11 +227,18 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="adminstratorManageRegistrations.aspx.aspx.designer.vb">
-      <DependentUpon>adminstratorManageRegistrations.aspx.aspx</DependentUpon>
+    <Compile Include="administratorHome.aspx.designer.vb">
+      <DependentUpon>administratorHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="adminstratorManageRegistrations.aspx.aspx.vb">
-      <DependentUpon>adminstratorManageRegistrations.aspx.aspx</DependentUpon>
+    <Compile Include="administratorHome.aspx.vb">
+      <DependentUpon>administratorHome.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="administratorManageRegistrations.aspx.designer.vb">
+      <DependentUpon>administratorManageRegistrations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administratorManageRegistrations.aspx.vb">
+      <DependentUpon>administratorManageRegistrations.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="App_Start\BundleConfig.vb" />

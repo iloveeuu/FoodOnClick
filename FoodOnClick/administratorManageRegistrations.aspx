@@ -1,13 +1,9 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="adminstratorManageRegistrations.aspx.aspx.vb" Inherits="FoodOnClick.adminstratorManageRegistrations_aspx" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="administratorManageRegistrations.aspx.vb" Inherits="FoodOnClick.administratorManageRegistrations" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
-        rel="stylesheet">
-<link href="./stylecss.css" rel="stylesheet" />
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Manage Approval</h1>
     <h1>Total Pending Approval Case</h1>
     <asp:Label ID="totalPendingCase" runat="server"></asp:Label>
@@ -34,7 +30,7 @@
             <td><asp:label ID="document_halal" runat="server"></asp:label></td>
         </tr>
     </table>
-    
+
 
 
 </asp:Content>

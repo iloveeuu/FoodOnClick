@@ -1,8 +1,8 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Data.SqlClient.SqlException
-Public Class adminstratorManageRegistrations_aspx
-    Inherits System.Web.UI.Page
 
+Public Class administratorManageRegistrations
+    Inherits System.Web.UI.Page
     Dim userID As Int32
     Dim emailAddress As String
 
@@ -121,8 +121,6 @@ Public Class adminstratorManageRegistrations_aspx
         con.Close()
         Response.Redirect("adminstratorManageRegistrations.aspx")
     End Sub
-
-
 
 
 

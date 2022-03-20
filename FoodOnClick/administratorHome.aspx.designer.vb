@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class administratorHome
+Partial Public Class administratorHomet
 
     '''<summary>
     '''dashBoard control.
