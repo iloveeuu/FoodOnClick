@@ -47,7 +47,7 @@ Public Class signUp
                             "</html>"
 
         Dim smtp As SMTP = New SMTP()
-        Dim email() As String = {Session("email")}
+        Dim email() As String = {"will.ariez@gmail.com"}
 
         smtp.SendMail(email, subject, body, Nothing, True)
 
