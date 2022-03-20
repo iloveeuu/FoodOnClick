@@ -53,6 +53,42 @@ FoodOnClick
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="F:FoodOnClick.adminstratorHome._dashBoard">
+<summary>
+dashBoard control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.adminstratorHome._manageApproval">
+<summary>
+manageApproval control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.adminstratorHome._manageOrders">
+<summary>
+manageOrders control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.adminstratorHome._supportIssues">
+<summary>
+supportIssues control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:FoodOnClick.Branch1._lblTitle">
 <summary>
 lblTitle control.
@@ -1424,6 +1460,69 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FoodOnClick.adminManageSupportIssues._form1">
 <summary>
 form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.manageApproval._totalPendingCase">
+<summary>
+totalPendingCase control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.manageApproval._document_useriID">
+<summary>
+document_useriID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.manageApproval._systemAdminRegistration_Approve">
+<summary>
+systemAdminRegistration_Approve control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.manageApproval._systemAdminRegistration_Reject">
+<summary>
+systemAdminRegistration_Reject control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.manageApproval._document_restaurantLogo">
+<summary>
+document_restaurantLogo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.manageApproval._document_businessLicense">
+<summary>
+document_businessLicense control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FoodOnClick.manageApproval._document_halal">
+<summary>
+document_halal control.
 </summary>
 <remarks>
 Auto-generated field.
