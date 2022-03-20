@@ -2,6 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+	<table id="tableStyle">
+		<tr>
+			<td>
+				<asp:Button ID="btnHome" Width="100%" Height="80%" runat="server" OnClick="btnHome_Click" Text="Home" />
+			</td>
+			<td>
+				<asp:Button ID="btnHistory" Width="100%" Height="80%" runat="server" OnClick="btnHistory_Click" Text="History" />
+			</td>
+		</tr>
+	</table>
     <div>
         <h2>Profile</h2>
     </div>
@@ -95,12 +105,16 @@
 			  </div>
         </div>
 		<div class="row">
-			<asp:CompareValidator ID="cvPassword" runat="server" 
+			<div class="col-100" style="text-align: center;">
+				<asp:CompareValidator ID="cvPassword" runat="server" 
 				 ControlToValidate="txtPassword"
 				 CssClass="ValidationError"
 				 ControlToCompare="txtPasswordConfirm"
-				 ErrorMessage="No Match" 
+				 ErrorMessage="Confirm Password must be the same" ForeColor="Red" 
 				 ToolTip="Password must be the same" />
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-100" style="text-align: center;">
 				<asp:Button ID="btnChangePassword"  CssClass="textWidth" OnClick="btnChangePassword_Click" runat="server"  Width="50%" Text="Change Password" />
 			</div>
