@@ -286,6 +286,35 @@ Public Class Reservation
         End Using
         Return returnObject
     End Function
+    Public Sub CancelReservation()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtReservation = New DataTable()
+
+        Dim Query As String = "Update reservation set status = 'Cancelled' " &
+                                " where userID = @userId And reservationID = @reservationID And status = 'Pending' "
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@userId", SqlDbType.Int).Value = Me.userid
+                    .Parameters.Add("@reservationID", SqlDbType.Int).Value = Me.reservationId
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+                Catch ex As SqlException
+                    Throw ex
+                End Try
+            End Using
+        End Using
+    End Sub
     Public Function GetReservationToday()
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
 
