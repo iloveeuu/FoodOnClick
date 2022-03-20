@@ -235,3 +235,10 @@ D:\Kanden-FoodOnClick\GitHubOnline\FoodOnClick\obj\Debug\FoodOnClick.vbproj.Copy
 D:\Kanden-FoodOnClick\GitHubOnline\FoodOnClick\obj\Debug\FoodOnClick.dll
 D:\Kanden-FoodOnClick\GitHubOnline\FoodOnClick\obj\Debug\WebForms_Basic.xml
 D:\Kanden-FoodOnClick\GitHubOnline\FoodOnClick\obj\Debug\FoodOnClick.pdb
+D:\Kanden-FoodOnClick\online\FoodOnClick\obj\Debug\FoodOnClick.vbproj.AssemblyReference.cache
+D:\Kanden-FoodOnClick\online\FoodOnClick\obj\Debug\FoodOnClick.Resources.resources
+D:\Kanden-FoodOnClick\online\FoodOnClick\obj\Debug\FoodOnClick.vbproj.GenerateResource.cache
+D:\Kanden-FoodOnClick\online\FoodOnClick\obj\Debug\FoodOnClick.vbproj.CoreCompileInputs.cache
+D:\Kanden-FoodOnClick\online\FoodOnClick\obj\Debug\FoodOnClick.dll
+D:\Kanden-FoodOnClick\online\FoodOnClick\obj\Debug\WebForms_Basic.xml
+D:\Kanden-FoodOnClick\online\FoodOnClick\obj\Debug\FoodOnClick.pdb

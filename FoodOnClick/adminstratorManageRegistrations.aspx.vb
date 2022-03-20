@@ -1,14 +1,14 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Data.SqlClient.SqlException
-Public Class adminstratorManageRegistrations
+
+
+Public Class administratorManage
     Inherits System.Web.UI.Page
 
     Dim userID As Int32
     Dim emailAddress As String
 
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
         Dim dr As SqlDataReader
@@ -17,8 +17,6 @@ Public Class adminstratorManageRegistrations
         con.Open()
         cmd.Connection = con
         cmd.CommandText = "SELECT * FROM dbo.document join dbo.UserAccount ON dbo.UserAccount.userid=dbo.document.userid where dbo.UserAccount.status='VETTING'"
-
-
 
         dr = cmd.ExecuteReader
 
@@ -32,8 +30,6 @@ Public Class adminstratorManageRegistrations
             document_useriID.Text = dr.GetInt32(0)
             userID = dr.GetInt32(0)
             emailAddress = dr.GetString(1)
-
-
 
 
             cmd.CommandText = "Select dbo.document.url  FROM dbo.document join dbo.UserAccount On dbo.UserAccount.userid=dbo.document.userid  where dbo.UserAccount.status='VETTING' AND dbo.UserAccount.userid=@userID AND dbo.document.type='Restaurant Logo'"
@@ -62,7 +58,6 @@ Public Class adminstratorManageRegistrations
             con.Close()
         End If
 
-
     End Sub
 
     Protected Sub systemAdminRegistrationApprove(sender As Object, e As EventArgs) Handles systemAdminRegistration_Approve.Click
@@ -75,8 +70,6 @@ Public Class adminstratorManageRegistrations
         con.Open()
         cmd.Connection = con
         cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.status='APPROVED' WHERE userid=@userID;"
-
-
 
 
         Dim ToAddressies As String() = {"fyp-foodonclick@hotmail.com", emailAddress}
@@ -121,7 +114,6 @@ Public Class adminstratorManageRegistrations
         con.Close()
         Response.Redirect("adminstratorManageRegistrations.aspx")
     End Sub
-
 
 
 

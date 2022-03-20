@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class branchReservation
 
     '''<summary>
+    '''btnBack control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnBack As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btnToday control.
     '''</summary>
     '''<remarks>
@@ -104,6 +113,24 @@ Partial Public Class branchReservation
     Protected WithEvents popup As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''hfbatch control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfbatch As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hfstatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfstatus As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''rptMenuOrdered control.
     '''</summary>
     '''<remarks>
@@ -120,4 +147,22 @@ Partial Public Class branchReservation
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTotal As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnApproveMenu control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnApproveMenu As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnRejectMenu control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnRejectMenu As Global.System.Web.UI.WebControls.Button
 End Class

@@ -1,9 +1,8 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="administratorHome.aspx.vb" Inherits="FoodOnClick.administratorHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div class="logo">
+    <div class="logo">
         <h1>Food on Click</h1>
         <br />
         <br /
@@ -35,7 +34,7 @@
                     Manage Registrations
                 </td>
                 <td>
-                    <asp:button runat="server" ID="manageApproval" OnClick="manageApprovalClick"/>    
+                    <asp:button runat="server" ID="manageApproval" />    
                 </td>
             </tr>
             <tr>
@@ -57,9 +56,6 @@
        
 
         </table>
-   
-
-
 
 
 </asp:Content>

@@ -11,9 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-
-
-Partial Public Class adminstratorManageRegistrations
+Partial Public Class administratorManage
 
     '''<summary>
     '''totalPendingCase control.

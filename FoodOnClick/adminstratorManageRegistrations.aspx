@@ -3,7 +3,7 @@
 </asp:Content>
 
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Manage Approval</h1>
     <h1>Total Pending Approval Case</h1>
     <asp:Label ID="totalPendingCase" runat="server"></asp:Label>
@@ -31,6 +31,5 @@
         </tr>
     </table>
     
-
 
 </asp:Content>
