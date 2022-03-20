@@ -478,6 +478,65 @@ Public Class Reservation
         Return returnMsg
     End Function
 
+    Public Function RetrieveBatchOrderIdByReservationID() As Integer
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "SELECT batchid from reservation where reservationid = @id"
+        Dim returnMsg As Integer = 0
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@id", SqlDbType.Int).Value = Me.reservationId
+
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        returnMsg = reader("batchid")
+                    End While
+                    conn.Close()
+
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnMsg
+    End Function
+
+    Public Function UpdateReservationOrder() As String
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "UPDATE Orders set orderstatusid =@status where batchid = @id"
+        Dim returnMsg As String = "True"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@status", SqlDbType.Int).Value = Convert.ToInt32(Me.status)
+                    .Parameters.Add("@id", SqlDbType.Int).Value = Me.reservationId
+
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+
+                Catch ex As SqlException
+                    returnMsg = ex.Message
+                End Try
+            End Using
+        End Using
+        Return returnMsg
+    End Function
+
     Public Function RetrieveReservationEmail() As Reservation
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim Query As String = "SELECT uc.firstName,uc.lastName,uc.phoneNum,uc.email,r.status,r.preordermeals,r.date," &

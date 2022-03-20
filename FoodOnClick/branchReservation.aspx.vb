@@ -61,8 +61,29 @@
             If (Not userInfo.status = "Pending") Then
                 MsgBox("Unable to confirm reservation. Refreshing page")
             Else
-                If (clsReservation.UpdateReservation() = "True") Then
-                    sendEmail(userInfo, "APPROVED")
+                If (userInfo.preordermeals = "Yes") Then 'If there is preordermeal, popup Yes n No
+                    Dim result As MsgBoxResult = MsgBox("Approve preorder menu?", MsgBoxStyle.YesNoCancel)
+                    If result = result.Yes Then 'Approve reservation and preorder
+                        If (clsReservation.UpdateReservation() = "True") Then
+                            Dim batchid As Integer = clsReservation.RetrieveBatchOrderIdByReservationID()
+                            clsReservation = New Reservation(batchid, "7")
+                            If (clsReservation.UpdateReservationOrder() = "True") Then
+                                sendEmail(userInfo, "APPROVED and preorder menu APPROVED")
+                            End If
+                        End If
+                    ElseIf result = result.No Then 'Reject preorder Approve reservation
+                        If (clsReservation.UpdateReservation() = "True") Then
+                            Dim batchid As Integer = clsReservation.RetrieveBatchOrderIdByReservationID()
+                            clsReservation = New Reservation(batchid, "8")
+                            If (clsReservation.UpdateReservationOrder() = "True") Then
+                                sendEmail(userInfo, "APPROVED but preorder menu REJECTED")
+                            End If
+                        End If
+                    End If
+                Else 'No preorder, so just update reservation 
+                    If (clsReservation.UpdateReservation() = "True") Then
+                        sendEmail(userInfo, "APPROVED")
+                    End If
                 End If
             End If
         ElseIf (e.CommandName = "Reject") Then
@@ -71,8 +92,18 @@
             If (Not userInfo.status = "Pending") Then
                 MsgBox("Unable to cancel reservation. Refreshing page")
             Else
-                If (clsReservation.UpdateReservation() = "True") Then
-                    sendEmail(userInfo, "REJECTED")
+                If (userInfo.preordermeals = "Yes") Then 'If there is preordermeal, popup Yes n No
+                    If (clsReservation.UpdateReservation() = "True") Then
+                        Dim batchid As Integer = clsReservation.RetrieveBatchOrderIdByReservationID()
+                        clsReservation = New Reservation(batchid, "8")
+                        If (clsReservation.UpdateReservationOrder() = "True") Then
+                            sendEmail(userInfo, "REJECTED")
+                        End If
+                    End If
+                Else 'No preorder, so just update reservation 
+                    If (clsReservation.UpdateReservation() = "True") Then
+                        sendEmail(userInfo, "REJECTED")
+                    End If
                 End If
             End If
         ElseIf (e.CommandName = "View") Then
@@ -159,8 +190,29 @@
             If (Not userInfo.status = "Pending") Then
                 MsgBox("Unable to confirm reservation. Refreshing page")
             Else
-                If (clsReservation.UpdateReservation() = "True") Then
-                    sendEmail(userInfo, "APPROVED")
+                If (userInfo.preordermeals = "Yes") Then 'If there is preordermeal, popup Yes n No
+                    Dim result As MsgBoxResult = MsgBox("Approve preorder menu?", MsgBoxStyle.YesNoCancel)
+                    If result = result.Yes Then 'Approve reservation and preorder
+                        If (clsReservation.UpdateReservation() = "True") Then
+                            Dim batchid As Integer = clsReservation.RetrieveBatchOrderIdByReservationID()
+                            clsReservation = New Reservation(batchid, "7")
+                            If (clsReservation.UpdateReservationOrder() = "True") Then
+                                sendEmail(userInfo, "APPROVED and preorder menu APPROVED")
+                            End If
+                        End If
+                    ElseIf result = result.No Then 'Reject preorder Approve reservation
+                        If (clsReservation.UpdateReservation() = "True") Then
+                            Dim batchid As Integer = clsReservation.RetrieveBatchOrderIdByReservationID()
+                            clsReservation = New Reservation(batchid, "8")
+                            If (clsReservation.UpdateReservationOrder() = "True") Then
+                                sendEmail(userInfo, "APPROVED but preorder menu REJECTED")
+                            End If
+                        End If
+                    End If
+                Else 'No preorder, so just update reservation 
+                    If (clsReservation.UpdateReservation() = "True") Then
+                        sendEmail(userInfo, "APPROVED")
+                    End If
                 End If
             End If
         ElseIf (e.CommandName = "Reject") Then
@@ -169,14 +221,23 @@
             If (Not userInfo.status = "Pending") Then
                 MsgBox("Unable to cancel reservation. Refreshing page")
             Else
-                If (clsReservation.UpdateReservation() = "True") Then
-                    sendEmail(userInfo, "REJECTED")
+                If (userInfo.preordermeals = "Yes") Then 'If there is preordermeal, popup Yes n No
+                    If (clsReservation.UpdateReservation() = "True") Then
+                        Dim batchid As Integer = clsReservation.RetrieveBatchOrderIdByReservationID()
+                        clsReservation = New Reservation(batchid, "8")
+                        If (clsReservation.UpdateReservationOrder() = "True") Then
+                            sendEmail(userInfo, "REJECTED")
+                        End If
+                    End If
+                Else 'No preorder, so just update reservation 
+                    If (clsReservation.UpdateReservation() = "True") Then
+                        sendEmail(userInfo, "REJECTED")
+                    End If
                 End If
             End If
         ElseIf (e.CommandName = "View") Then
             Dim menuInfo As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument))
-            menuInfo.RetrievePreOrderMenu()
-            rptMenuOrdered.DataSource = menuInfo
+            rptMenuOrdered.DataSource = menuInfo.RetrievePreOrderMenu()
             rptMenuOrdered.DataBind()
             my_popup.Style.Add("display", "block")
             popup.Style.Add("display", "block")
