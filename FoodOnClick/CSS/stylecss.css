@@ -19,6 +19,12 @@ h2 {
     color: #92248F;
 }
 
+h3 {
+    margin: 0;
+    text-align: center;
+    color: #92248F;
+}
+
 ul.topnav {
     list-style-type: none;
     margin: 0;
@@ -152,10 +158,13 @@ table {
     background: rgb(0, 0, 0); /* fallback color */
     background: rgba(0, 0, 0, 0.7);
     padding: 10px;
+<<<<<<< HEAD
 }
 
 #gvSearch {
     width:70%;
+=======
+>>>>>>> a9b0cf0e901c7806e880d7fd62a6b791fe956984
 }
 
 .alignRight {
@@ -163,12 +172,24 @@ table {
 }
 
 #gvReservation th, td {
-    text-align: left;
+    text-align: center;
     padding: 8px;
 }
 
+.gvSearch {
+    width: 70%;
+}
+
+.gvMenu {
+    width: 50%
+}
+
+.gvPreOrder {
+    width: 40%
+}
+
 #gvSearch th, td {
-    text-align: left;
+    text-align: center;
     padding: 8px;
 }
 
@@ -199,10 +220,46 @@ table {
         margin-right: auto;
     }
 
+<<<<<<< HEAD
+=======
+    .custBtnImage {
+        border: 5px solid;
+        border-color: #BA55D3;
+        width: 80px;
+        height: 80px;
+    }
+
+    .custBtnDiv {
+        background-color: #BA55D3;
+        width: 100px;
+        margin: auto;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .masterText {
+        padding: 2px;
+    }
+
+    .gvSearch {
+        width: 95%;
+    }
+
+    .gvMenu {
+        width: 95%
+    }
+
+    .gvPreOrder {
+        width: 95%
+    }
+
+>>>>>>> a9b0cf0e901c7806e880d7fd62a6b791fe956984
 }
 
 .alignTxtMid {
-    text-align: right;
+    text-align: center;
 }
 
 input[type="submit"] {
@@ -219,6 +276,40 @@ input[type="submit"]:hover {
     background-color: white;
     /*border: 2px solid #800080;*/
 }
+
+div.signup-page h3 {
+    text-align: center;
+}
+
+div.signUpMerchant-page h3 {
+    text-align: center;
+}
+.tableStyle {
+    width: 20%;
+    height: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+    .tableStyle td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+.btn1 {
+    border-radius: 12px;
+    color: white;
+    background-color: #800080;
+    transition-duration: 0.4s;
+    border: 2px solid #800080;
+}
+
+    .btn1:hover {
+        border-radius: 12px;
+        color: black;
+        background-color: white;
+        /*border: 2px solid #800080;*/
+    }
+
 
 
 

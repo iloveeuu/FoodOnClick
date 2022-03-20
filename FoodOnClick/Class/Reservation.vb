@@ -2,7 +2,7 @@
 Imports System.Data.SqlClient
 
 Public Class Reservation
-    Inherits User
+    Inherits Branch
 
     Dim str_reservationId As Int32
     Dim str_preordermeals As String
@@ -11,8 +11,10 @@ Public Class Reservation
     Dim int_pax As Int32
     Dim str_status As String
     Dim int_branchId As Int32
-    Dim int_userId As Int32
     Dim int_batchid As Int32
+    Dim dec_tempCost As Decimal
+    Dim dec_tempTotalCost As Decimal
+
 
 #Region "Objects"
     Public Property reservationId() As Int32
@@ -96,13 +98,43 @@ Public Class Reservation
         End Set
     End Property
 
+    Public Property tempCost() As Decimal
+        Get
+            tempCost = dec_tempCost
+        End Get
+        Set(ByVal Value As Decimal)
+            dec_tempCost = Value
+        End Set
+    End Property
+
+    Public Property tempTotalCost() As Decimal
+        Get
+            tempTotalCost = dec_tempTotalCost
+        End Get
+        Set(ByVal Value As Decimal)
+            dec_tempTotalCost = Value
+        End Set
+    End Property
+
+
 #End Region
 
     Public Sub New()
     End Sub
 
+
     Public Sub New(ByVal userid As Int32)
         Me.userid = userid
+    End Sub
+
+    Public Sub New(ByVal branchid As Integer, ByVal date1 As Date)
+        Me.branchId = branchid
+        Me.dtdate = date1
+    End Sub
+
+    Public Sub New(ByVal reservationid As Integer, ByVal status As String)
+        Me.reservationId = reservationid
+        Me.status = status
     End Sub
 
     Public Sub New(ByVal preordermeals As String, ByVal dtdate As Date,
@@ -114,7 +146,7 @@ Public Class Reservation
         Me.pax = pax
         Me.status = status
         Me.branchId = branchId
-        Me.userId = userid
+        Me.userid = userid
         Me.batchid = batchid
     End Sub
 
@@ -127,7 +159,8 @@ Public Class Reservation
                             "VALUES (@preordermeals, @dtdate, @strtime, @pax, @status, @branchId, @userId) "
         Else
             Query = "INSERT INTO Reservation (preordermeals, date, time, pax, status, branchId, userId, batchid) " &
-                            "VALUES (@preordermeals, @dtdate, @strtime, @pax, @status, @branchId, @userId, @batchid) "
+                            "VALUES (@preordermeals, @dtdate, @strtime, @pax, @status, @branchId, @userId, " &
+                            "(SELECT TOP 1 batchID FROM batchOrders WHERE userID = @userId and orderTypeID = 10 and branchID = @branchId ORDER BY batchID DESC)) "
         End If
 
         Using conn As New SqlConnection(connectionString)
@@ -145,8 +178,6 @@ Public Class Reservation
                     .Parameters.Add("@status", SqlDbType.VarChar).Value = Me.str_status
                     .Parameters.Add("@branchId", SqlDbType.Int).Value = Me.int_branchId
                     .Parameters.Add("@userId", SqlDbType.Int).Value = Me.userid
-                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.int_batchid
-
                 End With
                 Try
                     conn.Open()
@@ -165,9 +196,10 @@ Public Class Reservation
 
         Dim dtReservation = New DataTable()
 
-        Dim Query As String = "SELECT r.name as restName, b.address, re.pax, re.date, re.time, re.status from branch as b " &
+        Dim Query As String = "SELECT re.reservationId, b.email, r.name as restName, b.address, re.pax, re.date, re.time, re.status, ISNULL(re.batchid,'') as batchId from branch as b " &
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join reservation as re on re.branchId = b.branchId " &
+                                " left join batchOrders as bo on bo.batchid = re.batchid " &
                                 " where re.userID = @userId"
 
         Using conn As New SqlConnection(connectionString)
@@ -197,4 +229,392 @@ Public Class Reservation
         Return dtReservation
     End Function
 
+    Public Sub GetLatestPendingReservationByUserID()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtReservation = New DataTable()
+
+        Dim Query As String = "SELECT * from reservation " &
+                                " where userID = @userId And status = 'Pending' "
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@userId", SqlDbType.Int).Value = Me.userid
+                End With
+                Try
+                    conn.Open()
+
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        reservationId = reader("reservationId")
+                        preordermeals = reader("preordermeals")
+                        dtdate = reader("date")
+                        strtime = reader("time")
+                        pax = reader("pax")
+                        status = reader("status")
+                        branchId = reader("branchId")
+                        userid = reader("userid")
+                        batchid = reader("batchid")
+                    End While
+
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Public Function CheckReservationPending()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim returnObject As Reservation = New Reservation
+
+        Dim Query As String = "select top 1 status from reservation " &
+                                " where userID = @userId And reservationID = @reservationID And status = 'Pending' "
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@userId", SqlDbType.Int).Value = Me.userid
+                    .Parameters.Add("@reservationID", SqlDbType.Int).Value = Me.reservationId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        returnObject.status = "Pending"
+                    Else
+                        returnObject.status = ""
+                    End If
+
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+    Public Sub CancelReservation()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtReservation = New DataTable()
+
+        Dim Query As String = "Update reservation set status = 'Cancelled' " &
+                                " where userID = @userId And reservationID = @reservationID And status = 'Pending' "
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@userId", SqlDbType.Int).Value = Me.userid
+                    .Parameters.Add("@reservationID", SqlDbType.Int).Value = Me.reservationId
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+                Catch ex As SqlException
+                    Throw ex
+                End Try
+            End Using
+        End Using
+    End Sub
+    Public Function GetReservationToday()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtReservation = New DataTable()
+
+        Dim Query As String = "SELECT re.reservationid, re.preordermeals, re.pax, re.date, re.time, re.status, re.batchid, u.firstname from branch as b " &
+                                " inner join restaurant as r on r.restaurantId = b.restaurantId " &
+                                " inner join reservation as re on re.branchId = b.branchId " &
+                                " inner join useraccount as u on u.userid = re.userid where b.branchid = @branchid and date = @date order by time asc"
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@date", SqlDbType.Date).Value = Me.dtdate
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        dtReservation.Load(reader)
+                    End If
+
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+        Return dtReservation
+    End Function
+    Public Function GetReservationUpcoming()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtReservation = New DataTable()
+
+        Dim Query As String = "SELECT re.reservationid, re.preordermeals, re.pax, re.date, re.time, re.status, re.batchid, u.firstname from branch as b " &
+                                " inner join restaurant as r on r.restaurantId = b.restaurantId " &
+                                " inner join reservation as re on re.branchId = b.branchId " &
+                                " inner join useraccount as u on u.userid = re.userid where b.branchid = @branchid and date > @date order by date, time"
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@date", SqlDbType.Date).Value = Me.dtdate
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        dtReservation.Load(reader)
+                    End If
+
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+        Return dtReservation
+    End Function
+    Public Function GetBranchReservationHistory()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtReservation = New DataTable()
+
+        Dim Query As String = "SELECT re.reservationid, re.preordermeals, re.pax, re.date, re.time, re.status, u.firstname from branch as b " &
+                                " inner join restaurant as r on r.restaurantId = b.restaurantId " &
+                                " inner join reservation as re on re.branchId = b.branchId " &
+                                " inner join useraccount as u on u.userid = re.userid where b.branchid = @branchid and date < @date order by date, time"
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@date", SqlDbType.Date).Value = Me.dtdate
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        dtReservation.Load(reader)
+                    End If
+
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+        Return dtReservation
+    End Function
+
+    Public Function UpdateReservation() As String
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "UPDATE Reservation set status =@status where reservationid = @id"
+        Dim returnMsg As String = "True"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@status", SqlDbType.NVarChar).Value = Me.status
+                    .Parameters.Add("@id", SqlDbType.Int).Value = Me.reservationId
+
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+
+                Catch ex As SqlException
+                    returnMsg = ex.Message
+                End Try
+            End Using
+        End Using
+        Return returnMsg
+    End Function
+
+    Public Function RetrieveBatchOrderIdByReservationID() As Integer
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "SELECT batchid from reservation where reservationid = @id"
+        Dim returnMsg As Integer = 0
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@id", SqlDbType.Int).Value = Me.reservationId
+
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        returnMsg = reader("batchid")
+                    End While
+                    conn.Close()
+
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnMsg
+    End Function
+
+    Public Function UpdateReservationOrder() As String
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "UPDATE Orders set orderstatusid =@status where batchid = @id"
+        Dim returnMsg As String = "True"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@status", SqlDbType.Int).Value = Convert.ToInt32(Me.status)
+                    .Parameters.Add("@id", SqlDbType.Int).Value = Me.reservationId
+
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+
+                Catch ex As SqlException
+                    returnMsg = ex.Message
+                End Try
+            End Using
+        End Using
+        Return returnMsg
+    End Function
+
+    Public Function RetrieveReservationEmail() As Reservation
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "SELECT uc.firstName,uc.lastName,uc.phoneNum,uc.email,r.status,r.preordermeals,r.date," &
+                              "r.time,r.pax,b.city,b.postalcode,b.address,rc.name,rc.description from useraccount as uc" &
+                              " join reservation as r on uc.userid = r.userid join branch as b on b.branchid = r.branchid" &
+                              " join restaurant as rc on rc.restaurantid = b.restaurantid where r.reservationid = @id"
+        Dim obj As Reservation = New Reservation()
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@id", SqlDbType.Int).Value = Me.reservationId
+
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        obj.firstName = reader("firstname")
+                        obj.lastName = reader("lastname")
+                        obj.phone = reader("phoneNum")
+                        obj.email = reader("email")
+                        obj.preordermeals = reader("preordermeals")
+                        obj.dt_date = reader("date")
+                        obj.strtime = reader("time").ToString()
+                        obj.status = reader("status")
+                        obj.pax = reader("pax")
+                        obj.branchCity = reader("city")
+                        obj.branchPostalcode = reader("postalcode")
+                        obj.branchAddress = reader("address")
+                        obj.restaurantName = reader("name")
+                        obj.restaurantDescription = reader("description")
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return obj
+    End Function
+
+    Public Function RetrievePreOrderMenu() As List(Of Reservation)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "SELECT od.orderQuantity, m.name, m.cost, o.totalcharges from orders As o" &
+                              " join orderdetails As od On o.orderNum = od.orderNum" &
+                              " join menu As m On m.menuid = od.menuid where o.batchID = @batchid"
+        Dim obj As List(Of Reservation) = New List(Of Reservation)
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.userid
+
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        Dim tempobj As Reservation = New Reservation
+                        tempobj.restaurantName = reader("name")
+                        tempobj.pax = reader("orderQuantity")
+                        tempobj.tempCost = reader("cost")
+                        tempobj.tempTotalCost = reader("totalcharges")
+                        obj.Add(tempobj)
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return obj
+    End Function
 End Class

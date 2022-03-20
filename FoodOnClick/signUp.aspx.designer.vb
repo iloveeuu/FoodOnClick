@@ -14,13 +14,13 @@ Option Explicit On
 Partial Public Class signUp
 
     '''<summary>
-    '''txtUsername control.
+    '''txtEmail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtUsername As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txtPass control.
@@ -30,15 +30,6 @@ Partial Public Class signUp
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPass As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txtFirstName control.
@@ -104,20 +95,29 @@ Partial Public Class signUp
     Protected WithEvents txtAddress As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnSignUpMerchant control.
+    '''ddlUserType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnSignUpMerchant As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents ddlUserType As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''btnSignUpCustomer control.
+    '''btnSignUp control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnSignUpCustomer As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnSignUp As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
 End Class

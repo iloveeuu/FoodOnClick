@@ -1,22 +1,22 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="signUp.aspx.vb" Inherits="FoodOnClick.signUp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-	
+
     <title>Sign Up Food On Click</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <h1>Food On Click</h1>
-    <h3>Sign Up</h3>
-    <br />
-    <hr />
-    <br />
+    <div class="signup-page" runat="server">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <h3>Sign Up form</h3>
+        <br />
+        <hr />
+        <br />
         <table id="tableStyle">
             <tr>
-                <td>Username:
+                <td>Email:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -26,13 +26,7 @@
                     <asp:TextBox ID="txtPass" runat="server" TextMode="Password"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td>Email:
-                </td>
-                <td>
-                    <asp:TextBox ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox>
-                </td>
-            </tr>
+
             <tr>
                 <td>First Name:
                 </td>
@@ -59,7 +53,7 @@
                 </td>
                 <td>
                     <asp:RadioButton ID="RadioButtonM" GroupName="gender" runat="server" Text="Male" />
-                    <asp:RadioButton ID="RadioButtonF" GroupName="gender" runat="server" Text="Female" />           
+                    <asp:RadioButton ID="RadioButtonF" GroupName="gender" runat="server" Text="Female" />
                 </td>
             </tr>
             <tr>
@@ -74,27 +68,33 @@
                 <td>Address :
                 </td>
                 <td>
-                    <asp:TextBox ID="txtAddress"  runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine"></asp:TextBox>
                 </td>
             </tr>
-            <%--<tr>
+            <tr>
                 <td>User Type:
                 </td>
                 <td>
                     <asp:DropDownList ID="ddlUserType" runat="server">
                         <asp:ListItem Value="Customer" Selected="True">Customer</asp:ListItem>
                         <asp:ListItem Value="Restaurant">Restaurant</asp:ListItem>
-                        <asp:ListItem Value="Delivery Rider">Rider</asp:ListItem>
+                        <asp:ListItem Value="Rider">Rider</asp:ListItem>
                     </asp:DropDownList>
+
                 </td>
-            </tr>--%>
+            </tr>
             <tr>
-                <td>
-                    <%--<asp:Button ID="btnSignUpRider" runat="server" Text="Sign Up as Rider" />--%>
-                    <asp:Button ID="btnSignUpMerchant" runat="server" Text="Sign Up as Merchant" />
-                    <asp:Button ID="btnSignUpCustomer" runat="server" Text="Sign Up as Customer" />
+                <td colspan=" 2">
+                    <br />
+                    <asp:Button ID="btnSignUp" runat="server" Text="SignUp" Style="width: 100%" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Style="width: 100%" />
                 </td>
                 <td></td>
             </tr>
         </table>
+    </div>
 </asp:Content>

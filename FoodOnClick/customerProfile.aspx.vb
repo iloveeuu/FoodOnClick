@@ -15,6 +15,7 @@
     Protected Sub DataBind()
         Dim customer As Customer = New Customer()
         Dim data As Customer = customer.GetCustomerDetail(Session("userid"), Session("email"))
+        Dim dtDate As Date
 
         lblEmail.Text = Session("email")
         txtFirstName.Text = data.firstName
@@ -29,13 +30,15 @@
             gender = "Female"
             rbFemale.Checked = True
         End If
-        txtDOB.Text = data.dateOfBirth
+
+        dtDate = data.dateOfBirth
+        txtDOB.Text = String.Format("{0:yyyy-MM-dd}", dtDate)
     End Sub
 
-    Protected Sub btnProfile_Click(sender As Object, e As EventArgs)
+    Protected Sub btnHome_Click(sender As Object, e As EventArgs)
         Session("userid") = Session("userid")
         Session("email") = Session("email")
-        Response.Redirect("customerProfile.aspx")
+        Response.Redirect("customerHome.aspx")
     End Sub
 
     Protected Sub btnHistory_Click(sender As Object, e As EventArgs)
@@ -45,6 +48,12 @@
     End Sub
 
     Protected Sub btnUpdate_Click(sender As Object, e As EventArgs)
+
+        If rbMale.Checked = True Then
+            gender = "Male"
+        ElseIf rbFemale.Checked = True Then
+            gender = "Female"
+        End If
 
         If txtFirstName.Text.Trim() = "" Or txtLastName.Text.Trim() = "" Or txtPhone.Text.Trim() = "" Or txtAddress.Text.Trim() = "" Or gender = "" Or txtDOB.Text.Trim() = "" Then
             errorText.Attributes("style") = "display: block; text-align: center; color:red;"

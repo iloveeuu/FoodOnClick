@@ -19,7 +19,7 @@
             Case "Rider"
                 Response.Redirect("riderHome.aspx")
             Case "Restaurant"
-                Response.Redirect("restaurantHome.aspx")
+                Response.Redirect("branch.aspx")
             Case "Customer"
                 Response.Redirect("customerHome.aspx")
             Case Else
@@ -28,7 +28,7 @@
                     Response.Redirect("branchMenu.aspx")
                 Else
                     'No user found, can display no user found msg or smth'
-
+                    lblWrong.Visible = True
                 End If
 
 

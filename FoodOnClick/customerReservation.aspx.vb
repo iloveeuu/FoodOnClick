@@ -10,7 +10,13 @@
                 lblHalal.Text = Session("halal")
                 lblAddress.Text = Session("address")
 
+                lblOpenTime.Text = Session("timeOpen")
+                lblCloseTime.Text = Session("timeClosed")
+
                 CompareEndTodayValidator.ValueToCompare = DateTime.Now.ToShortDateString()
+
+                rvTime.MinimumValue = Session("timeOpen")
+                rvTime.MaximumValue = Session("timeClosed")
 
                 'default
                 txtPax.Text = 1
@@ -69,6 +75,7 @@
         Session("address") = Session("address")
         Session("pax") = txtPax.Text.Trim()
         Session("date") = txtDate.Text.Trim()
+        Session("time") = txtTime.Text.Trim()
 
         Response.Redirect("customerPreOrder.aspx")
     End Sub

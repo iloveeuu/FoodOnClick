@@ -113,6 +113,9 @@ Public Class User
         str_username = ""
         str_password = ""
     End Sub
+    Public Sub New(ByVal userid As Integer)
+        Me.userId = userid
+    End Sub
 
     Public Sub New(ByVal username As String, ByVal password As String)
         str_username = username
@@ -131,6 +134,34 @@ Public Class User
         str_password = password
         str_email = email
     End Sub
+    Public Function getResId() As String
+        Dim returnMsg As String = ""
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "SELECT restaurantid from restaurant join useraccount on restaurant.userid = useraccount.userid where useraccount.userid = @id"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@id", SqlDbType.NVarChar).Value = Me.userId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        returnMsg = reader("restaurantid")
+                    End While
+
+                Catch ex As SqlException
+                    returnMsg = ex.Message
+                End Try
+            End Using
+        End Using
+        Return returnMsg
+    End Function
 
     Public Function CheckUserLoginAccess() As String
         Dim returnMsg As String = ""
@@ -169,6 +200,49 @@ Public Class User
             End Using
         End Using
         Return returnMsg
+    End Function
+
+    Public Function addNewUserAccount(txtFirstName, txtlastName, txtAddress, txtContactNo, txtGender, txtDOB, accountType, txtPass, txtEmail, status) As Boolean
+
+        Dim con As New SqlConnection
+        Dim cmd As New SqlCommand
+        Dim dr As SqlDataReader
+
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        con.ConnectionString = connectionString
+        con.Open()
+        cmd.Connection = con
+        cmd.CommandText = "select * from UserAccount where email = '" & txtEmail & "'"
+        Dim returnValue As Boolean
+
+        dr = cmd.ExecuteReader
+        If dr.HasRows Then
+            MsgBox("Email Already Exists", MsgBoxStyle.Critical)
+            returnValue = False
+            con.Close()
+        Else
+            con.Close()
+
+            con.Open()
+            Dim pass As Encryption = New Encryption(txtPass)
+            Dim encrypted As String = pass.Encrypt()
+
+            cmd = New SqlCommand("INSERT INTO UserAccount
+                                 values ('" & txtFirstName & "','" & txtlastName & "',
+                                 '" & txtAddress & "', '" & txtContactNo & "', '" & txtGender & "'
+                                 ,'" & txtDOB & "', '" & accountType & "'
+                                 ,'" & encrypted & "' ,'" & txtEmail & "', '" & "VETTING" & "')", con)
+
+            If (txtFirstName = "" Or txtlastName = "" Or txtEmail = "" Or txtContactNo = "" Or txtPass = "" Or txtEmail = "" Or txtGender = "") Then
+                MsgBox("Please enter the correct details!")
+            Else
+                cmd.ExecuteNonQuery()
+                MsgBox("Successfully Stored", MsgBoxStyle.Information, "Success")
+                returnValue = True
+            End If
+            con.Close()
+        End If
+        Return returnValue
     End Function
 
 End Class
