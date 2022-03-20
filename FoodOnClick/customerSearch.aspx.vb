@@ -139,6 +139,18 @@
         Dim sPreviousBranchID As String = ""
 
 
+        'If (e.Row.RowType = DataControlRowType.DataRow) Then
+        '    If (e.Row.RowIndex > 0) Then
+        '        Dim previousRow As GridViewRow = gvSearch.Rows(e.Row.RowIndex - 1)
+        '        If (e.Row.Cells(0).Text = previousRow.Cells(0).Text) Then
+        '            If (previousRow.Cells(0).RowSpan = 0) Then
+        '                previousRow.Cells(0).RowSpan += 3
+        '                e.Row.Cells(0).Visible = False
+        '            End If
+        '        End If
+        '    End If
+        'End If
+
         For i As Integer = gvSearch.Rows.Count - 1 To 1 Step -1
             Dim row As GridViewRow = gvSearch.Rows(i)
             Dim previousRow As GridViewRow = gvSearch.Rows(i - 1)
@@ -152,18 +164,13 @@
             'merge only if branch id same
             If sBranchID = sPreviousBranchID Then
                 For j As Integer = 0 To row.Cells.Count - 1
-                    If j = 4 Then
-                        Dim test As Int16 = 0
-                    End If
                     If row.Cells(j).Text = previousRow.Cells(j).Text Then
-                        If previousRow.Cells(j).RowSpan = 0 Then
-                            If row.Cells(j).RowSpan = 0 Then
-                                previousRow.Cells(j).RowSpan += 2
-                            Else
-                                previousRow.Cells(j).RowSpan = row.Cells(j).RowSpan + 1
-                            End If
-                            row.Cells(j).Visible = False
+                        If row.Cells(j).RowSpan = 0 Then
+                            previousRow.Cells(j).RowSpan += 2
+                        Else
+                            previousRow.Cells(j).RowSpan = row.Cells(j).RowSpan + 1
                         End If
+                        row.Cells(j).Visible = False
                     End If
                 Next
             End If

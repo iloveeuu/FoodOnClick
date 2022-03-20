@@ -14,7 +14,7 @@
 
     Protected Sub DataBind()
         Dim customer As Customer = New Customer()
-        Dim data As Customer = customer.GetCustomerDetail(Session("userid"), Session("email"))
+        Dim data As Customer = customer.GetCustomerDetail(Session("userid"))
         Dim dtDate As Date
 
         lblEmail.Text = Session("email")
@@ -61,7 +61,14 @@
             Dim customer As Customer = New Customer()
             customer.UpdateCustomer(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtPhone.Text.Trim(), gender, txtDOB.Text.Trim(), Session("email"), Session("userid"))
 
-            MsgBox("Profile Updated")
+            Dim sb As New System.Text.StringBuilder()
+            sb.Append("<script type = 'text/javascript'>")
+            sb.Append("window.onload=function(){")
+            sb.Append("alert('")
+            sb.Append("Profile Updated")
+            sb.Append("')};")
+            sb.Append("</script>")
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
 
             DataBind()
         End If
@@ -75,7 +82,15 @@
             Dim customer As Customer = New Customer()
             customer.UpdatePassword(txtPassword.Text.Trim(), Session("email"), Session("userid"))
 
-            MsgBox("Password Changed")
+            Dim sb As New System.Text.StringBuilder()
+            sb.Append("<script type = 'text/javascript'>")
+            sb.Append("window.onload=function(){")
+            sb.Append("alert('")
+            sb.Append("Password Changed")
+            sb.Append("')};")
+            sb.Append("</script>")
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+
 
             DataBind()
         End If
