@@ -11,6 +11,8 @@ Option Strict On
 Option Explicit On
 
 
+
+
 Partial Public Class adminstratorManageRegistrations_aspx
 
     '''<summary>

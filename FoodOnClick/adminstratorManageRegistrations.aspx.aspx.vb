@@ -77,6 +77,8 @@ Public Class adminstratorManageRegistrations_aspx
         cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.status='APPROVED' WHERE userid=@userID;"
 
 
+
+
         Dim ToAddressies As String() = {"fyp-foodonclick@hotmail.com", emailAddress}
         Dim attachs() As String = {}
         Dim subject As String = "Registration Request---Approved"

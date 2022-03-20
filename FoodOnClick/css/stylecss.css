@@ -151,13 +151,20 @@ table {
     top: 200px;
     left: 0;
     font-size:2vw;
-    width: 99%;
+    width: 100%;
     color: white;
     font: bold 24px/45px Helvetica, Sans-Serif;
     letter-spacing: -1px;
     background: rgb(0, 0, 0); /* fallback color */
     background: rgba(0, 0, 0, 0.7);
     padding: 10px;
+<<<<<<< HEAD
+}
+
+#gvSearch {
+    width:70%;
+=======
+>>>>>>> a9b0cf0e901c7806e880d7fd62a6b791fe956984
 }
 
 .alignRight {
@@ -213,6 +220,8 @@ table {
         margin-right: auto;
     }
 
+<<<<<<< HEAD
+=======
     .custBtnImage {
         border: 5px solid;
         border-color: #BA55D3;
@@ -246,6 +255,7 @@ table {
         width: 95%
     }
 
+>>>>>>> a9b0cf0e901c7806e880d7fd62a6b791fe956984
 }
 
 .alignTxtMid {
