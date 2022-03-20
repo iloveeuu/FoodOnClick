@@ -28,7 +28,7 @@
                     Response.Redirect("branchMenu.aspx")
                 Else
                     'No user found, can display no user found msg or smth'
-
+                    lblWrong.Visible = True
                 End If
 
 

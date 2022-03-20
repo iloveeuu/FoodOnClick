@@ -84,4 +84,40 @@ Partial Public Class branchReservation
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNothing As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''my_popup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents my_popup As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+    '''<summary>
+    '''popup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents popup As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''rptMenuOrdered control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rptMenuOrdered As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''lblTotal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTotal As Global.System.Web.UI.WebControls.Label
 End Class

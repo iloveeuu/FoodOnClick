@@ -75,6 +75,12 @@
                     sendEmail(userInfo, "REJECTED")
                 End If
             End If
+        ElseIf (e.CommandName = "View") Then
+            Dim menuInfo As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument))
+            rptMenuOrdered.DataSource = menuInfo.RetrievePreOrderMenu()
+            rptMenuOrdered.DataBind()
+            my_popup.Style.Add("display", "block")
+            popup.Style.Add("display", "block")
         End If
         binddataToday()
     End Sub
@@ -167,7 +173,36 @@
                     sendEmail(userInfo, "REJECTED")
                 End If
             End If
+        ElseIf (e.CommandName = "View") Then
+            Dim menuInfo As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument))
+            menuInfo.RetrievePreOrderMenu()
+            rptMenuOrdered.DataSource = menuInfo
+            rptMenuOrdered.DataBind()
+            my_popup.Style.Add("display", "block")
+            popup.Style.Add("display", "block")
         End If
         binddataUpcoming()
+    End Sub
+
+    Protected Sub Unnamed_Click(sender As Object, e As EventArgs)
+        my_popup.Style.Add("display", "none")
+        popup.Style.Add("display", "none")
+    End Sub
+
+    Protected Sub rptMenuOrdered_ItemDataBound(sender As Object, e As RepeaterItemEventArgs)
+        If (e.Item.ItemType = ListItemType.Item Or e.Item.ItemType = ListItemType.AlternatingItem) Then
+            Dim menuName As String = DataBinder.Eval(e.Item.DataItem, "restaurantName").ToString()
+            Dim menuQuantity As String = DataBinder.Eval(e.Item.DataItem, "pax").ToString()
+            Dim singleCost As Decimal = DataBinder.Eval(e.Item.DataItem, "tempCost")
+            Dim totalCost As Decimal = DataBinder.Eval(e.Item.DataItem, "tempTotalCost")
+            Dim name As Literal = (TryCast(e.Item.FindControl("litName"), Literal))
+            Dim quantity As Literal = (TryCast(e.Item.FindControl("litQuantity"), Literal))
+            Dim cost As Literal = (TryCast(e.Item.FindControl("litCost"), Literal))
+            name.Text = menuName
+            quantity.Text = "x" & menuQuantity
+            cost.Text = "$" & singleCost
+            lblTotal.Text = "$" & totalCost
+
+        End If
     End Sub
 End Class

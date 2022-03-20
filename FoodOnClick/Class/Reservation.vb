@@ -12,6 +12,9 @@ Public Class Reservation
     Dim str_status As String
     Dim int_branchId As Int32
     Dim int_batchid As Int32
+    Dim dec_tempCost As Decimal
+    Dim dec_tempTotalCost As Decimal
+
 
 #Region "Objects"
     Public Property reservationId() As Int32
@@ -94,6 +97,25 @@ Public Class Reservation
             int_batchid = Value
         End Set
     End Property
+
+    Public Property tempCost() As Decimal
+        Get
+            tempCost = dec_tempCost
+        End Get
+        Set(ByVal Value As Decimal)
+            dec_tempCost = Value
+        End Set
+    End Property
+
+    Public Property tempTotalCost() As Decimal
+        Get
+            tempTotalCost = dec_tempTotalCost
+        End Get
+        Set(ByVal Value As Decimal)
+            dec_tempTotalCost = Value
+        End Set
+    End Property
+
 
 #End Region
 
@@ -320,7 +342,7 @@ Public Class Reservation
 
         Dim dtReservation = New DataTable()
 
-        Dim Query As String = "SELECT re.reservationid, re.preordermeals, re.pax, re.date, re.time, re.status, u.firstname from branch as b " &
+        Dim Query As String = "SELECT re.reservationid, re.preordermeals, re.pax, re.date, re.time, re.status, re.batchid, u.firstname from branch as b " &
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join reservation as re on re.branchId = b.branchId " &
                                 " inner join useraccount as u on u.userid = re.userid where b.branchid = @branchid and date = @date order by time asc"
@@ -357,7 +379,7 @@ Public Class Reservation
 
         Dim dtReservation = New DataTable()
 
-        Dim Query As String = "SELECT re.reservationid, re.preordermeals, re.pax, re.date, re.time, re.status, u.firstname from branch as b " &
+        Dim Query As String = "SELECT re.reservationid, re.preordermeals, re.pax, re.date, re.time, re.status, re.batchid, u.firstname from branch as b " &
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join reservation as re on re.branchId = b.branchId " &
                                 " inner join useraccount as u on u.userid = re.userid where b.branchid = @branchid and date > @date order by date, time"
@@ -501,4 +523,39 @@ Public Class Reservation
         Return obj
     End Function
 
+    Public Function RetrievePreOrderMenu() As List(Of Reservation)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "SELECT od.orderQuantity, m.name, m.cost, o.totalcharges from orders As o" &
+                              " join orderdetails As od On o.orderNum = od.orderNum" &
+                              " join menu As m On m.menuid = od.menuid where o.batchID = @batchid"
+        Dim obj As List(Of Reservation) = New List(Of Reservation)
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.userid
+
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        Dim tempobj As Reservation = New Reservation
+                        tempobj.restaurantName = reader("name")
+                        tempobj.pax = reader("orderQuantity")
+                        tempobj.tempCost = reader("cost")
+                        tempobj.tempTotalCost = reader("totalcharges")
+                        obj.Add(tempobj)
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return obj
+    End Function
 End Class
