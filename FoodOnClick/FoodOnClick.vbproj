@@ -132,7 +132,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="administratorHome.aspx" />
-    <Content Include="administratorManageRegistrations.aspx" />
+    <Content Include="adminstratorManageRegistrations.aspx" />
     <Content Include="branch.aspx" />
     <Content Include="branchInfo.aspx" />
     <Content Include="branchMenu.aspx" />
@@ -234,11 +234,11 @@
       <DependentUpon>administratorHome.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="administratorManageRegistrations.aspx.designer.vb">
-      <DependentUpon>administratorManageRegistrations.aspx</DependentUpon>
+    <Compile Include="adminstratorManageRegistrations.aspx.designer.vb">
+      <DependentUpon>adminstratorManageRegistrations.aspx</DependentUpon>
     </Compile>
-    <Compile Include="administratorManageRegistrations.aspx.vb">
-      <DependentUpon>administratorManageRegistrations.aspx</DependentUpon>
+    <Compile Include="adminstratorManageRegistrations.aspx.vb">
+      <DependentUpon>adminstratorManageRegistrations.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="App_Start\BundleConfig.vb" />
