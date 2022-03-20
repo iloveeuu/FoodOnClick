@@ -131,7 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="adminstratorHome.aspx" />
     <Content Include="adminstratorManageRegistrations.aspx.aspx" />
     <Content Include="branch.aspx" />
     <Content Include="branchInfo.aspx" />
@@ -227,13 +226,6 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="adminstratorHome.aspx.designer.vb">
-      <DependentUpon>adminstratorHome.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="adminstratorHome.aspx.vb">
-      <DependentUpon>adminstratorHome.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="adminstratorManageRegistrations.aspx.aspx.designer.vb">
       <DependentUpon>adminstratorManageRegistrations.aspx.aspx</DependentUpon>
     </Compile>

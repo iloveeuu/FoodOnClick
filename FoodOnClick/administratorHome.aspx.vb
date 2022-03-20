@@ -6,9 +6,8 @@
     End Sub
 
 
-    Protected Sub manageApprovalClick(ByVal sender As Object, ByVal e As System.EventArgs)
-        Response.Redirect("adminstratorManageRegistrations.aspx")
-
+    Protected Sub manageApprovalClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles manageApproval.cick
+        Response.Redirect("administratorManageRegistrations.aspx")
 
 
     End Sub

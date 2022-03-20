@@ -13,11 +13,11 @@
         <table>
             <tr>
                 <td><h2>Pending Approval</h2></td>
-                <td><h2>55</h2></td>
+                <td><h2>255</h2></td>
             </tr>
             <tr>
                 <td><h2>Pending Support Issue </h2></td>
-                <td><h2>25</h2></td>
+                <td><h2>225</h2></td>
             </tr>
         </table>
 
@@ -35,7 +35,7 @@
                     Manage Registrations
                 </td>
                 <td>
-                    <asp:button runat="server" ID="manageApproval" OnClick="manageApprovalClick"/>    
+                    <asp:button runat="server" ID="manageApproval"/>    
                 </td>
             </tr>
             <tr>
@@ -44,7 +44,7 @@
                </td>
                <td>
                    <asp:button runat="server" ID="manageOrders" />
-               </td>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -58,6 +58,7 @@
 
         </table>
    
+
 
 
 
