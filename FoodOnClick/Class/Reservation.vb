@@ -584,7 +584,7 @@ Public Class Reservation
 
     Public Function RetrievePreOrderMenu() As List(Of Reservation)
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "SELECT od.orderQuantity, m.name, m.cost, o.totalcharges from orders As o" &
+        Dim Query As String = "SELECT od.orderQuantity, m.name, m.cost, o.totalcharges,o.batchid,o.orderstatusid from orders As o" &
                               " join orderdetails As od On o.orderNum = od.orderNum" &
                               " join menu As m On m.menuid = od.menuid where o.batchID = @batchid"
         Dim obj As List(Of Reservation) = New List(Of Reservation)
@@ -605,6 +605,8 @@ Public Class Reservation
                     Dim reader As SqlDataReader = comm.ExecuteReader
                     While reader.Read()
                         Dim tempobj As Reservation = New Reservation
+                        tempobj.batchid = reader("batchid")
+                        tempobj.userid = reader("orderstatusid")
                         tempobj.restaurantName = reader("name")
                         tempobj.pax = reader("orderQuantity")
                         tempobj.tempCost = reader("cost")

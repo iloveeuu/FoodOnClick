@@ -61,6 +61,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table id="tableStyle">
         <tr>
+            <td></td>
+            <td><asp:Button runat="server" ID="btnBack" Text="Home" Width="100%" OnClick="btnBack_Click"/></td>
+            <td></td>
+        </tr>
+        <tr>
             <td colspan="3">
                 <h1 style="text-align: center">Reservations</h1>
             </td>
@@ -151,6 +156,8 @@
     <a runat="server" id="my_popup" class="popup"></a>
     <div runat="server" id="popup" class="popup">
         <h3>Menu preordered</h3>
+        <asp:HiddenField runat="server" ID="hfbatch" />
+        <asp:HiddenField runat="server" ID="hfstatus" />
         <asp:Repeater runat="server" ID="rptMenuOrdered" OnItemDataBound="rptMenuOrdered_ItemDataBound">
             <ItemTemplate>
                 <table>
@@ -165,6 +172,11 @@
         <div class="alignTxtMid">
             <br />
             Total cost : <asp:Label runat="server" ID="lblTotal"></asp:Label>
+        </div>
+        <div class="alignTxtMid">
+            <br />
+            <asp:Button runat="server" ID="btnApproveMenu" Text="Approve" OnClick="btnApproveMenu_Click"/>
+            <asp:Button runat="server" ID="btnRejectMenu" Text="Reject" OnClick="btnRejectMenu_Click"/>
         </div>
         <a class="close x">
             <asp:LinkButton runat="server" CssClass="close x" OnClick="Unnamed_Click">x</asp:LinkButton></a>
