@@ -59,6 +59,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
     <table id="tableStyle">
         <tr>
             <td></td>
@@ -85,6 +86,7 @@
             </td>
         </tr>
     </table>
+    <div style="overflow-x:auto;">
     <asp:GridView ID="gvReservationToday" Width="70%" runat="server" AutoGenerateColumns="false" Height="100%" OnRowCommand="gvReservation_RowCommand">
         <Columns>
             <asp:BoundField DataField="firstname" HeaderText="Name" HeaderStyle-Width="20%" />
@@ -146,6 +148,7 @@
             <asp:BoundField DataField="status" HeaderText="Status" HeaderStyle-Width="20%" />
         </Columns>
     </asp:GridView>
+        </div>
     <table class="tableStyle">
         <tr>
             <td>
