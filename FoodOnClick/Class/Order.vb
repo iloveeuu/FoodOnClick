@@ -126,6 +126,34 @@ Public Class Order
             End Using
         End Using
     End Sub
+
+    Public Sub CancelOrder()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = ""
+
+
+        Query = "Update Orders set orderStatusID = 4 Where batchId=@batchId "
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchId", SqlDbType.Decimal).Value = Me.batchId
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+    End Sub
 #End Region
 
 End Class

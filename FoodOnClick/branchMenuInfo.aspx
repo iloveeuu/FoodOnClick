@@ -21,7 +21,7 @@
                 <asp:TextBox runat="server" ID="txtDescription" Width="100%"></asp:TextBox></td>
         </tr>
         <tr>
-            <td>Cost:</td>
+            <td>Price:</td>
             <td>
                 <asp:TextBox runat="server" ID="txtCost" Width="100%"></asp:TextBox></td>
         </tr>

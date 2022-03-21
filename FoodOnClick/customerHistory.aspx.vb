@@ -50,9 +50,11 @@
         Dim message As String
         Index = Convert.ToInt32(e.CommandArgument)
 
+        hfBatchId = gvReservation.Rows(Index).FindControl("hfBatchId")
+        iBatchId = hfBatchId.Value
+
         If e.CommandName = "doCheckPreOrder" Then
-            hfBatchId = gvReservation.Rows(Index).FindControl("hfBatchId")
-            iBatchId = hfBatchId.Value
+
 
             Session("batchId") = iBatchId
             Session("restName") = gvReservation.Rows(Index).Cells(0).Text
@@ -71,6 +73,9 @@
             res.reservationId = iReservationId
             res.userid = Session("userid")
 
+            Dim ord As Order = New Order()
+            ord.batchId = iBatchId
+
             Dim returnObject As Reservation = res.CheckReservationPending()
 
             If returnObject.status = "" Then
@@ -85,6 +90,7 @@
                 ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
             Else
                 res.CancelReservation()
+                ord.CancelOrder()
 
                 Dim subject As String = "Reservation Cancelled from " & Session("firstname") & " " & Session("lastname") & ", " & gvReservation.Rows(Index).Cells(3).Text
 

@@ -4,16 +4,15 @@ Imports System.Data.SqlClient
 Public Class Reservation
     Inherits Branch
 
-    Dim str_reservationId As Int32
-    Dim str_preordermeals As String
-    Dim dt_date As Date
-    Dim str_time As String
-    Dim int_pax As Int32
-    Dim str_status As String
-    Dim int_branchId As Int32
-    Dim int_batchid As Int32
-    Dim dec_tempCost As Decimal
-    Dim dec_tempTotalCost As Decimal
+    Protected str_reservationId As Int32
+    Protected str_preordermeals As String
+    Protected dt_date As Date
+    Protected str_time As String
+    Protected int_pax As Int32
+    Protected str_status As String
+    Protected int_batchid As Int32
+    Protected dec_tempCost As Decimal
+    Protected dec_tempTotalCost As Decimal
 
 
 #Region "Objects"
@@ -584,7 +583,7 @@ Public Class Reservation
 
     Public Function RetrievePreOrderMenu() As List(Of Reservation)
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "SELECT od.orderQuantity, m.name, m.cost, o.totalcharges from orders As o" &
+        Dim Query As String = "SELECT od.orderQuantity, m.name, m.cost, o.totalcharges,o.batchid,o.orderstatusid from orders As o" &
                               " join orderdetails As od On o.orderNum = od.orderNum" &
                               " join menu As m On m.menuid = od.menuid where o.batchID = @batchid"
         Dim obj As List(Of Reservation) = New List(Of Reservation)
@@ -605,6 +604,8 @@ Public Class Reservation
                     Dim reader As SqlDataReader = comm.ExecuteReader
                     While reader.Read()
                         Dim tempobj As Reservation = New Reservation
+                        tempobj.batchid = reader("batchid")
+                        tempobj.userid = reader("orderstatusid")
                         tempobj.restaurantName = reader("name")
                         tempobj.pax = reader("orderQuantity")
                         tempobj.tempCost = reader("cost")
