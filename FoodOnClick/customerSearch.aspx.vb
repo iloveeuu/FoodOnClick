@@ -53,9 +53,9 @@
 
         If Session("orderType") = "reservation" Then
             'ddlType.SelectedItem.ToString()
-            Dim clsSearch As Search = New Search(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedItem.ToString(), ddlType.SelectedItem.ToString(),
+            Dim clsMenu As Menu = New Menu()
+            dtSearch = clsMenu.GetSearchReservation(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedItem.ToString(), ddlType.SelectedItem.ToString(),
                                            txtDishName.Text.Trim(), ddlHalal.SelectedItem.ToString(), dblMinPrice, dblMaxPrice)
-            dtSearch = clsSearch.GetSearchReservation()
 
             gvSearch.DataSource = dtSearch
             gvSearch.DataBind()
