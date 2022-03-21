@@ -217,7 +217,6 @@ Public Class User
 
         dr = cmd.ExecuteReader
         If dr.HasRows Then
-            MsgBox("Email Already Exists", MsgBoxStyle.Critical)
             returnValue = False
             con.Close()
         Else
@@ -234,10 +233,11 @@ Public Class User
                                  ,'" & encrypted & "' ,'" & txtEmail & "', '" & "VETTING" & "')", con)
 
             If (txtFirstName = "" Or txtlastName = "" Or txtEmail = "" Or txtContactNo = "" Or txtPass = "" Or txtEmail = "" Or txtGender = "") Then
-                MsgBox("Please enter the correct details!")
+                'MsgBox("Please enter the correct details!")
+                returnValue = False
             Else
                 cmd.ExecuteNonQuery()
-                MsgBox("Successfully Stored", MsgBoxStyle.Information, "Success")
+                'MsgBox("Successfully Stored", MsgBoxStyle.Information, "Success")
                 returnValue = True
             End If
             con.Close()

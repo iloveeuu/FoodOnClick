@@ -16,9 +16,9 @@
         Dim body As String = "From local pc hello"
         Dim result As Boolean = mail.SendMail(ToAddressies, subject, body, attachs)
         If result Then
-            MsgBox("mails sended successfully", MsgBoxStyle.Information)
+            'MsgBox("mails sended successfully", MsgBoxStyle.Information)
         Else
-            MsgBox(mail.ErrorText, MsgBoxStyle.Critical)
+            'MsgBox(mail.ErrorText, MsgBoxStyle.Critical)
         End If
     End Sub
 End Class

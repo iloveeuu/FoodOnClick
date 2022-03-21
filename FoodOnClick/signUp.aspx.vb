@@ -6,17 +6,30 @@ Public Class signUp
     Dim gender As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
     End Sub
 
     Protected Sub btnSignUp_Click(sender As Object, e As EventArgs) Handles btnSignUp.Click
 
         Dim newUser As User = New User()
         Dim newUserAdd As Boolean
+        Dim message As String
+
 
 
         newUserAdd = newUser.addNewUserAccount(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender, txtDOB.Text.Trim(),
                              ddlUserType.Text, txtPass.Text.Trim(), txtEmail.Text.Trim(), "Vetting")
+
+        If newUserAdd = False Then
+            message = "Please fill in all fields"
+            Dim sb As New System.Text.StringBuilder()
+            sb.Append("<script type = 'text/javascript'>")
+            sb.Append("window.onload=function(){")
+            sb.Append("alert('")
+            sb.Append(message)
+            sb.Append("')};")
+            sb.Append("</script>")
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+        End If
 
         If newUserAdd = True And ddlUserType.Text.Equals("Restaurant") Then
             Response.Redirect("restaurantUploadDocuments.aspx")
