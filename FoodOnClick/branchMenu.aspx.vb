@@ -12,7 +12,12 @@
     End Sub
 
     Protected Sub rptBranch_ItemDataBound(sender As Object, e As RepeaterItemEventArgs)
-
+        Dim imageUrl As String = DataBinder.Eval(e.Item.DataItem, "menuImage")
+        Dim img As Image = (TryCast(e.Item.FindControl("menuImage"), Image))
+        Dim url As String = "~/images/menu/" & imageUrl
+        img.Style.Add("vertical-align", "middle")
+        img.ImageUrl = url
+        'Server.MapPath()
     End Sub
 
     Protected Sub rptBranch_ItemCommand(source As Object, e As RepeaterCommandEventArgs)

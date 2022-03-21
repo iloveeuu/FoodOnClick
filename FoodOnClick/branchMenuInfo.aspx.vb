@@ -107,7 +107,6 @@ Public Class branchMenuInfo
                 sb.Append("');window.location='branchMenu.aspx';};")
                 sb.Append("</script>")
                 ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
-                'Response.Redirect("branchMenu.aspx")
             Else
                 message = msg
                 Dim sb As New System.Text.StringBuilder()
