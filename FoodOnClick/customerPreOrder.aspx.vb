@@ -21,8 +21,8 @@
             ddlType.DataSource = clsMenu.RetrieveAllMenuFoodType()
             ddlType.DataBind()
 
-            Dim clsSearch As Search = New Search("", "", "", "", "", "", 0, 0)
-            dtSearch = clsSearch.GetSearchMenu()
+            Dim clsSearch As Menu = New Menu()
+            dtSearch = clsSearch.GetSearchMenu(Session("branchid"), "", "", 0, 0)
 
             gvMenu.DataSource = dtSearch
             gvMenu.DataBind()
@@ -65,9 +65,9 @@
 
         If Session("orderType") = "reservation" Then
             'ddlType.SelectedItem.ToString()
-            Dim clsSearch As Search = New Search("", "", "", ddlType.SelectedItem.ToString(),
-                                           txtDishName.Text.Trim(), "", dblMinPrice, dblMaxPrice)
-            dtSearch = clsSearch.GetSearchMenu()
+            Dim clsMenu As Menu = New Menu()
+            dtSearch = clsMenu.GetSearchMenu(Session("branchid"), ddlType.SelectedItem.ToString(),
+                                           txtDishName.Text.Trim(), dblMinPrice, dblMaxPrice)
 
             gvMenu.DataSource = dtSearch
             gvMenu.DataBind()

@@ -4,16 +4,15 @@ Imports System.Data.SqlClient
 Public Class Reservation
     Inherits Branch
 
-    Dim str_reservationId As Int32
-    Dim str_preordermeals As String
-    Dim dt_date As Date
-    Dim str_time As String
-    Dim int_pax As Int32
-    Dim str_status As String
-    Dim int_branchId As Int32
-    Dim int_batchid As Int32
-    Dim dec_tempCost As Decimal
-    Dim dec_tempTotalCost As Decimal
+    Protected str_reservationId As Int32
+    Protected str_preordermeals As String
+    Protected dt_date As Date
+    Protected str_time As String
+    Protected int_pax As Int32
+    Protected str_status As String
+    Protected int_batchid As Int32
+    Protected dec_tempCost As Decimal
+    Protected dec_tempTotalCost As Decimal
 
 
 #Region "Objects"
