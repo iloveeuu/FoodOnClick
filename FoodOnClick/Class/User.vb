@@ -232,14 +232,10 @@ Public Class User
                                  ,'" & txtDOB & "', '" & accountType & "'
                                  ,'" & encrypted & "' ,'" & txtEmail & "', '" & "VETTING" & "')", con)
 
-            If (txtFirstName = "" Or txtlastName = "" Or txtEmail = "" Or txtContactNo = "" Or txtPass = "" Or txtEmail = "" Or txtGender = "") Then
-                'MsgBox("Please enter the correct details!")
-                returnValue = False
-            Else
-                cmd.ExecuteNonQuery()
-                'MsgBox("Successfully Stored", MsgBoxStyle.Information, "Success")
-                returnValue = True
-            End If
+
+            cmd.ExecuteNonQuery()
+            'MsgBox("Successfully Stored", MsgBoxStyle.Information, "Success")
+            returnValue = True
             con.Close()
         End If
         Return returnValue
