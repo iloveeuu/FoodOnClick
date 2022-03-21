@@ -1,6 +1,11 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="administratorHome.aspx.vb" Inherits="FoodOnClick.administratorHome" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="adminstratorHome.aspx.vb" Inherits="FoodOnClick.adminstratorHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+        rel="stylesheet">
+<link href="./stylecss.css" rel="stylesheet" />
+
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <div class="logo">
@@ -35,7 +40,7 @@
                     Manage Registrations
                 </td>
                 <td>
-                    <asp:button runat="server" ID="manageApproval" OnClick="manageApprovalClick"/>    
+                    <asp:button runat="server" ID="manageApproval" />    
                 </td>
             </tr>
             <tr>

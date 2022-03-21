@@ -2,14 +2,14 @@
 Imports System.Data.SqlClient
 
 Public Class BatchOrder
-    Protected iBatchId As Integer
-    Protected dtOrderDate As Date
-    Protected strOrderTime As String
-    Protected iBranchId As Integer
-    Protected iUserId As Integer
-    Protected iCardID As Integer
-    Protected iOrderTypeID As Integer
-    Protected iDeliveryTypeID As Integer
+    Public iBatchId As Integer
+    Public dtOrderDate As Date
+    Public strOrderTime As String
+    Public iBranchId As Integer
+    Public iUserId As Integer
+    Public iCardID As Integer
+    Public iOrderTypeID As Integer
+    Public iDeliveryTypeID As Integer
 
 #Region "Objects"
     Public Property batchId() As Integer

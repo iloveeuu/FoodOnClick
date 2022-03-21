@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Data.SqlClient.SqlException
-Public Class adminstratorManageRegistrations
+Public Class adminstratorManageRegistrations_aspx
     Inherits System.Web.UI.Page
 
     Dim userID As Int32

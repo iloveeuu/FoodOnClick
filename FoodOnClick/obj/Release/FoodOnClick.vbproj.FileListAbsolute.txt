@@ -1,4 +1,0 @@
-D:\Kanden-FoodOnClick\online\FoodOnClick\obj\Release\FoodOnClick.vbproj.AssemblyReference.cache
-D:\Kanden-FoodOnClick\online\FoodOnClick\obj\Release\FoodOnClick.Resources.resources
-D:\Kanden-FoodOnClick\online\FoodOnClick\obj\Release\FoodOnClick.vbproj.GenerateResource.cache
-D:\Kanden-FoodOnClick\online\FoodOnClick\obj\Release\FoodOnClick.vbproj.CoreCompileInputs.cache

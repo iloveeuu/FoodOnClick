@@ -1,11 +1,11 @@
 ﻿Imports System.Net.Mail
 Public Class SMTP
-    Protected Temp_GmailAccount As String
-    Protected Temp_GmailPassword As String
-    Protected Temp_SMTPSERVER As String
-    Protected Temp_ServerPort As Int32
-    Protected Temp_ErrorText As String = ""
-    Protected Temp_EnableSSl As Boolean = True
+    Dim Temp_GmailAccount As String
+    Dim Temp_GmailPassword As String
+    Dim Temp_SMTPSERVER As String
+    Dim Temp_ServerPort As Int32
+    Dim Temp_ErrorText As String = ""
+    Dim Temp_EnableSSl As Boolean = True
     Public ReadOnly Property ErrorText() As String
         Get
             Return Temp_ErrorText

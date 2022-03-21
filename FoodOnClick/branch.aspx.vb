@@ -31,14 +31,14 @@
             System.Web.HttpContext.Current.Session("branchid") = e.CommandArgument.ToString()
             Response.Redirect("branchInfo.aspx")
         ElseIf (e.CommandName = "Delete") Then
-            'Dim result As  = ("Are you sure you want to delete this branch", .YesNo)
-            'If result = result.Yes Then
-            '    Dim branch As Branch = New Branch(Convert.ToInt32(e.CommandArgument.ToString()))
-            '    If (branch.DeleteBranch() = "True") Then
-            '        binddata()
-            '        ("Successfully deleted branch", .Information, "Success")
-            '    End If
-            'End If
+            Dim result As MsgBoxResult = MsgBox("Are you sure you want to delete this branch", MsgBoxStyle.YesNo)
+            If result = result.Yes Then
+                Dim branch As Branch = New Branch(Convert.ToInt32(e.CommandArgument.ToString()))
+                If (branch.DeleteBranch() = "True") Then
+                    binddata()
+                    MsgBox("Successfully deleted branch", MsgBoxStyle.Information, "Success")
+                End If
+            End If
         ElseIf (e.CommandName = "Select") Then
             System.Web.HttpContext.Current.Session("branchid") = e.CommandArgument.ToString()
             Response.Redirect("branchMenu.aspx")

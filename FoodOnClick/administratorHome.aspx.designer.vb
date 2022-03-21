@@ -14,24 +14,6 @@ Option Explicit On
 Partial Public Class administratorHome
 
     '''<summary>
-    '''totalPendingCaseHome control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents totalPendingCaseHome As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''totalSupportCaseHome control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents totalSupportCaseHome As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''dashBoard control.
     '''</summary>
     '''<remarks>

@@ -13,7 +13,7 @@ Option Explicit On
 
 
 
-Partial Public Class adminstratorManageRegistrations
+Partial Public Class adminstratorManageRegistrations_aspx
 
     '''<summary>
     '''totalPendingCase control.

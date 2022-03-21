@@ -61,21 +61,8 @@
         Dim email() As String = {Session("email")}
         smtp.SendMail(email, subject, body, Nothing, True)
 
-        'Dim sb As New System.Text.StringBuilder()
-        'sb.Append("<script type = 'text/javascript'>")
-        'sb.Append("window.onload=function(){")
-        'sb.Append("alert('")
-        'sb.Append("")
-        'sb.Append("')};")
-        'sb.Append("window.location = '")
-        'sb.Append(Request.ApplicationPath + "customerHome.aspx")
-        'sb.Append("'; }")
-        'sb.Append("</script>")
-        'ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
-
-        Response.Write("<script language='javascript'>window.alert('Reservation Created, Please Wait for Confirmation');window.location='customerHome.aspx';</script>")
-
-        'Response.Redirect("customerHome.aspx")
+        MsgBox("Reservation Created, Please Wait for Confirmation")
+        Response.Redirect("customerHome.aspx")
     End Sub
 
     Protected Sub btnYes_Click(sender As Object, e As EventArgs)

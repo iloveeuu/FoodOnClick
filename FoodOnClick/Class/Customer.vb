@@ -114,10 +114,10 @@ Public Class Customer
         End Using
     End Sub
 
-    Public Function GetCustomerDetail(ByVal iUserId As Int32)
+    Public Function GetCustomerDetail(ByVal iUserId As Int32, ByVal sEmail As String)
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim returnObject As Customer = New Customer()
-        Dim Query As String = "SELECT * from userAccount where userID = @userID "
+        Dim Query As String = "SELECT * from userAccount where userID = @userID and email = @email"
         Using conn As New SqlConnection(connectionString)
 
             Using comm As New SqlCommand()
@@ -127,6 +127,7 @@ Public Class Customer
                     .CommandType = CommandType.Text
                     .CommandText = Query
                     .Parameters.Add("@userID", SqlDbType.Int).Value = iUserId
+                    .Parameters.Add("@email", SqlDbType.NVarChar).Value = sEmail
                 End With
                 Try
                     'Dim tempObj As Restaurant = New Restaurant()
