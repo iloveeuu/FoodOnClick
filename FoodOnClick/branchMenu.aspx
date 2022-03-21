@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div style="overflow-x:auto;">
     <table class="tableStyle">
         <tr>
             <td colspan="4">
@@ -52,4 +53,5 @@
                 <asp:Button runat="server" ID="btnAdd" Width="100%" Text="Add Menu" OnClick="btnAdd_Click" /></td>
         </tr>
     </table>
+        </div>
 </asp:Content>
