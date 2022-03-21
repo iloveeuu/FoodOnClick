@@ -43,6 +43,7 @@ Public Class branchMenuInfo
     End Sub
 
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs)
+        Dim message As String = ""
         If (btnSubmit.Text = "Create menu") Then
             Dim imageUrl As String = ""
             If (FileUpload.HasFile) Then
@@ -58,10 +59,26 @@ Public Class branchMenuInfo
             Dim clsMenu As Menu = New Menu(txtName.Text.Trim(), txtDescription.Text.Trim(), txtCost.Text.Trim(), imageUrl, ddlStatus.SelectedValue, ddlDiscount.SelectedValue, Convert.ToInt32(Session("branchid")), ddlFoodType.SelectedValue, txtProtein.Text.Trim(), txtEnergy.Text.Trim(), txtCarbonhydrate.Text.Trim(), txtGlucose.Text.Trim(), txtFats.Text.Trim(), txtSodium.Text.Trim())
             Dim msg As String = clsMenu.CreateMenu()
             If (msg = "True") Then
-                MsgBox("Successfully created menu", MsgBoxStyle.Information, "Success")
-                Response.Redirect("branchMenu.aspx")
+                message = "Successfully created menu"
+                Dim sb As New System.Text.StringBuilder()
+                sb.Append("<script type = 'text/javascript'>")
+                sb.Append("window.onload=function(){")
+                sb.Append("alert('")
+                sb.Append(message)
+                sb.Append("');window.location='branchMenu.aspx';};")
+                sb.Append("</script>")
+                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+                'Response.Redirect("branchMenu.aspx")
             Else
-                MsgBox(msg, MsgBoxStyle.Information, "Error")
+                message = msg
+                Dim sb As New System.Text.StringBuilder()
+                sb.Append("<script type = 'text/javascript'>")
+                sb.Append("window.onload=function(){")
+                sb.Append("alert('")
+                sb.Append(message)
+                sb.Append("')};")
+                sb.Append("</script>")
+                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
             End If
 
         ElseIf (btnSubmit.Text = "Update menu") Then
@@ -81,10 +98,25 @@ Public Class branchMenuInfo
             Dim clsMenu As Menu = New Menu(txtName.Text.Trim(), txtDescription.Text.Trim(), txtCost.Text.Trim(), imageUrl, ddlStatus.SelectedValue, ddlDiscount.SelectedValue, Convert.ToInt32(Session("branchid")), ddlFoodType.SelectedValue, txtProtein.Text.Trim(), txtEnergy.Text.Trim(), txtCarbonhydrate.Text.Trim(), txtGlucose.Text.Trim(), txtFats.Text.Trim(), txtSodium.Text.Trim(), Convert.ToInt32(Session("menuid")))
             Dim msg As String = clsMenu.UpdateMenu()
             If (msg = "True") Then
-                MsgBox("Successfully updated menu", MsgBoxStyle.Information, "Success")
-                Response.Redirect("branchMenu.aspx")
+                message = "Successfully updated menu"
+                Dim sb As New System.Text.StringBuilder()
+                sb.Append("<script type = 'text/javascript'>")
+                sb.Append("window.onload=function(){")
+                sb.Append("alert('")
+                sb.Append(message)
+                sb.Append("');window.location='branchMenu.aspx';};")
+                sb.Append("</script>")
+                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
             Else
-                MsgBox(msg, MsgBoxStyle.Information, "Error")
+                message = msg
+                Dim sb As New System.Text.StringBuilder()
+                sb.Append("<script type = 'text/javascript'>")
+                sb.Append("window.onload=function(){")
+                sb.Append("alert('")
+                sb.Append(message)
+                sb.Append("')};")
+                sb.Append("</script>")
+                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
             End If
         End If
     End Sub

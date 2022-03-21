@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="branchMenu.aspx.vb" Inherits="FoodOnClick.branchMenu" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        td{
+            width:100%;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="overflow-x:auto;">
@@ -28,7 +33,9 @@
         <ItemTemplate>
             <table id="tableStyle">
                 <tr>
+                        
                     <td>
+                        <asp:Image runat="server" ID="menuImage" Width="100px"/>
                         <asp:Label runat="server" ID="menuName" Text='<%#Eval("menuName") %>'></asp:Label>
                     </td>
                     <%--                    <td>
