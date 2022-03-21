@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class administratorManage
+Partial Public Class adminstratorManageRegistrations_aspxt
 
     '''<summary>
     '''totalPendingCase control.
@@ -30,24 +30,6 @@ Partial Public Class administratorManage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents document_useriID As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''systemAdminRegistration_Approve control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents systemAdminRegistration_Approve As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''systemAdminRegistration_Reject control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents systemAdminRegistration_Reject As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''document_restaurantLogo control.
@@ -75,4 +57,22 @@ Partial Public Class administratorManage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents document_halal As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''systemAdminRegistration_Approve control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents systemAdminRegistration_Approve As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''systemAdminRegistration_Reject control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents systemAdminRegistration_Reject As Global.System.Web.UI.WebControls.Button
 End Class
