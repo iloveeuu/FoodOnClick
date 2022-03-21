@@ -4,7 +4,6 @@ Imports System.Data.SqlClient
 Public Class Restaurant
     Inherits User
 
-    Protected str_type As String
     Protected int_restaurantId As Integer
     Protected str_restaurantName As String
     Protected str_restaurantType As String
