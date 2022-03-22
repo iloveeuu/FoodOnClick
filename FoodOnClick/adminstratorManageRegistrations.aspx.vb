@@ -57,7 +57,7 @@ Public Class adminstratorManageRegistrations_aspxt
             dr = cmd.ExecuteReader
 
             Do While dr.Read()
-                document_restaurantLogo.Text = dr.GetString(0).Replace(dr.GetString(0), "<a href='" & "'>" & dr.GetString(0) & "</a>")
+                document_restaurantLogo.Text = dr.GetString(0).Replace(dr.GetString(0), "<a href='" & dr.GetString(0) & "'>" & dr.GetString(0) & "</a>")
             Loop
             dr.Close()
             con.Close()
@@ -68,7 +68,7 @@ Public Class adminstratorManageRegistrations_aspxt
             cmd.Parameters.AddWithValue("@userID", userID)
             dr = cmd.ExecuteReader
             Do While dr.Read()
-                document_businessLicense.Text = dr.GetString(0).Replace(dr.GetString(0), "<a href='" & "'>" & dr.GetString(0) & "</a>")
+                document_businessLicense.Text = dr.GetString(0).Replace(dr.GetString(0), "<a href='" & dr.GetString(0) & "'>" & dr.GetString(0) & "</a>")
             Loop
             dr.Close()
             con.Close()
@@ -79,7 +79,7 @@ Public Class adminstratorManageRegistrations_aspxt
             cmd.Parameters.AddWithValue("@userID", userID)
             dr = cmd.ExecuteReader
             Do While dr.Read()
-                document_halal.Text = dr.GetString(0).Replace(dr.GetString(0), "<a href='" & "'>" & dr.GetString(0) & "</a>")
+                document_halal.Text = dr.GetString(0).Replace(dr.GetString(0), "<a href='" & dr.GetString(0) & "'>" & dr.GetString(0) & "</a>")
             Loop
             dr.Close()
             con.Close()
