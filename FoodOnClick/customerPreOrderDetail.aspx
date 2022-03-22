@@ -57,6 +57,11 @@
 				<asp:Label ID="lblTotal" runat="server"></asp:Label>
 			  </div>
         </div>
+		<div class="row">
+			<div class="col-100" style="text-align: center;">
+				<asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click"  Width="50%" Text="Cancel" />
+			</div>
+		</div>
    </div>
 	<br />
 	<div style="overflow-x:auto;">

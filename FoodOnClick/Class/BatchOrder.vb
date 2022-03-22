@@ -10,6 +10,7 @@ Public Class BatchOrder
     Protected iCardID As Integer
     Protected iOrderTypeID As Integer
     Protected iDeliveryTypeID As Integer
+    Protected sPaymentMethod As String
 
 #Region "Objects"
     Public Property batchId() As Integer
@@ -83,6 +84,15 @@ Public Class BatchOrder
             iDeliveryTypeID = Value
         End Set
     End Property
+
+    Public Property paymentMethod() As String
+        Get
+            paymentMethod = sPaymentMethod
+        End Get
+        Set(ByVal Value As String)
+            sPaymentMethod = Value
+        End Set
+    End Property
 #End Region
 
     Public Sub New()
@@ -91,7 +101,7 @@ Public Class BatchOrder
     Public Sub New(ByVal dtOrderDate As Date,
                    ByVal strTime As String, ByVal iBranchId As Integer,
                    ByVal iUserId As Integer, ByVal iCardID As Integer,
-                   ByVal iOrderTypeID As Integer, ByVal iDeliveryTypeID As Integer)
+                   ByVal iOrderTypeID As Integer, ByVal iDeliveryTypeID As Integer, ByVal sPaymentMethod As String)
         Me.orderDate = dtOrderDate
         Me.orderTime = strTime
         Me.branchId = iBranchId
@@ -99,19 +109,20 @@ Public Class BatchOrder
         Me.cardID = iCardID
         Me.orderTypeID = iOrderTypeID
         Me.deliveryTypeID = iDeliveryTypeID
+        Me.paymentMethod = sPaymentMethod
     End Sub
 
 #Region "Functions"
-    Public Sub InsertBatchOrder()
+    Public Function InsertBatchOrder()
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim Query As String = ""
 
         If Me.orderTypeID = 10 Then
-            Query = "INSERT INTO BatchOrders (branchid, orderTypeID, userid, ordertime, orderdate) " &
-                            "VALUES (@branchid, @orderTypeID, @userid, @ordertime, @orderdate) "
-        Else
-            Query = "INSERT INTO BatchOrders (branchid, orderTypeID, cardid, userid, deliveryTypeID, ordertime, orderdate) " &
-                            "VALUES (@branchid, @orderTypeID, @cardid, @userid, @deliveryTypeID, @ordertime, @orderdate) "
+            Query = "INSERT INTO BatchOrders (branchid, orderTypeID, userid, ordertime, orderdate, paymentMethod) " &
+                            "VALUES (@branchid, @orderTypeID, @userid, @ordertime, @orderdate, @paymentMethod): SELECT SCOPE_IDENTITY();"
+        ElseIf Me.orderTypeID = 11 Then
+            Query = "INSERT INTO BatchOrders (branchid, orderTypeID, userid, deliveryTypeID, ordertime, orderdate, paymentMethod) " &
+                            "VALUES (@branchid, @orderTypeID, @userid, @deliveryTypeID, @ordertime, @orderdate, @paymentMethod); SELECT SCOPE_IDENTITY();"
         End If
 
         Using conn As New SqlConnection(connectionString)
@@ -129,19 +140,19 @@ Public Class BatchOrder
                     .Parameters.Add("@deliveryTypeID", SqlDbType.Int).Value = Me.deliveryTypeID
                     .Parameters.Add("@ordertime", SqlDbType.NVarChar).Value = Me.orderTime
                     .Parameters.Add("@orderdate", SqlDbType.Date).Value = Me.orderDate
-
+                    .Parameters.Add("@paymentMethod", SqlDbType.NVarChar).Value = Me.paymentMethod
                 End With
                 Try
                     conn.Open()
-                    comm.ExecuteNonQuery()
+                    Dim returnObj As Object = comm.ExecuteScalar()
                     conn.Close()
-
+                    Return returnObj
                 Catch ex As SqlException
                     Dim a As String = ex.Message
                 End Try
             End Using
         End Using
-    End Sub
+    End Function
 #End Region
 
 End Class

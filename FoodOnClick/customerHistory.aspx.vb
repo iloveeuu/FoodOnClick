@@ -136,4 +136,9 @@
         gvReservation.DataBind()
     End Sub
 
+    Protected Sub btnCart_Click(sender As Object, e As EventArgs)
+        Session("userid") = Session("userid")
+        Session("email") = Session("email")
+        Response.Redirect("customerCart.aspx")
+    End Sub
 End Class

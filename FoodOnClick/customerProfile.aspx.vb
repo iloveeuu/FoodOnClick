@@ -112,4 +112,8 @@
         gender = "Female"
     End Sub
 
+    Protected Sub btnCart_Click(sender As Object, e As EventArgs)
+        Session("userid") = Session("userid")
+        Response.Redirect("customerCart.aspx")
+    End Sub
 End Class

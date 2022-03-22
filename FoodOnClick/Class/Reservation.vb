@@ -159,7 +159,7 @@ Public Class Reservation
         Else
             Query = "INSERT INTO Reservation (preordermeals, date, time, pax, status, branchId, userId, batchid) " &
                             "VALUES (@preordermeals, @dtdate, @strtime, @pax, @status, @branchId, @userId, " &
-                            "(SELECT TOP 1 batchID FROM batchOrders WHERE userID = @userId and orderTypeID = 10 and branchID = @branchId ORDER BY batchID DESC)) "
+                            "@batchid) "
         End If
 
         Using conn As New SqlConnection(connectionString)
@@ -177,6 +177,7 @@ Public Class Reservation
                     .Parameters.Add("@status", SqlDbType.VarChar).Value = Me.str_status
                     .Parameters.Add("@branchId", SqlDbType.Int).Value = Me.int_branchId
                     .Parameters.Add("@userId", SqlDbType.Int).Value = Me.userid
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchid
                 End With
                 Try
                     conn.Open()

@@ -212,6 +212,24 @@ Partial Public Class customerPreOrder
     Protected WithEvents lblTotal As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''Label4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddlPayment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlPayment As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''btnPreOrder control.
     '''</summary>
     '''<remarks>

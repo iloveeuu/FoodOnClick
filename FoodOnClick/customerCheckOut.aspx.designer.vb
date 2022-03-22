@@ -14,56 +14,119 @@ Option Explicit On
 Partial Public Class customerCheckOut
 
     '''<summary>
-    '''lblListOrders control.
+    '''btnHome control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblListOrders As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents btnHome As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''lblQty control.
+    '''btnHistory control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblQty As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents btnHistory As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''lblPrices control.
+    '''btnCart control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblPrices As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents btnCart As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''lblTotPrice control.
+    '''lblRestName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblTotPrice As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblRestName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''ddlPaymentMethod control.
+    '''lblAddress control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlPaymentMethod As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents lblAddress As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btnCheckOut control.
+    '''lblType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnCheckOut As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblType As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''gvMenu control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvMenu As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''Label3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblTotal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTotal As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Label4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddlPayment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlPayment As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''btnCancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnOrder control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnOrder As Global.System.Web.UI.WebControls.Button
 End Class

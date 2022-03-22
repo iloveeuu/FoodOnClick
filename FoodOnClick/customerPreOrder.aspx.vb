@@ -1,6 +1,6 @@
 ﻿Public Class customerPreOrder
     Inherits System.Web.UI.Page
-    Dim dtAdd As New DataTable
+    Private dtAdd As New DataTable
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If (Not Page.IsPostBack) Then
@@ -30,16 +30,16 @@
             ddlType.Items.Insert(0, New ListItem("Please select", ""))
             ddlType.SelectedIndex = 0
 
-            If Session("dtTable") Is Nothing Then
+            If ViewState("dtTable") Is Nothing Then
                 ' Create dataTable Columns
                 dtAdd.Columns.Add("menuId", GetType(Integer))
                 dtAdd.Columns.Add("menu", GetType(String))
                 dtAdd.Columns.Add("qty", GetType(Integer))
                 dtAdd.Columns.Add("totPrice", GetType(Double))
 
-                Session("dtTable") = dtAdd
+                ViewState("dtTable") = dtAdd
             Else
-                gvPreOrder.DataSource = Session("dtTable")
+                gvPreOrder.DataSource = ViewState("dtTable")
                 gvPreOrder.DataBind()
             End If
         End If
@@ -99,7 +99,7 @@
             hfMenuId = gvMenu.Rows(Index).FindControl("hfMenuId")
             iMenuId = hfMenuId.Value
 
-            dtAdd = Session("dtTable")
+            dtAdd = ViewState("dtTable")
 
             If txtQty.Text = "" Then
                 errorText.Attributes("style") = "display: block; text-align: center; color:red;"
@@ -125,7 +125,7 @@
                     dtAdd.Rows.Add(iMenuId, sMenu, iQty, dbTotPrice)
                 End If
 
-                Session("dtTable") = dtAdd
+                ViewState("dtTable") = dtAdd
 
                 gvPreOrder.DataSource = dtAdd
                 gvPreOrder.DataBind()
@@ -148,7 +148,7 @@
             Index = Convert.ToInt32(e.CommandArgument)
             sMenu = gvMenu.Rows(Index).Cells(0).Text
 
-            dtAdd = Session("dtTable")
+            dtAdd = ViewState("dtTable")
 
             For Each row As DataRow In dtAdd.Rows
                 If (row("menu").ToString() = sMenu) Then
@@ -158,7 +158,7 @@
                 End If
             Next
 
-            Session("dtTable") = dtAdd
+            ViewState("dtTable") = dtAdd
 
             gvPreOrder.DataSource = dtAdd
             gvPreOrder.DataBind()
@@ -176,7 +176,7 @@
             errorText2.Attributes("style") = "display: none;"
             errorText.Attributes("style") = "display: none;"
 
-            dtAdd = Session("dtTable")
+            dtAdd = ViewState("dtTable")
 
             Dim dNow As Date = Date.Now
             Dim dTotalCharges As Double = Convert.ToDouble(dtAdd.Compute("SUM(totPrice)", String.Empty))
@@ -196,18 +196,21 @@
             od.orderTypeID = 10
             od.totalcharges = dTotalCharges
             od.orderStatusID = 6
+            od.paymentMethod = ddlPayment.SelectedItem.ToString()
 
-            od.InsertBatchOrder()
+            Dim iBatchId As Integer = od.InsertBatchOrder()
 
-            Dim resv As Reservation = New Reservation("Yes", lblDate.Text.Trim(), lblTime.Text.Trim(), lblPax.Text.Trim(), "Pending", Session("branchid"), Session("userid"), Nothing)
+            Dim resv As Reservation = New Reservation("Yes", lblDate.Text.Trim(), lblTime.Text.Trim(), lblPax.Text.Trim(), "Pending", Session("branchid"), Session("userid"), iBatchId)
             resv.InsertReservation()
 
-            od.InsertOrder()
+            od.batchId = iBatchId
+            Dim iOrderId As Integer = od.InsertReservationOrder()
 
             For Each row As DataRow In dtAdd.Rows
                 od.menuid = row("menuId")
                 od.price = row("totPrice")
                 od.orderQuantity = row("qty")
+                od.orderNum = iOrderId
                 od.InsertOrderDetail()
             Next row
 
@@ -236,7 +239,6 @@
 
             Dim smtp As SMTP = New SMTP()
             Dim email() As String = {Session("email")}
-            'Dim email() As String = {"will.ariez@gmail.com"}
             smtp.SendMail(email, subject, body, Nothing, True)
 
             'Dim sb As New System.Text.StringBuilder()

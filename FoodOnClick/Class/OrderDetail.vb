@@ -55,9 +55,10 @@ Public Class OrderDetail
 
         If MyBase.orderTypeID = 10 Then
             Query = "INSERT INTO OrderDetails (orderNum, menuid, orderQuantity, price) " &
-                            "VALUES ((SELECT TOP 1 o.orderNum FROM orders as o INNER JOIN batchorders as b ON o.batchID = b.batchID " &
-                            "WHERE b.orderTypeID = 10 and o.orderStatusID = 6 and b.userID = @userID ORDER BY o.orderNum DESC), " &
-                            "@menuid, @orderQuantity, @price)"
+                            "VALUES (@orderNum,@menuid, @orderQuantity, @price)"
+        ElseIf MyBase.orderTypeID = 11 Then
+            Query = "INSERT INTO OrderDetails (orderNum, menuid, orderQuantity, price) " &
+                            "SELECT @orderNum, menuid, quantity, price FROM shoppingcart_menu Where cartid = @cartid"
         End If
 
         Using conn As New SqlConnection(connectionString)
@@ -72,6 +73,8 @@ Public Class OrderDetail
                     .Parameters.Add("@menuid", SqlDbType.Int).Value = Me.menuid
                     .Parameters.Add("@orderQuantity", SqlDbType.Int).Value = Me.orderQuantity
                     .Parameters.Add("@price", SqlDbType.Decimal).Value = Me.price
+                    .Parameters.Add("@orderNum", SqlDbType.Decimal).Value = Me.orderNum
+                    .Parameters.Add("@cartid", SqlDbType.Decimal).Value = Me.cartId
                 End With
                 Try
                     conn.Open()
