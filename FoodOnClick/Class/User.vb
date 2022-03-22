@@ -134,6 +134,9 @@ Public Class User
         str_password = password
         str_email = email
     End Sub
+    Public Sub New(ByVal email As String)
+        Me.email = email
+    End Sub
     Public Function getResId() As String
         Dim returnMsg As String = ""
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
@@ -217,7 +220,6 @@ Public Class User
 
         dr = cmd.ExecuteReader
         If dr.HasRows Then
-            MsgBox("Email Already Exists", MsgBoxStyle.Critical)
             returnValue = False
             con.Close()
         Else
@@ -233,16 +235,67 @@ Public Class User
                                  ,'" & txtDOB & "', '" & accountType & "'
                                  ,'" & encrypted & "' ,'" & txtEmail & "', '" & "VETTING" & "')", con)
 
-            If (txtFirstName = "" Or txtlastName = "" Or txtEmail = "" Or txtContactNo = "" Or txtPass = "" Or txtEmail = "" Or txtGender = "") Then
-                MsgBox("Please enter the correct details!")
-            Else
-                cmd.ExecuteNonQuery()
-                MsgBox("Successfully Stored", MsgBoxStyle.Information, "Success")
-                returnValue = True
-            End If
+
+            cmd.ExecuteNonQuery()
+            'MsgBox("Successfully Stored", MsgBoxStyle.Information, "Success")
+            returnValue = True
             con.Close()
         End If
         Return returnValue
     End Function
+
+    Public Function ForgetPassword() As String
+        Dim returnMsg As String = "False"
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "SELECT * from UserAccount where LOWER(email) = @email and LOWER(status) = 'approved'"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@email", SqlDbType.NVarChar).Value = Me.email.ToLower()
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    If reader.HasRows() Then
+                        returnMsg = "True"
+                    End If
+                    conn.Close()
+                Catch ex As SqlException
+                    returnMsg = "False"
+                End Try
+                If (returnMsg = "True") Then
+                    Try
+                        Query = "UPDATE useraccount set password =@password where LOWER(email) = @email1"
+                        Dim rawPassword As String = Guid.NewGuid().ToString("N").Substring(0, 6)
+                        Dim pass As Encryption = New Encryption(rawPassword)
+                        Dim encrypted As String = pass.Encrypt()
+                        With comm
+                            Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                            .Connection = conn
+                            .CommandType = CommandType.Text
+                            .CommandText = Query
+                            .Parameters.Add("@password", SqlDbType.NVarChar).Value = encrypted
+                            .Parameters.Add("@email1", SqlDbType.NVarChar).Value = Me.email.ToLower()
+                        End With
+                        conn.Open()
+                        comm.ExecuteNonQuery()
+                        conn.Close()
+                        returnMsg = rawPassword
+                    Catch ex As SqlException
+                        returnMsg = "False"
+                    End Try
+                End If
+
+            End Using
+        End Using
+        Return returnMsg
+    End Function
+
+
 
 End Class

@@ -16,6 +16,9 @@
             If Session("type") = "Customer" Then
                 Response.Redirect("customerProfile.aspx")
             End If
+            If Session("type") = "Restaurant" Then
+                Response.Redirect("customerProfile.aspx")
+            End If
         End If
     End Sub
 

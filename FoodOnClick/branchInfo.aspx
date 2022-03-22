@@ -51,6 +51,20 @@
                 </asp:DropDownList></td>
         </tr>
         <tr>
+            <td>Reservation:</td>
+            <td>
+                <asp:DropDownList runat="server" ID="ddlReservation" Width="100%">
+                    <asp:ListItem Selected="True" Value="Disabled">Disabled</asp:ListItem>
+                    <asp:ListItem Value="Allowed">Allowed</asp:ListItem></asp:DropDownList></td>
+        </tr>
+        <tr>
+            <td>Drive-thru</td>
+            <td>
+                <asp:DropDownList runat="server" ID="ddlDrivethru" Width="100%">
+                    <asp:ListItem Selected="True" Value="Disabled">Disabled</asp:ListItem>
+                    <asp:ListItem Value="Allowed">Allowed</asp:ListItem></asp:DropDownList></td>
+        </tr>
+        <tr>
             <td>Status:</td>
             <td>
                 <asp:DropDownList runat="server" ID="ddlStatus" Width="100%">

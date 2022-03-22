@@ -6,25 +6,73 @@ Public Class signUp
     Dim gender As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
     End Sub
 
     Protected Sub btnSignUp_Click(sender As Object, e As EventArgs) Handles btnSignUp.Click
 
         Dim newUser As User = New User()
         Dim newUserAdd As Boolean
+        Dim message As String
 
-
-        newUserAdd = newUser.addNewUserAccount(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender, txtDOB.Text.Trim(),
-                             ddlUserType.Text, txtPass.Text.Trim(), txtEmail.Text.Trim(), "Vetting")
-
-        If newUserAdd = True And ddlUserType.Text.Equals("Restaurant") Then
-            Response.Redirect("restaurantUploadDocuments.aspx")
-            sendAdminEmail(txtEmail.Text.Trim(), ddlUserType.Text)
-        ElseIf newUserAdd = True Then
-            sendAdminEmail(txtEmail.Text.Trim(), ddlUserType.Text)
-            Response.Redirect("login.aspx")
+        If (RadioButtonM.Checked) Then
+            gender = "Male"
+        ElseIf (RadioButtonF.Checked) Then
+            gender = "Female"
         End If
+        If (txtFirstName.Text.Trim() = "" Or txtLastName.Text.Trim() = "" Or txtAddress.Text.Trim() = "" Or txtContactNo.Text.Trim() = "" Or gender = "" Or txtDOB.Text.Trim() = "" Or ddlUserType.Text = "" Or txtPass.Text.Trim() = "" Or txtEmail.Text.Trim() = "") Then
+            message = "Please fill in all fields"
+            Dim sb As New System.Text.StringBuilder()
+            sb.Append("<script type = 'text/javascript'>")
+            sb.Append("window.onload=function(){")
+            sb.Append("alert('")
+            sb.Append(message)
+            sb.Append("')};")
+            sb.Append("</script>")
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+        Else
+            newUserAdd = newUser.addNewUserAccount(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender, txtDOB.Text.Trim(),
+                     ddlUserType.Text, txtPass.Text.Trim(), txtEmail.Text.Trim(), "Vetting")
+
+            If newUserAdd = False Then
+                message = "User exists"
+                Dim sb As New System.Text.StringBuilder()
+                sb.Append("<script type = 'text/javascript'>")
+                sb.Append("window.onload=function(){")
+                sb.Append("alert('")
+                sb.Append(message)
+                sb.Append("')};")
+                sb.Append("</script>")
+                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            Else
+                If newUserAdd = True And ddlUserType.Text.Equals("Restaurant") Then
+                    sendAdminEmail(txtEmail.Text.Trim(), ddlUserType.Text)
+                    message = "New user account Created, Please Wait for administrator\'s approval"
+                    Dim sb As New System.Text.StringBuilder()
+                    sb.Append("<script type = 'text/javascript'>")
+                    sb.Append("window.onload=function(){")
+                    sb.Append("alert('")
+                    sb.Append(message)
+                    sb.Append("');window.location='restaurantUploadDocuments.aspx';};")
+                    sb.Append("</script>")
+                    ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+                    'Response.Redirect("restaurantUploadDocuments.aspx")
+
+                ElseIf newUserAdd = True Then
+                    sendAdminEmail(txtEmail.Text.Trim(), ddlUserType.Text)
+
+                    message = "New user account Created, Please Wait for administrator\'s approval"
+                    Dim sb As New System.Text.StringBuilder()
+                    sb.Append("<script type = 'text/javascript'>")
+                    sb.Append("window.onload=function(){")
+                    sb.Append("alert('")
+                    sb.Append(message)
+                    sb.Append("');window.location='login.aspx';};")
+                    sb.Append("</script>")
+                    ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+                End If
+            End If
+        End If
+
 
     End Sub
 
@@ -51,7 +99,7 @@ Public Class signUp
 
         smtp.SendMail(email, subject, body, Nothing, True)
 
-        MsgBox("New user account Created, Please Wait for administrator's approval")
+        'MsgBox("New user account Created, Please Wait for administrator's approval")
 
     End Sub
 

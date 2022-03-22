@@ -14,6 +14,8 @@ Public Class Branch
     Protected str_branchCity As String
     Protected int_branchCuisineId As Integer
     Protected str_branchCuisine As String
+    Protected str_branchReservation As String
+    Protected str_branchdrivethru As String
 #Region "Objects"
     Public Property branchId() As Integer
         Get
@@ -113,6 +115,24 @@ Public Class Branch
             str_branchCuisine = Value
         End Set
     End Property
+
+    Public Property branchReservation() As String
+        Get
+            branchReservation = str_branchReservation
+        End Get
+        Set(ByVal Value As String)
+            str_branchReservation = Value
+        End Set
+    End Property
+
+    Public Property branchdrivethru() As String
+        Get
+            branchdrivethru = str_branchdrivethru
+        End Get
+        Set(ByVal Value As String)
+            str_branchdrivethru = Value
+        End Set
+    End Property
 #End Region
     Public Sub New()
     End Sub
@@ -129,7 +149,9 @@ Public Class Branch
     Public Sub New(ByVal branchid As Integer)
         Me.branchId = branchid
     End Sub
-    Public Sub New(ByVal email As String, ByVal password As String, ByVal startTime As String, ByVal endTime As String, ByVal halal As String, ByVal restaurantId As Integer, ByVal address As String, ByVal postalCode As String, ByVal status As String, ByVal city As String, ByVal cuisineid As String, Optional ByVal branchid As Integer = 0)
+    Public Sub New(ByVal reservation As String, ByVal drivethru As String, ByVal email As String, ByVal password As String, ByVal startTime As String, ByVal endTime As String, ByVal halal As String, ByVal restaurantId As Integer, ByVal address As String, ByVal postalCode As String, ByVal status As String, ByVal city As String, ByVal cuisineid As String, Optional ByVal branchid As Integer = 0)
+        Me.branchReservation = reservation
+        Me.branchdrivethru = drivethru
         Me.branchEmail = email
         Me.branchPassword = password
         Me.branchStartTime = startTime
@@ -180,7 +202,7 @@ Public Class Branch
 
     Public Function UpdateBranch() As String
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "UPDATE Branch set email=@branchEmail, branchPassword = @branchPassword, time_open=@startTime, time_closed = @endTime, city = @city, postalCode = @postalcode, address = @address, cuisineTypeID = @cuisineid, halal = @halal, status = @status where branchid = @branchid"
+        Dim Query As String = "UPDATE Branch set reservation=@reservation,drivethru=@drivethru, email=@branchEmail, branchPassword = @branchPassword, time_open=@startTime, time_closed = @endTime, city = @city, postalCode = @postalcode, address = @address, cuisineTypeID = @cuisineid, halal = @halal, status = @status where branchid = @branchid"
         Dim bool As String = "True"
         Using conn As New SqlConnection(connectionString)
 
@@ -190,6 +212,8 @@ Public Class Branch
                     .Connection = conn
                     .CommandType = CommandType.Text
                     .CommandText = Query
+                    .Parameters.Add("@reservation", SqlDbType.VarChar).Value = Me.branchReservation
+                    .Parameters.Add("@drivethru", SqlDbType.VarChar).Value = Me.branchdrivethru
                     .Parameters.Add("@branchEmail", SqlDbType.VarChar).Value = Me.branchEmail
                     .Parameters.Add("@branchPassword", SqlDbType.VarChar).Value = Me.branchPassword
                     .Parameters.Add("@startTime", SqlDbType.VarChar).Value = Me.branchStartTime
@@ -240,7 +264,7 @@ Public Class Branch
 
     Public Function CreateBranch() As String
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "INSERT INTO branch values(@city,@postalcode,@address,@cuisineid,@halal,@status,@restaurantid,@startTime,@endTime,@branchEmail,@branchPassword)"
+        Dim Query As String = "INSERT INTO branch values(@city,@postalcode,@address,@cuisineid,@halal,@status,@restaurantid,@startTime,@endTime,@branchEmail,@branchPassword,@reservation,@drivethru)"
         Dim bool As String = "True"
         Using conn As New SqlConnection(connectionString)
 
@@ -250,6 +274,8 @@ Public Class Branch
                     .Connection = conn
                     .CommandType = CommandType.Text
                     .CommandText = Query
+                    .Parameters.Add("@reservation", SqlDbType.VarChar).Value = Me.branchReservation
+                    .Parameters.Add("@drivethru", SqlDbType.VarChar).Value = Me.branchdrivethru
                     .Parameters.Add("@branchEmail", SqlDbType.VarChar).Value = Me.branchEmail
                     .Parameters.Add("@branchPassword", SqlDbType.VarChar).Value = Me.branchPassword
                     .Parameters.Add("@startTime", SqlDbType.VarChar).Value = Me.branchStartTime
@@ -329,6 +355,8 @@ Public Class Branch
                         returnObject.branchCuisineId = reader("cuisineTypeID")
                         returnObject.halal = reader("halal")
                         returnObject.branchStatus = reader("status")
+                        returnObject.branchdrivethru = reader("drivethru")
+                        returnObject.branchReservation = reader("reservation")
                     End While
                 Catch ex As SqlException
                 End Try
