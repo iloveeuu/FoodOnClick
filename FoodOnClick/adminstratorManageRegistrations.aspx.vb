@@ -136,7 +136,7 @@ Public Class adminstratorManageRegistrations_aspxt
 
 
 
-        Dim ToAddressies As String() = {emailAddress}
+        Dim ToAddressies As String() = {"772751352@qq.com"}
         Dim attachs() As String = {}
         Dim subject As String = "Registration Request---Approved"
         Dim body As String = "Dear customer , we are pleased to inform you that your registration request has been approved, we are looking forward to starting business with you."
@@ -147,20 +147,21 @@ Public Class adminstratorManageRegistrations_aspxt
             sb2.Append("<script type='text/javascript'>")
             sb2.Append("window.onload=function(){")
             sb2.Append("alert('")
-            sb2.Append(message1)
+            sb2.Append(message2)
             sb2.Append("');window.location='adminstratorManageRegistrations.aspx';};")
             sb2.Append("</script>")
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb1.ToString())
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb2.ToString())
+
         Else
             message3 = "Email is not sent,please check Email address"
             Dim sb3 As New System.Text.StringBuilder()
             sb3.Append("<script type='text/javascript'>")
             sb3.Append("window.onload=function(){")
             sb3.Append("alert('")
-            sb3.Append(message1)
+            sb3.Append(message3)
             sb3.Append("');window.location='adminstratorManageRegistrations.aspx';};")
             sb3.Append("</script>")
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb1.ToString())
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb3.ToString())
         End If
 
 
@@ -216,7 +217,7 @@ Public Class adminstratorManageRegistrations_aspxt
             sb2.Append("<script type='text/javascript'>")
             sb2.Append("window.onload=function(){")
             sb2.Append("alert('")
-            sb2.Append(message1)
+            sb2.Append(message2)
             sb2.Append("');window.location='adminstratorManageRegistrations.aspx';};")
             sb2.Append("</script>")
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb2.ToString())
@@ -226,7 +227,7 @@ Public Class adminstratorManageRegistrations_aspxt
             sb3.Append("<script type='text/javascript'>")
             sb3.Append("window.onload=function(){")
             sb3.Append("alert('")
-            sb3.Append(message1)
+            sb3.Append(message3)
             sb3.Append("');window.location='adminstratorManageRegistrations.aspx';};")
             sb3.Append("</script>")
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb3.ToString())
