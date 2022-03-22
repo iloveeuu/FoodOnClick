@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class branchMenu
 
     '''<summary>
+    '''btnHome control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnHome As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''lblTitle control.
     '''</summary>
     '''<remarks>
@@ -21,15 +30,6 @@ Partial Public Class branchMenu
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTitle As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''btnAnnouncements control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAnnouncements As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btnReservations control.

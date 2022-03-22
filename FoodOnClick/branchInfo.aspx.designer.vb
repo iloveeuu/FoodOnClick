@@ -86,6 +86,24 @@ Partial Public Class branchInfo
     Protected WithEvents ddlHalal As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''ddlReservation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlReservation As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''ddlDrivethru control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlDrivethru As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''ddlStatus control.
     '''</summary>
     '''<remarks>

@@ -6,9 +6,14 @@
             If Session("userid") Is Nothing Or Session("branchid") Is Nothing Then
                 Response.Redirect("login.aspx")
             End If
+            If (Session("userid") = 0) Then
+                btnHome.Visible = False
+            Else
+                btnHome.Visible = True
+            End If
         End If
 
-        bindrestaurantdata()
+            bindrestaurantdata()
     End Sub
 
     Protected Sub rptBranch_ItemDataBound(sender As Object, e As RepeaterItemEventArgs)
@@ -17,7 +22,6 @@
         Dim url As String = "~/images/menu/" & imageUrl
         img.Style.Add("vertical-align", "middle")
         img.ImageUrl = url
-        'Server.MapPath()
     End Sub
 
     Protected Sub rptBranch_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
@@ -48,5 +52,9 @@
     Protected Sub btnReservations_Click(sender As Object, e As EventArgs)
         System.Web.HttpContext.Current.Session("branchid") = Convert.ToInt32(Session("branchid").ToString())
         Response.Redirect("branchReservation.aspx")
+    End Sub
+
+    Protected Sub btnHome_Click(sender As Object, e As EventArgs)
+        Response.Redirect("branch.aspx")
     End Sub
 End Class

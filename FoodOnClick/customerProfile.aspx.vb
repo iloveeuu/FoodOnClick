@@ -7,6 +7,9 @@
             If Session("userid") Is Nothing Then
                 Response.Redirect("login.aspx")
             Else
+                If (Session("type") = "Restaurant") Then
+                    btnHistory.Visible = False
+                End If
                 DataBind()
             End If
         End If
@@ -38,7 +41,12 @@
     Protected Sub btnHome_Click(sender As Object, e As EventArgs)
         Session("userid") = Session("userid")
         Session("email") = Session("email")
-        Response.Redirect("customerHome.aspx")
+        If Session("type") = "Restaurant" Then
+            Response.Redirect("branch.aspx")
+        ElseIf Session("type") = "Customer" Then
+            Response.Redirect("customerHome.aspx")
+        End If
+
     End Sub
 
     Protected Sub btnHistory_Click(sender As Object, e As EventArgs)

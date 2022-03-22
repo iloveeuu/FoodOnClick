@@ -24,7 +24,7 @@
                 
             </td>
             <td>
-                <asp:HyperLink runat="server" ID="hpForgetPassword" NavigateUrl="~/login.aspx" Text="Forget Password"></asp:HyperLink></td>
+                <asp:HyperLink runat="server" ID="hpForgetPassword" NavigateUrl="~/forgetPassword.aspx" Text="Forget Password"></asp:HyperLink></td>
 
         </tr>
         <tr>
