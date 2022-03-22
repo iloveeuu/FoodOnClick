@@ -9,6 +9,7 @@
         <h1>Administrator Home Page</h1>
         </div>
         
+
         <table>
             <tr>
                 <td><h2>Pending Approval</h2></td>
