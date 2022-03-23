@@ -3,7 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="logo">
-        <h1>Food on Click</h1>
         <br />
         <br />
         <h1>Administrator Home Page</h1>

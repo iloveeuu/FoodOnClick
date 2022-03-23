@@ -136,7 +136,7 @@ Public Class adminstratorManageRegistrations_aspxt
 
 
 
-        Dim ToAddressies As String() = {"772751352@qq.com"}
+        Dim ToAddressies As String() = {emailAddress}
         Dim attachs() As String = {}
         Dim subject As String = "Registration Request---Approved"
         Dim body As String = "Dear customer , we are pleased to inform you that your registration request has been approved, we are looking forward to starting business with you."
