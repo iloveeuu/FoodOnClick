@@ -1,4 +1,4 @@
-﻿Public Class CustomerPreOrderDetail
+﻿Public Class customerOrderDetail
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -44,7 +44,7 @@
             clsOrderDetail.batchId = Session("batchId")
             Dim dtTable As DataTable = clsOrderDetail.GetOrderDetail()
 
-            Dim subject As String = "Pre-order CANCELLED from " & Session("firstname") & " " & Session("lastname") & ", " & Session("date")
+            Dim subject As String = "Delivery Order with ID: " & Session("orderID") & " Cancelled"
 
             Dim sHtmlTable As String = ""
             For Each row As DataRow In dtTable.Rows
@@ -75,7 +75,7 @@
             sb.Append("<script type = 'text/javascript'>")
             sb.Append("window.onload=function(){")
             sb.Append("alert('")
-            sb.Append("Pre-Order Cancelled")
+            sb.Append("Delivery Order Cancelled")
             sb.Append("')};")
             sb.Append("</script>")
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
@@ -89,7 +89,7 @@
         clsOrderDetail.batchId = Session("batchId")
         clsOrderDetail.userId = Session("userid")
 
-        Dim boolPending As Boolean = clsOrderDetail.CheckPreOrderPending()
+        Dim boolPending As Boolean = clsOrderDetail.CheckOrderPending()
         If boolPending = False Then
             btnCancel.Visible = False
         End If
@@ -98,10 +98,9 @@
         gvMenu.DataSource = dtTable
         gvMenu.DataBind()
 
+        h2ID.InnerText = "Delivery Order, ID: " & Session("orderID")
         lblRestName.Text = Session("restName")
         lblAddress.Text = Session("address")
-        lblDate.Text = Session("date")
-        lblTime.Text = Session("time")
         lblTotal.Text = "$" + dtTable.Rows(0)(4).ToString()
         lblStatus.Text = dtTable.Rows(0)(5).ToString()
 

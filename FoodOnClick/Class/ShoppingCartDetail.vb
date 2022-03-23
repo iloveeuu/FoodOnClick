@@ -366,6 +366,36 @@ Public Class ShoppingCartDetail
         End Using
         Return dtData
     End Function
+
+    Public Sub DeleteShoppingCart()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtData = New DataTable()
+
+        Dim Query As String = "Delete from shoppingcart_menu where cartid = @cartid; " &
+                                "Delete from shoppingcart where cartid = @cartid; "
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@cartid", SqlDbType.Int).Value = Me.cartID
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+    End Sub
+
 #End Region
 
 End Class

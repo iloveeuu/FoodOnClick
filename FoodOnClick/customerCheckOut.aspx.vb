@@ -69,7 +69,7 @@
                                 "<p>Dear " & lblRestName.Text & ",</p>" &
                                 "<p>At " & lblAddress.Text & ",</p>" &
                                 "<br/>" &
-                                "<p>You have delivery order.</p>" &
+                                "<p>You have delivery order. with order ID: " & iOrderId.ToString() & "</p>" &
                                 "<table style='border:1px solid #333'><tr><th>Menu</th><th>Quantity</th><th>Price</th></tr>" &
                                 "" & sHtmlTable & "</table>" &
                                 "<p>Please check your order list and response the status</p>" &
@@ -81,7 +81,11 @@
 
         Dim smtp As SMTP = New SMTP()
         Dim email() As String = {dtTable.Rows(0)(10)}
+
+        'Dim email() As String = {"will.ariez@gmail.com"}
         smtp.SendMail(email, subject, body, Nothing, True)
+
+        clsSC.DeleteShoppingCart()
 
         Response.Write("<script language='javascript'>window.alert('Delivery Order Created, Please Wait for Confirmation');window.location='customerHome.aspx';</script>")
 

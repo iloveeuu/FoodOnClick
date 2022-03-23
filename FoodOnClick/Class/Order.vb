@@ -235,6 +235,44 @@ Public Class Order
         End Using
         Return returnObj
     End Function
+
+    Public Function CheckOrderPending() As Boolean
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim returnBool As Boolean = False
+
+        Dim Query As String = "select top 1 o.orderstatusid from batchorders as b inner join orders as o on o.batchid = b.batchid " &
+                                " where b.userID = @userId And o.batchid = @batchid  And o.orderstatusid = 6 "
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@userId", SqlDbType.Int).Value = Me.userId
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        returnBool = True
+                    Else
+                        returnBool = False
+                    End If
+
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+        Return returnBool
+    End Function
 #End Region
 
 End Class

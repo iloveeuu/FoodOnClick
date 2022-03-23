@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class CustomerPreOrderDetail
+Partial Public Class customerOrderDetail
 
     '''<summary>
     '''btnHome control.
@@ -32,6 +32,15 @@ Partial Public Class CustomerPreOrderDetail
     Protected WithEvents btnHistory As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''h2ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents h2ID As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''lblRestName control.
     '''</summary>
     '''<remarks>
@@ -48,24 +57,6 @@ Partial Public Class CustomerPreOrderDetail
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAddress As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDate As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblTime control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblTime As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblTotal control.
