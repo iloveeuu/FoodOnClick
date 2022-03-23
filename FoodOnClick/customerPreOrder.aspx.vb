@@ -30,16 +30,16 @@
             ddlType.Items.Insert(0, New ListItem("Please select", ""))
             ddlType.SelectedIndex = 0
 
-            If ViewState("dtTable") Is Nothing Then
+            If Session("dtTable") Is Nothing Then
                 ' Create dataTable Columns
                 dtAdd.Columns.Add("menuId", GetType(Integer))
                 dtAdd.Columns.Add("menu", GetType(String))
                 dtAdd.Columns.Add("qty", GetType(Integer))
                 dtAdd.Columns.Add("totPrice", GetType(Double))
 
-                ViewState("dtTable") = dtAdd
+                Session("dtTable") = dtAdd
             Else
-                gvPreOrder.DataSource = ViewState("dtTable")
+                gvPreOrder.DataSource = Session("dtTable")
                 gvPreOrder.DataBind()
             End If
         End If
@@ -99,7 +99,7 @@
             hfMenuId = gvMenu.Rows(Index).FindControl("hfMenuId")
             iMenuId = hfMenuId.Value
 
-            dtAdd = ViewState("dtTable")
+            dtAdd = Session("dtTable")
 
             If txtQty.Text = "" Then
                 errorText.Attributes("style") = "display: block; text-align: center; color:red;"
@@ -125,7 +125,7 @@
                     dtAdd.Rows.Add(iMenuId, sMenu, iQty, dbTotPrice)
                 End If
 
-                ViewState("dtTable") = dtAdd
+                Session("dtTable") = dtAdd
 
                 gvPreOrder.DataSource = dtAdd
                 gvPreOrder.DataBind()
@@ -148,7 +148,7 @@
             Index = Convert.ToInt32(e.CommandArgument)
             sMenu = gvMenu.Rows(Index).Cells(0).Text
 
-            dtAdd = ViewState("dtTable")
+            dtAdd = Session("dtTable")
 
             For Each row As DataRow In dtAdd.Rows
                 If (row("menu").ToString() = sMenu) Then
@@ -158,7 +158,7 @@
                 End If
             Next
 
-            ViewState("dtTable") = dtAdd
+            Session("dtTable") = dtAdd
 
             gvPreOrder.DataSource = dtAdd
             gvPreOrder.DataBind()
@@ -176,7 +176,7 @@
             errorText2.Attributes("style") = "display: none;"
             errorText.Attributes("style") = "display: none;"
 
-            dtAdd = ViewState("dtTable")
+            dtAdd = Session("dtTable")
 
             Dim dNow As Date = Date.Now
             Dim dTotalCharges As Double = Convert.ToDouble(dtAdd.Compute("SUM(totPrice)", String.Empty))
