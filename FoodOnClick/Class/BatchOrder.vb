@@ -119,7 +119,7 @@ Public Class BatchOrder
 
         If Me.orderTypeID = 10 Then
             Query = "INSERT INTO BatchOrders (branchid, orderTypeID, userid, ordertime, orderdate, paymentMethod) " &
-                            "VALUES (@branchid, @orderTypeID, @userid, @ordertime, @orderdate, @paymentMethod): SELECT SCOPE_IDENTITY();"
+                            "VALUES (@branchid, @orderTypeID, @userid, @ordertime, @orderdate, @paymentMethod); SELECT SCOPE_IDENTITY();"
         ElseIf Me.orderTypeID = 11 Then
             Query = "INSERT INTO BatchOrders (branchid, orderTypeID, userid, deliveryTypeID, ordertime, orderdate, paymentMethod) " &
                             "VALUES (@branchid, @orderTypeID, @userid, @deliveryTypeID, @ordertime, @orderdate, @paymentMethod); SELECT SCOPE_IDENTITY();"
