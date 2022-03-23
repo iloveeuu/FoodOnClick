@@ -6,6 +6,7 @@ Public Class Order
 
     Protected iOrderNum As Integer
     Protected dTotalcharges As Decimal
+    Protected dDeliverycharges As Decimal
     Protected iOrderStatusID As Integer
     Protected iRiderReviewID As Integer
     Protected sTimePicked As String
@@ -29,6 +30,15 @@ Public Class Order
         End Get
         Set(ByVal Value As Decimal)
             dTotalcharges = Value
+        End Set
+    End Property
+
+    Public Property deliverycharges() As Decimal
+        Get
+            deliverycharges = dDeliverycharges
+        End Get
+        Set(ByVal Value As Decimal)
+            dDeliverycharges = Value
         End Set
     End Property
 
@@ -209,8 +219,8 @@ Public Class Order
         Dim returnObj As Object
 
         If MyBase.orderTypeID = 11 Then
-            Query = "INSERT INTO Orders (totalcharges, orderStatusID, batchID) " &
-                            "VALUES ((SELECT TOP 1 totalprice FROM shoppingcart WHERE cartID = @cartId), 6, @batchid);SELECT SCOPE_IDENTITY();"
+            Query = "INSERT INTO Orders (totalcharges, orderStatusID, batchID, deliveryCharges) " &
+                            "VALUES ((SELECT TOP 1 totalprice FROM shoppingcart WHERE cartID = @cartId), 6, @batchid, @deliverycharges);SELECT SCOPE_IDENTITY();"
         End If
 
         Using conn As New SqlConnection(connectionString)
@@ -223,6 +233,7 @@ Public Class Order
                     .CommandText = Query
                     .Parameters.Add("@cartId", SqlDbType.Int).Value = Me.cartID
                     .Parameters.Add("@batchid", SqlDbType.Int).Value = MyBase.batchId
+                    .Parameters.Add("@deliverycharges", SqlDbType.Decimal).Value = Me.deliverycharges
                 End With
                 Try
                     conn.Open()

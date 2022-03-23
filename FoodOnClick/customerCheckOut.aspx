@@ -55,6 +55,14 @@
             </asp:GridView>
 	</div>
 	<div class="container">
+		<div class="row">
+            <div class="col-50" style="text-align: right;">
+				<asp:Label ID="Label1" runat="server" Text="Delivery Charges:"></asp:Label>
+			</div>
+          <div class="col-50">
+				<asp:Label ID="lblDelCharges" runat="server"></asp:Label>
+			  </div>
+        </div>
         <div class="row">
             <div class="col-50" style="text-align: right;">
 				<asp:Label ID="Label3" runat="server" Text="Total Charges:"></asp:Label>

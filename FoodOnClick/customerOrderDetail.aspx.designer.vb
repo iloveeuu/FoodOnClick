@@ -59,6 +59,15 @@ Partial Public Class customerOrderDetail
     Protected WithEvents lblAddress As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lblDelCharges control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDelCharges As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lblTotal control.
     '''</summary>
     '''<remarks>

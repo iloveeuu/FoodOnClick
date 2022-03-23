@@ -52,6 +52,10 @@
         Dim iBatchId As Integer = od.InsertBatchOrder()
 
         od.batchId = iBatchId
+
+        Dim delCharges As Double = CalculateDeliveryCharges(dtTable.Rows.Count())
+
+        od.deliverycharges = delCharges
         Dim iOrderId As Integer = od.InsertDeliveryOrder()
 
         od.orderNum = iOrderId
@@ -107,8 +111,29 @@
 
         lblRestName.Text = dtTable.Rows(0)(0)
         lblAddress.Text = dtTable.Rows(0)(3)
-        lblTotal.Text = "$" + Convert.ToString(dtTable.Rows(0)(6))
         lblType.Text = dtTable.Rows(0)(5)
+
+        Dim delCharges As Double = CalculateDeliveryCharges(dtTable.Rows.Count())
+
+        lblDelCharges.Text = "$" + Convert.ToString(delCharges)
+
+        lblTotal.Text = "$" + Convert.ToString(dtTable.Rows(0)(6) + delCharges)
+
     End Sub
 
+    Protected Function CalculateDeliveryCharges(ByVal iTotalOrders As Integer)
+        Dim charges As Decimal
+
+        If iTotalOrders > 0 And iTotalOrders <= 3 Then
+            charges = 5
+        ElseIf iTotalOrders > 3 And iTotalOrders <= 6 Then
+            charges = 5.5
+        ElseIf iTotalOrders > 6 And iTotalOrders <= 8 Then
+            charges = 6
+        Else
+            charges = 10
+        End If
+
+        Return charges
+    End Function
 End Class

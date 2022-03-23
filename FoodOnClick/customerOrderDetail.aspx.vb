@@ -101,8 +101,10 @@
         h2ID.InnerText = "Delivery Order, ID: " & Session("orderID")
         lblRestName.Text = Session("restName")
         lblAddress.Text = Session("address")
-        lblTotal.Text = "$" + dtTable.Rows(0)(4).ToString()
         lblStatus.Text = dtTable.Rows(0)(5).ToString()
 
+        lblDelCharges.Text = "$" + dtTable.Rows(0)(6).ToString()
+
+        lblTotal.Text = "$" + (dtTable.Rows(0)(4) + dtTable.Rows(0)(6)).ToString()
     End Sub
 End Class

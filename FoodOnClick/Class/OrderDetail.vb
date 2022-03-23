@@ -99,7 +99,7 @@ Public Class OrderDetail
                             "'CHAR(13)Sugar: ' + CONVERT(nvarchar(20),m.glucose) + ' g' + " &
                             "'CHAR(13)Fats: ' + CONVERT(nvarchar(20),m.fats) + ' g' + " &
                             "'CHAR(13)Sodium: ' + CONVERT(nvarchar(20),m.sodium) + ' g' " &
-                            ") As describe, o.totalcharges, os.type as status " &
+                            ") As describe, o.totalcharges, os.type as status, o.deliveryCharges " &
                 "From batchorders as bo " &
                 "inner join orders as o on o.batchid = bo.batchid " &
                 "inner join orderstatus as os on os.orderStatusID = o.orderStatusID " &

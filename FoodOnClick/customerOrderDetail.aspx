@@ -35,7 +35,15 @@
         </div>
 		<div class="row">
           <div class="col-50"  style="text-align: right;" >
-			  Total Price:
+			  Delivery Charges:
+          </div>
+			<div class="col-50">
+				<asp:Label ID="lblDelCharges" runat="server"></asp:Label>
+			  </div>
+        </div>
+		<div class="row">
+          <div class="col-50"  style="text-align: right;" >
+			  Total Charges:
           </div>
 			<div class="col-50">
 				<asp:Label ID="lblTotal" runat="server"></asp:Label>
