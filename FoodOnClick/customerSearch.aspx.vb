@@ -52,10 +52,17 @@
         End If
 
         If Session("orderType") = "reservation" Then
-            'ddlType.SelectedItem.ToString()
             Dim clsMenu As Menu = New Menu()
             dtSearch = clsMenu.GetSearchReservation(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedItem.ToString(), ddlType.SelectedItem.ToString(),
                                            txtDishName.Text.Trim(), ddlHalal.SelectedItem.ToString(), dblMinPrice, dblMaxPrice)
+
+            gvSearch.DataSource = dtSearch
+            gvSearch.DataBind()
+
+        ElseIf Session("orderType") = "delivery" Then
+            Dim clsMenu As Menu = New Menu()
+            dtSearch = clsMenu.GetSearchDelivery(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedItem.ToString(), ddlType.SelectedItem.ToString(),
+                                               txtDishName.Text.Trim(), ddlHalal.SelectedItem.ToString(), dblMinPrice, dblMaxPrice)
 
             gvSearch.DataSource = dtSearch
             gvSearch.DataBind()
@@ -120,6 +127,39 @@
             Session("timeClosed") = sTimeClosed
 
             Response.Redirect("customerReservation.aspx")
+        ElseIf e.CommandName = "doDelivery" Then
+            Index = Convert.ToInt32(e.CommandArgument)
+
+            hRestaurantId = gvSearch.Rows(Index).FindControl("hfRestId")
+            sRestaurantId = hRestaurantId.Value
+
+            hBranchId = gvSearch.Rows(Index).FindControl("hfBranchId")
+            sBranchId = hBranchId.Value
+
+            hEmail = gvSearch.Rows(Index).FindControl("hfEmail")
+            sEmail = hEmail.Value
+
+            hTimeOpen = gvSearch.Rows(Index).FindControl("hfTimeOpen")
+            sTimeOpen = hTimeOpen.Value
+
+            hTImeClosed = gvSearch.Rows(Index).FindControl("hfTimeClosed")
+            sTimeClosed = hTImeClosed.Value
+
+            sRestName = gvSearch.Rows(Index).Cells(0).Text
+            sHalal = gvSearch.Rows(Index).Cells(1).Text
+            sAddress = gvSearch.Rows(Index).Cells(2).Text
+            sDishName = gvSearch.Rows(Index).Cells(3).Text
+
+            Session("userid") = Session("userid")
+            Session("email") = sEmail
+            Session("branchid") = sBranchId
+            Session("restName") = sRestName
+            Session("halal") = sHalal
+            Session("address") = sAddress
+            Session("timeOpen") = sTimeOpen
+            Session("timeClosed") = sTimeClosed
+
+            Response.Redirect("customerOrder.aspx")
         End If
 
     End Sub
@@ -151,20 +191,38 @@
         '    End If
         'End If
 
-        For i As Integer = gvSearch.Rows.Count - 1 To 1 Step -1
-            Dim row As GridViewRow = gvSearch.Rows(i)
-            Dim previousRow As GridViewRow = gvSearch.Rows(i - 1)
+        If (e.Row.RowType = DataControlRowType.DataRow) Then
 
-            hBranchId = gvSearch.Rows(i).FindControl("hfBranchId")
-            sBranchID = hBranchId.Value.ToString()
+            'hide button
+            If Session("orderType") = "reservation" Then
+                Dim btnReserve As Button = e.Row.FindControl("btnReserve")
+                btnReserve.Visible = True
+                Dim btnDelivery As Button = e.Row.FindControl("btnDelivery")
+                btnDelivery.Visible = False
+            ElseIf Session("orderType") = "delivery" Then
+                Dim btnReserve As Button = e.Row.FindControl("btnReserve")
+                btnReserve.Visible = False
+                Dim btnDelivery As Button = e.Row.FindControl("btnDelivery")
+                btnDelivery.Visible = True
+            End If
 
-            hPrevBranchId = gvSearch.Rows(i - 1).FindControl("hfBranchId")
-            sPreviousBranchID = hPrevBranchId.Value.ToString()
+            'merge rows
+            For i As Integer = gvSearch.Rows.Count - 1 To 1 Step -1
+                Dim row As GridViewRow = gvSearch.Rows(i)
+                Dim previousRow As GridViewRow = gvSearch.Rows(i - 1)
 
-            'merge only if branch id same
-            If sBranchID = sPreviousBranchID Then
+                'hBranchId = gvSearch.Rows(i).FindControl("hfBranchId")
+                'sBranchID = hBranchId.Value.ToString()
+
+                'hPrevBranchId = gvSearch.Rows(i - 1).FindControl("hfBranchId")
+                'sPreviousBranchID = hPrevBranchId.Value.ToString()
+
+
+                'merge only if branch id same
+                'If sBranchID = sPreviousBranchID Then
                 For j As Integer = 0 To row.Cells.Count - 1
                     If row.Cells(j).Text = previousRow.Cells(j).Text Then
+
                         If row.Cells(j).RowSpan = 0 Then
                             previousRow.Cells(j).RowSpan += 2
                         Else
@@ -173,7 +231,15 @@
                         row.Cells(j).Visible = False
                     End If
                 Next
-            End If
-        Next
+                'End If
+            Next
+        End If
+
+    End Sub
+
+    Protected Sub btnCart_Click(sender As Object, e As EventArgs)
+        Session("userid") = Session("userid")
+        Session("email") = Session("email")
+        Response.Redirect("customerCart.aspx")
     End Sub
 End Class

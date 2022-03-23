@@ -134,6 +134,111 @@
         dtReservation = clsReservation.GetReservationHistory()
         gvReservation.DataSource = dtReservation
         gvReservation.DataBind()
+
+        Dim dtDelivery As DataTable
+        Dim clsDelivery As OrderDetail = New OrderDetail()
+        clsDelivery.userId = Session("userid")
+        dtDelivery = clsDelivery.GetDeliveryOrderHistory()
+        gvDelivery.DataSource = dtDelivery
+        gvDelivery.DataBind()
     End Sub
 
+    Protected Sub btnCart_Click(sender As Object, e As EventArgs)
+        Session("userid") = Session("userid")
+        Session("email") = Session("email")
+        Response.Redirect("customerCart.aspx")
+    End Sub
+
+    Protected Sub gvDelivery_RowCommand(sender As Object, e As GridViewCommandEventArgs)
+        Dim Index As Int32 = -1
+        Dim hfBatchId As HiddenField = Nothing
+        Dim hfEmail As HiddenField = Nothing
+        Dim sEmail As String = ""
+        Dim iBatchId As Integer = 0
+        Dim message As String
+        Index = Convert.ToInt32(e.CommandArgument)
+
+        hfBatchId = gvDelivery.Rows(Index).FindControl("hfBatchId")
+        iBatchId = hfBatchId.Value
+
+        If e.CommandName = "doCheckOrder" Then
+
+            Session("restName") = gvDelivery.Rows(Index).Cells(0).Text
+            Session("orderID") = gvDelivery.Rows(Index).Cells(2).Text
+            Session("batchId") = iBatchId
+
+            Response.Redirect("customerOrderDetail.aspx")
+        ElseIf e.CommandName = "doCancel" Then
+            hfEmail = gvReservation.Rows(Index).FindControl("hfEmail")
+            sEmail = hfEmail.Value
+
+            Dim ord As Order = New Order()
+            ord.batchId = iBatchId
+            ord.userId = Session("userid")
+
+            Dim rtrnBool As Boolean = ord.CheckOrderPending()
+
+            If rtrnBool = False Then
+                message = "The delivery order is already processed by the restaurant. You are not allowed to cancel it."
+                Dim sb As New System.Text.StringBuilder()
+                sb.Append("<script type = 'text/javascript'>")
+                sb.Append("window.onload=function(){")
+                sb.Append("alert('")
+                sb.Append(message)
+                sb.Append("')};")
+                sb.Append("</script>")
+                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            Else
+                ord.CancelOrder()
+
+                Dim subject As String = "Delivery Order with ID: " & gvDelivery.Rows(Index).Cells(2).Text & " Cancelled"
+
+                Dim body As String = "<html> " &
+                                    "<body>" &
+                                    "<p>Dear " & gvDelivery.Rows(Index).Cells(0).Text & ",</p>" &
+                                    "<p>At " & gvDelivery.Rows(Index).Cells(1).Text & ",</p>" &
+                                    "<br/>" &
+                                    "<p>Delivery Order with ID: " & gvDelivery.Rows(Index).Cells(2).Text & " cancelled by customer</p>" &
+                                    "<br/>" &
+                                    "<p>Regards,</p>" &
+                                    "<p>Food on Click</p>" &
+                                    "</body>" &
+                                    "</html>"
+
+                hfEmail = gvReservation.Rows(Index).FindControl("hfEmail")
+                sEmail = hfEmail.Value
+
+                Dim smtp As SMTP = New SMTP()
+                'Dim email() As String = {sEmail}
+                Dim email() As String = {"will.ariez@gmail.com"}
+                smtp.SendMail(email, subject, body, Nothing, True)
+
+                message = "Delivery Order cancelled"
+                Dim sb As New System.Text.StringBuilder()
+                sb.Append("<script type = 'text/javascript'>")
+                sb.Append("window.onload=function(){")
+                sb.Append("alert('")
+                sb.Append(message)
+                sb.Append("')};")
+                sb.Append("</script>")
+                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            End If
+
+            DataBind()
+        End If
+    End Sub
+
+    Protected Sub gvDelivery_RowDataBound(sender As Object, e As GridViewRowEventArgs)
+        Dim btnCancel As Button = Nothing
+        Dim btnOrder As Button = Nothing
+        Dim hfBatchId As HiddenField = Nothing
+
+        If (e.Row.RowType = DataControlRowType.DataRow) Then
+            If (e.Row.Cells(3).Text = "pending") Then
+                btnCancel = e.Row.FindControl("btnCancel")
+                btnCancel.Visible = True
+                btnCancel.Attributes("onclick") = "return confirm('Do you want to cancel this delivery order?');"
+            End If
+        End If
+    End Sub
 End Class

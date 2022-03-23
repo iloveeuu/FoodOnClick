@@ -32,6 +32,15 @@ Partial Public Class customerProfile
     Protected WithEvents btnHistory As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''btnCart control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCart As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''lblEmail control.
     '''</summary>
     '''<remarks>

@@ -5,11 +5,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 	<table id="tableStyle">
 		<tr>
-			<td>
-				<asp:Button ID="btnProfile" Width="100%" Height="80%" runat="server" OnClick="btnProfile_Click" Text="Profile" />
-			</td>
-			<td>
-				<asp:Button ID="btnHistory" Width="100%" Height="80%" runat="server" OnClick="btnHistory_Click" Text="History" />
+			<td colspan="3">
+				<asp:Button ID="btnProfile" Width="30%" Height="80%" runat="server" OnClick="btnProfile_Click" Text="Profile" />
+				<asp:Button ID="btnHistory" Width="30%" Height="80%" runat="server" OnClick="btnHistory_Click" Text="History" />
+				<asp:Button ID="btnCart" Width="30%" Height="80%" runat="server" OnClick="btnCart_Click" Text="Cart" />
 			</td>
 		</tr>
 		<tr>

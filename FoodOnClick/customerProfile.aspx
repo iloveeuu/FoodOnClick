@@ -10,6 +10,9 @@
 			<td>
 				<asp:Button ID="btnHistory" Width="100%" Height="80%" runat="server" OnClick="btnHistory_Click" Text="History" />
 			</td>
+			<td>
+				<asp:Button ID="btnCart" Width="100%" Height="80%" runat="server" OnClick="btnCart_Click" Text="Cart" />
+			</td>
 		</tr>
 	</table>
     <div>

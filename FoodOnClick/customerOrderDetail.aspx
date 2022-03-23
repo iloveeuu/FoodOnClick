@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="customerPreOrderDetail.aspx.vb" Inherits="FoodOnClick.CustomerPreOrderDetail" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="customerOrderDetail.aspx.vb" Inherits="FoodOnClick.customerOrderDetail" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -13,7 +13,7 @@
 		</tr>
 	</table>
 	<div>
-        <h2>Reservation Pre-Order</h2>
+        <h2 id="h2ID" runat="server">Delivery Order</h2>
     </div>
 	<br />
 	<div class="container">
@@ -35,22 +35,6 @@
         </div>
 		<div class="row">
           <div class="col-50"  style="text-align: right;" >
-			  Date:
-          </div>
-			<div class="col-50">
-				<asp:Label ID="lblDate" runat="server"></asp:Label>
-			  </div>
-        </div>
-		<div class="row">
-          <div class="col-50"  style="text-align: right;" >
-			  Time:
-          </div>
-			<div class="col-50">
-				<asp:Label ID="lblTime" runat="server"></asp:Label>
-			  </div>
-        </div>
-		<div class="row">
-          <div class="col-50"  style="text-align: right;" >
 			  Total Price:
           </div>
 			<div class="col-50">
@@ -59,7 +43,7 @@
         </div>
 		<div class="row">
           <div class="col-50"  style="text-align: right;" >
-			  Pre-Order Status:
+			  Order Status:
           </div>
 			<div class="col-50">
 				<asp:Label ID="lblStatus" runat="server"></asp:Label>
@@ -67,7 +51,7 @@
         </div>
 		<div class="row">
 			<div class="col-100" style="text-align: center;">
-				<asp:Button ID="btnCancel" runat="server" OnClientClick="return confirm('Do you want to cancel this pre-order?');" OnClick="btnCancel_Click"  Width="50%" Text="Cancel" />
+				<asp:Button ID="btnCancel" runat="server" OnClientClick="return confirm('Do you want to cancel this delivery order?');"  OnClick="btnCancel_Click"  Width="50%" Text="Cancel" />
 			</div>
 		</div>
    </div>

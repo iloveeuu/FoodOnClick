@@ -644,6 +644,8 @@ Public Class Menu
                             "ft.type like (@food_type) AND " &
                             "(b.halal like @halal) "
 
+        'b.allowreservation = 'Yes' AND 
+
         '"SELECT r.restaurantID, ua.firstname, ua.email, b.branchid, r.name as restName, b.address, ISNULL(m.name,'') as dishName, b.halal from branch as b " &
         '                    "inner join restaurant as r on r.restaurantId = b.restaurantId " &
         '                    "inner join useraccount as ua on ua.userid = r.userid " &
@@ -724,6 +726,92 @@ Public Class Menu
         End Using
         Return dtSearch
     End Function
+
+    Public Function GetSearchDelivery(ByVal location As String, ByVal restaurantName As String, ByVal category As String, ByVal type As String,
+                                           ByVal dishName As String, ByVal halal As String, ByVal dblMinPrice As Double, ByVal dblMaxPrice As Double)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtSearch = New DataTable()
+        Dim Query As String = "SELECT r.restaurantID, ua.firstname, b.email, b.branchid, (r.name + ' - ' + b.city) as restName, b.address, " &
+                            "ISNULL(m.name,'') as dishName, b.halal, m.cost as price, b.time_open, b.time_closed " &
+                            "from branch as b " &
+                            "inner join restaurant as r on r.restaurantId = b.restaurantId " &
+                            "inner join useraccount as ua on ua.userid = r.userid " &
+                            "inner join CuisineType As c On c.cuisine_Typeid = b.cuisineTypeID " &
+                            "left join Menu as m on b.branchid = m.branchid AND m.name Like (@dish_name) AND " &
+                            "(m.cost >= @minPrice) AND m.cost <= IIF(@maxPrice = '0', (m.cost), (@maxPrice)) " &
+                            "inner join MenuStatus As ms On m.Statusid = ms.menu_status_id And ms.type = 'Available' " &
+                            "Left Join FoodType As ft On m.foodtypeID = ft.foodtypeID " &
+                            "WHERE r.status = 'IN BUSINESS' AND b.status = 'IN BUSINESS' And " &
+                            "(CONCAT(b.address, ' ', b.city, ' ', b.postalcode) LIKE @location) AND " &
+                            "r.name Like (@restaurant_name) AND " &
+                            "c.foodtype Like @cuisine_type AND " &
+                            "ft.type like (@food_type) AND " &
+                            "(b.halal like @halal) "
+
+        Dim sLocation As String
+        Dim sRestName As String
+        Dim sCuisinceType As String
+        Dim sFoodType As String
+        Dim sDishName As String
+        Dim sHalal As String
+
+        sLocation = "%" + location + "%"
+        sRestName = "%" + restaurantName + "%"
+
+        If category = "Please select" Then
+            sCuisinceType = "%%"
+        Else
+            sCuisinceType = "%" + category + "%"
+        End If
+
+        If type = "Please select" Then
+            sFoodType = "%%"
+        Else
+            sFoodType = "%" + type + "%"
+        End If
+
+        If halal = "Please select" Then
+            sHalal = "%%"
+        Else
+            sHalal = "%" + halal + "%"
+        End If
+
+        sDishName = "%" + dishName + "%"
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@location", SqlDbType.VarChar).Value = sLocation
+                    .Parameters.Add("@restaurant_name", SqlDbType.VarChar).Value = sRestName
+                    .Parameters.Add("@cuisine_type", SqlDbType.VarChar).Value = sCuisinceType
+                    .Parameters.Add("@food_type", SqlDbType.VarChar).Value = sFoodType
+                    .Parameters.Add("@dish_name", SqlDbType.VarChar).Value = sDishName
+                    .Parameters.Add("@halal", SqlDbType.VarChar).Value = sHalal
+                    .Parameters.Add("@minPrice", SqlDbType.Decimal).Value = dblMinPrice
+                    .Parameters.Add("@maxPrice", SqlDbType.Decimal).Value = dblMaxPrice
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        dtSearch.Load(reader)
+                    End If
+
+                    conn.Close()
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return dtSearch
+    End Function
+
 
     Public Function GetSearchMenu(ByVal iBranchId As Integer, ByVal type As String, ByVal dishName As String, ByVal dblMinPrice As Double, ByVal dblMaxPrice As Double)
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString

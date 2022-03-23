@@ -47,6 +47,9 @@
 			<td>
 				<asp:Button ID="btnHome" Width="100%" Height="80%" runat="server" OnClick="btnHome_Click" Text="Home" />
 			</td>
+			<td>
+				<asp:Button ID="btnCart" Width="100%" Height="80%" runat="server" OnClick="btnCart_Click" Text="Cart" />
+			</td>
 		</tr>
     </table>
 	<div>
@@ -138,6 +141,7 @@
                     <asp:TemplateField>
                         <ItemTemplate>
                             <asp:Button ID="btnReserve" runat="server" Text="Reserve" CommandArgument='<%# Container.DataItemIndex %>'   CommandName="doReservation"/>
+							<asp:Button ID="btnDelivery" runat="server" Text="Delivery Order" CommandArgument='<%# Container.DataItemIndex %>'   CommandName="doDelivery"/>
                             <asp:HiddenField ID="hfRestId" runat="server" Value='<%# Eval("restaurantID") %>' />
                             <asp:HiddenField ID="hfUserId" runat="server" Value='<%# Eval("firstname") %>' />
                             <asp:HiddenField ID="hfBranchId" runat="server" Value='<%# Eval("branchid") %>' />

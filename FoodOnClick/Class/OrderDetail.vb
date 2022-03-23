@@ -55,9 +55,10 @@ Public Class OrderDetail
 
         If MyBase.orderTypeID = 10 Then
             Query = "INSERT INTO OrderDetails (orderNum, menuid, orderQuantity, price) " &
-                            "VALUES ((SELECT TOP 1 o.orderNum FROM orders as o INNER JOIN batchorders as b ON o.batchID = b.batchID " &
-                            "WHERE b.orderTypeID = 10 and o.orderStatusID = 6 and b.userID = @userID ORDER BY o.orderNum DESC), " &
-                            "@menuid, @orderQuantity, @price)"
+                            "VALUES (@orderNum,@menuid, @orderQuantity, @price)"
+        ElseIf MyBase.orderTypeID = 11 Then
+            Query = "INSERT INTO OrderDetails (orderNum, menuid, orderQuantity, price) " &
+                            "SELECT @orderNum, menuid, quantity, price FROM shoppingcart_menu Where cartid = @cartid"
         End If
 
         Using conn As New SqlConnection(connectionString)
@@ -72,6 +73,8 @@ Public Class OrderDetail
                     .Parameters.Add("@menuid", SqlDbType.Int).Value = Me.menuid
                     .Parameters.Add("@orderQuantity", SqlDbType.Int).Value = Me.orderQuantity
                     .Parameters.Add("@price", SqlDbType.Decimal).Value = Me.price
+                    .Parameters.Add("@orderNum", SqlDbType.Decimal).Value = Me.orderNum
+                    .Parameters.Add("@cartid", SqlDbType.Decimal).Value = Me.cartId
                 End With
                 Try
                     conn.Open()
@@ -96,9 +99,10 @@ Public Class OrderDetail
                             "'CHAR(13)Sugar: ' + CONVERT(nvarchar(20),m.glucose) + ' g' + " &
                             "'CHAR(13)Fats: ' + CONVERT(nvarchar(20),m.fats) + ' g' + " &
                             "'CHAR(13)Sodium: ' + CONVERT(nvarchar(20),m.sodium) + ' g' " &
-                            ") As describe, o.totalcharges " &
+                            ") As describe, o.totalcharges, os.type as status " &
                 "From batchorders as bo " &
                 "inner join orders as o on o.batchid = bo.batchid " &
+                "inner join orderstatus as os on os.orderStatusID = o.orderStatusID " &
                 "inner join orderdetails as od on od.ordernum = o.ordernum " &
                 "inner join menu as m on m.menuid = od.menuid " &
                 "Where bo.batchid = @batchid"
@@ -133,6 +137,47 @@ Public Class OrderDetail
             End Using
         End Using
         Return dtOrderDetail
+    End Function
+
+    Public Function GetDeliveryOrderHistory()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtHistory = New DataTable()
+
+        Dim Query As String = "SELECT b.email, o.orderNum,r.name as restName, b.address, bo.batchid, os.type as status " &
+                                "from branch as b " &
+                                "inner join restaurant as r on r.restaurantId = b.restaurantId " &
+                                "inner join batchOrders as bo on bo.branchid = b.branchid " &
+                                "inner join orders as o on o.batchid = bo.batchid " &
+                                "inner join orderstatus as os on os.orderStatusID = o.orderStatusID " &
+                                "inner join delivertype as dt on dt.deliveryTypeID = bo.deliveryTypeID " &
+                                "where bo.userID = @userId and bo.deliveryTypeID = 2 "
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@userId", SqlDbType.Int).Value = Me.userId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        dtHistory.Load(reader)
+                    End If
+
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+        Return dtHistory
     End Function
 #End Region
 

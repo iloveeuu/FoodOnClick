@@ -14,20 +14,29 @@ Option Explicit On
 Partial Public Class customerCart
 
     '''<summary>
-    '''lblListOrders control.
+    '''btnProfile control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblListOrders As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents btnProfile As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnPlaceOrder control.
+    '''btnHome control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnPlaceOrder As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents btnHome As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''gvCart control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvCart As Global.System.Web.UI.WebControls.GridView
 End Class
