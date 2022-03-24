@@ -85,8 +85,8 @@
 
         <asp:GridView ID="gvOrders" Width="70%" runat="server" AutoGenerateColumns="false" Height="100%" OnRowCommand="gvOrders_RowCommand">
             <Columns>
-                <asp:BoundField DataField="firstname" HeaderText="Name" HeaderStyle-Width="20%" />
-                <asp:BoundField DataField="lastname" HeaderText="Meals Ordered" HeaderStyle-Width="15%" />
+                <asp:BoundField DataField="firstname" HeaderText="First Name" HeaderStyle-Width="20%" />
+                <asp:BoundField DataField="lastname" HeaderText="Last Name" HeaderStyle-Width="15%" />
                 <asp:BoundField DataField="type" HeaderText="Type" HeaderStyle-Width="10%" />
                 <asp:BoundField DataField="orderdate" HeaderText="Date" DataFormatString="{0:d}" HeaderStyle-Width="25%" />
                 <asp:BoundField DataField="ordertime" HeaderText="Time" HeaderStyle-Width="25%" />
