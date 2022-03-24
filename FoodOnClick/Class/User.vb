@@ -233,7 +233,7 @@ Public Class User
                                  values ('" & txtFirstName & "','" & txtlastName & "',
                                  '" & txtAddress & "', '" & txtContactNo & "', '" & txtGender & "'
                                  ,'" & txtDOB & "', '" & accountType & "'
-                                 ,'" & encrypted & "' ,'" & txtEmail & "', '" & "VETTING" & "')", con)
+                                 ,'" & encrypted & "' ,'" & txtEmail & "', '" & status & "')", con)
 
 
             cmd.ExecuteNonQuery()

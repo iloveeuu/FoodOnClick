@@ -46,9 +46,12 @@
                                                           PostedFile.
                                                           FileName)
 
-            Dim SaveLocation1 As String = Server.MapPath("~/uploadDocuments/") & userId & "_RestaurantLogo_" & fn1
-            Dim SaveLocation2 As String = Server.MapPath("~/uploadDocuments/") & userId & "_Business_" & fn2
-            Dim SaveLocation3 As String = Server.MapPath("~/uploadDocuments/") & userId & "_Halal_" & fn3
+            Dim SaveLocation1 As String = Server.MapPath("./uploadDocuments/") & userId & "_RestaurantLogo_" & fn1
+            Dim SaveLocation2 As String = Server.MapPath("./uploadDocuments/") & userId & "_Business_" & fn2
+            Dim SaveLocation3 As String = Server.MapPath("./uploadDocuments/") & userId & "_Halal_" & fn3
+            Dim upload1 As String = "./uploadDocuments/" & userId & "_RestaurantLogo_" & fn1
+            Dim upload2 As String = "./uploadDocuments/" & userId & "_Business_" & fn2
+            Dim upload3 As String = "./uploadDocuments/" & userId & "_Halal_" & fn3
 
             Try
                 File1.PostedFile.SaveAs(SaveLocation1)
@@ -59,39 +62,38 @@
                 sb.Append("<script type = 'text/javascript'>")
                 sb.Append("window.onload=function(){")
                 sb.Append("alert('")
-                sb.Append(message)
-                sb.Append("')};")
+                sb.Append(Message)
+                sb.Append("');window.location='login.aspx';};")
                 sb.Append("</script>")
                 ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
-                'MsgBox("The files have been uploaded.", MsgBoxStyle.Information, "Success")
                 newRestaurant.insertRestaurantDetails(txtResName.Text.Trim(), txtDescription.Text.Trim())
-                newRestaurant.uploadRestaurantDocuments(SaveLocation1, "Restaurant Logo")
-                newRestaurant.uploadRestaurantDocuments(SaveLocation2, "Business License")
-                newRestaurant.uploadRestaurantDocuments(SaveLocation3, "Halal")
+                newRestaurant.uploadRestaurantDocuments(upload1, "Restaurant Logo")
+                newRestaurant.uploadRestaurantDocuments(upload2, "Business License")
+                newRestaurant.uploadRestaurantDocuments(upload3, "Halal")
             Catch Exc As Exception
                 ''MsgBox("Error: " & Exc.Message)
-                Message = "Error!"
-                Dim sb As New System.Text.StringBuilder()
-                sb.Append("<script type = 'text/javascript'>")
-                sb.Append("window.onload=function(){")
-                sb.Append("alert('")
-                sb.Append(Message)
-                sb.Append("')};")
-                sb.Append("</script>")
-                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+                'Message = "Error!"
+                'Dim sb As New System.Text.StringBuilder()
+                'sb.Append("<script type = 'text/javascript'>")
+                'sb.Append("window.onload=function(){")
+                'sb.Append("alert('")
+                'sb.Append(Message)
+                'sb.Append("')};")
+                'sb.Append("</script>")
+                'ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
             End Try
             Response.Redirect("login.aspx")
         Else
-            'MsgBox("Please Upload All Required Files!", MsgBoxStyle.Critical)
-            Message = "Please Upload All Required Files!."
-            Dim sb As New System.Text.StringBuilder()
-            sb.Append("<script type = 'text/javascript'>")
-            sb.Append("window.onload=function(){")
-            sb.Append("alert('")
-            sb.Append(Message)
-            sb.Append("')};")
-            sb.Append("</script>")
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            ''MsgBox("Please Upload All Required Files!", MsgBoxStyle.Critical)
+            'Message = "Please Upload All Required Files!."
+            'Dim sb As New System.Text.StringBuilder()
+            'sb.Append("<script type = 'text/javascript'>")
+            'sb.Append("window.onload=function(){")
+            'sb.Append("alert('")
+            'sb.Append(Message)
+            'sb.Append("')};")
+            'sb.Append("</script>")
+            'ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
         End If
 
 

@@ -30,9 +30,13 @@ Public Class signUp
             sb.Append("</script>")
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
         Else
-            newUserAdd = newUser.addNewUserAccount(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender, txtDOB.Text.Trim(),
-                     ddlUserType.Text, txtPass.Text.Trim(), txtEmail.Text.Trim(), "Vetting")
-
+            If ddlUserType.Text.Equals("Customer") Or ddlUserType.Text.Equals("Rider") Then
+                newUserAdd = newUser.addNewUserAccount(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender, txtDOB.Text.Trim(),
+                    ddlUserType.Text, txtPass.Text.Trim(), txtEmail.Text.Trim(), "APPROVED")
+            Else
+                newUserAdd = newUser.addNewUserAccount(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender, txtDOB.Text.Trim(),
+                 ddlUserType.Text, txtPass.Text.Trim(), txtEmail.Text.Trim(), "VETTING")
+            End If
             If newUserAdd = False Then
                 message = "User exists"
                 Dim sb As New System.Text.StringBuilder()
@@ -60,7 +64,7 @@ Public Class signUp
                 ElseIf newUserAdd = True Then
                     sendAdminEmail(txtEmail.Text.Trim(), ddlUserType.Text)
 
-                    message = "New user account Created, Please Wait for administrator\'s approval"
+                    message = "New user account Created"
                     Dim sb As New System.Text.StringBuilder()
                     sb.Append("<script type = 'text/javascript'>")
                     sb.Append("window.onload=function(){")
