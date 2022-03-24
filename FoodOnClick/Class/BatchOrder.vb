@@ -11,6 +11,7 @@ Public Class BatchOrder
     Protected iOrderTypeID As Integer
     Protected iDeliveryTypeID As Integer
     Protected sPaymentMethod As String
+    Protected name As String
 
 #Region "Objects"
     Public Property batchId() As Integer
@@ -97,6 +98,9 @@ Public Class BatchOrder
 
     Public Sub New()
     End Sub
+    Public Sub New(ByVal branchid As Integer)
+        Me.iBranchId = branchid
+    End Sub
 
     Public Sub New(ByVal dtOrderDate As Date,
                    ByVal strTime As String, ByVal iBranchId As Integer,
@@ -153,6 +157,75 @@ Public Class BatchOrder
             End Using
         End Using
     End Function
+
+    Public Function GetOrdersPending()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtReservation = New DataTable()
+
+        Dim Query As String = "SELECT u.userid,u.firstName,u.lastName,dt.type,bo.ordertime,bo.orderdate,os.type,o.totalcharges,ot.type,o.orderNum,o.deliveryCharges,bo.batchid from useraccount as u join batchorders as bo on u.userid = bo.userid join deliverType as dt on bo.deliveryTypeID = dt.deliveryTypeID join orderType as ot on bo.orderTypeID = ot.orderTypeID join orders as o on bo.batchid = o.batchid join orderstatus as os on o.orderStatusID = os.orderStatusID where bo.branchid = @branchid and bo.orderTypeID = 11 and o.orderStatusID = 6"
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        dtReservation.Load(reader)
+                    End If
+
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+        Return dtReservation
+    End Function
+
+    Public Function GetOrdersHistory()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtReservation = New DataTable()
+
+        Dim Query As String = "SELECT u.userid,u.firstName,u.lastName,dt.type,bo.ordertime,bo.orderdate,os.type,o.totalcharges,ot.type,o.orderNum,o.deliveryCharges,bo.batchid from useraccount as u join batchorders as bo on u.userid = bo.userid join deliverType as dt on bo.deliveryTypeID = dt.deliveryTypeID join orderType as ot on bo.orderTypeID = ot.orderTypeID join orders as o on bo.batchid = o.batchid join orderstatus as os on o.orderStatusID = os.orderStatusID where bo.branchid = @branchid and bo.orderTypeID = 11 and o.orderStatusID <> 4 and o.orderStatusID <> 6"
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        dtReservation.Load(reader)
+                    End If
+
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+        Return dtReservation
+    End Function
+
 #End Region
 
 End Class

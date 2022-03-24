@@ -99,6 +99,7 @@
                 <asp:TemplateField ShowHeader="false">
                     <ItemTemplate>
                         <asp:Button runat="server" CssClass="btn1" ID="btnApprove" Text="Approve" UseSubmitBehavior="false" Visible='<%# If(Eval("Status").ToString() = "Pending", True, False) %>' CommandName="Approve" CommandArgument='<%#Eval("reservationid")%>' />
+                        <asp:Button runat="server" CssClass="btn1" ID="btnComplete" Text="Complete" UseSubmitBehavior="false" Visible='<%# If(Eval("Status").ToString() = "Approved", True, False) %>' CommandName="Complete" CommandArgument='<%#Eval("reservationid")%>' />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField ShowHeader="false">
@@ -125,6 +126,7 @@
                 <asp:TemplateField ShowHeader="false">
                     <ItemTemplate>
                         <asp:Button runat="server" CssClass="btn1" ID="btnApprove" Text="Approve" UseSubmitBehavior="false" Visible='<%# If(Eval("Status").ToString() = "Pending", True, False) %>' CommandName="Approve" CommandArgument='<%#Eval("reservationid")%>' />
+                        <asp:Button runat="server" CssClass="btn1" ID="btnComplete" Text="Complete" UseSubmitBehavior="false" Visible='<%# If(Eval("Status").ToString() = "Approved", True, False) %>' CommandName="Complete" CommandArgument='<%#Eval("reservationid")%>' />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField ShowHeader="false">
@@ -180,6 +182,9 @@
             </ItemTemplate>
         </asp:Repeater>
         <div class="alignTxtMid">
+            <br />
+            Payment Mode : <asp:Label runat="server" ID="lblPaymentMode"></asp:Label>
+            <br />
             <br />
             Total cost :
                 <asp:Label runat="server" ID="lblTotal"></asp:Label>

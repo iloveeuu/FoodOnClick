@@ -89,7 +89,7 @@
     </form>
 
     <div class="image">
-        <asp:Image ID="Image1"  runat="server" Width="100%" ImageUrl="~/Images/pexels-cottonbro-4604599.jpg" />
+        <asp:Image ID="Image1"  runat="server" Width="100%" ImageUrl="~/Images/Capture.jpg" />
 
         <span class="masterText">Food on Click:<br />FYP-22-S1-20P<br />We are developing an application for food delivery and table reservation</span>
     </div>

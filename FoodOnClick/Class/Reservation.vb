@@ -13,6 +13,8 @@ Public Class Reservation
     Protected int_batchid As Int32
     Protected dec_tempCost As Decimal
     Protected dec_tempTotalCost As Decimal
+    Protected str_tempPaymentType As String
+    Protected dec_tempDeliveryCharges As Decimal
 
 
 #Region "Objects"
@@ -112,6 +114,23 @@ Public Class Reservation
         End Get
         Set(ByVal Value As Decimal)
             dec_tempTotalCost = Value
+        End Set
+    End Property
+    Public Property tempPaymentType() As String
+        Get
+            tempPaymentType = str_tempPaymentType
+        End Get
+        Set(ByVal Value As String)
+            str_tempPaymentType = Value
+        End Set
+    End Property
+
+    Public Property tempDeliveryCharges() As Decimal
+        Get
+            tempDeliveryCharges = dec_tempDeliveryCharges
+        End Get
+        Set(ByVal Value As Decimal)
+            dec_tempDeliveryCharges = Value
         End Set
     End Property
 
@@ -582,11 +601,55 @@ Public Class Reservation
         Return obj
     End Function
 
+    Public Function RetrieveOrderEmail() As Reservation
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "SELECT uc.firstName,uc.lastName,uc.phoneNum,uc.email,b.city,b.postalcode,b.address,rc.name,rc.description,bo.paymentMethod,bo.ordertime,bo.orderdate,dt.type" &
+            " from useraccount as uc join batchorders as bo on uc.userid = bo.userid join branch as b on b.branchid = bo.branchid" &
+            " join restaurant as rc on rc.restaurantid = b.restaurantid join orders as o on bo.batchid = o.batchid"&" join deliverType as dt on bo.deliveryTypeID = dt.deliveryTypeID where bo.batchid = @batchid"
+        Dim obj As Reservation = New Reservation()
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.reservationId
+
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        obj.firstName = reader("firstname")
+                        obj.lastName = reader("lastname")
+                        obj.phone = reader("phoneNum")
+                        obj.email = reader("email")
+                        obj.preordermeals = reader("paymentMethod")
+                        obj.dt_date = reader("orderdate")
+                        obj.strtime = reader("ordertime").ToString()
+                        obj.status = reader("type")
+                        obj.branchCity = reader("city")
+                        obj.branchPostalcode = reader("postalcode")
+                        obj.branchAddress = reader("address")
+                        obj.restaurantName = reader("name")
+                        obj.restaurantDescription = reader("description")
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return obj
+    End Function
+
     Public Function RetrievePreOrderMenu() As List(Of Reservation)
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "SELECT od.orderQuantity, m.name, m.cost, o.totalcharges,o.batchid,o.orderstatusid from orders As o" &
+        Dim Query As String = "SELECT od.orderQuantity, m.name, m.cost, o.totalcharges,o.batchid,o.orderstatusid,bo.paymentMethod from orders As o" &
                               " join orderdetails As od On o.orderNum = od.orderNum" &
-                              " join menu As m On m.menuid = od.menuid where o.batchID = @batchid"
+                              " join menu As m On m.menuid = od.menuid" &
+                              " join batchOrders as bo on o.batchid=bo.batchid where o.batchID = @batchid"
         Dim obj As List(Of Reservation) = New List(Of Reservation)
         Using conn As New SqlConnection(connectionString)
 
@@ -611,6 +674,7 @@ Public Class Reservation
                         tempobj.pax = reader("orderQuantity")
                         tempobj.tempCost = reader("cost")
                         tempobj.tempTotalCost = reader("totalcharges")
+                        tempobj.tempPaymentType = reader("paymentMethod").ToString()
                         obj.Add(tempobj)
                     End While
                 Catch ex As SqlException
@@ -619,4 +683,46 @@ Public Class Reservation
         End Using
         Return obj
     End Function
+
+    Public Function RetrieveOrderMenu() As List(Of Reservation)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "SELECT od.orderQuantity, m.name, m.cost, o.totalcharges,o.batchid,o.orderstatusid,o.deliveryCharges,bo.paymentMethod from orders As o" &
+                              " join orderdetails As od On o.orderNum = od.orderNum" &
+                              " join menu As m On m.menuid = od.menuid" &
+                              " join batchOrders as bo on o.batchid=bo.batchid where o.batchID = @batchid"
+        Dim obj As List(Of Reservation) = New List(Of Reservation)
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.userid
+
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        Dim tempobj As Reservation = New Reservation
+                        tempobj.batchid = reader("batchid")
+                        tempobj.userid = reader("orderstatusid")
+                        tempobj.restaurantName = reader("name")
+                        tempobj.pax = reader("orderQuantity")
+                        tempobj.tempCost = reader("cost")
+                        tempobj.tempTotalCost = reader("totalcharges")
+                        tempobj.tempPaymentType = reader("paymentMethod").ToString()
+                        tempobj.tempDeliveryCharges = reader("deliveryCharges")
+                        obj.Add(tempobj)
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return obj
+    End Function
+
 End Class

@@ -23,9 +23,9 @@
             </td>
         </tr>
         <tr>
-            <td><%--<asp:Button runat="server" ID="btnAnnouncements" Text="Manage Announcements" Width="100%" />--%></td>
+            <td><asp:Button runat="server" ID="btnAnnouncements" Text="Manage Announcements" Width="100%" /></td>
             <td><asp:Button runat="server" ID="btnReservations" Text="Manage Reservations" Width="100%" OnClick="btnReservations_Click" /></td>
-            <td><asp:Button runat="server" ID="btnOrders" Text="Manage Orders" Width="100%" /></td>
+            <td><asp:Button runat="server" ID="btnOrders" Text="Manage Orders" Width="100%" OnClick="btnOrders_Click" /></td>
             <td><asp:Button runat="server" ID="btnReviews" Text="View reviews" Width="100%" /></td>
             
         </tr>

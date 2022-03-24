@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class branchReservation
+Partial Public Class branchOrder
 
     '''<summary>
     '''btnBack control.
@@ -23,31 +23,22 @@ Partial Public Class branchReservation
     Protected WithEvents btnBack As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnToday control.
+    '''btnPending control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnToday As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnPending As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnUpcoming control.
+    '''btnCompleted control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnUpcoming As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnHistory control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnHistory As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnCompleted As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''lblTitle control.
@@ -59,31 +50,13 @@ Partial Public Class branchReservation
     Protected WithEvents lblTitle As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''gvReservationToday control.
+    '''gvOrders control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents gvReservationToday As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
-    '''gvReservationUpcoming control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents gvReservationUpcoming As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
-    '''gvReservationHistory control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents gvReservationHistory As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents gvOrders As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''lblNothing control.
@@ -131,13 +104,13 @@ Partial Public Class branchReservation
     Protected WithEvents hfstatus As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''rptMenuOrdered control.
+    '''rptOrders control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rptMenuOrdered As Global.System.Web.UI.WebControls.Repeater
+    Protected WithEvents rptOrders As Global.System.Web.UI.WebControls.Repeater
 
     '''<summary>
     '''lblPaymentMode control.
@@ -149,6 +122,15 @@ Partial Public Class branchReservation
     Protected WithEvents lblPaymentMode As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lblDeliveryCharges control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDeliveryCharges As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lblTotal control.
     '''</summary>
     '''<remarks>
@@ -158,20 +140,20 @@ Partial Public Class branchReservation
     Protected WithEvents lblTotal As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btnApproveMenu control.
+    '''btnAcceptOrder control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnApproveMenu As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnAcceptOrder As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnRejectMenu control.
+    '''btnRejectOrder control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnRejectMenu As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnRejectOrder As Global.System.Web.UI.WebControls.Button
 End Class

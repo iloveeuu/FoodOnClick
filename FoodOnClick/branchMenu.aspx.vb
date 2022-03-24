@@ -57,4 +57,8 @@
     Protected Sub btnHome_Click(sender As Object, e As EventArgs)
         Response.Redirect("branch.aspx")
     End Sub
+
+    Protected Sub btnOrders_Click(sender As Object, e As EventArgs)
+        Response.Redirect("branchOrder.aspx")
+    End Sub
 End Class

@@ -111,6 +111,19 @@
             popup.Style.Add("display", "block")
             btnApproveMenu.Enabled = True
             btnRejectMenu.Enabled = True
+        ElseIf (e.CommandName = "Complete") Then
+            Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument), "Completed")
+            Dim userInfo As Reservation = clsReservation.RetrieveReservationEmail()
+            If (clsReservation.UpdateReservation() = "True") Then
+                If userInfo.preordermeals = "Yes" Then
+                    Dim batchid As Integer = clsReservation.RetrieveBatchOrderIdByReservationID()
+                    clsReservation = New Reservation(batchid, "9")
+                    clsReservation.UpdateReservationOrder()
+                    sendEmail(userInfo, "Completed", 4)
+                Else
+                    sendEmail(userInfo, "Completed", 3)
+                End If
+            End If
         End If
         binddataToday()
     End Sub
@@ -149,6 +162,32 @@
         Dim body As String = ""
         Dim message As String = ""
         Select Case confirmation
+            Case 4
+                body = "<html> " &
+                    "<body>" &
+                    "<p>Dear " & info.firstName & " " & info.lastName & ",</p>" &
+                    "<p>At " & info.branchAddress & ",</p>" &
+                    "<br/><br/>" &
+                    "<p>Your reservation has been " & status & " for " & info.firstName & " " & info.lastName & " at " & info.dtdate & " time " & info.strtime & " for " & info.pax & " pax </p>" &
+                    "<p>We hope to see you again.</p>" &
+                    "<br/><br/>" &
+                    "<p>Regards,</p>" &
+                    "<p>" & info.restaurantName & " - " & info.branchCity & "</p>" &
+                    "</body>" &
+                    "</html>"
+            Case 3
+                body = "<html> " &
+                    "<body>" &
+                    "<p>Dear " & info.firstName & " " & info.lastName & ",</p>" &
+                    "<p>At " & info.branchAddress & ",</p>" &
+                    "<br/><br/>" &
+                    "<p>Your reservation has been " & status & " for " & info.firstName & " " & info.lastName & " at " & info.dtdate & " time " & info.strtime & " for " & info.pax & " pax </p>" &
+                    "<p>We hope to see you again.</p>" &
+                    "<br/><br/>" &
+                    "<p>Regards,</p>" &
+                    "<p>" & info.restaurantName & " - " & info.branchCity & "</p>" &
+                    "</body>" &
+                    "</html>"
             Case 2 'If preoder = "Yes"'
                 body = "<html> " &
                     "<body>" &
@@ -193,7 +232,11 @@
         Dim smtp As SMTP = New SMTP()
         Dim email() As String = {info.email}
         smtp.SendMail(email, subject, body, Nothing, True)
-        message = "Reservation have been " & status
+        If (confirmation = 4) Then
+            message = "Payment has been made.\r\nReservation have been " & status
+        Else
+            message = "Reservation have been " & status
+        End If
         Dim sb As New System.Text.StringBuilder()
         sb.Append("<script type = 'text/javascript'>")
         sb.Append("window.onload=function(){")
@@ -261,6 +304,19 @@
             popup.Style.Add("display", "block")
             btnApproveMenu.Enabled = True
             btnRejectMenu.Enabled = True
+        ElseIf (e.CommandName = "Complete") Then
+            Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(e.CommandArgument), "Completed")
+            Dim userInfo As Reservation = clsReservation.RetrieveReservationEmail()
+            If (clsReservation.UpdateReservation() = "True") Then
+                If userInfo.preordermeals = "Yes" Then
+                    Dim batchid As Integer = clsReservation.RetrieveBatchOrderIdByReservationID()
+                    clsReservation = New Reservation(batchid, "9")
+                    clsReservation.UpdateReservationOrder()
+                    sendEmail(userInfo, "Completed", 4)
+                Else
+                    sendEmail(userInfo, "Completed", 3)
+                End If
+            End If
         End If
         binddataUpcoming()
     End Sub
@@ -276,6 +332,7 @@
             Dim menuQuantity As String = DataBinder.Eval(e.Item.DataItem, "pax").ToString()
             Dim singleCost As Decimal = DataBinder.Eval(e.Item.DataItem, "tempCost")
             Dim totalCost As Decimal = DataBinder.Eval(e.Item.DataItem, "tempTotalCost")
+            Dim paymentMode As String = DataBinder.Eval(e.Item.DataItem, "tempPaymentType")
             Dim orderStatus As Integer = DataBinder.Eval(e.Item.DataItem, "userid")
             Dim name As Literal = (TryCast(e.Item.FindControl("litName"), Literal))
             Dim quantity As Literal = (TryCast(e.Item.FindControl("litQuantity"), Literal))
@@ -283,6 +340,7 @@
             name.Text = menuName
             quantity.Text = "x" & menuQuantity
             cost.Text = "$" & singleCost
+            lblPaymentMode.Text = paymentMode
             lblTotal.Text = "$" & totalCost
             If (orderStatus = 6) Then
                 btnApproveMenu.Visible = True
