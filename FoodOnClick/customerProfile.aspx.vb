@@ -9,6 +9,7 @@
             Else
                 If (Session("type") = "Restaurant") Then
                     btnHistory.Visible = False
+                    btnCart.Visible = False
                 End If
                 DataBind()
             End If
