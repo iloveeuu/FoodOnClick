@@ -119,7 +119,7 @@
     </table>
     <a runat="server" id="my_popup" class="popup"></a>
     <div runat="server" id="popup" class="popup">
-        <h3>Menu preordered</h3>
+        <h3>Menu order</h3>
         <asp:HiddenField runat="server" ID="hfbatch" />
         <asp:HiddenField runat="server" ID="hfstatus" />
         <asp:Repeater runat="server" ID="rptOrders"  OnItemDataBound="rptOrders_ItemDataBound">

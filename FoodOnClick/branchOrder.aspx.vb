@@ -23,7 +23,7 @@
         binddataHistory()
     End Sub
     Protected Sub binddataHistory()
-        lblTitle.Text = "Completed"
+        lblTitle.Text = "History"
         Dim clsBatchOrder As BatchOrder = New BatchOrder(Convert.ToInt32(Session("branchid")))
         gvOrders.DataSource = clsBatchOrder.GetOrdersHistory()
         gvOrders.DataBind()
