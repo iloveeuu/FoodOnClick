@@ -86,19 +86,6 @@ Public Class adminstratorManageRegistrations_aspxt
 
 
         Else
-
-
-            Message = "Congraulation, you have cleared all Pending Approvals"
-            Dim sb1 As New System.Text.StringBuilder()
-            sb1.Append("<script type='text/javascript'>")
-            sb1.Append("window.onload=function(){")
-            sb1.Append("alert('")
-            sb1.Append(Message)
-            sb1.Append("');window.location='adminstratorManageRegistrations.aspx';};")
-            sb1.Append("</script>")
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb1.ToString())
-
-
             totalPendingCase.Text = 0
             document_restaurantLogo.Text = ""
             document_businessLicense.Text = ""
