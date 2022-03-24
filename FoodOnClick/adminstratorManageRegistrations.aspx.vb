@@ -18,7 +18,7 @@ Public Class adminstratorManageRegistrations_aspxt
 
 
 
-        con.ConnectionString = "Data Source=foodonclick.mssql.somee.com;Initial Catalog=foodonclick;User ID=fypfoodonclick_SQLLogin_1;Password=eeq5c9sxpx;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+        con.ConnectionString = "workstation id=foodonclick2.mssql.somee.com;packet size=4096;user id=fypfoodonclick_SQLLogin_1;pwd=eeq5c9sxpx;data source=foodonclick2.mssql.somee.com;persist security info=False;initial catalog=foodonclick2"
         con.Open()
         cmd.Connection = con
         cmd.CommandText = "SELECT * FROM dbo.document join dbo.UserAccount ON dbo.UserAccount.userid=dbo.document.userid where dbo.UserAccount.status='VETTING'"
@@ -86,19 +86,6 @@ Public Class adminstratorManageRegistrations_aspxt
 
 
         Else
-
-
-            Message = "Congraulation, you have cleared all Pending Approvals"
-            Dim sb1 As New System.Text.StringBuilder()
-            sb1.Append("<script type='text/javascript'>")
-            sb1.Append("window.onload=function(){")
-            sb1.Append("alert('")
-            sb1.Append(Message)
-            sb1.Append("');window.location='adminstratorManageRegistrations.aspx';};")
-            sb1.Append("</script>")
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb1.ToString())
-
-
             totalPendingCase.Text = 0
             document_restaurantLogo.Text = ""
             document_businessLicense.Text = ""
@@ -117,7 +104,7 @@ Public Class adminstratorManageRegistrations_aspxt
         Dim message2 As String
         Dim message3 As String
 
-        con.ConnectionString = "Data Source=foodonclick.mssql.somee.com;Initial Catalog=foodonclick;User ID=fypfoodonclick_SQLLogin_1;Password=eeq5c9sxpx;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+        con.ConnectionString = "workstation id=foodonclick2.mssql.somee.com;packet size=4096;user id=fypfoodonclick_SQLLogin_1;pwd=eeq5c9sxpx;data source=foodonclick2.mssql.somee.com;persist security info=False;initial catalog=foodonclick2"
         con.Open()
         cmd.Connection = con
         cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.status='APPROVED' WHERE userid=@userID;"
@@ -183,7 +170,7 @@ Public Class adminstratorManageRegistrations_aspxt
         Dim message3 As String
 
 
-        con.ConnectionString = "Data Source=foodonclick.mssql.somee.com;Initial Catalog=foodonclick;User ID=fypfoodonclick_SQLLogin_1;Password=eeq5c9sxpx;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+        con.ConnectionString = "workstation id=foodonclick2.mssql.somee.com;packet size=4096;user id=fypfoodonclick_SQLLogin_1;pwd=eeq5c9sxpx;data source=foodonclick2.mssql.somee.com;persist security info=False;initial catalog=foodonclick2"
         con.Open()
         cmd.Connection = con
         cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.status='REJECTED' WHERE userid=@userID;"
