@@ -642,9 +642,10 @@ Public Class Menu
                             "r.name Like (@restaurant_name) AND " &
                             "c.foodtype Like @cuisine_type AND " &
                             "ft.type like (@food_type) AND " &
+                            "b.reservation = 'Allow' " &
                             "(b.halal like @halal) "
 
-        'b.allowreservation = 'Yes' AND 
+        ' AND 
 
         '"SELECT r.restaurantID, ua.firstname, ua.email, b.branchid, r.name as restName, b.address, ISNULL(m.name,'') as dishName, b.halal from branch as b " &
         '                    "inner join restaurant as r on r.restaurantId = b.restaurantId " &
