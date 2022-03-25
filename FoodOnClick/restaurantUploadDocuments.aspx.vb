@@ -82,7 +82,7 @@
                 'sb.Append("</script>")
                 'ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
             End Try
-            Response.Redirect("login.aspx")
+            'Response.Redirect("login.aspx")
         Else
             ''MsgBox("Please Upload All Required Files!", MsgBoxStyle.Critical)
             'Message = "Please Upload All Required Files!."

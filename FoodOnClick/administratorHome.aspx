@@ -21,11 +21,11 @@
         </table>
 
         <table>
-            <tr>
+<%--            <tr>
                 <td>
                     <asp:button  runat="server" ID="dashBoard" Text="Dashboard"/>
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td>
                     <asp:button runat="server" ID="manageApproval" Text="Manage Registrations"/>    

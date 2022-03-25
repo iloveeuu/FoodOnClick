@@ -68,12 +68,12 @@
                     <asp:Button ID="btnUploadDocuments"  runat="server" Text="Submit" Style ="width: 100%" />
                 </td>
             </tr>
-            <tr>
+<%--            <tr>
                 <td colspan="2">
                     <asp:Button ID="cancelBtn"  runat="server" Text="Cancel" Style ="width: 100%" />
                 </td>
                 <td></td>
-            </tr>
+            </tr>--%>
         
             <%--<tr>
 

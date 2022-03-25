@@ -25,7 +25,7 @@
         Dim data As Customer = customer.GetCustomerDetail(Session("userid"))
         Dim dtDate As Date
 
-        lblEmail.Text = Session("email")
+        lblEmail.Text = data.email
         txtFirstName.Text = data.firstName
         txtLastName.Text = data.lastName
         txtPhone.Text = data.phone

@@ -119,7 +119,7 @@
             Next
             menuBody += "<p>Payment method: " & menu(0).tempPaymentType & "</p>"
             menuBody += "<p>Delivery charge: " & menu(0).tempDeliveryCharges & "</p>"
-            totalCost = menu(0).tempDeliveryCharges + menu(0).tempDeliveryCharges
+            totalCost = menu(0).tempDeliveryCharges + menu(0).tempTotalCost
             menuBody += "<p>Total cost: " & totalCost & "</p>"
         End If
         Select Case confirmation
