@@ -250,7 +250,7 @@ Public Class ShoppingCartDetail
 
         Dim dtData = New DataTable()
 
-        Dim Query As String = "SELECT b.branchid, (r.name + ' - ' + b.city) As restName, b.address, scm.menuid, (sc.type + ' ID: ' + CAST(sc.cartId AS NVARCHAR(20))) as type, sc.totalPrice, m.name as dishName, scm.price, m.cost as unitprice, scm.quantity, scm.cartId, b.email " &
+        Dim Query As String = "SELECT b.branchid, (r.name + ' - ' + b.city) As restName, b.address, scm.menuid, sc.type, sc.totalPrice, m.name as dishName, scm.price, m.cost as unitprice, scm.quantity, scm.cartId, b.email " &
                                 "from branch as b " &
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join menu as m on m.branchId = b.branchId " &
