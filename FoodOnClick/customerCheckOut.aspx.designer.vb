@@ -131,15 +131,6 @@ Partial Public Class customerCheckOut
     Protected WithEvents ddlPayment As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''btnCancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''btnOrder control.
     '''</summary>
     '''<remarks>
@@ -147,4 +138,13 @@ Partial Public Class customerCheckOut
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnOrder As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
 End Class

@@ -38,9 +38,11 @@
 
         Dim dNow As Date = Date.Now
 
+        Dim serverDate As Date = dNow.AddHours(1)
+
         Dim od As OrderDetail = New OrderDetail()
-        od.orderDate = dNow
-        od.orderTime = dNow.ToString("H:mm")
+        od.orderDate = serverDate
+        od.orderTime = serverDate.ToString("H:mm")
         od.userId = Session("userid")
         od.branchId = dtTable.Rows(0)(2)
         od.orderTypeID = 11
