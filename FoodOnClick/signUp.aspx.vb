@@ -84,14 +84,17 @@ Public Class signUp
     Protected Sub sendAdminEmail(useremail, usertype)
 
         Dim subject As String = "New User (" & useremail & " " & usertype & ", )"
-
+        Dim restaurantBody As String = ""
+        If (usertype = "Restaurant") Then
+            restaurantBody = "<p>Please login to approve/reject user access</p>"
+        End If
         Dim body As String = "<html> " &
                             "<body>" &
-                            "<p>Dear System Administrato</p>" &
+                            "<p>Dear System Administrator</p>" &
                             "<p>New User Alert</p>" &
                             "<br/>" &
                             "<p>You have new user " & useremail & " " & usertype & " </p>" &
-                            "<p>Please login to approve/reject user access</p>" &
+                            restaurantBody &
                             "<br/>" &
                             "<p>Regards,</p>" &
                             "<p>Food on Click</p>" &

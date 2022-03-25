@@ -19,6 +19,14 @@
             If Session("type") = "Restaurant" Then
                 Response.Redirect("customerProfile.aspx")
             End If
+            If Session("type") = "Administrator" Then
+                Response.Redirect("customerProfile.aspx")
+            End If
+            If Convert.ToInt32(Session("userid")) = 0 Then
+                Response.Redirect("branchMenu.aspx")
+            End If
+        Else
+            Response.Redirect("login.aspx")
         End If
     End Sub
 
@@ -28,5 +36,24 @@
         lblLogOut.Visible = False
         Response.Redirect("login.aspx")
 
+    End Sub
+
+    Protected Sub ibtnHome_Click(sender As Object, e As ImageClickEventArgs)
+        If (Not Session("userid") Is Nothing) Then
+            If Session("type") = "Customer" Then
+                Response.Redirect("customerHome.aspx")
+            End If
+            If Session("type") = "Restaurant" Then
+                Response.Redirect("branch.aspx")
+            End If
+            If Session("type") = "Administrator" Then
+                Response.Redirect("administratorHome.aspx")
+            End If
+            If Convert.ToInt32(Session("userid")) = 0 Then
+                Response.Redirect("branchMenu.aspx")
+            End If
+        Else
+            Response.Redirect("login.aspx")
+        End If
     End Sub
 End Class

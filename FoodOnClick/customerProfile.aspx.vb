@@ -11,6 +11,10 @@
                     btnHistory.Visible = False
                     btnCart.Visible = False
                 End If
+                If (Session("type") = "Administrator") Then
+                    btnHistory.Visible = False
+                    btnCart.Visible = False
+                End If
                 DataBind()
             End If
         End If
@@ -46,6 +50,8 @@
             Response.Redirect("branch.aspx")
         ElseIf Session("type") = "Customer" Then
             Response.Redirect("customerHome.aspx")
+        ElseIf Session("type") = "Administrator" Then
+            Response.Redirect("administratorHome.aspx")
         End If
 
     End Sub
