@@ -18,7 +18,8 @@
     <br/>
     <div style="overflow-x:auto;">
         <%--CssClass="table table-responsive table-striped"--%>
-		<asp:GridView ID="gvCart" Width="70%" runat="server" OnRowCommand="gvCart_RowCommand" OnRowDataBound="gvCart_RowDataBound" AutoGenerateColumns="false" Height="100%" >
+        <%--OnRowDataBound="gvCart_RowDataBound"--%>
+		<asp:GridView ID="gvCart" Width="70%" runat="server" OnRowCommand="gvCart_RowCommand" AutoGenerateColumns="false" Height="100%" >
                 <Columns>
                     <asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="10%" />
                     <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="20%" />

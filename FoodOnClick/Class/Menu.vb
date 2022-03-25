@@ -637,13 +637,12 @@ Public Class Menu
                             "(m.cost >= @minPrice) AND m.cost <= IIF(@maxPrice = '0', (m.cost), (@maxPrice)) " &
                             "inner join MenuStatus As ms On m.Statusid = ms.menu_status_id And ms.type = 'Available' " &
                             "Left Join FoodType As ft On m.foodtypeID = ft.foodtypeID " &
-                            "WHERE r.status = 'IN BUSINESS' AND b.status = 'IN BUSINESS' And " &
+                            "WHERE b.reservation = 'Allowed' and r.status = 'IN BUSINESS' AND b.status = 'IN BUSINESS' And " &
                             "(CONCAT(b.address, ' ', b.city, ' ', b.postalcode) LIKE @location) AND " &
                             "r.name Like (@restaurant_name) AND " &
                             "c.foodtype Like @cuisine_type AND " &
                             "ft.type like (@food_type) AND " &
-                            "b.reservation = 'Allow' " &
-                            "(b.halal like @halal) "
+                            "(b.halal like @halal) Order By r.restaurantID, b.branchid"
 
         ' AND 
 
@@ -748,7 +747,7 @@ Public Class Menu
                             "r.name Like (@restaurant_name) AND " &
                             "c.foodtype Like @cuisine_type AND " &
                             "ft.type like (@food_type) AND " &
-                            "(b.halal like @halal) "
+                            "(b.halal like @halal) Order By r.restaurantID, b.branchid"
 
         Dim sLocation As String
         Dim sRestName As String

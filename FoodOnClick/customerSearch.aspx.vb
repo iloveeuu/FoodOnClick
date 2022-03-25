@@ -59,6 +59,7 @@
             gvSearch.DataSource = dtSearch
             gvSearch.DataBind()
 
+            Merge(gvSearch.Rows.Count())
         ElseIf Session("orderType") = "delivery" Then
             Dim clsMenu As Menu = New Menu()
             dtSearch = clsMenu.GetSearchDelivery(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedItem.ToString(), ddlType.SelectedItem.ToString(),
@@ -66,6 +67,8 @@
 
             gvSearch.DataSource = dtSearch
             gvSearch.DataBind()
+
+            Merge(gvSearch.Rows.Count())
         End If
 
     End Sub
@@ -207,19 +210,61 @@
             End If
 
             'merge rows
-            For i As Integer = gvSearch.Rows.Count - 1 To 1 Step -1
-                Dim row As GridViewRow = gvSearch.Rows(i)
-                Dim previousRow As GridViewRow = gvSearch.Rows(i - 1)
+            'For i As Integer = gvSearch.Rows.Count - 1 To 1 Step -1
+            '    Dim row As GridViewRow = gvSearch.Rows(i)
+            '    Dim previousRow As GridViewRow = gvSearch.Rows(i - 1)
 
-                'hBranchId = gvSearch.Rows(i).FindControl("hfBranchId")
-                'sBranchID = hBranchId.Value.ToString()
+            '    'hBranchId = gvSearch.Rows(i).FindControl("hfBranchId")
+            '    'sBranchID = hBranchId.Value.ToString()
 
-                'hPrevBranchId = gvSearch.Rows(i - 1).FindControl("hfBranchId")
-                'sPreviousBranchID = hPrevBranchId.Value.ToString()
+            '    'hPrevBranchId = gvSearch.Rows(i - 1).FindControl("hfBranchId")
+            '    'sPreviousBranchID = hPrevBranchId.Value.ToString()
 
 
-                'merge only if branch id same
-                'If sBranchID = sPreviousBranchID Then
+            '    'merge only if branch id same
+            '    'If sBranchID = sPreviousBranchID Then
+            '    For j As Integer = 0 To row.Cells.Count - 1
+            '        If row.Cells(j).Text = previousRow.Cells(j).Text Then
+
+            '            If row.Cells(j).RowSpan = 0 Then
+            '                previousRow.Cells(j).RowSpan += 2
+            '            Else
+            '                previousRow.Cells(j).RowSpan = row.Cells(j).RowSpan + 1
+            '            End If
+            '            row.Cells(j).Visible = False
+            '        End If
+
+            '    Next
+            '    'End If
+            'Next
+        End If
+
+    End Sub
+
+    Protected Sub btnCart_Click(sender As Object, e As EventArgs)
+        Session("userid") = Session("userid")
+        Session("email") = Session("email")
+        Response.Redirect("customerCart.aspx")
+    End Sub
+
+    Protected Sub Merge(ByVal rowCount As Integer)
+        Dim hBranchId As HiddenField = Nothing
+        Dim hPrevBranchId As HiddenField = Nothing
+        Dim sBranchID As String = ""
+        Dim sPreviousBranchID As String = ""
+
+        For i As Integer = rowCount - 1 To 1 Step -1
+            Dim row As GridViewRow = gvSearch.Rows(i)
+            Dim previousRow As GridViewRow = gvSearch.Rows(i - 1)
+
+            hBranchId = gvSearch.Rows(i).FindControl("hfBranchId")
+            sBranchID = hBranchId.Value.ToString()
+
+            hPrevBranchId = gvSearch.Rows(i - 1).FindControl("hfBranchId")
+            sPreviousBranchID = hPrevBranchId.Value.ToString()
+
+            If sBranchID = sPreviousBranchID Then
+
                 For j As Integer = 0 To row.Cells.Count - 1
                     If row.Cells(j).Text = previousRow.Cells(j).Text Then
 
@@ -230,16 +275,9 @@
                         End If
                         row.Cells(j).Visible = False
                     End If
+
                 Next
-                'End If
-            Next
-        End If
-
-    End Sub
-
-    Protected Sub btnCart_Click(sender As Object, e As EventArgs)
-        Session("userid") = Session("userid")
-        Session("email") = Session("email")
-        Response.Redirect("customerCart.aspx")
+            End If
+        Next
     End Sub
 End Class

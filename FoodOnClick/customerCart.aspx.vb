@@ -20,13 +20,12 @@
 
         dtData = clsCart.GetAllCartByUserID()
 
-
-        ViewState("rowCount") = dtData.Rows.Count()
+        'ViewState("rowCount") = dtData.Rows.Count()
 
         gvCart.DataSource = dtData
         gvCart.DataBind()
 
-
+        Merge(dtData.Rows.Count())
     End Sub
 
     Protected Sub gvCart_RowCommand(sender As Object, e As GridViewCommandEventArgs)
@@ -180,19 +179,36 @@
         Response.Redirect("customerHome.aspx")
     End Sub
 
-    'Protected Sub MergeIfDataOnly2RowsAndSameRestaurant()
-    '    Dim row As GridViewRow = gvCart.Rows(0)
-    '    Dim previousRow As GridViewRow = gvCart.Rows(1)
-    '    For j As Integer = 0 To row.Cells.Count - 1
-    '        If row.Cells(j).Text = previousRow.Cells(j).Text And j <> 7 And j <> 6 Then
 
-    '            If row.Cells(j).RowSpan = 0 Then
-    '                previousRow.Cells(j).RowSpan += 2
-    '            Else
-    '                previousRow.Cells(j).RowSpan = row.Cells(j).RowSpan + 1
-    '            End If
-    '            row.Cells(j).Visible = False
-    '        End If
-    '    Next
-    'End Sub
+    Protected Sub Merge(ByVal rowCount As Integer)
+        Dim hCartId As HiddenField = Nothing
+        Dim hPrevCartId As HiddenField = Nothing
+        Dim iCartID As Integer = 0
+        Dim iPreviousCatID As String = 0
+
+        For i As Integer = rowCount - 1 To 1 Step -1
+            Dim row As GridViewRow = gvCart.Rows(i)
+            Dim previousRow As GridViewRow = gvCart.Rows(i - 1)
+
+            hCartId = gvCart.Rows(i).FindControl("hfCartId")
+            iCartID = hCartId.Value.ToString()
+
+            hPrevCartId = gvCart.Rows(i - 1).FindControl("hfCartId")
+            iPreviousCatID = hPrevCartId.Value.ToString()
+
+            If iCartID = iPreviousCatID Then
+                For j As Integer = 0 To row.Cells.Count - 1
+                    If row.Cells(j).Text = previousRow.Cells(j).Text And j <> 7 And j <> 6 Then
+
+                        If row.Cells(j).RowSpan = 0 Then
+                            previousRow.Cells(j).RowSpan += 2
+                        Else
+                            previousRow.Cells(j).RowSpan = row.Cells(j).RowSpan + 1
+                        End If
+                        row.Cells(j).Visible = False
+                    End If
+                Next
+            End If
+        Next
+    End Sub
 End Class

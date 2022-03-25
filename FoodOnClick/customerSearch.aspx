@@ -131,7 +131,7 @@
 	<br />
 	<br />
 	<div style="overflow-x:auto;">
-		<asp:GridView ID="gvSearch" Class="gvSearch" OnRowCommand="gvSearch_RowCommand" OnRowDataBound="gvSearch_RowDataBound" runat="server" AutoGenerateColumns="false" Height="100%">
+		<asp:GridView ID="gvSearch" Class="gvSearch" OnRowCommand="gvSearch_RowCommand" OnRowDataBound="gvSearch_RowDataBound"  runat="server" AutoGenerateColumns="false" Height="100%">
                 <Columns>
                     <asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="20%" />
                     <asp:BoundField DataField="halal" HeaderText="Halal" HeaderStyle-Width="5%" />
