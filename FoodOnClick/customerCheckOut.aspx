@@ -86,10 +86,10 @@
         <table width="100%">
 		<tr>
 			<td>
-				<asp:Button ID="btnCancel" Width="50%" Height="80%" runat="server" OnClick="btnCancel_Click" Text="Cancel" />
-				<br />
-				<br />
 				<asp:Button ID="btnOrder" Width="50%" Height="80%" runat="server" OnClick="btnOrder_Click" Text="Confirm Order" />
+				<br />
+				<br />
+				<asp:Button ID="btnCancel" Width="50%" Height="80%" runat="server" OnClick="btnCancel_Click" Text="Back" />
 			</td>
 		</tr>
 		</table>
