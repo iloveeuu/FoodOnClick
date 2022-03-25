@@ -86,7 +86,7 @@
             <tr>
                 <td colspan=" 2">
                     <br />
-                    <asp:Button ID="btnSignUp" runat="server" Text="SignUp" Style="width: 100%" />
+                    <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" Style="width: 100%" />
                 </td>
             </tr>
             <tr>

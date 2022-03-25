@@ -135,6 +135,7 @@ Public Class Customer
                     While reader.Read()
                         returnObject.str_firstName = reader("firstName")
                         returnObject.str_lastName = reader("lastName")
+                        returnObject.str_email = reader("email")
                         returnObject.str_address = reader("address")
                         returnObject.str_phone = reader("phoneNum")
                         returnObject.str_gender = reader("gender")

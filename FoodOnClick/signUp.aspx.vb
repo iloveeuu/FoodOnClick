@@ -50,16 +50,16 @@ Public Class signUp
             Else
                 If newUserAdd = True And ddlUserType.Text.Equals("Restaurant") Then
                     sendAdminEmail(txtEmail.Text.Trim(), ddlUserType.Text)
-                    message = "New user account Created, Please Wait for administrator\'s approval"
-                    Dim sb As New System.Text.StringBuilder()
-                    sb.Append("<script type = 'text/javascript'>")
-                    sb.Append("window.onload=function(){")
-                    sb.Append("alert('")
-                    sb.Append(message)
-                    sb.Append("');window.location='restaurantUploadDocuments.aspx';};")
-                    sb.Append("</script>")
-                    ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
-                    'Response.Redirect("restaurantUploadDocuments.aspx")
+                    'message = "New user account Created, Please Wait for administrator\'s approval"
+                    'Dim sb As New System.Text.StringBuilder()
+                    'sb.Append("<script type = 'text/javascript'>")
+                    'sb.Append("window.onload=function(){")
+                    'sb.Append("alert('")
+                    'sb.Append(message)
+                    'sb.Append("');window.location='restaurantUploadDocuments.aspx';};")
+                    'sb.Append("</script>")
+                    'ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+                    Response.Redirect("restaurantUploadDocuments.aspx")
 
                 ElseIf newUserAdd = True Then
                     sendAdminEmail(txtEmail.Text.Trim(), ddlUserType.Text)
