@@ -628,7 +628,7 @@ Public Class Menu
 
         Dim dtSearch = New DataTable()
         Dim Query As String = "SELECT r.restaurantID, ua.firstname, b.email, b.branchid, (r.name + ' - ' + b.city) as restName, b.address, " &
-                            "ISNULL(m.name,'') as dishName, b.halal, m.cost as price, b.time_open, b.time_closed " &
+                            "ISNULL(m.name,'') as dishName, b.halal,m.image, m.cost as price, b.time_open, b.time_closed " &
                             "from branch as b " &
                             "inner join restaurant as r on r.restaurantId = b.restaurantId " &
                             "inner join useraccount as ua on ua.userid = r.userid " &
@@ -733,7 +733,7 @@ Public Class Menu
 
         Dim dtSearch = New DataTable()
         Dim Query As String = "SELECT r.restaurantID, ua.firstname, b.email, b.branchid, (r.name + ' - ' + b.city) as restName, b.address, " &
-                            "ISNULL(m.name,'') as dishName, b.halal, m.cost as price, b.time_open, b.time_closed " &
+                            "ISNULL(m.name,'') as dishName, b.halal,m.image, m.cost as price, b.time_open, b.time_closed " &
                             "from branch as b " &
                             "inner join restaurant as r on r.restaurantId = b.restaurantId " &
                             "inner join useraccount as ua on ua.userid = r.userid " &
