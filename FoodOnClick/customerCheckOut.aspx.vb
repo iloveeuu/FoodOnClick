@@ -38,7 +38,7 @@
 
         Dim dNow As Date = Date.Now
 
-        Dim serverDate As Date = dNow.AddHours(1)
+        Dim serverDate As Date = dNow.AddHours(13)
 
         Dim od As OrderDetail = New OrderDetail()
         od.orderDate = serverDate

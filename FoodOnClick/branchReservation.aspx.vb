@@ -14,7 +14,7 @@
     Protected Sub binddataToday()
 
         Dim dtReservation As DataTable
-        Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(Session("branchid")), Date.Today)
+        Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(Session("branchid")), DateTime.Now.AddHours(13).Date)
         dtReservation = clsReservation.GetReservationToday()
         gvReservationToday.DataSource = dtReservation
         gvReservationToday.DataBind()
@@ -28,7 +28,7 @@
     Protected Sub binddataHistory()
 
         Dim dtReservation As DataTable
-        Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(Session("branchid")), Date.Today)
+        Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(Session("branchid")), DateTime.Now.AddHours(13).Date)
         dtReservation = clsReservation.GetBranchReservationHistory()
         gvReservationHistory.DataSource = dtReservation
         gvReservationHistory.DataBind()
@@ -42,7 +42,7 @@
     Protected Sub binddataUpcoming()
 
         Dim dtReservation As DataTable
-        Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(Session("branchid")), Date.Today)
+        Dim clsReservation As Reservation = New Reservation(Convert.ToInt32(Session("branchid")), DateTime.Now.AddHours(13).Date)
         dtReservation = clsReservation.GetReservationUpcoming()
         gvReservationUpcoming.DataSource = dtReservation
         gvReservationUpcoming.DataBind()

@@ -13,14 +13,14 @@
                 lblOpenTime.Text = Session("timeOpen")
                 lblCloseTime.Text = Session("timeClosed")
 
-                CompareEndTodayValidator.ValueToCompare = DateTime.Now.ToShortDateString()
+                CompareEndTodayValidator.ValueToCompare = DateTime.Now.AddHours(13).ToShortDateString()
 
                 rvTime.MinimumValue = Session("timeOpen")
                 rvTime.MaximumValue = Session("timeClosed")
 
                 'default
                 txtPax.Text = 1
-                txtDate.Text = DateTime.Now.ToShortDateString()
+                txtDate.Text = DateTime.Now.AddHours(13).ToShortDateString()
             End If
         End If
     End Sub
