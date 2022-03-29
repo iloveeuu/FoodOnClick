@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class Branch1
 
     '''<summary>
+    '''menuImage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents menuImage As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
     '''lblTitle control.
     '''</summary>
     '''<remarks>
