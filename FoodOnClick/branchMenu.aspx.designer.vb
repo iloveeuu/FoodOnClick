@@ -77,13 +77,13 @@ Partial Public Class branchMenu
     Protected WithEvents lblTitleMenu As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''rptBranch control.
+    '''btnAdd control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rptBranch As Global.System.Web.UI.WebControls.Repeater
+    Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''lblNothing control.
@@ -95,11 +95,11 @@ Partial Public Class branchMenu
     Protected WithEvents lblNothing As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btnAdd control.
+    '''rptBranch control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents rptBranch As Global.System.Web.UI.WebControls.Repeater
 End Class
