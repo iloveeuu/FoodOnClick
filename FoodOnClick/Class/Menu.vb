@@ -628,13 +628,15 @@ Public Class Menu
 
         Dim dtSearch = New DataTable()
         Dim Query As String = "SELECT r.restaurantID, ua.firstname, b.email, b.branchid, (r.name + ' - ' + b.city) as restName, b.address, " &
-                            "ISNULL(m.name,'') as dishName, b.halal,m.image, m.cost as price, b.time_open, b.time_closed " &
+                            "('Halal: ' + b.halal) as halal, " &
+                            "b.time_open, b.time_closed, (d.url) as logo " &
                             "from branch as b " &
                             "inner join restaurant as r on r.restaurantId = b.restaurantId " &
                             "inner join useraccount as ua on ua.userid = r.userid " &
+                            "inner join document as d on d.userid = r.userid and d.type = 'Restaurant Logo' " &
                             "inner join CuisineType As c On c.cuisine_Typeid = b.cuisineTypeID " &
-                            "left join Menu as m on b.branchid = m.branchid AND m.name Like (@dish_name) AND " &
-                            "(m.cost >= @minPrice) AND m.cost <= IIF(@maxPrice = '0', (m.cost), (@maxPrice)) " &
+                            "left join Menu as m on b.branchid = m.branchid And m.name Like (@dish_name) And " &
+                            "(m.cost >= @minPrice) And m.cost <= IIF(@maxPrice = '0', (m.cost), (@maxPrice)) " &
                             "inner join MenuStatus As ms On m.Statusid = ms.menu_status_id And ms.type = 'Available' " &
                             "Left Join FoodType As ft On m.foodtypeID = ft.foodtypeID " &
                             "WHERE b.reservation = 'Allowed' and r.status = 'IN BUSINESS' AND b.status = 'IN BUSINESS' And " &
@@ -642,28 +644,28 @@ Public Class Menu
                             "r.name Like (@restaurant_name) AND " &
                             "c.foodtype Like @cuisine_type AND " &
                             "ft.type like (@food_type) AND " &
-                            "(b.halal like @halal) Order By r.restaurantID, b.branchid"
+                            "(b.halal like @halal) " &
+                            "Group By r.restaurantID, ua.firstname, b.email, b.branchid, r.name, b.city, b.address, b.halal, b.time_open, b.time_closed, d.url " &
+                            "Order By r.restaurantID, b.branchid "
 
-        ' AND 
-
-        '"SELECT r.restaurantID, ua.firstname, ua.email, b.branchid, r.name as restName, b.address, ISNULL(m.name,'') as dishName, b.halal from branch as b " &
+        'Select r.restaurantID, ua.firstname, b.email, b.branchid, (r.name + ' - ' + b.city) as restName, b.address, " &
+        '                    "ISNULL(m.name,'') as dishName, ('Halal: ' + b.halal) as halal, ('~/images/menu/' + m.image) as image, '$ ' + CONVERT(NVARCHAR(30), m.cost) as price, " &
+        '                    "b.time_open, b.time_closed, (d.url) as logo " &
+        '                    "from branch as b " &
         '                    "inner join restaurant as r on r.restaurantId = b.restaurantId " &
         '                    "inner join useraccount as ua on ua.userid = r.userid " &
+        '                    "inner join document as d on d.userid = r.userid and d.type = 'Restaurant Logo' " &
         '                    "inner join CuisineType As c On c.cuisine_Typeid = b.cuisineTypeID " &
-        '                    "left join Menu as m on b.branchid = m.branchid " &
-        '                    "left join MenuStatus As ms On m.Statusid = ms.menu_status_id And ms.type = 'Available' " &
+        '                    "left join Menu as m on b.branchid = m.branchid And m.name Like (@dish_name) And " &
+        '                    "(m.cost >= @minPrice) And m.cost <= IIF(@maxPrice = '0', (m.cost), (@maxPrice)) " &
+        '                    "inner join MenuStatus As ms On m.Statusid = ms.menu_status_id And ms.type = 'Available' " &
         '                    "Left Join FoodType As ft On m.foodtypeID = ft.foodtypeID " &
-        '                    "WHERE r.status = 'IN BUSINESS' AND b.status = 'IN BUSINESS' And " &
-        '                    "(CONCAT(b.address, ' ', b.city, ' ', b.postalcode) LIKE IIf(@location = '',CONCAT(b.address, ' ', b.city, ' ', b.postalcode),@location)) AND " &
-        '                    "r.name Like IIf(@restaurant_name = '', (r.name), (@restaurant_name)) AND " &
-        '                    "c.foodtype Like IIf(@cuisine_type = '', (c.foodtype), (@cuisine_type)) AND " &
-        '                    "(b.halal like @halal)"
-        'ISNULL(m.image,'') as dishImage
-        'm.name Like IIf(@dish_name = '', (m.name), (@dish_name)) AND
-        'ft.type like IIF(@food_type = '', (ft.type), ('%@food_type%')) AND
-        '(m.cost > '@minPrice') AND m.cost < IIF('@maxPrice' = '0', (m.cost), ('@maxPrice')) 
-
-
+        '                    "WHERE b.reservation = 'Allowed' and r.status = 'IN BUSINESS' AND b.status = 'IN BUSINESS' And " &
+        '                    "(CONCAT(b.address, ' ', b.city, ' ', b.postalcode) LIKE @location) AND " &
+        '                    "r.name Like (@restaurant_name) AND " &
+        '                    "c.foodtype Like @cuisine_type AND " &
+        '                    "ft.type like (@food_type) AND " &
+        '                    "(b.halal like @halal) Order By r.restaurantID, b.branchid
         Dim sLocation As String
         Dim sRestName As String
         Dim sCuisinceType As String
@@ -733,13 +735,15 @@ Public Class Menu
 
         Dim dtSearch = New DataTable()
         Dim Query As String = "SELECT r.restaurantID, ua.firstname, b.email, b.branchid, (r.name + ' - ' + b.city) as restName, b.address, " &
-                            "ISNULL(m.name,'') as dishName, b.halal,m.image, m.cost as price, b.time_open, b.time_closed " &
+                            "('Halal: ' + b.halal) as halal, " &
+                            "b.time_open, b.time_closed, (d.url) as logo " &
                             "from branch as b " &
                             "inner join restaurant as r on r.restaurantId = b.restaurantId " &
                             "inner join useraccount as ua on ua.userid = r.userid " &
+                            "inner join document as d on d.userid = r.userid and d.type = 'Restaurant Logo' " &
                             "inner join CuisineType As c On c.cuisine_Typeid = b.cuisineTypeID " &
-                            "left join Menu as m on b.branchid = m.branchid AND m.name Like (@dish_name) AND " &
-                            "(m.cost >= @minPrice) AND m.cost <= IIF(@maxPrice = '0', (m.cost), (@maxPrice)) " &
+                            "left join Menu as m on b.branchid = m.branchid And m.name Like (@dish_name) And " &
+                            "(m.cost >= @minPrice) And m.cost <= IIF(@maxPrice = '0', (m.cost), (@maxPrice)) " &
                             "inner join MenuStatus As ms On m.Statusid = ms.menu_status_id And ms.type = 'Available' " &
                             "Left Join FoodType As ft On m.foodtypeID = ft.foodtypeID " &
                             "WHERE r.status = 'IN BUSINESS' AND b.status = 'IN BUSINESS' And " &
@@ -747,8 +751,29 @@ Public Class Menu
                             "r.name Like (@restaurant_name) AND " &
                             "c.foodtype Like @cuisine_type AND " &
                             "ft.type like (@food_type) AND " &
-                            "(b.halal like @halal) Order By r.restaurantID, b.branchid"
+                            "(b.halal like @halal) " &
+                            "Group By r.restaurantID, ua.firstname, b.email, b.branchid, r.name, b.city, b.address, b.halal, b.time_open, b.time_closed, d.url " &
+                            "Order By r.restaurantID, b.branchid "
 
+
+        '"SELECT r.restaurantID, ua.firstname, b.email, b.branchid, (r.name + ' - ' + b.city) as restName, b.address, " &
+        '                    "ISNULL(m.name,'') as dishName, ('Halal: ' + b.halal) as halal, ('~/images/menu/' + m.image) as image, '$ ' + CONVERT(NVARCHAR(30), m.cost) as price, " &
+        '                    "b.time_open, b.time_closed, (d.url) as logo " &
+        '                    "from branch as b " &
+        '                    "inner join restaurant as r on r.restaurantId = b.restaurantId " &
+        '                    "inner join useraccount as ua on ua.userid = r.userid " &
+        '                    "inner join document as d on d.userid = r.userid and d.type = 'Restaurant Logo' " &
+        '                    "inner join CuisineType As c On c.cuisine_Typeid = b.cuisineTypeID " &
+        '                    "left join Menu as m on b.branchid = m.branchid And m.name Like (@dish_name) And " &
+        '                    "(m.cost >= @minPrice) And m.cost <= IIF(@maxPrice = '0', (m.cost), (@maxPrice)) " &
+        '                    "inner join MenuStatus As ms On m.Statusid = ms.menu_status_id And ms.type = 'Available' " &
+        '                    "Left Join FoodType As ft On m.foodtypeID = ft.foodtypeID " &
+        '                    "WHERE r.status = 'IN BUSINESS' AND b.status = 'IN BUSINESS' And " &
+        '                    "(CONCAT(b.address, ' ', b.city, ' ', b.postalcode) LIKE @location) AND " &
+        '                    "r.name Like (@restaurant_name) AND " &
+        '                    "c.foodtype Like @cuisine_type AND " &
+        '                    "ft.type like (@food_type) AND " &
+        '                    "(b.halal like @halal) Order By r.restaurantID, b.branchid"
         Dim sLocation As String
         Dim sRestName As String
         Dim sCuisinceType As String
@@ -813,7 +838,8 @@ Public Class Menu
     End Function
 
 
-    Public Function GetSearchMenu(ByVal iBranchId As Integer, ByVal type As String, ByVal dishName As String, ByVal dblMinPrice As Double, ByVal dblMaxPrice As Double)
+    Public Function GetSearchMenu(ByVal iBranchId As Integer, ByVal type As String, ByVal dishName As String,
+                                  ByVal dblMinPrice As Double, ByVal dblMaxPrice As Double, Optional ByVal iMenuId As Integer = 0)
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
 
         Dim dtSearch = New DataTable()
@@ -824,7 +850,8 @@ Public Class Menu
                             "'CHAR(13)Sugar: ' + CONVERT(nvarchar(20),m.glucose) + ' g' + " &
                             "'CHAR(13)Fats: ' + CONVERT(nvarchar(20),m.fats) + ' g' + " &
                             "'CHAR(13)Sodium: ' + CONVERT(nvarchar(20),m.sodium) + ' g' " &
-                            ") As describe " &
+                            ") As describe, " &
+                            "('~/images/menu/' + m.image) As path, ft.type " &
                             "from branch as b " &
                             "inner join Menu as m on b.branchid = m.branchid " &
                             "inner join MenuStatus As ms On m.Statusid = ms.menu_status_id And ms.type = 'Available' " &
@@ -833,6 +860,9 @@ Public Class Menu
                             "(m.cost >= @minPrice) AND m.cost <= IIF(@maxPrice = '0', (m.cost), (@maxPrice)) AND " &
                             "ft.type like (@food_type) and b.branchid=@branchId "
 
+        If iMenuId <> 0 Then
+            Query += "And m.menuid = @menuId "
+        End If
         '"(m.description + '<br/><br/>Protein: ' + m.energy + ' cal.<br/>' " &
         '                    "Protein: ' + m.protein + ' g<br/>' " &
         '                    "Carbs: ' + m.carbonhydrate + ' g<br/>' " &
@@ -863,6 +893,7 @@ Public Class Menu
                     .Parameters.Add("@dish_name", SqlDbType.VarChar).Value = sDishName
                     .Parameters.Add("@minPrice", SqlDbType.Decimal).Value = dblMinPrice
                     .Parameters.Add("@maxPrice", SqlDbType.Decimal).Value = dblMaxPrice
+                    .Parameters.Add("@menuId", SqlDbType.Int).Value = iMenuId
                 End With
                 Try
                     conn.Open()
