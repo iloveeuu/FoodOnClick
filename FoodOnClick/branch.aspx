@@ -11,7 +11,7 @@
 
     <table>
         <tr>
-            <td><h1><asp:Label runat="server" ID="lblTitle"></asp:Label></h1></td>
+            <td><asp:Image runat="server" ID="menuImage" Width="100px" /><h1><asp:Label runat="server" ID="lblTitle"></asp:Label></h1></td>
         </tr>
     </table>
     <asp:Repeater ID="rptBranch" runat="server" OnItemDataBound="rptBranch_ItemDataBound" OnItemCommand="rptBranch_ItemCommand" EnableViewState="false">

@@ -441,4 +441,33 @@ Public Class Branch
         End Using
         Return returnObject
     End Function
+
+    Public Function RetrieveImageByUserId() As String
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As String = ""
+        Dim Query As String = "SELECT type,url from document where userid =@userid"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@userid", SqlDbType.Int).Value = Me.userId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        If (reader("type") = "Restaurant Logo") Then
+                            Return reader("url").ToString()
+                        End If
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
 End Class

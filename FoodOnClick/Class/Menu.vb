@@ -466,7 +466,7 @@ Public Class Menu
     Public Function RetrieveMenuInfo()
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim returnObject As List(Of Menu) = New List(Of Menu)
-        Dim Query As String = "SELECT * from menu where branchid = @branchid"
+        Dim Query As String = "SELECT m.menuid,m.name,m.description,m.cost,m.image,m.statusid,m.discountid,m.branchid,m.foodtypeid,m.protein,m.energy,m.carbonhydrate,m.glucose,m.fats,m.sodium,menustatus.type as statustype,foodtype.type as foodtype from menu as m join menustatus on m.Statusid = menustatus.menu_status_id join foodtype on m.foodTypeID = foodtype.foodTypeID where branchid = @branchid"
         Using conn As New SqlConnection(connectionString)
 
             Using comm As New SqlCommand()
@@ -488,6 +488,8 @@ Public Class Menu
                         tempobj.menuCost = reader("cost")
                         tempobj.menuImage = reader("image")
                         tempobj.menuStatusId = reader("Statusid")
+                        tempobj.FKmenuStatusType = reader("statustype")
+                        tempobj.FKmenuFoodType = reader("foodtype")
                         tempobj.menuDiscountId = reader("discountid")
                         tempobj.menuBranchId = reader("branchid")
                         tempobj.menuFoodTypeId = reader("foodtypeID")

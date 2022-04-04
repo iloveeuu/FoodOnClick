@@ -17,6 +17,9 @@
     End Sub
 
     Protected Sub rptBranch_ItemDataBound(sender As Object, e As RepeaterItemEventArgs)
+        Dim price As Decimal = DataBinder.Eval(e.Item.DataItem, "menuCost")
+        Dim lblPrice As Label = (TryCast(e.Item.FindControl("menuPrice"), Label))
+        lblPrice.Text = "$" & price
         Dim imageUrl As String = DataBinder.Eval(e.Item.DataItem, "menuImage")
         Dim img As Image = (TryCast(e.Item.FindControl("menuImage"), Image))
         Dim url As String = "~/images/menu/" & imageUrl

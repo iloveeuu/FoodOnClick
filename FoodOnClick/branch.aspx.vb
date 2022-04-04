@@ -53,6 +53,7 @@
 
     Protected Sub binddata()
         Dim clsBranch As Branch = New Branch(Convert.ToInt32(Session("userid").ToString()), Convert.ToInt32(Session("restaurantid").ToString()))
+        menuImage.ImageUrl = clsBranch.RetrieveImageByUserId()
         Dim title As Restaurant = clsBranch.RetrieveRestaurantInfoByRestaurantId()
         lblTitle.Text = title.restaurantName & " Branches"
         Dim listOfBranch As List(Of Branch) = clsBranch.RetrieveBranchInfo()
