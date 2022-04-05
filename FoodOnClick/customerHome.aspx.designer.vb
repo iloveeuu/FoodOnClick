@@ -57,22 +57,4 @@ Partial Public Class customerHome
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtnReservation As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''lbtnDrivethru control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbtnDrivethru As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''lbtnSelfCollect control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbtnSelfCollect As Global.System.Web.UI.WebControls.LinkButton
 End Class
