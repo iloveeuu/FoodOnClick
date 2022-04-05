@@ -11,7 +11,16 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class customerReservation
+Partial Public Class customerRestaurantMenu
+
+    '''<summary>
+    '''btnProfile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnProfile As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btnHome control.
@@ -21,24 +30,6 @@ Partial Public Class customerReservation
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnHome As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnHistory control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnHistory As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnCart control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCart As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''lblRestName control.
@@ -68,24 +59,6 @@ Partial Public Class customerReservation
     Protected WithEvents lblAddress As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtPax control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPax As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''CompareValidator1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
-
-    '''<summary>
     '''lblOpenTime control.
     '''</summary>
     '''<remarks>
@@ -104,40 +77,13 @@ Partial Public Class customerReservation
     Protected WithEvents lblCloseTime As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtDate control.
+    '''btnBack control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDate As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''CompareEndTodayValidator control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CompareEndTodayValidator As Global.System.Web.UI.WebControls.CompareValidator
-
-    '''<summary>
-    '''txtTime control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtTime As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''rvTime control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rvTime As Global.System.Web.UI.WebControls.RangeValidator
+    Protected WithEvents btnBack As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btnReserve control.
@@ -149,38 +95,65 @@ Partial Public Class customerReservation
     Protected WithEvents btnReserve As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''errorText control.
+    '''rptMenu control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents errorText As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents rptMenu As Global.System.Web.UI.WebControls.Repeater
 
     '''<summary>
-    '''tblStyle control.
+    '''my_popup control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tblStyle As Global.System.Web.UI.HtmlControls.HtmlTable
+    Protected WithEvents my_popup As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''btnYes control.
+    '''popup control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnYes As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents popup As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''btnNo control.
+    '''lblDishName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnNo As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lblDishName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblFoodType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblFoodType As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblPrice control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPrice As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblDesc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDesc As Global.System.Web.UI.WebControls.Label
 End Class

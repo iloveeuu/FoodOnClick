@@ -2,6 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+	<table id="tableStyle">
+		<tr>
+			<td>
+				<asp:Button ID="btnHome" Width="30%" Height="80%" runat="server" OnClick="btnHome_Click" Text="Home" />
+				<asp:Button ID="btnHistory" Width="30%" Height="80%" runat="server" OnClick="btnHistory_Click" Text="History" />
+				<asp:Button ID="btnCart" Width="30%" Height="80%" runat="server" OnClick="btnCart_Click" Text="Cart" />
+			</td>
+		</tr>
+	</table>
 	<div>
         <h2>Reservation</h2>
     </div>

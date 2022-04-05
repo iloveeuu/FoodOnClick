@@ -99,12 +99,14 @@ Public Class OrderDetail
                             "'CHAR(13)Sugar: ' + CONVERT(nvarchar(20),m.glucose) + ' g' + " &
                             "'CHAR(13)Fats: ' + CONVERT(nvarchar(20),m.fats) + ' g' + " &
                             "'CHAR(13)Sodium: ' + CONVERT(nvarchar(20),m.sodium) + ' g' " &
-                            ") As describe, o.totalcharges, os.type as status, o.deliveryCharges " &
+                            ") As describe, o.totalcharges, os.type as status, o.deliveryCharges, " &
+                            "('~/images/menu/' + m.image) As path, ft.type " &
                 "From batchorders as bo " &
                 "inner join orders as o on o.batchid = bo.batchid " &
                 "inner join orderstatus as os on os.orderStatusID = o.orderStatusID " &
                 "inner join orderdetails as od on od.ordernum = o.ordernum " &
                 "inner join menu as m on m.menuid = od.menuid " &
+                "inner Join FoodType As ft On m.foodtypeID = ft.foodtypeID " &
                 "Where bo.batchid = @batchid"
 
         Using conn As New SqlConnection(connectionString)

@@ -92,4 +92,16 @@
 
         Response.Redirect("customerPreOrder.aspx")
     End Sub
+
+    Protected Sub btnHome_Click(sender As Object, e As EventArgs)
+        Response.Redirect("customerHome.aspx")
+    End Sub
+
+    Protected Sub btnHistory_Click(sender As Object, e As EventArgs)
+        Response.Redirect("customerHistory.aspx")
+    End Sub
+
+    Protected Sub btnCart_Click(sender As Object, e As EventArgs)
+        Response.Redirect("customerCart.aspx")
+    End Sub
 End Class

@@ -149,6 +149,15 @@ Partial Public Class customerOrder
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
+    '''btnBack control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnBack As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btnSearch control.
     '''</summary>
     '''<remarks>
@@ -167,13 +176,13 @@ Partial Public Class customerOrder
     Protected WithEvents errorText As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''gvMenu control.
+    '''rptMenu control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents gvMenu As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents rptMenu As Global.System.Web.UI.WebControls.Repeater
 
     '''<summary>
     '''btnShoppingCart control.
@@ -183,4 +192,58 @@ Partial Public Class customerOrder
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnShoppingCart As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''my_popup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents my_popup As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+    '''<summary>
+    '''popup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents popup As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lblPopUpDishName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPopUpDishName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblPopUpFoodType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPopUpFoodType As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblPopUpPrice control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPopUpPrice As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblPopUpDesc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPopUpDesc As Global.System.Web.UI.WebControls.Label
 End Class

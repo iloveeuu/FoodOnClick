@@ -250,12 +250,15 @@ Public Class ShoppingCartDetail
 
         Dim dtData = New DataTable()
 
-        Dim Query As String = "SELECT b.branchid, (r.name + ' - ' + b.city) As restName, b.address, scm.menuid, sc.type, sc.totalPrice, m.name as dishName, scm.price, m.cost as unitprice, scm.quantity, scm.cartId, b.email " &
+        Dim Query As String = "SELECT b.branchid, (r.name + ' - ' + b.city) As restName, b.address, scm.menuid, sc.type, " &
+                                "sc.totalPrice, m.name as dishName, scm.price, m.cost as unitprice, scm.quantity, scm.cartId, b.email, " &
+                             "('~/images/menu/' + m.image) As path, ft.type as foodType " &
                                 "from branch as b " &
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join menu as m on m.branchId = b.branchId " &
                                 " inner join shoppingcart_menu as scm on scm.menuid = m.menuid " &
                                 " inner join shoppingcart as sc on sc.cartid = scm.cartid " &
+                                "inner Join FoodType As ft On m.foodtypeID = ft.foodtypeID " &
                                 "where sc.userid = @userID order by scm.cartId, r.name, b.address, scm.menuid, sc.type, m.name "
 
         Using conn As New SqlConnection(connectionString)
@@ -326,12 +329,14 @@ Public Class ShoppingCartDetail
                             "'CHAR(13)Sugar: ' + CONVERT(nvarchar(20),m.glucose) + ' g' + " &
                             "'CHAR(13)Fats: ' + CONVERT(nvarchar(20),m.fats) + ' g' + " &
                             "'CHAR(13)Sodium: ' + CONVERT(nvarchar(20),m.sodium) + ' g' " &
-                            ") As describe " &
+                            ") As describe, " &
+                             "('~/images/menu/' + m.image) As path, ft.type as foodType " &
                                 "from branch as b " &
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join menu as m on m.branchId = b.branchId " &
                                 " inner join shoppingcart_menu as scm on scm.menuid = m.menuid " &
                                 " inner join shoppingcart as sc on sc.cartid = scm.cartid " &
+                                "inner Join FoodType As ft On m.foodtypeID = ft.foodtypeID " &
                                 "where sc.cartid = @cartID "
 
         Using conn As New SqlConnection(connectionString)

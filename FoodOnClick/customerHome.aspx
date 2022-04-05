@@ -34,5 +34,23 @@
 				</asp:LinkButton>
 			</td>
 		</tr>
+		<tr>
+			<td>
+				<asp:LinkButton ID="lbtnDrivethru" runat="server" style="text-decoration:none" Font-Bold="true">
+					<img class="custBtnImage" src="../Images/drivethru.png" alt="Drivethru"/>
+					<div class="custBtnDiv">
+						Drive-thru
+					</div>
+				</asp:LinkButton>
+			</td>
+			<td>
+				<asp:LinkButton ID="lbtnSelfCollect" runat="server" style="text-decoration:none" Font-Bold="true">
+					<img class="custBtnImage" src="../Images/takeaway.png" alt="SelfCollect"/>
+					<div class="custBtnDiv">
+						Self Collect
+					</div>
+				</asp:LinkButton>
+			</td>
+		</tr>
 	</table>
 </asp:Content>

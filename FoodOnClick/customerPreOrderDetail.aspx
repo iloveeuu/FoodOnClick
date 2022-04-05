@@ -74,9 +74,19 @@
 	<br />
 	<div style="overflow-x:auto;">
         <%--CssClass="table table-responsive table-striped"--%>
-		<asp:GridView ID="gvMenu" Width="70%" runat="server" AutoGenerateColumns="false" Height="100%" >
+		<asp:GridView ID="gvMenu" Width="40%" runat="server" AutoGenerateColumns="false" Height="100%" >
                  <Columns>
-                    <asp:BoundField DataField="menu" HeaderText="Menu" HeaderStyle-Width="30%" ItemStyle-HorizontalAlign="Center" />
+                    <asp:TemplateField HeaderText="Menu" HeaderStyle-Width="40%">
+                        <ItemTemplate>
+							<div style="border: 1px solid black;display:inline-grid;text-align:center;">
+								 <center>
+									 <asp:Image runat="server" ID="imgRest" Width="150px" Height="150px" ImageUrl='<%#Eval("path") %>' />
+								 </center>
+								<asp:Label runat="server" ID="menu" Text='<%#Eval("menu") %>'></asp:Label>
+								<asp:Label runat="server" ID="lblType" style="text-transform: capitalize;" Text='<%#Eval("type") %>'></asp:Label>
+							</div>
+						</ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="describe" HeaderText="Description" HtmlEncode="false" HeaderStyle-Width="40%" />
                     <asp:BoundField DataField="orderQuantity" HeaderText="Order Quantity" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
 					 <asp:BoundField DataField="price" HeaderText="Price ($)" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />

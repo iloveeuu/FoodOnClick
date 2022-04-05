@@ -24,8 +24,8 @@
             Dim clsSearch As Menu = New Menu()
             dtSearch = clsSearch.GetSearchMenu(Session("branchid"), "", "", 0, 0)
 
-            gvMenu.DataSource = dtSearch
-            gvMenu.DataBind()
+            rptMenu.DataSource = dtSearch
+            rptMenu.DataBind()
 
             ddlType.Items.Insert(0, New ListItem("Please select", ""))
             ddlType.SelectedIndex = 0
@@ -41,6 +41,102 @@
             Else
                 gvPreOrder.DataSource = Session("dtTable")
                 gvPreOrder.DataBind()
+            End If
+        End If
+    End Sub
+
+
+    Protected Sub rptMenu_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
+        Dim boolDataExist = False
+        Dim iMenuId As Integer = 0
+
+        Dim lblDishName As Label = Nothing
+        Dim sMenu As String = ""
+
+        Dim lblType As Label = Nothing
+        Dim sType As String = ""
+
+        Dim lblPrice As Label = Nothing
+        Dim sPrice As String = ""
+        Dim dbPrice As Double = 0
+
+        Dim txtQty As TextBox = Nothing
+        Dim iQty As Integer = 0
+
+        Dim hfBranchId As HiddenField = Nothing
+        Dim iBranchId As Integer = 0
+
+        Dim dbTotPrice As Double = 0
+
+        If (e.CommandName = "viewDetail") Then
+            Dim dtMenu As DataTable
+            Dim clsSearch As Menu = New Menu()
+            iMenuId = Convert.ToInt32(e.CommandArgument)
+
+            dtMenu = clsSearch.GetSearchMenu(Session("branchid"), "", "", 0, 0, iMenuId)
+
+            lblPopUpDishName.Text = dtMenu.Rows(0)(2).ToString()
+
+            lblPopUpFoodType.Text = dtMenu.Rows(0)(6).ToString()
+
+            lblPopUpPrice.Text = "$ " + dtMenu.Rows(0)(3).ToString()
+
+            lblPopUpDesc.Text = dtMenu.Rows(0)(4).ToString()
+
+            my_popup.Style.Add("display", "block")
+            popup.Style.Add("display", "block")
+
+        ElseIf e.CommandName = "doAdd" Then
+            iMenuId = Convert.ToInt32(e.CommandArgument)
+
+            hfBranchId = e.Item.FindControl("hfBranchId")
+            iBranchId = hfBranchId.Value
+
+            lblDishName = e.Item.FindControl("lblDishName")
+            sMenu = lblDishName.Text
+
+            txtQty = e.Item.FindControl("txtQty")
+
+            dtAdd = Session("dtTable")
+
+            If txtQty.Text <> "" Then
+                iQty = txtQty.Text
+            End If
+
+            If txtQty.Text = "" Or iQty < 1 Then
+                errorText.Attributes("style") = "display: block; text-align: center; color:red;"
+                errorText2.Attributes("style") = "display: none;"
+            Else
+                errorText.Attributes("style") = "display: none;"
+                errorText2.Attributes("style") = "display: none;"
+
+                lblPrice = e.Item.FindControl("lblPrice")
+                sPrice = lblPrice.Text
+                sPrice = sPrice.Replace("$ ", "")
+
+                dbPrice = Convert.ToDouble(sPrice)
+
+                dbTotPrice = dbPrice * Convert.ToDouble(iQty)
+
+                For Each row As DataRow In dtAdd.Rows
+                    If (row("menu").ToString() = sMenu) Then
+                        row("qty") += iQty
+                        row("totPrice") += dbTotPrice
+
+                        boolDataExist = True
+                    End If
+                Next
+
+                If boolDataExist = False Then
+                    dtAdd.Rows.Add(iMenuId, sMenu, iQty, dbTotPrice)
+                End If
+
+                Session("dtTable") = dtAdd
+
+                gvPreOrder.DataSource = dtAdd
+                gvPreOrder.DataBind()
+
+                lblTotal.Text = " $" + Convert.ToString(dtAdd.Compute("SUM(totPrice)", String.Empty))
             End If
         End If
     End Sub
@@ -69,71 +165,76 @@
             dtSearch = clsMenu.GetSearchMenu(Session("branchid"), ddlType.SelectedItem.ToString(),
                                            txtDishName.Text.Trim(), dblMinPrice, dblMaxPrice)
 
-            gvMenu.DataSource = dtSearch
-            gvMenu.DataBind()
+            rptMenu.DataSource = dtSearch
+            rptMenu.DataBind()
         End If
     End Sub
 
-    Protected Sub gvMenu_RowCommand(sender As Object, e As GridViewCommandEventArgs)
+    'Protected Sub gvMenu_RowCommand(sender As Object, e As GridViewCommandEventArgs)
 
-        Dim boolDataExist = False
-        Dim Index As Int32 = -1
+    '    Dim boolDataExist = False
+    '    Dim Index As Int32 = -1
 
-        Dim iMenuId As Integer = 0
-        Dim hfMenuId As HiddenField = Nothing
-        Dim sMenu As String = ""
-        Dim txtQty As TextBox = Nothing
-        Dim dbPrice As Double = 0
-        Dim iQty As Integer = 0
+    '    Dim iMenuId As Integer = 0
+    '    Dim hfMenuId As HiddenField = Nothing
+    '    Dim sMenu As String = ""
+    '    Dim txtQty As TextBox = Nothing
+    '    Dim dbPrice As Double = 0
+    '    Dim iQty As Integer = 0
 
-        Dim dbTotPrice As Double = 0
+    '    Dim dbTotPrice As Double = 0
 
-        If e.CommandName = "doAdd" Then
+    '    If e.CommandName = "doAdd" Then
 
-            Index = Convert.ToInt32(e.CommandArgument)
+    '        Index = Convert.ToInt32(e.CommandArgument)
 
-            sMenu = gvMenu.Rows(Index).Cells(0).Text
-            dbPrice = Convert.ToDouble(gvMenu.Rows(Index).Cells(1).Text)
-            txtQty = gvMenu.Rows(Index).FindControl("txtQty")
+    '        sMenu = gvMenu.Rows(Index).Cells(0).Text
+    '        dbPrice = Convert.ToDouble(gvMenu.Rows(Index).Cells(1).Text)
+    '        txtQty = gvMenu.Rows(Index).FindControl("txtQty")
 
-            hfMenuId = gvMenu.Rows(Index).FindControl("hfMenuId")
-            iMenuId = hfMenuId.Value
+    '        hfMenuId = gvMenu.Rows(Index).FindControl("hfMenuId")
+    '        iMenuId = hfMenuId.Value
 
-            dtAdd = Session("dtTable")
+    '        dtAdd = Session("dtTable")
 
-            If txtQty.Text = "" Then
-                errorText.Attributes("style") = "display: block; text-align: center; color:red;"
-                errorText2.Attributes("style") = "display: none;"
-            Else
-                errorText.Attributes("style") = "display: none;"
-                errorText2.Attributes("style") = "display: none;"
+    '        If txtQty.Text = "" Then
+    '            errorText.Attributes("style") = "display: block; text-align: center; color:red;"
+    '            errorText2.Attributes("style") = "display: none;"
+    '        Else
+    '            errorText.Attributes("style") = "display: none;"
+    '            errorText2.Attributes("style") = "display: none;"
 
-                iQty = txtQty.Text
+    '            iQty = txtQty.Text
 
-                dbTotPrice = dbPrice * Convert.ToDouble(iQty)
+    '            dbTotPrice = dbPrice * Convert.ToDouble(iQty)
 
-                For Each row As DataRow In dtAdd.Rows
-                    If (row("menu").ToString() = sMenu) Then
-                        row("qty") += iQty
-                        row("totPrice") += dbTotPrice
+    '            For Each row As DataRow In dtAdd.Rows
+    '                If (row("menu").ToString() = sMenu) Then
+    '                    row("qty") += iQty
+    '                    row("totPrice") += dbTotPrice
 
-                        boolDataExist = True
-                    End If
-                Next
+    '                    boolDataExist = True
+    '                End If
+    '            Next
 
-                If boolDataExist = False Then
-                    dtAdd.Rows.Add(iMenuId, sMenu, iQty, dbTotPrice)
-                End If
+    '            If boolDataExist = False Then
+    '                dtAdd.Rows.Add(iMenuId, sMenu, iQty, dbTotPrice)
+    '            End If
 
-                Session("dtTable") = dtAdd
+    '            Session("dtTable") = dtAdd
 
-                gvPreOrder.DataSource = dtAdd
-                gvPreOrder.DataBind()
+    '            gvPreOrder.DataSource = dtAdd
+    '            gvPreOrder.DataBind()
 
-                lblTotal.Text = " $" + Convert.ToString(dtAdd.Compute("SUM(totPrice)", String.Empty))
-            End If
+    '            lblTotal.Text = " $" + Convert.ToString(dtAdd.Compute("SUM(totPrice)", String.Empty))
+    '        End If
 
-        End If
+    '    End If
+    'End Sub
+
+    Protected Sub Unnamed_Click(sender As Object, e As EventArgs)
+        my_popup.Style.Add("display", "none")
+        popup.Style.Add("display", "none")
     End Sub
 
     Protected Sub gvPreOrder_RowCommand(sender As Object, e As GridViewCommandEventArgs)
@@ -146,7 +247,7 @@
             errorText2.Attributes("style") = "display: none;"
 
             Index = Convert.ToInt32(e.CommandArgument)
-            sMenu = gvMenu.Rows(Index).Cells(0).Text
+            sMenu = gvPreOrder.Rows(Index).Cells(0).Text
 
             dtAdd = Session("dtTable")
 
@@ -259,4 +360,15 @@
         End If
     End Sub
 
+    Protected Sub btnHome_Click(sender As Object, e As EventArgs)
+        Response.Redirect("customerHome.aspx")
+    End Sub
+
+    Protected Sub btnHistory_Click(sender As Object, e As EventArgs)
+        Response.Redirect("customerHistory.aspx")
+    End Sub
+
+    Protected Sub btnCart_Click(sender As Object, e As EventArgs)
+        Response.Redirect("customerCart.aspx")
+    End Sub
 End Class

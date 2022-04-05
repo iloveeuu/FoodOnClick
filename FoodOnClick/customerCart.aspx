@@ -19,14 +19,24 @@
     <div style="overflow-x:auto;">
         <%--CssClass="table table-responsive table-striped"--%>
         <%--OnRowDataBound="gvCart_RowDataBound"--%>
-		<asp:GridView ID="gvCart" Width="70%" runat="server" OnRowCommand="gvCart_RowCommand" AutoGenerateColumns="false" Height="100%" >
+		<asp:GridView ID="gvCart" Width="50%" runat="server" OnRowCommand="gvCart_RowCommand" AutoGenerateColumns="false" Height="100%" >
                 <Columns>
                     <asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="10%" />
                     <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="20%" />
                     <asp:BoundField DataField="type" HeaderText="Type" HeaderStyle-Width="10%" />
                     <asp:BoundField DataField="totalPrice" HeaderText="Total Price ($)" HeaderStyle-Width="10%" />
-                    <asp:BoundField DataField="dishName" HeaderText="Menu" HeaderStyle-Width="20%" />
-                    <asp:BoundField DataField="price" HeaderText="Price ($)" HeaderStyle-Width="10%" />
+                    <asp:TemplateField HeaderText="Menu" HeaderStyle-Width="30%">
+                        <ItemTemplate>
+							<div style="border: 1px solid black;display:inline-grid;text-align:center;">
+								 <center>
+									 <asp:Image runat="server" ID="imgRest" Width="150px" Height="150px" ImageUrl='<%#Eval("path") %>' />
+								 </center>
+								<asp:Label runat="server" ID="menu" Text='<%#Eval("dishName") %>'></asp:Label>
+								<asp:Label runat="server" ID="lblFType" style="text-transform: capitalize;" Text='<%#Eval("foodType") %>'></asp:Label>
+                                <asp:Label runat="server" ID="lblPrice" Text='<%# "$ " + Eval("price").ToString() %>'></asp:Label>
+							</div>
+						</ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <asp:HiddenField ID="hfMenuId" runat="server" Value='<%# Eval("menuid") %>' />

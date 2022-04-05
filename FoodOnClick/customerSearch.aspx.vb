@@ -27,13 +27,7 @@
     End Sub
 
     Protected Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        '    - cuisine category (e.g. Thai / Western / Chinese / Vietnamese / Japanese / Korean / etc)
-        ' - food type (e.g. main meal, side dish, dessert, beverage, etc)
-        ' - price range (e.g. min - max)
-        ' - menu from a single / pre-specified sub-set of restaurants (e.g. tick checkbox of which restaurants)
-        ' - menu from a particular restaurant location / branch
-        ' - partial / exact match of dish name (e.g. "wonton noodle", "thai fried rice", etc
-        '- any other relevant criteria ...
+
         Dim dtSearch As DataTable
 
         Dim dblMinPrice As Double
@@ -56,116 +50,116 @@
             dtSearch = clsMenu.GetSearchReservation(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedItem.ToString(), ddlType.SelectedItem.ToString(),
                                            txtDishName.Text.Trim(), ddlHalal.SelectedItem.ToString(), dblMinPrice, dblMaxPrice)
 
-            gvSearch.DataSource = dtSearch
-            gvSearch.DataBind()
+            rptSearch.DataSource = dtSearch
+            rptSearch.DataBind()
 
-            Merge(gvSearch.Rows.Count())
+            'Merge(gvSearch.Rows.Count())
         ElseIf Session("orderType") = "delivery" Then
             Dim clsMenu As Menu = New Menu()
             dtSearch = clsMenu.GetSearchDelivery(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedItem.ToString(), ddlType.SelectedItem.ToString(),
                                                txtDishName.Text.Trim(), ddlHalal.SelectedItem.ToString(), dblMinPrice, dblMaxPrice)
 
-            gvSearch.DataSource = dtSearch
-            gvSearch.DataBind()
+            rptSearch.DataSource = dtSearch
+            rptSearch.DataBind()
 
-            Merge(gvSearch.Rows.Count())
+            'Merge(gvSearch.Rows.Count())
         End If
 
     End Sub
 
-    Protected Sub gvSearch_RowCommand(sender As Object, e As GridViewCommandEventArgs)
-        Dim Index As Int32 = -1
-        Dim hRestaurantId As HiddenField = Nothing
-        Dim hBranchId As HiddenField = Nothing
-        Dim hUserId As HiddenField = Nothing
-        Dim hEmail As HiddenField = Nothing
-        Dim hTimeOpen As HiddenField = Nothing
-        Dim hTImeClosed As HiddenField = Nothing
-        Dim sRestaurantId As String = ""
-        Dim sUserId As String = ""
-        Dim sBranchId As String = ""
-        Dim sEmail As String = ""
+    'Protected Sub gvSearch_RowCommand(sender As Object, e As GridViewCommandEventArgs)
+    '    Dim Index As Int32 = -1
+    '    Dim hRestaurantId As HiddenField = Nothing
+    '    Dim hBranchId As HiddenField = Nothing
+    '    Dim hUserId As HiddenField = Nothing
+    '    Dim hEmail As HiddenField = Nothing
+    '    Dim hTimeOpen As HiddenField = Nothing
+    '    Dim hTImeClosed As HiddenField = Nothing
+    '    Dim sRestaurantId As String = ""
+    '    Dim sUserId As String = ""
+    '    Dim sBranchId As String = ""
+    '    Dim sEmail As String = ""
 
-        Dim sRestName As String = ""
-        Dim sHalal As String = ""
-        Dim sAddress As String = ""
-        Dim sDishName As String = ""
-        Dim sTimeOpen As String = ""
-        Dim sTimeClosed As String = ""
+    '    Dim sRestName As String = ""
+    '    Dim sHalal As String = ""
+    '    Dim sAddress As String = ""
+    '    Dim sDishName As String = ""
+    '    Dim sTimeOpen As String = ""
+    '    Dim sTimeClosed As String = ""
 
-        If e.CommandName = "doReservation" Then
+    '    If e.CommandName = "doReservation" Then
 
-            Index = Convert.ToInt32(e.CommandArgument)
+    '        Index = Convert.ToInt32(e.CommandArgument)
 
-            hRestaurantId = gvSearch.Rows(Index).FindControl("hfRestId")
-            sRestaurantId = hRestaurantId.Value
+    '        hRestaurantId = gvSearch.Rows(Index).FindControl("hfRestId")
+    '        sRestaurantId = hRestaurantId.Value
 
-            'hUserId = gvSearch.Rows(Index).FindControl("hfUserId")
-            'sUserId = hUserId.Value
+    '        'hUserId = gvSearch.Rows(Index).FindControl("hfUserId")
+    '        'sUserId = hUserId.Value
 
-            hBranchId = gvSearch.Rows(Index).FindControl("hfBranchId")
-            sBranchId = hBranchId.Value
+    '        hBranchId = gvSearch.Rows(Index).FindControl("hfBranchId")
+    '        sBranchId = hBranchId.Value
 
-            hEmail = gvSearch.Rows(Index).FindControl("hfEmail")
-            sEmail = hEmail.Value
+    '        hEmail = gvSearch.Rows(Index).FindControl("hfEmail")
+    '        sEmail = hEmail.Value
 
-            hTimeOpen = gvSearch.Rows(Index).FindControl("hfTimeOpen")
-            sTimeOpen = hTimeOpen.Value
+    '        hTimeOpen = gvSearch.Rows(Index).FindControl("hfTimeOpen")
+    '        sTimeOpen = hTimeOpen.Value
 
-            hTImeClosed = gvSearch.Rows(Index).FindControl("hfTimeClosed")
-            sTimeClosed = hTImeClosed.Value
+    '        hTImeClosed = gvSearch.Rows(Index).FindControl("hfTimeClosed")
+    '        sTimeClosed = hTImeClosed.Value
 
-            sRestName = gvSearch.Rows(Index).Cells(0).Text
-            sHalal = gvSearch.Rows(Index).Cells(1).Text
-            sAddress = gvSearch.Rows(Index).Cells(2).Text
-            sDishName = gvSearch.Rows(Index).Cells(3).Text
+    '        sRestName = gvSearch.Rows(Index).Cells(0).Text
+    '        sHalal = gvSearch.Rows(Index).Cells(1).Text
+    '        sAddress = gvSearch.Rows(Index).Cells(2).Text
+    '        sDishName = gvSearch.Rows(Index).Cells(3).Text
 
-            Session("userid") = Session("userid")
-            Session("email") = sEmail
-            Session("branchid") = sBranchId
-            Session("restName") = sRestName
-            Session("halal") = sHalal
-            Session("address") = sAddress
-            Session("timeOpen") = sTimeOpen
-            Session("timeClosed") = sTimeClosed
+    '        Session("userid") = Session("userid")
+    '        Session("email") = sEmail
+    '        Session("branchid") = sBranchId
+    '        Session("restName") = sRestName
+    '        Session("halal") = sHalal
+    '        Session("address") = sAddress
+    '        Session("timeOpen") = sTimeOpen
+    '        Session("timeClosed") = sTimeClosed
 
-            Response.Redirect("customerReservation.aspx")
-        ElseIf e.CommandName = "doDelivery" Then
-            Index = Convert.ToInt32(e.CommandArgument)
+    '        Response.Redirect("customerReservation.aspx")
+    '    ElseIf e.CommandName = "doDelivery" Then
+    '        Index = Convert.ToInt32(e.CommandArgument)
 
-            hRestaurantId = gvSearch.Rows(Index).FindControl("hfRestId")
-            sRestaurantId = hRestaurantId.Value
+    '        hRestaurantId = gvSearch.Rows(Index).FindControl("hfRestId")
+    '        sRestaurantId = hRestaurantId.Value
 
-            hBranchId = gvSearch.Rows(Index).FindControl("hfBranchId")
-            sBranchId = hBranchId.Value
+    '        hBranchId = gvSearch.Rows(Index).FindControl("hfBranchId")
+    '        sBranchId = hBranchId.Value
 
-            hEmail = gvSearch.Rows(Index).FindControl("hfEmail")
-            sEmail = hEmail.Value
+    '        hEmail = gvSearch.Rows(Index).FindControl("hfEmail")
+    '        sEmail = hEmail.Value
 
-            hTimeOpen = gvSearch.Rows(Index).FindControl("hfTimeOpen")
-            sTimeOpen = hTimeOpen.Value
+    '        hTimeOpen = gvSearch.Rows(Index).FindControl("hfTimeOpen")
+    '        sTimeOpen = hTimeOpen.Value
 
-            hTImeClosed = gvSearch.Rows(Index).FindControl("hfTimeClosed")
-            sTimeClosed = hTImeClosed.Value
+    '        hTImeClosed = gvSearch.Rows(Index).FindControl("hfTimeClosed")
+    '        sTimeClosed = hTImeClosed.Value
 
-            sRestName = gvSearch.Rows(Index).Cells(0).Text
-            sHalal = gvSearch.Rows(Index).Cells(1).Text
-            sAddress = gvSearch.Rows(Index).Cells(2).Text
-            sDishName = gvSearch.Rows(Index).Cells(3).Text
+    '        sRestName = gvSearch.Rows(Index).Cells(0).Text
+    '        sHalal = gvSearch.Rows(Index).Cells(1).Text
+    '        sAddress = gvSearch.Rows(Index).Cells(2).Text
+    '        sDishName = gvSearch.Rows(Index).Cells(3).Text
 
-            Session("userid") = Session("userid")
-            Session("email") = sEmail
-            Session("branchid") = sBranchId
-            Session("restName") = sRestName
-            Session("halal") = sHalal
-            Session("address") = sAddress
-            Session("timeOpen") = sTimeOpen
-            Session("timeClosed") = sTimeClosed
+    '        Session("userid") = Session("userid")
+    '        Session("email") = sEmail
+    '        Session("branchid") = sBranchId
+    '        Session("restName") = sRestName
+    '        Session("halal") = sHalal
+    '        Session("address") = sAddress
+    '        Session("timeOpen") = sTimeOpen
+    '        Session("timeClosed") = sTimeClosed
 
-            Response.Redirect("customerOrder.aspx")
-        End If
+    '        Response.Redirect("customerOrder.aspx")
+    '    End If
 
-    End Sub
+    'End Sub
 
     Protected Sub btnProfile_Click(sender As Object, e As EventArgs)
         Response.Redirect("customerProfile.aspx")
@@ -247,37 +241,140 @@
         Response.Redirect("customerCart.aspx")
     End Sub
 
-    Protected Sub Merge(ByVal rowCount As Integer)
+    Protected Sub rptSearch_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
+        Dim hRestaurantId As HiddenField = Nothing
         Dim hBranchId As HiddenField = Nothing
-        Dim hPrevBranchId As HiddenField = Nothing
-        Dim sBranchID As String = ""
-        Dim sPreviousBranchID As String = ""
+        Dim hUserId As HiddenField = Nothing
+        Dim hEmail As HiddenField = Nothing
+        Dim hTimeOpen As HiddenField = Nothing
+        Dim hTImeClosed As HiddenField = Nothing
+        Dim hAddress As HiddenField = Nothing
+        Dim lblRestName As Label = Nothing
+        Dim lblHalal As Label = Nothing
 
-        For i As Integer = rowCount - 1 To 1 Step -1
-            Dim row As GridViewRow = gvSearch.Rows(i)
-            Dim previousRow As GridViewRow = gvSearch.Rows(i - 1)
+        Dim sRestaurantId As String = ""
+        Dim sUserId As String = ""
+        Dim sBranchId As String = ""
+        Dim sEmail As String = ""
+        Dim sRestName As String = ""
+        Dim sHalal As String = ""
+        Dim sAddress As String = ""
+        Dim sDishName As String = ""
+        Dim sTimeOpen As String = ""
+        Dim sTimeClosed As String = ""
 
-            hBranchId = gvSearch.Rows(i).FindControl("hfBranchId")
-            sBranchID = hBranchId.Value.ToString()
+        If (e.CommandName = "viewMenu") And (Session("orderType") = "reservation") Then
 
-            hPrevBranchId = gvSearch.Rows(i - 1).FindControl("hfBranchId")
-            sPreviousBranchID = hPrevBranchId.Value.ToString()
+            hEmail = e.Item.FindControl("hfEmail")
+            sEmail = hEmail.Value
 
-            If sBranchID = sPreviousBranchID Then
+            hBranchId = e.Item.FindControl("hfBranchId")
+            sBranchId = hBranchId.Value
 
-                For j As Integer = 0 To row.Cells.Count - 1
-                    If row.Cells(j).Text = previousRow.Cells(j).Text Then
+            lblRestName = e.Item.FindControl("lblRestName")
+            sRestName = lblRestName.Text
 
-                        If row.Cells(j).RowSpan = 0 Then
-                            previousRow.Cells(j).RowSpan += 2
-                        Else
-                            previousRow.Cells(j).RowSpan = row.Cells(j).RowSpan + 1
-                        End If
-                        row.Cells(j).Visible = False
-                    End If
+            lblHalal = e.Item.FindControl("lblHalal")
+            sHalal = lblHalal.Text
 
-                Next
+            If sHalal = "Halal: Yes" Then
+                sHalal = "Yes"
+            ElseIf sHalal = "Halal: No" Then
+                sHalal = "No"
             End If
-        Next
+
+            hAddress = e.Item.FindControl("hfAddress")
+            sAddress = hAddress.Value
+
+            hTimeOpen = e.Item.FindControl("hfTimeOpen")
+            sTimeOpen = hTimeOpen.Value
+
+            hTImeClosed = e.Item.FindControl("hfTimeClosed")
+            sTimeClosed = hTImeClosed.Value
+
+            Session("userid") = Session("userid")
+            Session("email") = sEmail
+            Session("branchid") = sBranchId
+            Session("restName") = sRestName
+            Session("halal") = sHalal
+            Session("address") = sAddress
+            Session("timeOpen") = sTimeOpen
+            Session("timeClosed") = sTimeClosed
+
+            Response.Redirect("customerRestaurantMenu.aspx")
+
+        ElseIf (e.CommandName = "viewMenu") And (Session("orderType") = "delivery") Then
+
+            hEmail = e.Item.FindControl("hfEmail")
+            sEmail = hEmail.Value
+
+            hBranchId = e.Item.FindControl("hfBranchId")
+            sBranchId = hBranchId.Value
+
+            lblRestName = e.Item.FindControl("lblRestName")
+            sRestName = lblRestName.Text
+
+            lblHalal = e.Item.FindControl("lblHalal")
+            sHalal = lblHalal.Text
+
+            If sHalal = "Halal: Yes" Then
+                sHalal = "Yes"
+            ElseIf sHalal = "Halal: No" Then
+                sHalal = "No"
+            End If
+
+            hAddress = e.Item.FindControl("hfAddress")
+            sAddress = hAddress.Value
+
+            hTimeOpen = e.Item.FindControl("hfTimeOpen")
+            sTimeOpen = hTimeOpen.Value
+
+            hTImeClosed = e.Item.FindControl("hfTimeClosed")
+            sTimeClosed = hTImeClosed.Value
+
+            Session("userid") = Session("userid")
+            Session("email") = sEmail
+            Session("branchid") = sBranchId
+            Session("restName") = sRestName
+            Session("halal") = sHalal
+            Session("address") = sAddress
+            Session("timeOpen") = sTimeOpen
+            Session("timeClosed") = sTimeClosed
+
+            Response.Redirect("customerOrder.aspx")
+        End If
     End Sub
+
+    'Protected Sub Merge(ByVal rowCount As Integer)
+    '    Dim hBranchId As HiddenField = Nothing
+    '    Dim hPrevBranchId As HiddenField = Nothing
+    '    Dim sBranchID As String = ""
+    '    Dim sPreviousBranchID As String = ""
+
+    '    For i As Integer = rowCount - 1 To 1 Step -1
+    '        Dim row As GridViewRow = gvSearch.Rows(i)
+    '        Dim previousRow As GridViewRow = gvSearch.Rows(i - 1)
+
+    '        hBranchId = gvSearch.Rows(i).FindControl("hfBranchId")
+    '        sBranchID = hBranchId.Value.ToString()
+
+    '        hPrevBranchId = gvSearch.Rows(i - 1).FindControl("hfBranchId")
+    '        sPreviousBranchID = hPrevBranchId.Value.ToString()
+
+    '        If sBranchID = sPreviousBranchID Then
+    '            For j As Integer = 0 To row.Cells.Count - 1
+    '                If row.Cells(j).Text = previousRow.Cells(j).Text And j <> 3 Then
+
+    '                    If row.Cells(j).RowSpan = 0 Then
+    '                        previousRow.Cells(j).RowSpan += 2
+    '                    Else
+    '                        previousRow.Cells(j).RowSpan = row.Cells(j).RowSpan + 1
+    '                    End If
+    '                    row.Cells(j).Visible = False
+    '                End If
+    '            Next
+    '        End If
+    '    Next
+    'End Sub
+
 End Class
