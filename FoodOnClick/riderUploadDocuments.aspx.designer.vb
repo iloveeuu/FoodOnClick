@@ -11,32 +11,23 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class signUpHome
+Partial Public Class riderUploadDocuments
 
     '''<summary>
-    '''lbtnCustomerAcc control.
+    '''File1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbtnCustomerAcc As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents File1 As Global.System.Web.UI.HtmlControls.HtmlInputFile
 
     '''<summary>
-    '''lbtnRestaurantAcc control.
+    '''btnUploadDocuments control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbtnRestaurantAcc As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''lbtnRiderAcc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbtnRiderAcc As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents btnUploadDocuments As Global.System.Web.UI.WebControls.Button
 End Class

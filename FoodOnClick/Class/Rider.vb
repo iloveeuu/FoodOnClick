@@ -14,7 +14,8 @@ Public Class Rider
             str_type = Value
         End Set
     End Property
-
+    Public Sub New()
+    End Sub
     Public Sub New(ByVal sFirstName As String, ByVal sLastName As String, ByVal sAddress As String, ByVal sContactNo As String _
             , ByVal sGender As String, ByVal sDOB As String, ByVal sType As String, ByVal sUsername As String, ByVal sPass As String, ByVal sEmail As String)
         MyBase.New(sFirstName, sLastName, sAddress, sContactNo, sGender, sDOB, sType, sUsername, sPass, sEmail)
@@ -46,5 +47,47 @@ Public Class Rider
         End Using
     End Sub
 
+    Public Function getUserId()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim cmd As New SqlCommand
+        Dim userid1 As Integer
+
+        Using conn As New SqlConnection(connectionString)
+            conn.Open()
+
+            cmd = New SqlCommand("select MAX(userid) from UserAccount where type = 'Rider' ", conn)
+            userid1 = cmd.ExecuteScalar()
+
+            conn.Close()
+        End Using
+        Return userid1
+    End Function
+
+
+    Public Function uploadRiderDocuments(url, type)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "insert into Document (type, url, userid) values (@type, @url, @userid) "
+        getUserId()
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@type", SqlDbType.NVarChar).Value = type
+                    .Parameters.Add("@url", SqlDbType.NVarChar).Value = url
+                    .Parameters.Add("@userid", SqlDbType.Int).Value = getUserId()
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+    End Function
 
 End Class

@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <div class="signUpMerchant-page" runat="server">
-        <h3>Upload Documents</h3>
+        <h3>Upload Restaurant Documents</h3>
         <br />
         <hr />
         <br />

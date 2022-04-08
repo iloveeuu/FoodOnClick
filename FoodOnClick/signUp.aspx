@@ -71,7 +71,7 @@
                     <asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+          <%--  <tr>
                 <td>User Type:
                 </td>
                 <td>
@@ -82,7 +82,7 @@
                     </asp:DropDownList>
 
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td colspan=" 2">
                     <br />

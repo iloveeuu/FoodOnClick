@@ -36,6 +36,6 @@
     End Sub
 
     Protected Sub btnSignUp_Click(sender As Object, e As EventArgs)
-        Response.Redirect("signUp.aspx")
+        Response.Redirect("signUpHome.aspx")
     End Sub
 End Class
