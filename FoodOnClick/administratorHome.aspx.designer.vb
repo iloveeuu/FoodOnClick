@@ -41,6 +41,24 @@ Partial Public Class administratorHome
     Protected WithEvents manageApproval As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''manageRiderRegistration control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents manageRiderRegistration As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''changeCuisineType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents changeCuisineType As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''manageOrders control.
     '''</summary>
     '''<remarks>

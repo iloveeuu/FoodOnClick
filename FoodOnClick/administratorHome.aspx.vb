@@ -31,4 +31,9 @@ Public Class administratorHome
 
     End Sub
 
+    Protected Sub manageCuisineTypeChange(ByVal sender As Object, ByVal e As System.EventArgs) Handles changeCuisineType.Click
+        Response.Redirect("administratorChangeCuisineType.aspx")
+    End Sub
+
+
 End Class

@@ -28,9 +28,21 @@
             </tr>--%>
             <tr>
                 <td>
-                    <asp:button runat="server" ID="manageApproval" Text="Manage Registrations"/>    
+                    <asp:button runat="server" ID="manageApproval" Text="Manage Restaurant Registrations "/>    
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <asp:button runat="server" ID="manageRiderRegistration" Text="Manage Rider Registrations"/>    
+                </td>
+            </tr>
+              <tr>
+                <td>
+                    <asp:button runat="server" ID="changeCuisineType" Text="Change Cuisine Type"/>    
+                </td>
+            </tr>
+
+
             <tr>
                <td>
                    <asp:button runat="server" ID="manageOrders" Text="Manage Orders"/>

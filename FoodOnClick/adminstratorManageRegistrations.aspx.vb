@@ -14,7 +14,7 @@ Public Class adminstratorManageRegistrations_aspxt
         'Dim dr As SqlDataReader
         'Dim dtSearch = New DataTable()
         'Dim message As String
-
+        'In Document class
         Dim clsDocument As Document = New Document()
         rptUser.DataSource = clsDocument.GetRestaurantDocument()
         rptUser.DataBind()
@@ -230,8 +230,11 @@ Public Class adminstratorManageRegistrations_aspxt
 
     'End Sub
 
+
     Protected Sub rptUser_ItemDataBound(sender As Object, e As RepeaterItemEventArgs)
         If (e.Item.ItemType = ListItemType.Item Or e.Item.ItemType = ListItemType.AlternatingItem) Then
+
+
             Dim rLogo As String = DataBinder.Eval(e.Item.DataItem, "restaurantLogo").ToString()
             Dim lbllogo As HyperLink = TryCast(e.Item.FindControl("restaurantLogo"), HyperLink)
             lbllogo.NavigateUrl = rLogo
@@ -380,5 +383,7 @@ Public Class adminstratorManageRegistrations_aspxt
                 ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb3.ToString())
             End If
         End If
+
+
     End Sub
 End Class

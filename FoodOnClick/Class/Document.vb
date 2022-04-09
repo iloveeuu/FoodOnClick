@@ -5,6 +5,7 @@ Public Class Document
     Protected str_restaurantLogo As String
     Protected str_businessLicense As String
     Protected str_halal As String
+
     Public Property restaurantLogo() As String
         Get
             restaurantLogo = str_restaurantLogo
@@ -39,7 +40,7 @@ Public Class Document
         Dim returnMsg As String = "False"
         Dim returnObject As List(Of Document) = New List(Of Document)
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "SELECT document.type,url,document.userid from document join useraccount on document.userid = useraccount.userid where useraccount.status = 'VETTING' and useraccount.type = 'Restaurant'  order by document.userid asc"
+        Dim Query As String = "SELECT useraccount.userid,firstname,lastname,phoneNum,email,document.type,url from document join useraccount on document.userid = useraccount.userid where useraccount.status = 'VETTING' and useraccount.type = 'Restaurant'  order by document.userid asc"
         Using conn As New SqlConnection(connectionString)
 
             Using comm As New SqlCommand()
@@ -56,6 +57,11 @@ Public Class Document
                     Dim tempobj As Document = New Document()
                     While reader.Read()
                         tempobj.userId = reader("userid")
+                        tempobj.firstName = reader("firstname")
+                        tempobj.lastName = reader("lastname")
+                        tempobj.phone = reader("phoneNum")
+                        tempobj.email = reader("email")
+                        tempobj.type = reader("type")
                         If (reader("type") = "Restaurant Logo") Then
                             tempobj.restaurantLogo = reader("url")
                         ElseIf (reader("type") = "Business License") Then

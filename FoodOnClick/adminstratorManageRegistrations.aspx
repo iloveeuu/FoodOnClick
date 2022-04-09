@@ -18,20 +18,41 @@
     <br />
     <br />
     <div style="overflow-x: auto; text-align: center; width: 100%">
-        <div style="width:40%;margin:0 auto">
-        <asp:Repeater runat="server" ID="rptUser" OnItemDataBound="rptUser_ItemDataBound" OnItemCommand="rptUser_ItemCommand" EnableViewState="false">
+        <div style="width:80%;margin:0 auto">
+        <asp:Repeater  runat="server" ID="rptUser" OnItemDataBound="rptUser_ItemDataBound" OnItemCommand="rptUser_ItemCommand" EnableViewState="false">
+             <HeaderTemplate>
+                   <table style="width:100%" border="1">
+                       <tr>
+                           <th width="5%">UserID</th>
+                           <th width="5%">FirstName</th>
+                           <th width="5%">LastName</th>
+                           <th width="10%">PhoneNumber</th>
+                           <th width="10%">Email</th>
+                           <th width="15%">BusinessLogo</th>
+                           <th width="15%">RestaurantLogo</th>
+                           <th width="15%">Hala</th>
+                           <th width="10%">Approve</th>
+                           <th width="10%">Reject</th>
+                       </tr>
+                   </table>
+             </HeaderTemplate>
+
             <ItemTemplate>
-                <div>
-                    <asp:Label runat="server" ID="lblUserId" Text='<%#Eval("userId") %>'></asp:Label>
-                    <asp:Label runat="server" ID="lblRestaurantLogo" Text=" Restaurant Logo :"></asp:Label>
-                    <asp:HyperLink runat="server" ID="restaurantLogo"></asp:HyperLink>
-                    <asp:Label runat="server" ID="lblBusinessLicense" Text="Business License :"></asp:Label>
-                    <asp:HyperLink runat="server" ID="businessLicense"></asp:HyperLink>
-                    <asp:Label runat="server" ID="lblHalal" Text="Halal :"></asp:Label>
-                    <asp:HyperLink runat="server" ID="halal"></asp:HyperLink>
-                    <asp:Button ID="systemAdminRegistration_Approve" Text="Approve" CommandName="Approve" runat="server" CommandArgument='<%#Eval("userId") %>'/>
-                    <asp:Button ID="systemAdminRegistration_Reject" Text="Reject" CommandName="Reject" runat="server" CommandArgument='<%#Eval("userId") %>'/>
-                </div>
+                 <table style="width:100%">
+                     <tr>
+                           <td width="5%"><asp:Label runat="server" ID="lblUserId" Text='<%#Eval("userId") %>'></asp:Label></td>
+                           <td width="5%"><asp:Label runat="server" ID="firstName" Text='<%#Eval("firstName") %>'></asp:Label></td>
+                           <td width="5%"><asp:Label runat="server" ID="lastName" Text='<%#Eval("lastName") %>'></asp:Label></td>
+                           <td width="10%"><asp:Label runat="server" ID="phoneNumber" Text='<%#Eval("phone") %>'></asp:Label></td>
+                           <td width="10%"><asp:Label runat="server" ID="email" Text='<%#Eval("email") %>'></asp:Label></td>
+                           <td width="15%"><asp:HyperLink runat="server" ID="businessLicense"></asp:HyperLink></td>
+                           <td width="15%"><asp:HyperLink runat="server" ID="restaurantLogo"></asp:HyperLink></td>
+                           <td width="15%"><asp:HyperLink runat="server" ID="halal"></asp:HyperLink></td>
+                           <td width="10%"><asp:Button ID="systemAdminRegistration_Approve" Text="Approve" CommandName="Approve" runat="server" CommandArgument='<%#Eval("userId") %>'/></td>
+                           <td width="10%"><asp:Button ID="systemAdminRegistration_Reject" Text="Reject" CommandName="Reject" runat="server" CommandArgument='<%#Eval("userId") %>' /></td>
+                     </tr>
+                       
+                </table>   
                 <br />
             </ItemTemplate>
         </asp:Repeater>
