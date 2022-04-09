@@ -36,4 +36,9 @@ Public Class administratorHome
     End Sub
 
 
+    Protected Sub manageApprovalClickRider(ByVal sender As Object, ByVal e As System.EventArgs) Handles manageRiderRegistration.Click
+        Response.Redirect("adminstratorManageRegistrationsRider.aspx")
+    End Sub
+
+
 End Class
