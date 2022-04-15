@@ -5,6 +5,10 @@ Public Class Customer
 
     Inherits User
 
+
+    Protected str_userStatus As String
+    Protected int_countOrder As Int32
+
     'Protected str_type As String
 
     'Public Property type() As String
@@ -15,8 +19,27 @@ Public Class Customer
     '        str_type = Value
     '    End Set
     'End Property
+    Public Property userStatus() As String
+        Get
+            userStatus = str_userStatus
+        End Get
+        Set(ByVal Value As String)
+            str_userStatus = Value
+        End Set
+    End Property
+
+    Public Property countOrder() As Int32
+        Get
+            countOrder = int_countOrder
+        End Get
+        Set(ByVal Value As Int32)
+            int_countOrder = Value
+        End Set
+    End Property
 
     Public Sub New()
+        userStatus = ""
+        countOrder = 0
 
     End Sub
 
@@ -149,4 +172,56 @@ Public Class Customer
         End Using
         Return returnObject
     End Function
+
+
+    Public Function GetCustomerDetailByAdmin()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As List(Of Customer) = New List(Of Customer)
+        Dim Query As String = "select useraccount.userid,firstname,lastname,address,phonenum,gender,dateofbirth,statusafterapproved,count(batchorders.userid) as OrderNum from useraccount left join batchorders on useraccount.userid=batchorders.userid where statusafterapproved is not null and type='customer' group by useraccount.userid,firstname,lastname,address,phonenum,gender,dateofbirth,statusafterapproved"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    Dim counter As Integer = 1
+                    Dim tempobj As Customer = New Customer()
+                    While reader.Read()
+                        tempobj.userId = reader("userid")
+                        tempobj.firstName = reader("firstname")
+                        tempobj.lastName = reader("lastname")
+                        tempobj.address = reader("address")
+                        tempobj.phone = reader("phoneNum")
+                        tempobj.gender = reader("gender")
+                        tempobj.dateOfBirth = reader("dateofbirth")
+                        tempobj.userStatus = reader("statusafterapproved")
+                        tempobj.countOrder = reader("OrderNum")
+                        returnObject.Add(tempobj)
+                        tempobj = New Customer()
+                    End While
+                    Dim tempobj1 As Document = New Document()
+                Catch ex As SqlException
+
+                End Try
+            End Using
+        End Using
+
+
+
+
+
+        Return returnObject
+    End Function
+
+
+
+
+
+
 End Class

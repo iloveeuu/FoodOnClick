@@ -50,6 +50,15 @@ Partial Public Class login
     Protected WithEvents lblWrong As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lblUnavailableBlocked control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUnavailableBlocked As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''btnLogin control.
     '''</summary>
     '''<remarks>

@@ -272,9 +272,12 @@ Public Class adminstratorManageRegistrations_aspxt
             con.ConnectionString = "workstation id=foodonclick2.mssql.somee.com;packet size=4096;user id=fypfoodonclick_SQLLogin_1;pwd=eeq5c9sxpx;data source=foodonclick2.mssql.somee.com;persist security info=False;initial catalog=foodonclick2"
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.status='APPROVED' WHERE userid=@userID;"
+            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.status='APPROVED', dbo.UserAccount.statusAfterApproved='AVAILABLE' WHERE userid=@userID;"
             cmd.Parameters.AddWithValue("@userID", Convert.ToInt32(e.CommandArgument))
             cmd.ExecuteNonQuery()
+
+
+
 
             message1 = "User ID " & Convert.ToInt32(e.CommandArgument) & " is approved"
             Dim sb1 As New System.Text.StringBuilder()

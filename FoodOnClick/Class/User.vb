@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Configuration
 
 Public Class User
     Protected int_userId As Integer
@@ -166,10 +167,10 @@ Public Class User
         Return returnMsg
     End Function
 
-    Public Function CheckUserLoginAccess() As String
-        Dim returnMsg As String = ""
+    Public Function CheckUserLoginAccess() As String()
+        Dim returnMsg(1) As String
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "SELECT * from UserAccount where LOWER(email) = @email and password = @password and LOWER(status) = 'approved'"
+        Dim Query As String = "SELECT * from UserAccount where LOWER(email) = @email and password = @password and LOWER(status) = 'approved'  "
         Using conn As New SqlConnection(connectionString)
 
             Using comm As New SqlCommand()
@@ -185,7 +186,8 @@ Public Class User
                     conn.Open()
                     Dim reader As SqlDataReader = comm.ExecuteReader
                     While reader.Read()
-                        returnMsg = reader("type")
+                        returnMsg(0) = reader("type")
+                        returnMsg(1) = reader("statusAfterApproved")
                         System.Web.HttpContext.Current.Session("userid") = reader("userid")
                         System.Web.HttpContext.Current.Session("firstname") = reader("firstName")
                         System.Web.HttpContext.Current.Session("lastname") = reader("lastName")
@@ -195,17 +197,18 @@ Public Class User
                         System.Web.HttpContext.Current.Session("dateofbirth") = reader("dateofBirth")
                         System.Web.HttpContext.Current.Session("type") = reader("type")
                         System.Web.HttpContext.Current.Session("email") = reader("email")
+
                     End While
 
                 Catch ex As SqlException
-                    returnMsg = ex.Message
+                    returnMsg(0) = ex.Message
                 End Try
             End Using
         End Using
         Return returnMsg
     End Function
 
-    Public Function addNewUserAccount(txtFirstName, txtlastName, txtAddress, txtContactNo, txtGender, txtDOB, accountType, txtPass, txtEmail, status) As Boolean
+    Public Function addNewUserAccount(txtFirstName, txtlastName, txtAddress, txtContactNo, txtGender, txtDOB, accountType, txtPass, txtEmail, status, statusAfterApproved) As Boolean
 
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
@@ -229,11 +232,22 @@ Public Class User
             Dim pass As Encryption = New Encryption(txtPass)
             Dim encrypted As String = pass.Encrypt()
 
-            cmd = New SqlCommand("INSERT INTO UserAccount
+            If statusAfterApproved = "AVAILABLE" Then
+                cmd = New SqlCommand("INSERT INTO UserAccount
                                  values ('" & txtFirstName & "','" & txtlastName & "',
                                  '" & txtAddress & "', '" & txtContactNo & "', '" & txtGender & "'
                                  ,'" & txtDOB & "', '" & accountType & "'
-                                 ,'" & encrypted & "' ,'" & txtEmail & "', '" & status & "')", con)
+                                 ,'" & encrypted & "' ,'" & txtEmail & "', '" & status & "','" & statusAfterApproved & "')", con)
+            Else
+                cmd = New SqlCommand("INSERT INTO UserAccount
+                                 values ('" & txtFirstName & "','" & txtlastName & "',
+                                 '" & txtAddress & "', '" & txtContactNo & "', '" & txtGender & "'
+                                 ,'" & txtDOB & "', '" & accountType & "'
+                                 ,'" & encrypted & "' ,'" & txtEmail & "', '" & status & "',null)", con)
+
+            End If
+
+
 
 
             cmd.ExecuteNonQuery()

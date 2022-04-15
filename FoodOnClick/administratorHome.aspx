@@ -41,7 +41,11 @@
                     <asp:button runat="server" ID="changeCuisineType" Text="Change Cuisine Type"/>    
                 </td>
             </tr>
-
+             <tr>
+                <td>
+                    <asp:button runat="server" ID="userManagement" Text="User Management"/>    
+                </td>
+            </tr>
 
             <tr>
                <td>

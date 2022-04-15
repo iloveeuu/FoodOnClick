@@ -59,6 +59,15 @@ Partial Public Class administratorHome
     Protected WithEvents changeCuisineType As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''userManagement control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents userManagement As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''manageOrders control.
     '''</summary>
     '''<remarks>

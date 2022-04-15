@@ -34,13 +34,13 @@ Public Class signUp
         Else
             If Session("accountType") = "Customer" Then
                 newUserAdd = newUser.addNewUserAccount(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender, txtDOB.Text.Trim(),
-                    "Customer", txtPass.Text.Trim(), txtEmail.Text.Trim(), "APPROVED")
+                    "Customer", txtPass.Text.Trim(), txtEmail.Text.Trim(), "APPROVED", "AVAILABLE")
             ElseIf Session("accountType") = "Restaurant" Then
                 newUserAdd = newUser.addNewUserAccount(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender, txtDOB.Text.Trim(),
-                 "Restaurant", txtPass.Text.Trim(), txtEmail.Text.Trim(), "VETTING")
+                 "Restaurant", txtPass.Text.Trim(), txtEmail.Text.Trim(), "VETTING", "NULL")
             ElseIf Session("accountType") = "Rider" Then
                 newUserAdd = newUser.addNewUserAccount(txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtAddress.Text.Trim(), txtContactNo.Text.Trim(), gender, txtDOB.Text.Trim(),
-                "Rider", txtPass.Text.Trim(), txtEmail.Text.Trim(), "VETTING")
+                "Rider", txtPass.Text.Trim(), txtEmail.Text.Trim(), "VETTING", "NULL")
             End If
             If newUserAdd = False Then
                 message = "User exists"

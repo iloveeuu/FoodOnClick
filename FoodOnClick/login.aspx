@@ -31,6 +31,9 @@
             <td colspan="2"><asp:Label runat="server" ID="lblWrong" ForeColor="Red" Text="Wrong username/password" Visible="false"></asp:Label></td>
         </tr>
         <tr>
+            <td colspan="2"><asp:Label runat="server" ID="lblUnavailableBlocked" ForeColor="Red" Text="Account is Unavailable/Blocked" Visible="false"></asp:Label></td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" Style="width: 100%" />
             </td>

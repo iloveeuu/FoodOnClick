@@ -11,6 +11,8 @@ Public Class Restaurant
     Protected str_restaurantDescription As String
 
 
+
+
     Public Property restaurantId() As Integer
         Get
             restaurantId = int_restaurantId
@@ -60,6 +62,8 @@ Public Class Restaurant
             str_type = Value
         End Set
     End Property
+
+
     Public Sub New()
     End Sub
     Public Sub New(ByVal username As String, ByVal password As String)
@@ -219,6 +223,9 @@ Public Class Restaurant
             End Using
         End Using
     End Function
+
+
+
 
 
 

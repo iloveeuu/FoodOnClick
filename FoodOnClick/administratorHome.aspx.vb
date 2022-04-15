@@ -41,4 +41,8 @@ Public Class administratorHome
     End Sub
 
 
+    Protected Sub manageUser(ByVal sender As Object, ByVal e As System.EventArgs) Handles userManagement.Click
+        Response.Redirect("administratorUserManagement.aspx")
+    End Sub
+
 End Class
