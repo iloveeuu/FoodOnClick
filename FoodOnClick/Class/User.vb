@@ -310,6 +310,57 @@ Public Class User
         Return returnMsg
     End Function
 
+    Public Sub updateStatusAfterApproval(e As RepeaterCommandEventArgs, statusType As String)
+        Dim con As New SqlConnection
+        Dim cmd As New SqlCommand
+
+        con.ConnectionString = "workstation id=foodonclick2.mssql.somee.com;packet size=4096;user id=fypfoodonclick_SQLLogin_1;pwd=eeq5c9sxpx;data source=foodonclick2.mssql.somee.com;persist security info=False;initial catalog=foodonclick2"
+        con.Open()
+        cmd.Connection = con
+
+        If statusType = "Activate" Then
+            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.statusAfterApproved='AVAILABLE' WHERE userid=@userID;"
+        ElseIf statusType = "Deactivate" Then
+            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.statusAfterApproved='UNAVAILABLE' WHERE userid=@userID;"
+        ElseIf statusType = "Block" Then
+            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.statusAfterApproved='BLOCKED' WHERE userid=@userID;"
+        End If
+
+        cmd.Parameters.AddWithValue("@userID", Convert.ToInt32(e.CommandArgument))
+        cmd.ExecuteNonQuery()
+
+        con.Close()
+
+
+    End Sub
+
+
+
+    Public Sub updateStatusDuringRegitration(e As RepeaterCommandEventArgs, statusType As String)
+        Dim con As New SqlConnection
+        Dim cmd As New SqlCommand
+
+        con.ConnectionString = "workstation id=foodonclick2.mssql.somee.com;packet size=4096;user id=fypfoodonclick_SQLLogin_1;pwd=eeq5c9sxpx;data source=foodonclick2.mssql.somee.com;persist security info=False;initial catalog=foodonclick2"
+        con.Open()
+        cmd.Connection = con
+
+        If statusType = "Approve" Then
+            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.status='APPROVED', dbo.UserAccount.statusAfterApproved='AVAILABLE' WHERE userid=@userID;"
+        ElseIf statusType = "Reject" Then
+            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.status='REJECTED' WHERE userid=@userID;"
+
+        End If
+
+        cmd.Parameters.AddWithValue("@userID", Convert.ToInt32(e.CommandArgument))
+        cmd.ExecuteNonQuery()
+
+        con.Close()
+
+
+    End Sub
+
+
+
 
 
 End Class

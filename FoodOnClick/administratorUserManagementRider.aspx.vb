@@ -18,20 +18,17 @@ Public Class administratorUserManagementRider
     End Sub
 
     Protected Sub rptAdminRider_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
+        Dim myuser As User = New User()
         If (e.CommandName = "Activate") Then
-            Dim con As New SqlConnection
-            Dim cmd As New SqlCommand
+
             Dim mail As New SMTP()
             Dim message1 As String
             Dim message2 As String
             Dim message3 As String
 
-            con.ConnectionString = "workstation id=foodonclick2.mssql.somee.com;packet size=4096;user id=fypfoodonclick_SQLLogin_1;pwd=eeq5c9sxpx;data source=foodonclick2.mssql.somee.com;persist security info=False;initial catalog=foodonclick2"
-            con.Open()
-            cmd.Connection = con
-            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.statusAfterApproved='AVAILABLE' WHERE userid=@userID;"
-            cmd.Parameters.AddWithValue("@userID", Convert.ToInt32(e.CommandArgument))
-            cmd.ExecuteNonQuery()
+
+            myuser.updateStatusAfterApproval(e, "Activate")
+
 
             message1 = "User ID " & Convert.ToInt32(e.CommandArgument) & " is activated"
             Dim sb1 As New System.Text.StringBuilder()
@@ -76,26 +73,15 @@ Public Class administratorUserManagementRider
             End If
 
 
-
-
-
-            con.Close()
         ElseIf (e.CommandName = "Deactivate") Then
-            Dim con As New SqlConnection
-            Dim cmd As New SqlCommand
+
             Dim mail As New SMTP()
             Dim message1 As String
             Dim message2 As String
             Dim message3 As String
 
 
-            con.ConnectionString = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-            con.Open()
-            cmd.Connection = con
-            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.statusAfterApproved='UNAVAILABLE' WHERE userid=@userID;"
-            cmd.Parameters.AddWithValue("@userID", Convert.ToInt32(e.CommandArgument))
-            cmd.ExecuteNonQuery()
-
+            myuser.updateStatusAfterApproval(e, "Deactivate")
 
             message1 = "User ID " & Convert.ToInt32(e.CommandArgument) & " is deactivated"
             Dim sb As New System.Text.StringBuilder()
@@ -108,7 +94,7 @@ Public Class administratorUserManagementRider
 
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
 
-            con.Close()
+
 
             Dim clsUserInfo As Customer = New Customer()
             Dim user As Customer = clsUserInfo.GetCustomerDetail(Convert.ToInt32(e.CommandArgument))
@@ -141,21 +127,14 @@ Public Class administratorUserManagementRider
             End If
 
         ElseIf (e.CommandName = "Block") Then
-            Dim con As New SqlConnection
-            Dim cmd As New SqlCommand
+
             Dim mail As New SMTP()
             Dim message1 As String
             Dim message2 As String
             Dim message3 As String
 
 
-            con.ConnectionString = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-            con.Open()
-            cmd.Connection = con
-            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.statusAfterApproved='BLOCKED' WHERE userid=@userID;"
-            cmd.Parameters.AddWithValue("@userID", Convert.ToInt32(e.CommandArgument))
-            cmd.ExecuteNonQuery()
-
+            myuser.updateStatusAfterApproval(e, "Block")
 
             message1 = "User ID " & Convert.ToInt32(e.CommandArgument) & " is blocked"
             Dim sb As New System.Text.StringBuilder()
@@ -168,7 +147,7 @@ Public Class administratorUserManagementRider
 
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
 
-            con.Close()
+
 
             Dim clsUserInfo As Customer = New Customer()
             Dim user As Customer = clsUserInfo.GetCustomerDetail(Convert.ToInt32(e.CommandArgument))

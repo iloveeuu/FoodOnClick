@@ -261,20 +261,16 @@ Public Class adminstratorManageRegistrations_aspxt
     End Sub
 
     Protected Sub rptUser_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
+        Dim myuser As User = New User()
         If (e.CommandName = "Approve") Then
-            Dim con As New SqlConnection
-            Dim cmd As New SqlCommand
+
             Dim mail As New SMTP()
             Dim message1 As String
             Dim message2 As String
             Dim message3 As String
 
-            con.ConnectionString = "workstation id=foodonclick2.mssql.somee.com;packet size=4096;user id=fypfoodonclick_SQLLogin_1;pwd=eeq5c9sxpx;data source=foodonclick2.mssql.somee.com;persist security info=False;initial catalog=foodonclick2"
-            con.Open()
-            cmd.Connection = con
-            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.status='APPROVED', dbo.UserAccount.statusAfterApproved='AVAILABLE' WHERE userid=@userID;"
-            cmd.Parameters.AddWithValue("@userID", Convert.ToInt32(e.CommandArgument))
-            cmd.ExecuteNonQuery()
+            myuser.updateStatusDuringRegitration(e, "Approve")
+
 
 
 
@@ -322,25 +318,14 @@ Public Class adminstratorManageRegistrations_aspxt
             End If
 
 
-
-
-
-            con.Close()
         ElseIf (e.CommandName = "Reject") Then
-            Dim con As New SqlConnection
-            Dim cmd As New SqlCommand
+
             Dim mail As New SMTP()
             Dim message1 As String
             Dim message2 As String
             Dim message3 As String
 
-
-            con.ConnectionString = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-            con.Open()
-            cmd.Connection = con
-            cmd.CommandText = "UPDATE dbo.UserAccount SET dbo.UserAccount.status='REJECTED' WHERE userid=@userID;"
-            cmd.Parameters.AddWithValue("@userID", Convert.ToInt32(e.CommandArgument))
-            cmd.ExecuteNonQuery()
+            myuser.updateStatusDuringRegitration(e, "Reject")
 
 
             message1 = "User ID " & Convert.ToInt32(e.CommandArgument) & " is rejected"
@@ -354,7 +339,7 @@ Public Class adminstratorManageRegistrations_aspxt
 
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
 
-            con.Close()
+
 
             Dim clsUserInfo As Customer = New Customer()
             Dim user As Customer = clsUserInfo.GetCustomerDetail(Convert.ToInt32(e.CommandArgument))
