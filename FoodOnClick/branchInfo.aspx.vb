@@ -24,7 +24,7 @@
                 txtCity.Text = editInfo.branchCity
                 txtaddress.Text = editInfo.branchAddress
                 ddlReservation.SelectedValue = editInfo.branchReservation
-                ddlDrivethru.SelectedValue = editInfo.branchdrivethru
+                'ddlDrivethru.SelectedValue = editInfo.branchdrivethru
                 ddlStatus.SelectedValue = editInfo.branchStatus
                 ddlHalal.SelectedValue = editInfo.halal
                 ddlCuisine.SelectedValue = editInfo.branchCuisineId
@@ -41,7 +41,7 @@
         Dim encrypted As String = pass.Encrypt()
         Dim message As String = ""
         If (btnSubmit.Text = "Create branch") Then
-            Dim clsBranch As Branch = New Branch(ddlReservation.SelectedValue, ddlDrivethru.SelectedValue, txtEmail.Text.Trim(), encrypted, txtStart.Text.Trim(), txtEnd.Text.Trim(), ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue)
+            Dim clsBranch As Branch = New Branch(ddlReservation.SelectedValue, txtEmail.Text.Trim(), encrypted, txtStart.Text.Trim(), txtEnd.Text.Trim(), ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue)
             Dim msg As String = clsBranch.CreateBranch()
             If (msg = "True") Then
                 message = "Successfully created branch"
@@ -66,7 +66,7 @@
                 ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
             End If
         ElseIf (btnSubmit.Text = "Update branch") Then
-            Dim clsBranch As Branch = New Branch(ddlReservation.SelectedValue, ddlDrivethru.SelectedValue, txtEmail.Text.Trim(), encrypted, txtStart.Text.Trim(), txtEnd.Text.Trim(), ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue, Convert.ToInt32(Session("branchid")))
+            Dim clsBranch As Branch = New Branch(ddlReservation.SelectedValue, txtEmail.Text.Trim(), encrypted, txtStart.Text.Trim(), txtEnd.Text.Trim(), ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue, Convert.ToInt32(Session("branchid")))
             Dim msg As String = clsBranch.UpdateBranch()
             If (msg = "True") Then
                 message = "Successfully updated branch"

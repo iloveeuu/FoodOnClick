@@ -14,13 +14,49 @@ Option Explicit On
 Partial Public Class riderHome
 
     '''<summary>
-    '''btnStartStopServices control.
+    '''btnRefresh control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnStartStopServices As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnRefresh As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnStart control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnStart As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''divRpt control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents divRpt As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''rptOrders control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rptOrders As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''lblDefaultMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDefaultMessage As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''btnNotifySupport control.

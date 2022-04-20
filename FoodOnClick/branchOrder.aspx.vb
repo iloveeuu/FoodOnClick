@@ -27,6 +27,12 @@
         Dim clsBatchOrder As BatchOrder = New BatchOrder(Convert.ToInt32(Session("branchid")))
         gvOrders.DataSource = clsBatchOrder.GetOrdersHistory()
         gvOrders.DataBind()
+        If gvOrders.Rows.Count() = 0 Then
+            lblNothing.Visible = True
+            lblNothing.Text = "No past orders"
+        Else
+            lblNothing.Visible = False
+        End If
     End Sub
 
     Protected Sub binddataPending()
@@ -34,6 +40,12 @@
         Dim clsBatchOrder As BatchOrder = New BatchOrder(Convert.ToInt32(Session("branchid")))
         gvOrders.DataSource = clsBatchOrder.GetOrdersPending()
         gvOrders.DataBind()
+        If gvOrders.Rows.Count() = 0 Then
+            lblNothing.Visible = True
+            lblNothing.Text = "No pending orders"
+        Else
+            lblNothing.Visible = False
+        End If
     End Sub
     Protected Sub Unnamed_Click(sender As Object, e As EventArgs)
         my_popup.Style.Add("display", "none")

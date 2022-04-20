@@ -57,13 +57,13 @@
                     <asp:ListItem Selected="True" Value="Disabled">Disabled</asp:ListItem>
                     <asp:ListItem Value="Allowed">Allowed</asp:ListItem></asp:DropDownList></td>
         </tr>
-        <tr>
+<%--        <tr>
             <td>Drive-thru</td>
             <td>
                 <asp:DropDownList runat="server" ID="ddlDrivethru" Width="100%">
                     <asp:ListItem Selected="True" Value="Disabled">Disabled</asp:ListItem>
                     <asp:ListItem Value="Allowed">Allowed</asp:ListItem></asp:DropDownList></td>
-        </tr>
+        </tr>--%>
         <tr>
             <td>Status:</td>
             <td>
