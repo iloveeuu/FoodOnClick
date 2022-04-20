@@ -66,7 +66,7 @@
         <tr>
             <td>
                 <div id="divRpt" runat="server" style="height: 400px; overflow-y: auto; width: 100%;">
-                    <asp:Repeater runat="server" ID="rptOrders" EnableViewState="false" OnItemDataBound="rptOrders_ItemDataBound" OnItemCommand="rptOrders_ItemCommand">
+                    <asp:Repeater runat="server" ID="rptOrders" EnableViewState="true" OnItemDataBound="rptOrders_ItemDataBound" OnItemCommand="rptOrders_ItemCommand">
                         <ItemTemplate>
                             <table>
                                 <tr>
@@ -87,11 +87,10 @@
                                     <td style="text-align:left;"><asp:Label runat="server" ID="lblResToUser"></asp:Label></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:left;"><asp:Label runat="server" ID="lblDeliveryCharges"></asp:Label></td>
+                                    <td style="text-align:left;"><asp:Label runat="server" ID="lblPaymentMethod"></asp:Label></td>                                    
                                 </tr>
                                 <tr>
-                                    <td style="text-align:left;"><asp:Label runat="server" ID="lblPaymentMethod"></asp:Label>
-                                    </td>
+                                    <td style="text-align:left;"><asp:Label runat="server" ID="lblDeliveryCharges"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:left;"><asp:Label runat="server" ID="lbltotalcharges"></asp:Label></td>
@@ -100,23 +99,17 @@
                                     <td style="text-align:left;"><asp:Button runat="server" ID="btnAccept" CommandName="Accept" CommandArgument='<%#Eval("batchid") %>' Text="Accept Order"/></td>
                                 </tr>
                             </table>
-                            <p>
-                                
-                            </p>
-                            <p>
-                                
-                            </p>
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>
                 <asp:Label ID="lblDefaultMessage" Font-Size="Larger" runat="server" Text="Sorry, There is no nearby job. Please press refresh to look for job" Visible="false"></asp:Label>
             </td>
         </tr>
-        <tr>
+<%--        <tr>
             <td colspan="2"></td>
             <td>
                 <asp:Button runat="server" ID="btnNotifySupport" Text="Notify Support" OnClick="btnNotifySupport_Click" /></td>
-        </tr>
+        </tr>--%>
         <tr>
             <td colspan="2"></td>
             <td>

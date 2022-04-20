@@ -372,10 +372,28 @@ Public Class Order
     Public Function AcceptOrderJob() As Boolean
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim returnObject As Boolean = True
-        Dim Query As String = "update orders set riderID = @riderid where batchid = @batchid"
+        Dim Query As String = "update orders set riderID = (select riderid from rider where userid = @riderid) where batchid = @batchid"
 
         Using conn As New SqlConnection(connectionString)
 
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchId
+                    .Parameters.Add("@riderid", SqlDbType.Int).Value = Me.userId
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+                Catch ex As SqlException
+                    returnObject = False
+                End Try
+            End Using
+            Query = "update rider set deliverystatus = 'Deliverying' where userid = @riderid"
             Using comm As New SqlCommand()
                 With comm
                     Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
@@ -399,7 +417,9 @@ Public Class Order
     Public Function CurrentlyOnJob() As Boolean
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim returnObject As Boolean = False
-        Dim Query As String = "Select * from orders where (riderid=@riderid and orderstatusid = 1) or (riderid=@riderid and orderstatusid = 2)"
+        'Dim Query As String = "Select * from orders where (riderid=@riderid and orderstatusid = 1) or (riderid=@riderid and orderstatusid = 2)"
+        Dim Query As String = "Select * From orders Where riderID =@riderid And orderstatusid in (1,2)"
+
 
         Using conn As New SqlConnection(connectionString)
 

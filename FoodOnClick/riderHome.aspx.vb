@@ -23,20 +23,20 @@ Public Class riderHome
         End If
     End Sub
 
-    Protected Sub btnNotifySupport_Click(sender As Object, e As EventArgs)
-        'Dim mail As New SMTP()
-        'Dim ToAddressies As String() = {"fypfoodonclick@gmail.com", "fypfoodonclick@gmail.com"}
-        'Dim attachs() As String = {}
-        ''"d:\temp_Excell226.xlsx", "d:\temp_Excell224.xlsx", "d:\temp_Excell225.xlsx"
-        'Dim subject As String = "Testing on local"
-        'Dim body As String = "From local pc hello"
-        'Dim result As Boolean = mail.SendMail(ToAddressies, subject, body, attachs)
-        'If result Then
-        '    MsgBox("mails sended successfully", MsgBoxStyle.Information)
-        'Else
-        '    MsgBox(mail.ErrorText, MsgBoxStyle.Critical)
-        'End If
-    End Sub
+    'Protected Sub btnNotifySupport_Click(sender As Object, e As EventArgs)
+    '    'Dim mail As New SMTP()
+    '    'Dim ToAddressies As String() = {"fypfoodonclick@gmail.com", "fypfoodonclick@gmail.com"}
+    '    'Dim attachs() As String = {}
+    '    ''"d:\temp_Excell226.xlsx", "d:\temp_Excell224.xlsx", "d:\temp_Excell225.xlsx"
+    '    'Dim subject As String = "Testing on local"
+    '    'Dim body As String = "From local pc hello"
+    '    'Dim result As Boolean = mail.SendMail(ToAddressies, subject, body, attachs)
+    '    'If result Then
+    '    '    MsgBox("mails sended successfully", MsgBoxStyle.Information)
+    '    'Else
+    '    '    MsgBox(mail.ErrorText, MsgBoxStyle.Critical)
+    '    'End If
+    'End Sub
 
     Protected Sub rptOrders_ItemDataBound(sender As Object, e As RepeaterItemEventArgs)
         Dim orderNum As Integer = DataBinder.Eval(e.Item.DataItem, "orderNum")
@@ -67,15 +67,15 @@ Public Class riderHome
 
     Protected Sub btnStart_Click(sender As Object, e As EventArgs)
         If (Request.QueryString("lat") Is Nothing AndAlso Request.QueryString("long") Is Nothing) Then
-            Dim message2 As String = "Please refresh the page"
-            Dim sb2 As New System.Text.StringBuilder()
-            sb2.Append("<script type='text/javascript'>")
-            sb2.Append("window.onload=function(){")
-            sb2.Append("alert('")
-            sb2.Append(message2)
-            sb2.Append("');window.location='adminstratorManageRegistrations.aspx';};")
-            sb2.Append("</script>")
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb2.ToString())
+            Dim message As String = "Please refresh the page"
+            Dim sb As New System.Text.StringBuilder()
+            sb.Append("<script type = 'text/javascript'>")
+            sb.Append("window.onload=function(){")
+            sb.Append("alert('")
+            sb.Append(message)
+            sb.Append("')};")
+            sb.Append("</script>")
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
         Else
             bindPendingOrders()
         End If
@@ -175,26 +175,26 @@ Public Class riderHome
                     Response.Redirect("riderDelivery.aspx")
                 Else
                     'Some issue with the backend
-                    Dim message2 As String = "Please refresh the page and try again."
-                    Dim sb2 As New System.Text.StringBuilder()
-                    sb2.Append("<script type='text/javascript'>")
-                    sb2.Append("window.onload=function(){")
-                    sb2.Append("alert('")
-                    sb2.Append(message2)
-                    sb2.Append("');window.location='adminstratorManageRegistrations.aspx';};")
-                    sb2.Append("</script>")
-                    ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb2.ToString())
+                    Dim message As String = "Please refresh the page and try again."
+                    Dim sb As New System.Text.StringBuilder()
+                    sb.Append("<script type = 'text/javascript'>")
+                    sb.Append("window.onload=function(){")
+                    sb.Append("alert('")
+                    sb.Append(message)
+                    sb.Append("')};")
+                    sb.Append("</script>")
+                    ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
                 End If
             Else
-                    Dim message2 As String = "Job has been taken by other rider. Please refresh the page"
-                Dim sb2 As New System.Text.StringBuilder()
-                sb2.Append("<script type='text/javascript'>")
-                sb2.Append("window.onload=function(){")
-                sb2.Append("alert('")
-                sb2.Append(message2)
-                sb2.Append("');window.location='adminstratorManageRegistrations.aspx';};")
-                sb2.Append("</script>")
-                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb2.ToString())
+                Dim message As String = "Job has been taken by other rider. Please refresh the page"
+                Dim sb As New System.Text.StringBuilder()
+                sb.Append("<script type = 'text/javascript'>")
+                sb.Append("window.onload=function(){")
+                sb.Append("alert('")
+                sb.Append(message)
+                sb.Append("')};")
+                sb.Append("</script>")
+                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
             End If
 
             'System.Web.HttpContext.Current.Session("riderid") = e.CommandArgument.ToString()
