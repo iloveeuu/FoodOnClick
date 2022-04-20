@@ -99,6 +99,14 @@ Public Class Order
 
     Public Sub New()
     End Sub
+    Public Sub New(ByVal ibatchid As Integer)
+        Me.batchId = ibatchid
+    End Sub
+
+    Public Sub New(ByVal ibatchid As Integer, ByVal iuserid As Integer)
+        Me.batchId = ibatchid
+        Me.userId = iuserid
+    End Sub
 
     Public Sub New(ByVal iOrderNum As Integer, ByVal dTotalcharges As Decimal,
                    ByVal iOrderStatusID As Integer, ByVal iRiderReviewID As Integer,
@@ -283,6 +291,159 @@ Public Class Order
             End Using
         End Using
         Return returnBool
+    End Function
+    Public Function CheckRiderPendingOrders()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As List(Of Order) = New List(Of Order)
+        Dim Query As String = "Select bo.paymentmethod,u.address as useraddress,r.name,b.address,bo.ordertime,bo.orderdate,os.type,o.totalcharges,o.orderNum,o.deliveryCharges,bo.batchid from batchorders As bo join deliverType As dt On bo.deliveryTypeID = dt.deliveryTypeID join orderType As ot On bo.orderTypeID = ot.orderTypeID join orders As o On bo.batchid = o.batchid join orderstatus As os On o.orderStatusID = os.orderStatusID join branch As b On b.branchid =bo.branchid join restaurant As r On r.restaurantid = b.restaurantid join useraccount as u on u.userid =bo.userid where bo.orderTypeID = 11 And o.orderStatusID = 1 And bo.deliveryTypeID = 2 And o.riderid is null"
+        'Dim Query As String = "SELECT u.userid,u.firstName,u.lastName,dt.type,bo.ordertime,bo.orderdate,os.type,o.totalcharges,ot.type,o.orderNum,o.deliveryCharges,bo.batchid from useraccount as u join batchorders as bo on u.userid = bo.userid join deliverType as dt on bo.deliveryTypeID = dt.deliveryTypeID join orderType as ot on bo.orderTypeID = ot.orderTypeID join orders as o on bo.batchid = o.batchid join orderstatus as os on o.orderStatusID = os.orderStatusID where bo.branchid = @branchid and bo.orderTypeID = 11 and o.orderStatusID = 6 and bo.deliveryTypeID = 2"
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = Me.branchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+
+                        While reader.Read()
+                            Dim tempobj As Order = New Order()
+                            tempobj.name = reader("name")
+                            tempobj.timeDelivered = reader("address")
+                            tempobj.strOrderTime = reader("ordertime").ToString()
+                            tempobj.totalcharges = reader("totalcharges")
+                            tempobj.orderNum = reader("orderNum")
+                            tempobj.deliverycharges = reader("deliveryCharges")
+                            tempobj.batchId = reader("batchid")
+                            tempobj.timePicked = reader("useraddress")
+                            tempobj.batchId = reader("batchid")
+                            tempobj.paymentMethod = reader("paymentMethod")
+                            returnObject.Add(tempobj)
+                        End While
+                    End If
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+
+    Public Function CheckIfOrderIsAvailable() As Boolean
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As Boolean = True
+        Dim Query As String = "Select o.riderID from batchorders as bo join orders as o on bo.batchid = o.batchid where batchid = @batchid"
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        returnObject = False
+                    End If
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+
+    Public Function AcceptOrderJob() As Boolean
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As Boolean = True
+        Dim Query As String = "update orders set riderID = (select riderid from rider where userid = @riderid) where batchid = @batchid"
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchId
+                    .Parameters.Add("@riderid", SqlDbType.Int).Value = Me.userId
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+                Catch ex As SqlException
+                    returnObject = False
+                End Try
+            End Using
+            Query = "update rider set deliverystatus = 'Deliverying' where userid = @riderid"
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchId
+                    .Parameters.Add("@riderid", SqlDbType.Int).Value = Me.userId
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+                Catch ex As SqlException
+                    returnObject = False
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+    Public Function CurrentlyOnJob() As Boolean
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As Boolean = False
+        'Dim Query As String = "Select * from orders where (riderid=@riderid and orderstatusid = 1) or (riderid=@riderid and orderstatusid = 2)"
+        Dim Query As String = "Select * From orders Where riderID =@riderid And orderstatusid in (1,2)"
+
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@riderid", SqlDbType.Int).Value = Me.batchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        returnObject = True
+                    End If
+                    conn.Close()
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
     End Function
 #End Region
 

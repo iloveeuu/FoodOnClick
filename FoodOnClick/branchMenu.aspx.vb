@@ -43,6 +43,7 @@
         Dim clsRestaurantMenuInfo As Menu = New Menu(Convert.ToInt32(Session("branchid").ToString()))
         Dim clsBranch As Branch = clsRestaurantMenuInfo.RetrieveRestaurantBranchInfoByBranchId()
         lblTitle.Text = clsBranch.restaurantName & " - " & clsBranch.branchCity & " Branch"
+        lblWallet.Text = "Wallet: $" & clsBranch.branchwallet.ToString()
         Dim listOfBranch As List(Of Menu) = clsRestaurantMenuInfo.RetrieveMenuInfo()
         If listOfBranch.Count() > 0 Then
             rptBranch.DataSource = listOfBranch

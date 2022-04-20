@@ -24,6 +24,11 @@
                 </td>
             </tr>
             <tr>
+                <td colspan="4">
+                    <h2><asp:Label runat="server" ID="lblWallet"></asp:Label></h2>
+                </td>
+            </tr>
+            <tr>
                 <td>
                     <asp:Button runat="server" ID="btnAnnouncements" Text="Manage Announcements" Width="100%" /></td>
                 <td>
