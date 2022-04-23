@@ -53,11 +53,11 @@
     <%--    <div id="map" style="width: 500px; height: 300px; visibility: hidden;"></div>
     <div id="panel" style="width: 500px; height: 300px; visibility: hidden;"></div>--%>
     <table>
-        <tr>
+        <%--        <tr>
             <td colspan="3">
                 <asp:Button runat="server" ID="btnRefresh" Text="Refresh" Visible="false" OnClick="btnRefresh_Click" />
             </td>  
-        </tr>
+        </tr>--%>
         <tr>
             <td colspan="3">
                 <asp:Button runat="server" ID="btnStart" Text="Start" OnClick="btnStart_Click" />
@@ -65,38 +65,51 @@
         </tr>
         <tr>
             <td>
-                <div id="divRpt" runat="server" style="height: 400px; overflow-y: auto; width: 100%;">
+                <div id="divRpt" runat="server" style="height: 400px; overflow-y: auto;overflow-x:auto; width: 100%;">
                     <asp:Repeater runat="server" ID="rptOrders" EnableViewState="true" OnItemDataBound="rptOrders_ItemDataBound" OnItemCommand="rptOrders_ItemCommand">
                         <ItemTemplate>
                             <table>
                                 <tr>
-                                    <td style="text-align:left;"><asp:Label runat="server" ID="lblOrderId" Font-Bold="true"></asp:Label></td>
+                                    <td style="text-align: left;">
+                                        <asp:Label runat="server" ID="lblOrderId" Font-Bold="true"></asp:Label></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:left;"><asp:Label runat="server" ID="lblRestaurantName"></asp:Label></td>
+                                    <td style="text-align: left;">
+                                        <asp:Label runat="server" ID="lblRestaurantName"></asp:Label></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:left;"><asp:Label runat="server" ID="lbladdress"></asp:Label>
+                                    <td style="text-align: left;">
+                                        <asp:Label runat="server" ID="lblRestaurantAddress"></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left;">
+                                        <asp:Label runat="server" ID="lbladdress"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:left;"><asp:Label runat="server" ID="lbluseraddress"></asp:Label>
+                                    <td style="text-align: left;">
+                                        <asp:Label runat="server" ID="lbluseraddress"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:left;"><asp:Label runat="server" ID="lblResToUser"></asp:Label></td>
+                                    <td style="text-align: left;">
+                                        <asp:Label runat="server" ID="lblResToUser"></asp:Label></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:left;"><asp:Label runat="server" ID="lblPaymentMethod"></asp:Label></td>                                    
+                                    <td style="text-align: left;">
+                                        <asp:Label runat="server" ID="lblPaymentMethod"></asp:Label></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:left;"><asp:Label runat="server" ID="lblDeliveryCharges"></asp:Label></td>
+                                    <td style="text-align: left;">
+                                        <asp:Label runat="server" ID="lblDeliveryCharges"></asp:Label></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:left;"><asp:Label runat="server" ID="lbltotalcharges"></asp:Label></td>
+                                    <td style="text-align: left;">
+                                        <asp:Label runat="server" ID="lbltotalcharges"></asp:Label></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:left;"><asp:Button runat="server" ID="btnAccept" CommandName="Accept" CommandArgument='<%#Eval("batchid") %>' Text="Accept Order"/></td>
+                                    <td style="text-align: left;">
+                                        <asp:Button runat="server" ID="btnAccept" CommandName="Accept" CommandArgument='<%#Eval("batchid") %>' Text="Accept Order" /></td>
                                 </tr>
                             </table>
                         </ItemTemplate>
@@ -105,16 +118,16 @@
                 <asp:Label ID="lblDefaultMessage" Font-Size="Larger" runat="server" Text="Sorry, There is no nearby job. Please press refresh to look for job" Visible="false"></asp:Label>
             </td>
         </tr>
-<%--        <tr>
+        <%--        <tr>
             <td colspan="2"></td>
             <td>
                 <asp:Button runat="server" ID="btnNotifySupport" Text="Notify Support" OnClick="btnNotifySupport_Click" /></td>
         </tr>--%>
-        <tr>
+<%--        <tr>
             <td colspan="2"></td>
             <td>
                 <asp:Button runat="server" ID="btnSearch" Text="Search" /></td>
-        </tr>
+        </tr>--%>
         <tr>
             <td colspan="3"></td>
         </tr>
