@@ -11,7 +11,8 @@ Public Class BatchOrder
     Protected iOrderTypeID As Integer
     Protected iDeliveryTypeID As Integer
     Protected sPaymentMethod As String
-    Protected name As String
+    Protected sname As String
+    Protected sTemp As String
 
 #Region "Objects"
     Public Property batchId() As Integer
@@ -92,6 +93,22 @@ Public Class BatchOrder
         End Get
         Set(ByVal Value As String)
             sPaymentMethod = Value
+        End Set
+    End Property
+    Public Property name() As String
+        Get
+            name = sname
+        End Get
+        Set(ByVal Value As String)
+            sname = Value
+        End Set
+    End Property
+    Public Property temp() As String
+        Get
+            temp = sTemp
+        End Get
+        Set(ByVal Value As String)
+            sTemp = Value
         End Set
     End Property
 #End Region

@@ -39,24 +39,30 @@ Public Class riderHome
     'End Sub
 
     Protected Sub rptOrders_ItemDataBound(sender As Object, e As RepeaterItemEventArgs)
+
         Dim orderNum As Integer = DataBinder.Eval(e.Item.DataItem, "orderNum")
-        Dim MeToRestaurant As String = DataBinder.Eval(e.Item.DataItem, "timeDelivered").ToString()
-        Dim useraddressDistance As String = DataBinder.Eval(e.Item.DataItem, "timePicked").ToString()
+        Dim RestaurantName As String = DataBinder.Eval(e.Item.DataItem, "name").ToString()
+        Dim RestaurantAddress As String = DataBinder.Eval(e.Item.DataItem, "timeDelivered").ToString()
+        Dim MeToRestaurant As String = DataBinder.Eval(e.Item.DataItem, "orderTime").ToString()
+        Dim useraddressDistance As String = DataBinder.Eval(e.Item.DataItem, "temp").ToString()
         Dim deliveryCharges As Decimal = DataBinder.Eval(e.Item.DataItem, "deliverycharges")
         Dim userAddress As String = DataBinder.Eval(e.Item.DataItem, "timePicked")
         Dim paymentMethod As String = DataBinder.Eval(e.Item.DataItem, "paymentMethod")
         Dim totalcharges As Decimal = DataBinder.Eval(e.Item.DataItem, "totalcharges")
 
         Dim userAddress1 As Label = (TryCast(e.Item.FindControl("lbluseraddress"), Label))
-        Dim RestaurantName As Label = (TryCast(e.Item.FindControl("lblRestaurantName"), Label))
+        Dim RestaurantName1 As Label = (TryCast(e.Item.FindControl("lblRestaurantName"), Label))
+        Dim RestaurantAddress1 As Label = (TryCast(e.Item.FindControl("lblRestaurantAddress"), Label))
         Dim orderNum1 As Label = (TryCast(e.Item.FindControl("lblOrderId"), Label))
         Dim MeToRestaurant1 As Label = (TryCast(e.Item.FindControl("lbladdress"), Label))
         Dim userAddressDistance1 As Label = (TryCast(e.Item.FindControl("lblResToUser"), Label))
         Dim deliveryCharges1 As Label = (TryCast(e.Item.FindControl("lblDeliveryCharges"), Label))
         Dim paymentMethod1 As Label = (TryCast(e.Item.FindControl("lblPaymentMethod"), Label))
         Dim totalcharges1 As Label = (TryCast(e.Item.FindControl("lbltotalcharges"), Label))
-        orderNum1.Text = "Order: " & orderNum
-        RestaurantName.Text = "Restaurant: " & MeToRestaurant
+        orderNum1.Text = "Order ID: " & orderNum
+
+        RestaurantName1.Text = "Restaurant: " & RestaurantName
+        RestaurantAddress1.Text = "Restaurant Address: " & RestaurantAddress
         MeToRestaurant1.Text = "Distance to Restaurant: " & MeToRestaurant
         userAddress1.Text = "Customer Address: " & userAddress
         userAddressDistance1.Text = "Restaurant to Customer: " & useraddressDistance
@@ -91,7 +97,7 @@ Public Class riderHome
         Dim listOfAvailableBranch As List(Of Order) = New List(Of Order)
         Dim listOfOrders As List(Of Order) = tempclsOrder.CheckRiderPendingOrders()
         Dim latlong As String = Page.Request.QueryString("lat") + "," + Page.Request.QueryString("long")
-        btnRefresh.Visible = True
+        'btnRefresh.Visible = True
         divRpt.Style.Add("border", "1px solid black")
         For Each item In listOfOrders
             'Distance between Rider and Restaurant
@@ -107,18 +113,19 @@ Public Class riderHome
             Dim jsonResult = JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(rawresp)
             Dim distanceArr As String() = jsonResult("routes")(0)("legs")(0)("distance")("text").ToString().Split(" ")
             response.Dispose()
-            If (Convert.ToDecimal(distanceArr(0)) <= 4.5) Then
-                api = "https://maps.googleapis.com/maps/api/directions/json?destination=" + item.timeDelivered.Replace("#", "%23") + "&origin=" + item.timePicked.Replace("#", "%23") + "&region=SG&mode=bicycling&key=AIzaSyCb_ivGtmAoh8YrYAPOobiiVfU0hvabH-U"
-                request = DirectCast(WebRequest.Create(api), HttpWebRequest)
+            'If (Convert.ToDecimal(distanceArr(0)) <= 4.5) Then
+            item.orderTime = distanceArr(0) & " " & distanceArr(1)
+            api = "https://maps.googleapis.com/maps/api/directions/json?destination=" + item.timeDelivered.Replace("#", "%23") + "&origin=" + item.timePicked.Replace("#", "%23") + "&region=SG&mode=bicycling&key=AIzaSyCb_ivGtmAoh8YrYAPOobiiVfU0hvabH-U"
+            request = DirectCast(WebRequest.Create(api), HttpWebRequest)
                 request.Timeout = 3000
                 response = DirectCast(request.GetResponse(), HttpWebResponse)
                 reader = New StreamReader(response.GetResponseStream())
                 rawresp = reader.ReadToEnd()
                 jsonResult = JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(rawresp)
                 Dim distance As String = jsonResult("routes")(0)("legs")(0)("distance")("text").ToString()
-                item.timePicked = distance
-                listOfAvailableBranch.Add(item)
-            End If
+            item.temp = distance
+            listOfAvailableBranch.Add(item)
+            'End If
         Next
         If listOfAvailableBranch.Count = 0 Then
             lblDefaultMessage.Visible = True
@@ -159,10 +166,6 @@ Public Class riderHome
         Return dist
     End Function
 
-    Protected Sub btnRefresh_Click(sender As Object, e As EventArgs)
-        bindPendingOrders()
-    End Sub
-
     Protected Sub rptOrders_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Accept") Then
             Dim clsDeliveryOrder As Order = New Order(Convert.ToInt32(e.CommandArgument().ToString()))
@@ -175,7 +178,7 @@ Public Class riderHome
                     Response.Redirect("riderDelivery.aspx")
                 Else
                     'Some issue with the backend
-                    Dim message As String = "Please refresh the page and try again."
+                    Dim message As String = "Please try again."
                     Dim sb As New System.Text.StringBuilder()
                     sb.Append("<script type = 'text/javascript'>")
                     sb.Append("window.onload=function(){")
@@ -184,9 +187,10 @@ Public Class riderHome
                     sb.Append("')};")
                     sb.Append("</script>")
                     ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+                    bindPendingOrders()
                 End If
             Else
-                Dim message As String = "Job has been taken by other rider. Please refresh the page"
+                Dim message As String = "Job has been taken by other rider."
                 Dim sb As New System.Text.StringBuilder()
                 sb.Append("<script type = 'text/javascript'>")
                 sb.Append("window.onload=function(){")
@@ -195,10 +199,8 @@ Public Class riderHome
                 sb.Append("')};")
                 sb.Append("</script>")
                 ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+                bindPendingOrders()
             End If
-
-            'System.Web.HttpContext.Current.Session("riderid") = e.CommandArgument.ToString()
-            'Response.Redirect("branchMenuInfo.aspx")
         End If
     End Sub
 End Class
