@@ -15,6 +15,8 @@
                 lblPax.Text = Session("pax")
             End If
 
+            Session("compare_menuid") = ""
+
             Dim dtSearch As DataTable
 
             Dim clsMenu As Menu = New Menu()
@@ -138,6 +140,35 @@
 
                 lblTotal.Text = " $" + Convert.ToString(dtAdd.Compute("SUM(totPrice)", String.Empty))
             End If
+        ElseIf e.CommandName = "doAddCompare" Then
+            iMenuId = Convert.ToInt32(e.CommandArgument)
+
+            Dim strSession() As String = Session("compare_menuid").ToString().Split(",")
+
+            For Each s As String In strSession
+                If s = iMenuId.ToString() Then
+                    Dim sb1 As New System.Text.StringBuilder()
+                    sb1.Append("<script type = 'text/javascript'>")
+                    sb1.Append("window.onload=function(){")
+                    sb1.Append("alert('")
+                    sb1.Append("Menu Already Added for Compare")
+                    sb1.Append("')};")
+                    sb1.Append("</script>")
+                    ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb1.ToString())
+                    Exit Sub
+                End If
+            Next
+
+            Session("compare_menuid") = Session("compare_menuid") + iMenuId.ToString + ","
+
+            Dim sb As New System.Text.StringBuilder()
+            sb.Append("<script type = 'text/javascript'>")
+            sb.Append("window.onload=function(){")
+            sb.Append("alert('")
+            sb.Append("Added for Compare")
+            sb.Append("')};")
+            sb.Append("</script>")
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
         End If
     End Sub
 
@@ -235,6 +266,9 @@
     Protected Sub Unnamed_Click(sender As Object, e As EventArgs)
         my_popup.Style.Add("display", "none")
         popup.Style.Add("display", "none")
+
+        my_popup2.Style.Add("display", "none")
+        compare_popup.Style.Add("display", "none")
     End Sub
 
     Protected Sub gvPreOrder_RowCommand(sender As Object, e As GridViewCommandEventArgs)
@@ -370,5 +404,137 @@
 
     Protected Sub btnCart_Click(sender As Object, e As EventArgs)
         Response.Redirect("customerCart.aspx")
+    End Sub
+
+    Protected Sub gvCompare_RowCommand(sender As Object, e As GridViewCommandEventArgs)
+        Dim boolDataExist = False
+        Dim Index As Int32 = -1
+
+        Dim iMenuId As Integer = 0
+        Dim hfMenuId As HiddenField = Nothing
+        Dim hfBranchId As HiddenField = Nothing
+        Dim iBranchId As Integer = 0
+
+        Dim txtQty As TextBox = Nothing
+        Dim iQty As Integer = 0
+
+        Dim lblPrice As Label = Nothing
+        Dim sPrice As String = ""
+        Dim dbPrice As Double = 0
+
+        Dim dbTotPrice As Double = 0
+
+        Dim lblDishName As Label = Nothing
+        Dim sMenu As String = ""
+
+        If e.CommandName = "doAdd" Then
+            iMenuId = Convert.ToInt32(e.CommandArgument)
+
+            Index = Convert.ToInt32(e.CommandArgument)
+
+            hfBranchId = gvCompare.Rows(Index).FindControl("hfBranchId")
+            iBranchId = hfBranchId.Value
+
+            lblDishName = gvCompare.Rows(Index).FindControl("lblDishName")
+            sMenu = lblDishName.Text
+
+            txtQty = gvCompare.Rows(Index).FindControl("txtQty")
+
+            dtAdd = Session("dtTable")
+
+            If txtQty.Text <> "" Then
+                iQty = txtQty.Text
+            End If
+
+            If txtQty.Text = "" Or iQty < 1 Then
+                Dim sb As New System.Text.StringBuilder()
+                sb.Append("<script type = 'text/javascript'>")
+                sb.Append("window.onload=function(){")
+                sb.Append("alert('")
+                sb.Append("Quantity must more than 0")
+                sb.Append("')};")
+                sb.Append("</script>")
+                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            Else
+
+                lblPrice = gvCompare.Rows(Index).FindControl("lblPrice")
+                sPrice = lblPrice.Text
+                sPrice = sPrice.Replace("$ ", "")
+
+                dbPrice = Convert.ToDouble(sPrice)
+
+                dbTotPrice = dbPrice * Convert.ToDouble(iQty)
+
+                For Each row As DataRow In dtAdd.Rows
+                    If (row("menu").ToString() = sMenu) Then
+                        row("qty") += iQty
+                        row("totPrice") += dbTotPrice
+
+                        boolDataExist = True
+                    End If
+                Next
+
+                If boolDataExist = False Then
+                    dtAdd.Rows.Add(iMenuId, sMenu, iQty, dbTotPrice)
+                End If
+
+                Session("dtTable") = dtAdd
+
+                gvPreOrder.DataSource = dtAdd
+                gvPreOrder.DataBind()
+
+                lblTotal.Text = " $" + Convert.ToString(dtAdd.Compute("SUM(totPrice)", String.Empty))
+            End If
+        ElseIf e.CommandName = "doRemove" Then
+            Dim compare_menuid As String
+            Dim dtCompare As DataTable
+
+            Index = Convert.ToInt32(e.CommandArgument)
+
+            hfMenuId = gvCompare.Rows(Index).FindControl("hfMenuId")
+            iMenuId = hfMenuId.Value
+
+            Session("compare_menuid") = Session("compare_menuid").ToString().Replace(iMenuId.ToString() + ",", "")
+
+            compare_menuid = Session("compare_menuid")
+
+            compare_menuid = compare_menuid.TrimEnd(CChar(","))
+
+            Dim clsMenu As Menu = New Menu()
+            dtCompare = clsMenu.GetMenuByIdList(compare_menuid)
+
+            gvCompare.DataSource = dtCompare
+            gvCompare.DataBind()
+        End If
+    End Sub
+
+    Protected Sub btnCompare_Click(sender As Object, e As EventArgs)
+
+        Dim compare_menuid As String
+        Dim dtCompare As DataTable
+
+        If Session("compare_menuid") Is Nothing Then
+            Dim sb As New System.Text.StringBuilder()
+            sb.Append("<script type = 'text/javascript'>")
+            sb.Append("window.onload=function(){")
+            sb.Append("alert('")
+            sb.Append("No Comparison Added")
+            sb.Append("')};")
+            sb.Append("</script>")
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+        Else
+            compare_menuid = Session("compare_menuid")
+
+            compare_menuid = compare_menuid.TrimEnd(CChar(","))
+
+            Dim clsMenu As Menu = New Menu()
+            dtCompare = clsMenu.GetMenuByIdList(compare_menuid)
+
+            gvCompare.DataSource = dtCompare
+            gvCompare.DataBind()
+
+            my_popup2.Style.Add("display", "block")
+            compare_popup.Style.Add("display", "block")
+        End If
     End Sub
 End Class

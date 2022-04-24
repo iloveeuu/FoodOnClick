@@ -918,4 +918,53 @@ Public Class Menu
         Return dtSearch
     End Function
 
+    Public Function GetMenuByIdList(ByVal sMenuId As String)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+
+        Dim dtSearch = New DataTable()
+        Dim Query As String = "SELECT b.branchid, m.menuid, m.name as dishName, m.cost as price, " &
+                            "(m.description + 'CHAR(13)CHAR(13)Energy: ' + CONVERT(nvarchar(20),m.energy) + ' cal.' + " &
+                            "'CHAR(13)Protein: ' + CONVERT(nvarchar(20),m.protein) + ' g' + " &
+                            "'CHAR(13)Carbs: ' + CONVERT(nvarchar(20),m.carbonhydrate) + ' g' + " &
+                            "'CHAR(13)Sugar: ' + CONVERT(nvarchar(20),m.glucose) + ' g' + " &
+                            "'CHAR(13)Fats: ' + CONVERT(nvarchar(20),m.fats) + ' g' + " &
+                            "'CHAR(13)Sodium: ' + CONVERT(nvarchar(20),m.sodium) + ' g' " &
+                            ") As describe, " &
+                            "('~/images/menu/' + m.image) As path, ft.type " &
+                            "from branch as b " &
+                            "inner join Menu as m on b.branchid = m.branchid " &
+                            "inner join MenuStatus As ms On m.Statusid = ms.menu_status_id And ms.type = 'Available' " &
+                            "inner Join FoodType As ft On m.foodtypeID = ft.foodtypeID " &
+                            "WHERE m.menuid IN ( " + sMenuId + ") "
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        dtSearch.Load(reader)
+                        dtSearch.Columns(4).ReadOnly = False
+
+                        For i As Integer = 0 To dtSearch.Rows.Count - 1
+                            dtSearch.Rows(i)(4) = dtSearch.Rows(i)(4).ToString().Replace("CHAR(13)", "<br/>")
+                        Next
+                    End If
+
+                    conn.Close()
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return dtSearch
+    End Function
+
 End Class
