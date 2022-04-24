@@ -273,8 +273,6 @@ Public Class adminstratorManageRegistrations_aspxt
 
 
 
-
-
             message1 = "User ID " & Convert.ToInt32(e.CommandArgument) & " is approved"
             Dim sb1 As New System.Text.StringBuilder()
             sb1.Append("<script type='text/javascript'>")

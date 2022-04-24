@@ -45,4 +45,10 @@ Public Class administratorHome
         Response.Redirect("administratorUserManagement.aspx")
     End Sub
 
+
+    Protected Sub manageSupport(ByVal sender As Object, ByVal e As System.EventArgs) Handles supportIssues.Click
+        Response.Redirect("administratorReplySupport.aspx")
+    End Sub
+
+
 End Class
