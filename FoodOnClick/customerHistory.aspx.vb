@@ -275,7 +275,7 @@
 
                 btnFeedback = e.Row.FindControl("btnFeedback")
                 btnFeedback.Visible = True
-            ElseIf (e.Row.Cells(5).Text = "Completed") Then
+            ElseIf (e.Row.Cells(3).Text = "Completed") Then
                 btnFeedback = e.Row.FindControl("btnFeedback")
                 btnFeedback.Visible = True
             End If

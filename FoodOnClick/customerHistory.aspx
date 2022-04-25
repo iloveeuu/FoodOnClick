@@ -201,7 +201,7 @@
             display: none;
             background: white;
             width: 30%;
-            height: 40%;
+            height: 50%;
             position: fixed;
             top: 35%;
             left: 35%;
