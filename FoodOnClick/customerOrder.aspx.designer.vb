@@ -185,6 +185,15 @@ Partial Public Class customerOrder
     Protected WithEvents rptMenu As Global.System.Web.UI.WebControls.Repeater
 
     '''<summary>
+    '''btnCompare control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCompare As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btnShoppingCart control.
     '''</summary>
     '''<remarks>
@@ -246,4 +255,31 @@ Partial Public Class customerOrder
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPopUpDesc As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''my_popup2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents my_popup2 As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+    '''<summary>
+    '''compare_popup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents compare_popup As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''gvCompare control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvCompare As Global.System.Web.UI.WebControls.GridView
 End Class

@@ -5,9 +5,11 @@
         If (Not Session("userid") Is Nothing) Then
             lbLoginSignUp.Text = "Welcome " & Session("firstname") & " " & Session("lastname")
             lblLogOut.Visible = True
+            lbNotifySupport.Visible = True
         Else
             lbLoginSignUp.Text = "Login/Sign Up"
             lblLogOut.Visible = False
+            lbNotifySupport.Visible = False
         End If
     End Sub
 
@@ -52,6 +54,14 @@
             If Convert.ToInt32(Session("userid")) = 0 Then
                 Response.Redirect("branchMenu.aspx")
             End If
+        Else
+            Response.Redirect("login.aspx")
+        End If
+    End Sub
+
+    Protected Sub lbNotifySupport_Click(sender As Object, e As EventArgs)
+        If (Not Session("userid") Is Nothing) Then
+            Response.Redirect("notifySupport.aspx")
         Else
             Response.Redirect("login.aspx")
         End If

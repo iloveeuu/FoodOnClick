@@ -57,4 +57,211 @@ Partial Public Class customerHistory
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvDelivery As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''my_popup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents my_popup As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+    '''<summary>
+    '''popup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents popup As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''hfPopUpBranchId control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfPopUpBranchId As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hfPopUpBatchId control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfPopUpBatchId As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hfPopUpReservationId control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfPopUpReservationId As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''lblRest1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblRest1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtFeedback control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtFeedback As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''hfRating control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfRating As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''btnSubmit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSubmit As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''my_popup2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents my_popup2 As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+    '''<summary>
+    '''popup2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents popup2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''hfPopUpOrderIdDel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfPopUpOrderIdDel As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hfPopUpBranchIdDel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfPopUpBranchIdDel As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hfPopUpBatchIdDel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfPopUpBatchIdDel As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hfPopUpEmailDel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfPopUpEmailDel As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''lblRest2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblRest2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtFeedbackRest control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtFeedbackRest As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtFeedbackRider control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtFeedbackRider As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''hfRatingRest control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfRatingRest As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hfRatingRider control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfRatingRider As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''btnSubmitDel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSubmitDel As Global.System.Web.UI.WebControls.Button
 End Class

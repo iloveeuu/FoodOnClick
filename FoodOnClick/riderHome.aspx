@@ -68,7 +68,7 @@
                 <div id="divRpt" runat="server" style="height: 400px; overflow-y: auto;overflow-x:auto; width: 100%;">
                     <asp:Repeater runat="server" ID="rptOrders" EnableViewState="true" OnItemDataBound="rptOrders_ItemDataBound" OnItemCommand="rptOrders_ItemCommand">
                         <ItemTemplate>
-                            <table>
+                            <table style="margin:0px 0px">
                                 <tr>
                                     <td style="text-align: left;">
                                         <asp:Label runat="server" ID="lblOrderId" Font-Bold="true"></asp:Label></td>

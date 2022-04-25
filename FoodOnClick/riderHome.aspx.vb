@@ -73,7 +73,7 @@ Public Class riderHome
 
     Protected Sub btnStart_Click(sender As Object, e As EventArgs)
         If (Request.QueryString("lat") Is Nothing AndAlso Request.QueryString("long") Is Nothing) Then
-            Dim message As String = "Please refresh the page"
+            Dim message As String = "Please allow geolocation services to our website. Please refresh the page after turning it on"
             Dim sb As New System.Text.StringBuilder()
             sb.Append("<script type = 'text/javascript'>")
             sb.Append("window.onload=function(){")
