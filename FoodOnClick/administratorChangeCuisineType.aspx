@@ -27,12 +27,14 @@
 
                     <table style="width:100%">
                         <tr>
-                            <td width="80%"><asp:Textbox ID="addCuisineName" runat="server" Text="Please input Cuisine Type"></asp:Textbox></td>
+                            <td width="40%"><asp:Label runat="server" Text="Please input Cuisine Type"></asp:Label></td>
+                            <td width="40%"><asp:Textbox ID="addCuisineName" runat="server" ></asp:Textbox></td>
                             <td width="10%"><asp:Button ID="systemAdminChangeCuisine_Add" Text="Add" CommandName="Add"  runat  ="server"/></td>
                             <td width="10%"></td>
                         </tr>
                         <tr>
-                            <td width="80%"><asp:TextBox ID="cuisineIDForEnableDisable" runat="server" Text="Please input Cuisinetype ID for enable or disable"></asp:TextBox></td>
+                            <td width="40%"><asp:Label runat="server" Text="Please input Cuisine type ID for enable or disable"></asp:Label></td>
+                            <td width="40%"><asp:TextBox ID="cuisineIDForEnableDisable" runat="server" ></asp:TextBox></td>
                             <td width="10%"><asp:Button ID="systemAdminChangeCuisine_Enable" Text="Enable" CommandName="Enable" runat="server" /></td>
                             <td width="10%"><asp:Button ID="systemAdminChangeCuisine_Disable" Text="Disable" CommandName="Disable" runat="server"/></td>
                         </tr>
