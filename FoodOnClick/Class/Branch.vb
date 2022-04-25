@@ -356,7 +356,7 @@ Public Class Branch
                         returnObject.branchCuisineId = reader("cuisineTypeID")
                         returnObject.halal = reader("halal")
                         returnObject.branchStatus = reader("status")
-                        returnObject.branchwallet = reader("wallet")
+                        returnObject.branchwallet = reader("earning")
                         returnObject.branchReservation = reader("reservation")
                     End While
                 Catch ex As SqlException
@@ -427,7 +427,7 @@ Public Class Branch
                         returnObject.branchId = reader("branchId")
                         returnObject.branchAddress = reader("address")
                         returnObject.halal = reader("halal")
-                        returnObject.branchwallet = reader("wallet")
+                        returnObject.branchwallet = reader("earning")
                         returnObject.branchPostalcode = reader("postalcode")
                         returnObject.branchStatus = reader("status")
                         returnObject.branchCuisineId = reader("cuisineTypeID")
