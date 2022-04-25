@@ -26,7 +26,7 @@
 				<asp:LinkButton ID="lbtnRestaurantAcc" runat="server" style="text-decoration:none" Font-Bold="true">
 					<img class="custBtnImage" src="../Images/addRestaurant.png" alt="restaurant" />
 					<div class="custBtnDiv">
-						Restaurant Account
+						Restarant Account
 					</div>
 				</asp:LinkButton>
 			</td>
