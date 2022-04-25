@@ -41,15 +41,6 @@ Partial Public Class Masterpage
     Protected WithEvents ibtnHome As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''lbLoginSignUp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbLoginSignUp As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''lblLogOut control.
     '''</summary>
     '''<remarks>
@@ -57,6 +48,24 @@ Partial Public Class Masterpage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLogOut As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''lbNotifySupport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNotifySupport As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''lbLoginSignUp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbLoginSignUp As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''ContentPlaceHolder1 control.
