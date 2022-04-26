@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="notifySupport.aspx.vb" Inherits="FoodOnClick.notifySupport" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="notifySupportNew.aspx.vb" Inherits="FoodOnClick.notifySupport" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="signup-page" runat="server">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <h3>Support form</h3>
+        <h3>Support new support</h3>
         <br />
         <hr />
         <br />

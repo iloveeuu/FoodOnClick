@@ -60,8 +60,11 @@
     End Sub
 
     Protected Sub lbNotifySupport_Click(sender As Object, e As EventArgs)
+
         If (Not Session("userid") Is Nothing) Then
-            Response.Redirect("notifySupport.aspx")
+
+            Response.Redirect("notifySupportHome.aspx")
+
         Else
             Response.Redirect("login.aspx")
         End If

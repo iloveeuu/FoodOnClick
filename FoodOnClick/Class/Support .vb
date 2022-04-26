@@ -221,7 +221,7 @@ Public Class Support
                         tempobj.subject = reader("subject")
                         tempobj.description = reader("description")
                         tempobj.datesubmitted = reader("datesubmitted")
-                        tempobj.conversation = reader("Conversation")
+                        tempobj.conversation = reader("conversation")
                         tempobj.email = reader("email")
 
                     End While
@@ -266,8 +266,182 @@ Public Class Support
     End Sub
 
 
+    Public Function getSupportFromUser(rUserID As Int32)
+        Dim returnMsg As String = "False"
+        Dim returnObject As List(Of Support) = New List(Of Support)
+
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "select supportid,status,userid,subject,description, COALESCE(conversation,'No Conversation Yet')  AS conversation, datesubmitted ,COALESCE(convert(varchar,support.dateclose),'TBA') AS dateclose from support  where userid=@rUserID "
+
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.AddWithValue("@rUserID", rUserID)
+                End With
 
 
 
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    Dim counter As Integer = 1
+                    Dim tempobj As Support = New Support()
+                    While reader.Read()
+                        tempobj.supportid = reader("supportid")
+                        tempobj.status = reader("status")
+                        tempobj.userID = reader("userid")
+                        tempobj.subject = reader("subject")
+                        tempobj.description = reader("description")
+                        tempobj.conversation = reader("conversation")
+                        tempobj.datesubmitted = reader("datesubmitted")
+                        tempobj.dateclose = reader("dateclose")
+
+                        returnObject.Add(tempobj)
+                        tempobj = New Support()
+                    End While
+
+                Catch ex As SqlException
+
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+
+
+    Public Sub updateSupportStatusSolved(SupportID As Int32, CloseDate As Date)
+        Dim returnMsg As String = "False"
+
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "UPDATE SUPPORT SET status ='Solved',dateclose=@refDateClose WHERE supportid=@refSupportID"
+
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.AddWithValue("@refSupportID", SupportID)
+                    .Parameters.AddWithValue("@refDateClose", CloseDate)
+                End With
+
+                conn.Open()
+                comm.ExecuteNonQuery()
+
+
+            End Using
+        End Using
+
+    End Sub
+
+
+    Public Sub insertIntoNewRecord(subject As String, txtMsg As String, userID As Int32)
+
+        Dim con As New SqlConnection
+        Dim cmd As New SqlCommand
+
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        con.ConnectionString = connectionString
+        cmd.Connection = con
+        con.Open()
+        Dim CurrentDateTime As String = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+
+        cmd = New SqlCommand("INSERT INTO Support (subject, description, userid, datesubmitted, status)
+                                 values ('" & subject & "','" & txtMsg & "',
+                                 '" & userID & "', '" & CurrentDateTime & "','" & "Pending" & "')", con)
+
+        cmd.ExecuteNonQuery()
+        con.Close()
+
+
+    End Sub
+
+    Public Function getMaxSupport()
+
+        Dim returnMsg As String = "False"
+        Dim tempobj As Support = New Support()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "select MAX(Supportid) as supportid from support"
+
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+
+                End With
+
+
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    While reader.Read()
+                        tempobj.supportid = reader("supportid")
+
+                    End While
+
+                Catch ex As SqlException
+
+                End Try
+            End Using
+        End Using
+
+
+        Query = "select supportid,support.userid,email,useraccount.type from support join useraccount on support.userid=useraccount.userid where supportid=@rsupportID"
+
+
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.AddWithValue("@rsupportID", tempobj.supportid)
+                End With
+
+
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        tempobj.userID = reader("userid")
+                        tempobj.email = reader("email")
+                        tempobj.type = reader("type")
+                    End While
+
+
+                Catch ex As SqlException
+
+                End Try
+            End Using
+        End Using
+
+
+
+
+
+        Return tempobj
+    End Function
 
 End Class
