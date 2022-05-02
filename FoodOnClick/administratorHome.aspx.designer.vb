@@ -68,13 +68,13 @@ Partial Public Class administratorHome
     Protected WithEvents userManagement As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''manageOrders control.
+    '''adminReport control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents manageOrders As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents adminReport As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''supportIssues control.

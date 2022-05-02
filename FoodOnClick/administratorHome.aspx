@@ -49,7 +49,7 @@
 
             <tr>
                <td>
-                   <asp:button runat="server" ID="manageOrders" Text="Manage Orders"/>
+                   <asp:button runat="server" ID="adminReport" Text="View Report"/>
                </td>
             </tr>
             <tr>

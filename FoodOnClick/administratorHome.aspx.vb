@@ -51,4 +51,8 @@ Public Class administratorHome
     End Sub
 
 
+    Protected Sub adminReportB(ByVal sender As Object, ByVal e As System.EventArgs) Handles adminReport.Click
+        Response.Redirect("adminReport.aspx")
+    End Sub
+
 End Class

@@ -132,10 +132,10 @@ Public Class Report
     Public Function getRestaurantReport(myUserID As Int32, periodType As String)
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim returnObject As List(Of Report) = New List(Of Report)
-        Dim queryDate As String = "SELECT BRANCH.ADDRESS, CAST(batchorders.orderdate AS DATE)  AS PERIOD,MENU.NAME,COUNT(ORDERDETAILS.MENUID) AS ORDERNUM ,sum(OrderDetails.Price) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BRANCH.BRANCHID=BATCHORDERS.BRANCHID JOIN ORDERS ON ORDERS.BATCHID=BATCHORDERS.BATCHID JOIN ORDERDETAILS ON ORDERS.ORDERNUM=ORDERDETAILS.ORDERNUM JOIN MENU ON ORDERDETAILS.MENUID=MENU.MENUID WHERE USERACCOUNT.USERID=@userid GROUP BY MENU.NAME,BRANCH.ADDRESS,CAST(batchorders.orderdate AS DATE) ORDER BY ORDERNUM DESC"
-        Dim queryWeek As String = "SELECT BRANCH.ADDRESS, DATEPART(WEEK,batchorders.orderdate) AS PERIOD,MENU.NAME,COUNT(ORDERDETAILS.MENUID) AS ORDERNUM ,sum(OrderDetails.Price) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BRANCH.BRANCHID=BATCHORDERS.BRANCHID JOIN ORDERS ON ORDERS.BATCHID=BATCHORDERS.BATCHID JOIN ORDERDETAILS ON ORDERS.ORDERNUM=ORDERDETAILS.ORDERNUM JOIN MENU ON ORDERDETAILS.MENUID=MENU.MENUID WHERE USERACCOUNT.USERID=@userid GROUP BY MENU.NAME,BRANCH.ADDRESS,DATEPART(WEEK,batchorders.orderdate) ORDER BY ORDERNUM DESC"
-        Dim queryMonth As String = "SELECT BRANCH.ADDRESS, DATEPART(MONTH,batchorders.orderdate) AS PERIOD,MENU.NAME,COUNT(ORDERDETAILS.MENUID) AS ORDERNUM ,sum(OrderDetails.Price) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BRANCH.BRANCHID=BATCHORDERS.BRANCHID JOIN ORDERS ON ORDERS.BATCHID=BATCHORDERS.BATCHID JOIN ORDERDETAILS ON ORDERS.ORDERNUM=ORDERDETAILS.ORDERNUM JOIN MENU ON ORDERDETAILS.MENUID=MENU.MENUID WHERE USERACCOUNT.USERID=@userid GROUP BY MENU.NAME,BRANCH.ADDRESS,DATEPART(MONTH,batchorders.orderdate) ORDER BY ORDERNUM DESC"
-        Dim queryAll As String = "SELECT BRANCH.ADDRESS, MENU.NAME,COUNT(ORDERDETAILS.MENUID) AS ORDERNUM,sum(OrderDetails.Price) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BRANCH.BRANCHID=BATCHORDERS.BRANCHID JOIN ORDERS ON ORDERS.BATCHID=BATCHORDERS.BATCHID JOIN ORDERDETAILS ON ORDERS.ORDERNUM=ORDERDETAILS.ORDERNUM JOIN MENU ON ORDERDETAILS.MENUID=MENU.MENUID WHERE USERACCOUNT.USERID=@userid GROUP BY MENU.NAME,BRANCH.ADDRESS ORDER BY ORDERNUM DESC"
+        Dim queryDate As String = "SELECT BRANCH.ADDRESS, CAST(batchorders.orderdate AS DATE)  AS PERIOD,MENU.NAME,COUNT(ORDERDETAILS.MENUID) AS ORDERNUM ,sum(OrderDetails.Price) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BRANCH.BRANCHID=BATCHORDERS.BRANCHID JOIN ORDERS ON ORDERS.BATCHID=BATCHORDERS.BATCHID JOIN ORDERDETAILS ON ORDERS.ORDERNUM=ORDERDETAILS.ORDERNUM JOIN MENU ON ORDERDETAILS.MENUID=MENU.MENUID WHERE USERACCOUNT.USERID=@userid GROUP BY MENU.NAME,BRANCH.ADDRESS,CAST(batchorders.orderdate AS DATE) ORDER BY sales DESC"
+        Dim queryWeek As String = "SELECT BRANCH.ADDRESS, DATEPART(WEEK,batchorders.orderdate) AS PERIOD,MENU.NAME,COUNT(ORDERDETAILS.MENUID) AS ORDERNUM ,sum(OrderDetails.Price) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BRANCH.BRANCHID=BATCHORDERS.BRANCHID JOIN ORDERS ON ORDERS.BATCHID=BATCHORDERS.BATCHID JOIN ORDERDETAILS ON ORDERS.ORDERNUM=ORDERDETAILS.ORDERNUM JOIN MENU ON ORDERDETAILS.MENUID=MENU.MENUID WHERE USERACCOUNT.USERID=@userid GROUP BY MENU.NAME,BRANCH.ADDRESS,DATEPART(WEEK,batchorders.orderdate) ORDER BY sales DESC"
+        Dim queryMonth As String = "SELECT BRANCH.ADDRESS, DATEPART(MONTH,batchorders.orderdate) AS PERIOD,MENU.NAME,COUNT(ORDERDETAILS.MENUID) AS ORDERNUM ,sum(OrderDetails.Price) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BRANCH.BRANCHID=BATCHORDERS.BRANCHID JOIN ORDERS ON ORDERS.BATCHID=BATCHORDERS.BATCHID JOIN ORDERDETAILS ON ORDERS.ORDERNUM=ORDERDETAILS.ORDERNUM JOIN MENU ON ORDERDETAILS.MENUID=MENU.MENUID WHERE USERACCOUNT.USERID=@userid GROUP BY MENU.NAME,BRANCH.ADDRESS,DATEPART(MONTH,batchorders.orderdate) ORDER BY sales DESC"
+        Dim queryAll As String = "SELECT BRANCH.ADDRESS, MENU.NAME,COUNT(ORDERDETAILS.MENUID) AS ORDERNUM,sum(OrderDetails.Price) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BRANCH.BRANCHID=BATCHORDERS.BRANCHID JOIN ORDERS ON ORDERS.BATCHID=BATCHORDERS.BATCHID JOIN ORDERDETAILS ON ORDERS.ORDERNUM=ORDERDETAILS.ORDERNUM JOIN MENU ON ORDERDETAILS.MENUID=MENU.MENUID WHERE USERACCOUNT.USERID=@userid GROUP BY MENU.NAME,BRANCH.ADDRESS ORDER BY sales DESC"
 
 
         Using conn As New SqlConnection(connectionString)
@@ -166,18 +166,15 @@ Public Class Report
 
                         If periodType = "All" Then
                             tempobj.period = ""
-                            tempobj.totalOrder = reader("ORDERNUM")
                         ElseIf periodType = "Date" Then
                             tempobj.period = reader("PERIOD")
-                            tempobj.totalOrder = reader("ORDERNUM")
                         ElseIf periodType = "Week" Then
                             tempobj.period = reader("PERIOD")
-                            tempobj.totalOrder = reader("ORDERNUM")
                         ElseIf periodType = "Month" Then
                             tempobj.period = reader("PERIOD")
-                            tempobj.totalOrder = reader("ORDERNUM")
-                        End If
 
+                        End If
+                        tempobj.totalOrder = reader("ORDERNUM")
                         tempobj.cuisineName = reader("NAME")
                         tempobj.address = reader("ADDRESS")
                         tempobj.sales = reader("sales")
@@ -196,5 +193,101 @@ Public Class Report
 
         Return returnObject
     End Function
+
+
+    Public Function getAdminReport(periodType As String)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As List(Of Report) = New List(Of Report)
+        Dim queryDate As String = "SELECT RESTAURANT.NAME,CAST(batchorders.orderdate AS DATE)  AS PERIOD,COUNT(*) AS ORDERNUM ,SUM(ORDERS.TOTALCHARGES) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BATCHORDERS.BRANCHID=BRANCH.BRANCHID JOIN ORDERS ON BATCHORDERS.BATCHID=ORDERS.BATCHID GROUP BY RESTAURANT.NAME,CAST(batchorders.orderdate AS DATE) ORDER BY SUM(ORDERS.TOTALCHARGES) DESC  "
+        Dim queryWeek As String = "SELECT RESTAURANT.NAME,DATEPART(WEEK,batchorders.orderdate) AS PERIOD,COUNT(*) AS ORDERNUM ,SUM(ORDERS.TOTALCHARGES) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BATCHORDERS.BRANCHID=BRANCH.BRANCHID JOIN ORDERS ON BATCHORDERS.BATCHID=ORDERS.BATCHID GROUP BY RESTAURANT.NAME,DATEPART(WEEK,batchorders.orderdate) ORDER BY SUM(ORDERS.TOTALCHARGES) DESC "
+        Dim queryMonth As String = "SELECT RESTAURANT.NAME,DATEPART(MONTH,batchorders.orderdate) AS PERIOD,COUNT(*) AS ORDERNUM ,SUM(ORDERS.TOTALCHARGES) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BATCHORDERS.BRANCHID=BRANCH.BRANCHID JOIN ORDERS ON BATCHORDERS.BATCHID=ORDERS.BATCHID GROUP BY RESTAURANT.NAME,DATEPART(MONTH,batchorders.orderdate) ORDER BY SUM(ORDERS.TOTALCHARGES) DESC  "
+        Dim queryAll As String = "SELECT RESTAURANT.NAME,COUNT(*) AS ORDERNUM ,SUM(ORDERS.TOTALCHARGES) AS sales FROM USERACCOUNT JOIN RESTAURANT ON USERACCOUNT.USERID=RESTAURANT.USERID JOIN BRANCH ON RESTAURANT.RESTAURANTID=BRANCH.RESTAURANTID JOIN BATCHORDERS ON BATCHORDERS.BRANCHID=BRANCH.BRANCHID JOIN ORDERS ON BATCHORDERS.BATCHID=ORDERS.BATCHID GROUP BY RESTAURANT.NAME ORDER BY SUM(ORDERS.TOTALCHARGES) DESC"
+
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    If periodType = "All" Then
+                        .CommandText = queryAll
+                    ElseIf periodType = "Date" Then
+                        .CommandText = queryDate
+                    ElseIf periodType = "Week" Then
+                        .CommandText = queryWeek
+                    ElseIf periodType = "Month" Then
+                        .CommandText = queryMonth
+                    End If
+
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    Dim tempobj As Report = New Report()
+                    While reader.Read()
+
+
+                        If periodType = "All" Then
+                            tempobj.period = ""
+                        ElseIf periodType = "Date" Then
+                            tempobj.period = reader("PERIOD")
+                        ElseIf periodType = "Week" Then
+                            tempobj.period = reader("PERIOD")
+                        ElseIf periodType = "Month" Then
+                            tempobj.period = reader("PERIOD")
+
+                        End If
+                        tempobj.username = reader("NAME")
+                        tempobj.totalOrder = reader("ORDERNUM")
+                        tempobj.sales = reader("sales")
+                        returnObject.Add(tempobj)
+                        tempobj = New Report()
+                    End While
+                Catch ex As SqlException
+
+                End Try
+            End Using
+        End Using
+
+
+
+
+
+        Return returnObject
+    End Function
+
+
+    Public Function getAdminReportUserNo(userType As String)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim query As String = "SELECT COUNT(*) AS NUMBER FROM USERACCOUNT WHERE TYPE=@usertype AND STATUS='APPROVED'"
+        Dim userNum As Int32
+        Using conn As New SqlConnection(connectionString)
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandText = query
+                    .Parameters.AddWithValue("@usertype", userType)
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    reader.Read()
+                    userNum = reader("NUMBER")
+
+                Catch ex As SqlException
+
+                End Try
+            End Using
+        End Using
+
+
+        Return userNum
+    End Function
+
+
+
 
 End Class
