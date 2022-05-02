@@ -117,12 +117,12 @@ Public Class riderHome
             item.orderTime = distanceArr(0) & " " & distanceArr(1)
             api = "https://maps.googleapis.com/maps/api/directions/json?destination=" + item.timeDelivered.Replace("#", "%23") + "&origin=" + item.timePicked.Replace("#", "%23") + "&region=SG&mode=bicycling&key=AIzaSyCb_ivGtmAoh8YrYAPOobiiVfU0hvabH-U"
             request = DirectCast(WebRequest.Create(api), HttpWebRequest)
-                request.Timeout = 3000
-                response = DirectCast(request.GetResponse(), HttpWebResponse)
-                reader = New StreamReader(response.GetResponseStream())
-                rawresp = reader.ReadToEnd()
-                jsonResult = JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(rawresp)
-                Dim distance As String = jsonResult("routes")(0)("legs")(0)("distance")("text").ToString()
+            request.Timeout = 3000
+            response = DirectCast(request.GetResponse(), HttpWebResponse)
+            reader = New StreamReader(response.GetResponseStream())
+            rawresp = reader.ReadToEnd()
+            jsonResult = JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(rawresp)
+            Dim distance As String = jsonResult("routes")(0)("legs")(0)("distance")("text").ToString()
             item.temp = distance
             listOfAvailableBranch.Add(item)
             'End If
@@ -203,4 +203,11 @@ Public Class riderHome
             End If
         End If
     End Sub
+
+    Protected Sub report_click(sender As Object, e As EventArgs)
+        Response.Redirect("riderReport.aspx")
+
+    End Sub
+
+
 End Class

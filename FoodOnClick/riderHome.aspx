@@ -64,6 +64,11 @@
             </td>
         </tr>
         <tr>
+            <td colspan="3">
+                <asp:Button runat="server" ID="report" Text="Report" OnClick="report_click" />
+            </td>
+        </tr>
+        <tr>
             <td>
                 <div id="divRpt" runat="server" style="height: 400px; overflow-y: auto;overflow-x:auto; width: 100%;">
                     <asp:Repeater runat="server" ID="rptOrders" EnableViewState="true" OnItemDataBound="rptOrders_ItemDataBound" OnItemCommand="rptOrders_ItemCommand">

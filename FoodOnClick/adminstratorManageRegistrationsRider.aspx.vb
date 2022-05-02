@@ -40,7 +40,7 @@ Public Class AdminApprovalRejectRider
 
 
 
-            myuser.updateStatusDuringRegitration(e, "Approve")
+            myuser.updateStatusDuringRegitration(e, "Approve", "rider")
 
 
 
@@ -95,7 +95,7 @@ Public Class AdminApprovalRejectRider
             Dim message2 As String
             Dim message3 As String
 
-            myuser.updateStatusDuringRegitration(e, "Reject")
+            myuser.updateStatusDuringRegitration(e, "Reject", "rider")
 
 
 

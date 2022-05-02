@@ -336,7 +336,7 @@ Public Class User
 
 
 
-    Public Sub updateStatusDuringRegitration(e As RepeaterCommandEventArgs, statusType As String)
+    Public Sub updateStatusDuringRegitration(e As RepeaterCommandEventArgs, statusType As String, usertype As String)
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
 
@@ -355,6 +355,24 @@ Public Class User
         cmd.ExecuteNonQuery()
 
         con.Close()
+
+        con.Open()
+
+        cmd.Connection = con
+
+        If usertype = "rider" And statusType = "Approve" Then
+
+            cmd.CommandText = "INSERT INTO RIDER VALUES('OFFLINE',@userID2)"
+            cmd.Parameters.AddWithValue("@userID2", Convert.ToInt32(e.CommandArgument))
+            cmd.ExecuteNonQuery()
+
+        End If
+
+
+
+        con.Close()
+
+
 
 
     End Sub

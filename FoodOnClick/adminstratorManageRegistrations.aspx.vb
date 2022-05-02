@@ -269,7 +269,7 @@ Public Class adminstratorManageRegistrations_aspxt
             Dim message2 As String
             Dim message3 As String
 
-            myuser.updateStatusDuringRegitration(e, "Approve")
+            myuser.updateStatusDuringRegitration(e, "Approve", "restaurant")
 
 
 
@@ -323,7 +323,7 @@ Public Class adminstratorManageRegistrations_aspxt
             Dim message2 As String
             Dim message3 As String
 
-            myuser.updateStatusDuringRegitration(e, "Reject")
+            myuser.updateStatusDuringRegitration(e, "Reject", "restaurant")
 
 
             message1 = "User ID " & Convert.ToInt32(e.CommandArgument) & " is rejected"
