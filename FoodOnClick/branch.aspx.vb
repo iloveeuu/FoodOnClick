@@ -64,4 +64,10 @@
             lblNothing.Visible = True
         End If
     End Sub
+
+    Protected Sub report_click(sender As Object, e As EventArgs)
+        Response.Redirect("restaurantReport.aspx")
+    End Sub
+
+
 End Class

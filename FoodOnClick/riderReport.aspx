@@ -46,7 +46,8 @@
                        <table style="width:60%" border="1">
                            <tr>
                                 <td width="40%">Period</td>
-                                <td width="60%">OrderNum</td>
+                                <td width="30%">OrderNum</td>
+                                <td width="30%">Income</td>
                            </tr>
                            
                        </table>
@@ -57,8 +58,8 @@
                  <table style="width:60%">
                      <tr>
                            <td width="40%"><asp:Label runat="server" ID="period" Text='<%#Eval("period") %>'></asp:Label></td>
-                           <td width="60%"><asp:Label runat="server" ID="orderNum" Text='<%#Eval("totalOrder") %>'></asp:Label></td>
-     
+                           <td width="30%"><asp:Label runat="server" ID="orderNum" Text='<%#Eval("totalOrder") %>'></asp:Label></td>
+                           <td width="30%"><asp:Label runat="server" ID="deliveryCharges" Text='<%#Eval("totalDeliveryCharges") %>'></asp:Label></td>
                      </tr>
   
                 </table>   

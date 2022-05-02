@@ -41,6 +41,13 @@
     <table id="tableStyle">
         <tr>
             <td><asp:Button runat="server" ID="btnAdd" Width="100%" Text="Add Branch" OnClick="btnAdd_Click" /></td>
-        </tr> 
-        </table>
+        </tr>
+        <tr>
+            <td><asp:Button runat="server" ID="restaurantReport" Width="100%" Text="View Report" onclick="report_click"/></td>
+       </tr>
+             
+   </table>		
+
+
+
 </asp:Content>

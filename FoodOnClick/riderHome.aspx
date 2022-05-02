@@ -65,7 +65,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <asp:Button runat="server" ID="report" Text="Report" OnClick="report_click" />
+                <asp:Button runat="server" ID="report" Text="View Report" OnClick="report_click" />
             </td>
         </tr>
         <tr>

@@ -3,7 +3,7 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim clsReport As Report = New Report()
-        riderReport.DataSource = clsReport.GetRiderReport(Session("userid"), riderReportFilterButton.SelectedValue)
+        riderReport.DataSource = clsReport.getRiderReport(Session("userid"), riderReportFilterButton.SelectedValue)
         riderReport.DataBind()
 
     End Sub
@@ -11,7 +11,7 @@
 
     Protected Sub riderReportFilter(sender As Object, e As EventArgs)
         Dim clsReport As Report = New Report()
-        riderReport.DataSource = clsReport.GetRiderReport(Session("userid"), riderReportFilterButton.SelectedValue)
+        riderReport.DataSource = clsReport.getRiderReport(Session("userid"), riderReportFilterButton.SelectedValue)
         riderReport.DataBind()
 
 
