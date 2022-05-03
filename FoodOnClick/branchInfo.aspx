@@ -36,6 +36,11 @@
                 <asp:TextBox runat="server" ID="txtpostalcode" Width="100%"></asp:TextBox></td>
         </tr>
         <tr>
+            <td>Reservation capacity:</td>
+            <td>
+                <asp:TextBox runat="server" ID="txtReservationCapacity" Width="100%" TextMode="Number"></asp:TextBox></td>
+        </tr>
+        <tr>
             <td>Cuisine:</td>
             <td>
                 <asp:DropDownList runat="server" ID="ddlCuisine" Width="100%" DataTextField="branchCuisine" DataValueField="branchCuisineId">
@@ -55,9 +60,10 @@
             <td>
                 <asp:DropDownList runat="server" ID="ddlReservation" Width="100%">
                     <asp:ListItem Selected="True" Value="Disabled">Disabled</asp:ListItem>
-                    <asp:ListItem Value="Allowed">Allowed</asp:ListItem></asp:DropDownList></td>
+                    <asp:ListItem Value="Allowed">Allowed</asp:ListItem>
+                </asp:DropDownList></td>
         </tr>
-<%--        <tr>
+        <%--        <tr>
             <td>Drive-thru</td>
             <td>
                 <asp:DropDownList runat="server" ID="ddlDrivethru" Width="100%">

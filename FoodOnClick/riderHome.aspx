@@ -86,24 +86,24 @@
                                     <td style="text-align: left;">
                                         <asp:Label runat="server" ID="lblRestaurantAddress"></asp:Label></td>
                                 </tr>
-                                <tr>
+<%--                                <tr>
                                     <td style="text-align: left;">
                                         <asp:Label runat="server" ID="lbladdress"></asp:Label>
                                     </td>
-                                </tr>
+                                </tr>--%>
                                 <tr>
                                     <td style="text-align: left;">
                                         <asp:Label runat="server" ID="lbluseraddress"></asp:Label>
                                     </td>
                                 </tr>
-                                <tr>
+<%--                                <tr>
                                     <td style="text-align: left;">
                                         <asp:Label runat="server" ID="lblResToUser"></asp:Label></td>
-                                </tr>
-                                <tr>
+                                </tr>--%>
+<%--                                <tr>
                                     <td style="text-align: left;">
                                         <asp:Label runat="server" ID="lblPaymentMethod"></asp:Label></td>
-                                </tr>
+                                </tr>--%>
                                 <tr>
                                     <td style="text-align: left;">
                                         <asp:Label runat="server" ID="lblDeliveryCharges"></asp:Label></td>

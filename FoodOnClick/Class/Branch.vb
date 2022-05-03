@@ -15,6 +15,7 @@ Public Class Branch
     Protected int_branchCuisineId As Integer
     Protected str_branchCuisine As String
     Protected str_branchReservation As String
+    Protected int_branchReservationCapacity As Integer
     'Protected str_branchdrivethru As String
     Protected dec_branchwallet As Decimal
 #Region "Objects"
@@ -134,6 +135,14 @@ Public Class Branch
             dec_branchwallet = Value
         End Set
     End Property
+    Public Property branchReservationCapacity() As Integer
+        Get
+            branchReservationCapacity = int_branchReservationCapacity
+        End Get
+        Set(ByVal Value As Integer)
+            int_branchReservationCapacity = Value
+        End Set
+    End Property
 #End Region
     Public Sub New()
     End Sub
@@ -150,7 +159,8 @@ Public Class Branch
     Public Sub New(ByVal branchid As Integer)
         Me.branchId = branchid
     End Sub
-    Public Sub New(ByVal reservation As String, ByVal email As String, ByVal password As String, ByVal startTime As String, ByVal endTime As String, ByVal halal As String, ByVal restaurantId As Integer, ByVal address As String, ByVal postalCode As String, ByVal status As String, ByVal city As String, ByVal cuisineid As String, Optional ByVal branchid As Integer = 0)
+    Public Sub New(ByVal capacity As Integer, ByVal reservation As String, ByVal email As String, ByVal password As String, ByVal startTime As String, ByVal endTime As String, ByVal halal As String, ByVal restaurantId As Integer, ByVal address As String, ByVal postalCode As String, ByVal status As String, ByVal city As String, ByVal cuisineid As String, Optional ByVal branchid As Integer = 0)
+        Me.branchReservationCapacity = capacity
         Me.branchReservation = reservation
         Me.branchEmail = email
         Me.branchPassword = password
@@ -264,7 +274,7 @@ Public Class Branch
 
     Public Function CreateBranch() As String
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "INSERT INTO branch values(@city,@postalcode,@address,@cuisineid,@halal,@status,@restaurantid,@startTime,@endTime,@branchEmail,@branchPassword,@reservation,@wallet)"
+        Dim Query As String = "INSERT INTO branch values(@city,@postalcode,@address,@cuisineid,@halal,@status,@restaurantid,@startTime,@endTime,@branchEmail,@branchPassword,@reservation,@wallet,@reservationCapacity)"
         Dim bool As String = "True"
         Using conn As New SqlConnection(connectionString)
 
@@ -274,6 +284,7 @@ Public Class Branch
                     .Connection = conn
                     .CommandType = CommandType.Text
                     .CommandText = Query
+                    .Parameters.Add("@reservationCapacity", SqlDbType.VarChar).Value = Me.branchReservationCapacity
                     .Parameters.Add("@reservation", SqlDbType.VarChar).Value = Me.branchReservation
                     .Parameters.Add("@wallet", SqlDbType.Decimal).Value = 0.00
                     '.Parameters.Add("@drivethru", SqlDbType.VarChar).Value = Me.branchdrivethru
@@ -358,6 +369,7 @@ Public Class Branch
                         returnObject.branchStatus = reader("status")
                         returnObject.branchwallet = reader("wallet")
                         returnObject.branchReservation = reader("reservation")
+                        returnObject.branchReservationCapacity = reader("capacity")
                     End While
                 Catch ex As SqlException
                 End Try

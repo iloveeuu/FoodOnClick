@@ -68,6 +68,15 @@ Partial Public Class branchInfo
     Protected WithEvents txtpostalcode As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''txtReservationCapacity control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtReservationCapacity As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''ddlCuisine control.
     '''</summary>
     '''<remarks>

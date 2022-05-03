@@ -61,14 +61,14 @@ Public Class riderHome
         Dim totalcharges1 As Label = (TryCast(e.Item.FindControl("lbltotalcharges"), Label))
         orderNum1.Text = "Order ID: " & orderNum
 
-        RestaurantName1.Text = "Restaurant: " & RestaurantName
-        RestaurantAddress1.Text = "Restaurant Address: " & RestaurantAddress
-        MeToRestaurant1.Text = "Distance to Restaurant: " & MeToRestaurant
-        userAddress1.Text = "Customer Address: " & userAddress
-        userAddressDistance1.Text = "Restaurant to Customer: " & useraddressDistance
+        RestaurantName1.Text = "Restaurant: " & RestaurantName & " <b>" & MeToRestaurant & "</b>"
+        RestaurantAddress1.Text = "Address: " & RestaurantAddress
+        'MeToRestaurant1.Text = "Distance to Restaurant: " & MeToRestaurant
+        userAddress1.Text = "Customer: " & userAddress & " <b>" & useraddressDistance & "</b>"
+        'userAddressDistance1.Text = "Restaurant to Customer: " & useraddressDistance
         deliveryCharges1.Text = "Delivery Charges: $" & deliveryCharges
-        paymentMethod1.Text = "Payment Mode: " & paymentMethod
-        totalcharges1.Text = "Total: $" & totalcharges
+        'paymentMethod1.Text = "Payment Mode: " & paymentMethod
+        totalcharges1.Text = "Total: $" & totalcharges & " <b>" & paymentMethod & "</b>"
     End Sub
 
     Protected Sub btnStart_Click(sender As Object, e As EventArgs)
@@ -175,7 +175,8 @@ Public Class riderHome
                 clsDeliveryOrder = New Order(Convert.ToInt32(e.CommandArgument().ToString()), Convert.ToInt32(System.Web.HttpContext.Current.Session("userid")))
                 IsOrderAvailable = clsDeliveryOrder.AcceptOrderJob()
                 If IsOrderAvailable Then
-                    Response.Redirect("riderDelivery.aspx")
+                    System.Web.HttpContext.Current.Session("orderbatchid") = e.CommandArgument().ToString()
+                    Response.Redirect("riderDelivery.aspx?lat=" & Request.QueryString("lat").ToString() & "&long=" & Request.QueryString("long").ToString())
                 Else
                     'Some issue with the backend
                     Dim message As String = "Please try again."

@@ -418,7 +418,7 @@ Public Class Order
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim returnObject As Boolean = False
         'Dim Query As String = "Select * from orders where (riderid=@riderid and orderstatusid = 1) or (riderid=@riderid and orderstatusid = 2)"
-        Dim Query As String = "Select * From orders Where riderID =@riderid And orderstatusid in (1,2)"
+        Dim Query As String = "Select * From orders Where riderID =(select riderid from rider where userid = @riderid) And orderstatusid in (1,2)"
 
 
         Using conn As New SqlConnection(connectionString)
@@ -436,8 +436,169 @@ Public Class Order
                     Dim reader As SqlDataReader = comm.ExecuteReader
 
                     If (reader.HasRows) Then
+                        While (reader.Read())
+                            System.Web.HttpContext.Current.Session("orderbatchid") = Convert.ToInt32(reader("batchid").ToString())
+                        End While
                         returnObject = True
                     End If
+                    conn.Close()
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+
+    Public Function RetrieveOrderDetailsByBatchId() As Order
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "Select o.ordernum, bo.ordertime, r.name, b.address, u.address as useraddress, o.orderStatusID, o.totalcharges from batchorders as bo join useraccount as u on bo.userid = u.userid join orders as o on o.batchid = bo.batchid join branch as b on bo.branchid = b.branchid join restaurant as r on b.restaurantid = r.restaurantid where bo.batchid = @batchid"
+
+        Dim returnObject As Order = New Order()
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        While (reader.Read())
+                            returnObject.orderNum = Convert.ToInt32(reader("ordernum").ToString())
+                            returnObject.name = reader("name").ToString()
+                            returnObject.orderTime = reader("ordertime").ToString()
+                            returnObject.timePicked = reader("address").ToString()
+                            returnObject.timeDelivered = reader("useraddress").ToString()
+                            returnObject.branchId = Convert.ToInt32(reader("orderStatusID").ToString())
+                            returnObject.totalcharges = Convert.ToDecimal(reader("totalcharges").ToString())
+                        End While
+                    End If
+                    conn.Close()
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+
+    Public Function RetrieveCustomerOrderDetailsByBatchId() As Order
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = "Select o.ordernum, u.address, concat(u.firstName, ' ' ,u.lastName) as name, u.phoneNum, bo.paymentMethod, o.totalcharges, o.deliverycharges from batchorders as bo join useraccount as u on bo.userid = u.userid join orders as o on o.batchid = bo.batchid join branch as b on bo.branchid = b.branchid join restaurant as r on b.restaurantid = r.restaurantid where bo.batchid = @batchid"
+
+        Dim returnObject As Order = New Order()
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchId
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+
+                    If (reader.HasRows) Then
+                        While (reader.Read())
+                            returnObject.orderNum = Convert.ToInt32(reader("ordernum").ToString())
+                            returnObject.name = reader("name").ToString()
+                            returnObject.orderTime = reader("ordertime").ToString()
+                            returnObject.paymentMethod = reader("paymentMethod").ToString()
+                            returnObject.totalcharges = Convert.ToDecimal(reader("totalcharges").ToString())
+                            returnObject.deliverycharges = Convert.ToDecimal(reader("deliverycharges").ToString())
+                            returnObject.timePicked = reader("address").ToString()
+                            returnObject.timeDelivered = reader("phoneNum").ToString()
+                        End While
+                    End If
+                    conn.Close()
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+    Public Sub InsertPickUpTiming()
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim Query As String = ""
+
+        Query = "Update Orders set time_picked = @timenow, orderStatusID = 2 where batchId=@batchId "
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchId", SqlDbType.Decimal).Value = Me.batchId
+                    .Parameters.Add("@timenow", SqlDbType.Decimal).Value = DateTime.Now.AddHours(13).ToString("HH:mm:ss")
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+                Catch ex As SqlException
+                    Dim a As String = ex.Message
+                End Try
+            End Using
+        End Using
+    End Sub
+    Public Function SetRiderToAvailable() As Boolean
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As Boolean = False
+        Dim Query As String = "UPDATE rider set deliverystatus = 'AVAILABLE' where userid = @userid"
+
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@userid", SqlDbType.Int).Value = Me.batchId
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
+                    conn.Close()
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+
+    Public Function UpdateTimeDeliverednStatus() As Boolean
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As Boolean = False
+        Dim Query As String = "UPDATE orders set orderStatusID = 3, time_deliveryed = @timenow where batchid = @batchid"
+
+
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchId
+                    .Parameters.Add("@timenow", SqlDbType.Int).Value = DateTime.Now.AddHours(13).ToString("HH:mm:ss")
+                End With
+                Try
+                    conn.Open()
+                    comm.ExecuteNonQuery()
                     conn.Close()
                 Catch ex As SqlException
                 End Try

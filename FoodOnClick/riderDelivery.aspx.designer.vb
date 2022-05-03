@@ -32,20 +32,137 @@ Partial Public Class riderDelivery
     Protected WithEvents hfLocLongitude As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''hlMap control.
+    '''iframee control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hlMap As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents iframee As Global.System.Web.UI.HtmlControls.HtmlIframe
 
     '''<summary>
-    '''btnDirectionToRestaurant control.
+    '''tblPickUp control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnDirectionToRestaurant As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents tblPickUp As Global.System.Web.UI.HtmlControls.HtmlTable
+
+    '''<summary>
+    '''lblOrderNum control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOrderNum As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblRestaurantName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblRestaurantName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblRestaurantAddress control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblRestaurantAddress As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblOrderTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOrderTime As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnPickUp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnPickUp As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''tblDelivering control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tblDelivering As Global.System.Web.UI.HtmlControls.HtmlTable
+
+    '''<summary>
+    '''lblOrderNum1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOrderNum1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblCustomerName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCustomerName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblPhoneNumber control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPhoneNumber As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblPaymentMethod control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPaymentMethod As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblDeliveryCharges control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDeliveryCharges As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblTotalCharges control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTotalCharges As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnDelivery control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelivery As Global.System.Web.UI.WebControls.Button
 End Class
