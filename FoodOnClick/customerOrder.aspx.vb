@@ -430,7 +430,7 @@
         Dim compare_menuid As String
         Dim dtCompare As DataTable
 
-        If Session("compare_menuid") Is Nothing Then
+        If Session("compare_menuid") Is Nothing OrElse Session("compare_menuid") = "" Then
             Dim sb As New System.Text.StringBuilder()
             sb.Append("<script type = 'text/javascript'>")
             sb.Append("window.onload=function(){")

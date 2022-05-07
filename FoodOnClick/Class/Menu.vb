@@ -923,13 +923,12 @@ Public Class Menu
 
         Dim dtSearch = New DataTable()
         Dim Query As String = "SELECT b.branchid, m.menuid, m.name as dishName, m.cost as price, " &
-                            "(m.description + 'CHAR(13)CHAR(13)Energy: ' + CONVERT(nvarchar(20),m.energy) + ' cal.' + " &
-                            "'CHAR(13)Protein: ' + CONVERT(nvarchar(20),m.protein) + ' g' + " &
-                            "'CHAR(13)Carbs: ' + CONVERT(nvarchar(20),m.carbonhydrate) + ' g' + " &
-                            "'CHAR(13)Sugar: ' + CONVERT(nvarchar(20),m.glucose) + ' g' + " &
-                            "'CHAR(13)Fats: ' + CONVERT(nvarchar(20),m.fats) + ' g' + " &
-                            "'CHAR(13)Sodium: ' + CONVERT(nvarchar(20),m.sodium) + ' g' " &
-                            ") As describe, " &
+                            "m.description, (CONVERT(nvarchar(20),m.energy) + ' cal.') as energy, " &
+                            "(CONVERT(nvarchar(20),m.protein) + ' g') as protein, " &
+                            "(CONVERT(nvarchar(20),m.carbonhydrate) + ' g') as carbohydrate, " &
+                            "(CONVERT(nvarchar(20),m.glucose) + ' g') as glucose, " &
+                            "(CONVERT(nvarchar(20),m.fats) + ' g') as fats, " &
+                            "(CONVERT(nvarchar(20),m.sodium) + ' g') as sodium, " &
                             "('~/images/menu/' + m.image) As path, ft.type " &
                             "from branch as b " &
                             "inner join Menu as m on b.branchid = m.branchid " &
@@ -952,11 +951,6 @@ Public Class Menu
 
                     If (reader.HasRows) Then
                         dtSearch.Load(reader)
-                        dtSearch.Columns(4).ReadOnly = False
-
-                        For i As Integer = 0 To dtSearch.Rows.Count - 1
-                            dtSearch.Rows(i)(4) = dtSearch.Rows(i)(4).ToString().Replace("CHAR(13)", "<br/>")
-                        Next
                     End If
 
                     conn.Close()

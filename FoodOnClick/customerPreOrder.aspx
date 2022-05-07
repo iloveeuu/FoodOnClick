@@ -79,13 +79,13 @@
         div.popup2 {
             display: none;
             background: white;
-            width: 30%;
-            height: 40%;
-            max-height: 500px; 
+            width: 80%;
+            height: 100%;
+            max-height: 800px; 
             overflow: auto;
             position: fixed;
-            top: 15%;
-            left: 35%;
+            top: 10%;
+            left: 10%;
             /*margin-left: -320px;*/ /* = -width / 2 */
             /*margin-top: -240px;*/ /* = -height / 2 */
             z-index: 4;
@@ -123,7 +123,7 @@
                 display: none;
                 background: white;
                 width: 70%;
-                height: 40%;
+                height: 50%;
                 max-height: 500px; 
                 overflow: auto;
                 position: fixed;
@@ -390,26 +390,39 @@
         <h3>Comparison</h3>
         <asp:GridView ID="gvCompare" Width="80%" runat="server" OnRowCommand="gvCompare_RowCommand" AutoGenerateColumns="false" Height="100%" >
                 <Columns>
-                    <asp:TemplateField HeaderText="Menu" HeaderStyle-Width="30%" ItemStyle-Height="20%">
+                    <asp:TemplateField HeaderText="Menu" HeaderStyle-Width="25%" ItemStyle-Height="20%">
                         <ItemTemplate>
 							<div style="display:inline-grid;text-align:center;">
-                                 <asp:Button ID="btnRemove" runat="server" Text="Remove" CommandName="doRemove" CommandArgument='<%# Container.DataItemIndex %>'/>
-								 <center>
-									 <asp:Image runat="server" ID="imgRest" Width="150px" Height="150px" ImageUrl='<%#Eval("path") %>' />
+                                 <center>
+									 <asp:Image runat="server" ID="imgRest" Width="100px" Height="100px" ImageUrl='<%#Eval("path") %>' />
 								 </center>
-								<asp:Label runat="server" ID="lblDishName" Text='<%#Eval("dishName") %>'></asp:Label>
+								<asp:Label runat="server" ID="menu" Text='<%#Eval("dishName") %>'></asp:Label>
 								<asp:Label runat="server" ID="lblFType" style="text-transform: capitalize;" Text='<%#Eval("type") %>'></asp:Label>
                                 <asp:Label runat="server" ID="lblPrice" Text='<%# "$ " + Eval("price").ToString() %>'></asp:Label>
-                                <center>
-				                    <asp:TextBox ID="txtQty" runat="server" TextMode="Number" Width="20%"></asp:TextBox>
-				                </center>
-				                <asp:Button ID="btnAdd" runat="server" Text="Add" CommandName="doAdd" CommandArgument='<%# Container.DataItemIndex %>'/>
                                 <asp:HiddenField ID="hfMenuId" runat="server" Value='<%# Eval("menuid") %>' />
                                 <asp:HiddenField ID="hfBranchId" runat="server" Value='<%# Eval("branchid") %>' />
 							</div>
 						</ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="describe" HeaderText="Description" HtmlEncode="false" HeaderStyle-Width="40%" />
+                    <asp:BoundField DataField="description" HeaderText="Description" HeaderStyle-Width="15%" />
+                    <asp:BoundField DataField="energy" HeaderText="Energy" HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="protein" HeaderText="Protein" HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="carbohydrate" HeaderText="Carbohydrate" HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="glucose" HeaderText="Glucose" HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="fats" HeaderText="Fats" HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="sodium" HeaderText="Sodium" HeaderStyle-Width="10%" />
+                    <asp:TemplateField HeaderText="" HeaderStyle-Width="25%" ItemStyle-Height="20%">
+                        <ItemTemplate>
+                            <asp:Button ID="btnRemove" runat="server" Text="Remove" CommandName="doRemove" CommandArgument='<%# Container.DataItemIndex %>'/>
+                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="txtQty" ErrorMessage="Cannot < 1" Operator="GreaterThan" 
+					        Type="Integer" ValueToCompare="0" ForeColor="Red" />
+						    <center>
+				                    <asp:TextBox ID="txtQty" runat="server" TextMode="Number" Width="50%"></asp:TextBox>
+				                </center>
+				                <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" CommandName="doAddCart" CommandArgument='<%# Container.DataItemIndex %>'/>
+                                
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         <a class="close x">
