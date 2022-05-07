@@ -8,6 +8,9 @@
             Else
                 DataBind()
             End If
+
+            divShowHide.Visible = False
+            divShowHide2.Visible = False
         End If
     End Sub
 
@@ -294,6 +297,19 @@
         Dim rating As String
         rating = hfRating.Value
 
+        If chkFollowUp.Checked = True And txtPhone.Text.Trim() = "" Then
+            Dim sb As New System.Text.StringBuilder()
+            sb.Append("<script type = 'text/javascript'>")
+            sb.Append("window.onload=function(){")
+            sb.Append("alert('")
+            sb.Append("Please filled up phone number!")
+            sb.Append("')};")
+            sb.Append("</script>")
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+
+            Exit Sub
+        End If
+
         If rating = "" OrElse txtFeedback.Text.Trim() = "" Then
             Dim sb As New System.Text.StringBuilder()
             sb.Append("<script type = 'text/javascript'>")
@@ -304,8 +320,15 @@
             sb.Append("</script>")
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
         Else
+            Dim strFeedback As String = txtFeedback.Text.Trim()
+            strFeedback = txtFeedback.Text.Trim().Replace("\n", "CHAR(13)")
+
+            If chkFollowUp.Checked = True Then
+                strFeedback += "CHAR(13)Follow Up: " + txtPhone.Text.Trim()
+            End If
+
             Dim rev As Review = New Review()
-            rev.Description = txtFeedback.Text.Trim()
+            rev.Description = strFeedback
             rev.Userid = Session("userid")
             rev.Batchid = hfPopUpBatchId.Value
             rev.BranchID = hfPopUpBranchId.Value
@@ -346,8 +369,20 @@
             sb.Append("</script>")
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
         Else
+
+            Dim strFeedbackRest As String = txtFeedbackRest.Text.Trim()
+            strFeedbackRest = txtFeedbackRest.Text.Trim().Replace("\n", "CHAR(13)")
+
+            If chkFollowUp.Checked = True Then
+                strFeedbackRest += "CHAR(13)Follow Up: " + txtPhone2.Text.Trim()
+            End If
+
+            Dim strFeedbackRider As String = txtFeedbackRider.Text.Trim()
+            strFeedbackRider = txtFeedbackRider.Text.Trim().Replace("\n", "CHAR(13)")
+
             Dim rev As Review = New Review()
-            rev.Description = txtFeedback.Text.Trim()
+            rev.Description = strFeedbackRest
+            rev.DescriptionDel = strFeedbackRider
             rev.Userid = Session("userid")
             rev.Batchid = hfPopUpBatchId.Value
             rev.BranchID = hfPopUpBranchId.Value
@@ -406,5 +441,13 @@
 
             DataBind()
         End If
+    End Sub
+
+    Protected Sub chkFollowUp_CheckedChanged(sender As Object, e As EventArgs)
+        divShowHide.Visible = IIf(chkFollowUp.Checked, True, False)
+    End Sub
+
+    Protected Sub chkFollowUp2_CheckedChanged(sender As Object, e As EventArgs)
+        divShowHide2.Visible = IIf(chkFollowUp2.Checked, True, False)
     End Sub
 End Class

@@ -79,7 +79,9 @@
                 }
                 document.getElementById("<%=hfRatingRider.ClientID%>").value = v.toString();
             });
+
         });
+
     </script>
     <style>
         .rating-star-block .star.outline {
@@ -201,7 +203,7 @@
             display: none;
             background: white;
             width: 30%;
-            height: 50%;
+            height: 60%;
             position: fixed;
             top: 35%;
             left: 35%;
@@ -340,8 +342,34 @@
                 </div>
                 <div class="row">
                   <div class="col-100"  style="text-align: center;" >
-                      <asp:TextBox TextMode="MultiLine" ID="txtFeedback" Width="200px" Height="90px" runat="server"></asp:TextBox>
+                      <asp:TextBox TextMode="MultiLine" onkeypress="return this.value.length<=100" ID="txtFeedback" Width="200px" Height="90px" runat="server"></asp:TextBox>
                   </div>
+                </div>
+                <div class="row">
+                  <div class="col-100"  style="text-align: center;" >
+                      <asp:CheckBox ID="chkFollowUp" runat="server" Text="Follow Up" AutoPostBack="True" OnCheckedChanged="chkFollowUp_CheckedChanged"/>
+                  </div>
+                </div>
+                <div id="divShowHide" runat="server">
+                    <div class="row">
+                      <div class="col-100"  style="text-align: center;" >
+                          <asp:Label ID="Label3" runat="server" style=" text-transform: capitalize;" Text="Phone Number" Font-Bold="True"></asp:Label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-100"  style="text-align: center;" >
+                          <asp:TextBox TextMode="Number" ID="txtPhone" Width="200px" runat="server"></asp:TextBox>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-100"  style="text-align: center;" >
+                          <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
+                            ControlToValidate="txtPhone" runat="server"
+                            ErrorMessage="Must be 8 numbers"
+                            ValidationExpression="^[0-9]{8}$" ForeColor="Red">
+                            </asp:RegularExpressionValidator>
+                      </div>
+                    </div>
                 </div>
                 <div class="row">
                   <div class="col-100"  style="text-align: center;" >
@@ -386,6 +414,32 @@
                   <div class="col-100"  style="text-align: center;" >
                       <asp:TextBox TextMode="MultiLine" ID="txtFeedbackRest" Width="200px" Height="90px" runat="server"></asp:TextBox>
                   </div>
+                </div>
+                <div class="row">
+                  <div class="col-100"  style="text-align: center;" >
+                      <asp:CheckBox ID="chkFollowUp2" runat="server" Text="Follow Up" AutoPostBack="True" OnCheckedChanged="chkFollowUp2_CheckedChanged"/>
+                  </div>
+                </div>
+                <div id="divShowHide2" runat="server">
+                    <div class="row">
+                      <div class="col-100"  style="text-align: center;" >
+                          <asp:Label ID="Label4" runat="server" style=" text-transform: capitalize;" Text="Phone Number" Font-Bold="True"></asp:Label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-100"  style="text-align: center;" >
+                          <asp:TextBox MinLength="8" MaxLength="8" ID="txtPhone2" Width="200px" runat="server"></asp:TextBox>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-100"  style="text-align: center;" >
+                          <asp:RegularExpressionValidator ID="RegularExpressionValidator2"
+                            ControlToValidate="txtPhone2" runat="server"
+                            ErrorMessage="Must be 8 numbers"
+                            ValidationExpression="^[0-9]{8}$" ForeColor="Red">
+                            </asp:RegularExpressionValidator>
+                      </div>
+                    </div>
                 </div>
                 <div class="row">
                   <div class="col-100"  style="text-align: center;" >
