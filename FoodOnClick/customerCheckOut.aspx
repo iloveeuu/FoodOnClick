@@ -48,7 +48,7 @@
                  <Columns>
 					 <asp:TemplateField HeaderText="Menu" HeaderStyle-Width="40%">
                         <ItemTemplate>
-							<div style="border: 1px solid black;display:inline-grid;text-align:center;">
+							<div style="display:inline-grid;text-align:center;">
 								 <center>
 									 <asp:Image runat="server" ID="imgRest" Width="150px" Height="150px" ImageUrl='<%#Eval("path") %>' />
 								 </center>
