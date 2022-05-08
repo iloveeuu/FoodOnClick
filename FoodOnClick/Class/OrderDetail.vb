@@ -7,6 +7,8 @@ Public Class OrderDetail
     Protected iMenuid As Integer
     Protected iOrderQuantity As Integer
     Protected dPrice As Decimal
+    Protected str_fromdate As String
+    Protected str_todate As String
 
 #Region "Objects"
     Public Property menuid() As Integer
@@ -33,6 +35,24 @@ Public Class OrderDetail
         End Get
         Set(ByVal Value As Decimal)
             dPrice = Value
+        End Set
+    End Property
+
+    Public Property fromdate() As String
+        Get
+            fromdate = str_fromdate
+        End Get
+        Set(ByVal Value As String)
+            str_fromdate = Value
+        End Set
+    End Property
+
+    Public Property todate() As String
+        Get
+            todate = str_todate
+        End Get
+        Set(ByVal Value As String)
+            str_todate = Value
         End Set
     End Property
 
@@ -146,7 +166,7 @@ Public Class OrderDetail
 
         Dim dtHistory = New DataTable()
 
-        Dim Query As String = "SELECT b.email, o.orderNum,r.name as restName, b.address, bo.batchid, os.type as status, b.branchid " &
+        Dim Query As String = "SELECT b.email, o.orderNum,r.name as restName, b.address, bo.batchid, os.type as status, b.branchid, bo.orderdate " &
                                 "from branch as b " &
                                 "inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 "inner join batchOrders as bo on bo.branchid = b.branchid " &
@@ -154,6 +174,14 @@ Public Class OrderDetail
                                 "inner join orderstatus as os on os.orderStatusID = o.orderStatusID " &
                                 "inner join delivertype as dt on dt.deliveryTypeID = bo.deliveryTypeID " &
                                 "where bo.userID = @userId and bo.deliveryTypeID = 2 "
+
+        If fromdate.Trim() <> "" Then
+            Query += " And bo.orderdate >= '" + fromdate.Trim() + "' "
+        End If
+
+        If todate.Trim() <> "" Then
+            Query += " And bo.orderdate <= '" + todate.Trim() + "' "
+        End If
 
         Using conn As New SqlConnection(connectionString)
 

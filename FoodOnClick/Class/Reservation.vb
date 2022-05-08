@@ -16,6 +16,8 @@ Public Class Reservation
     Protected str_tempPaymentType As String
     Protected dec_tempDeliveryCharges As Decimal
     Protected str_duration As String
+    Protected str_fromdate As String
+    Protected str_todate As String
 
 
 #Region "Objects"
@@ -144,7 +146,23 @@ Public Class Reservation
         End Set
     End Property
 
+    Public Property fromdate() As String
+        Get
+            fromdate = str_fromdate
+        End Get
+        Set(ByVal Value As String)
+            str_fromdate = Value
+        End Set
+    End Property
 
+    Public Property todate() As String
+        Get
+            todate = str_todate
+        End Get
+        Set(ByVal Value As String)
+            str_todate = Value
+        End Set
+    End Property
 #End Region
 
     Public Sub New()
@@ -231,7 +249,16 @@ Public Class Reservation
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join reservation as re on re.branchId = b.branchId " &
                                 " left join batchOrders as bo on bo.batchid = re.batchid " &
-                                " where re.userID = @userId"
+                                " where re.userID = @userId "
+
+        If fromdate.Trim() <> "" Then
+            Query += " And re.date >= '" + fromdate.Trim() + "' "
+        End If
+
+        If todate.Trim() <> "" Then
+            Query += " And re.date <= '" + todate.Trim() + "' "
+        End If
+
 
         Using conn As New SqlConnection(connectionString)
 

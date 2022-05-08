@@ -152,12 +152,16 @@
     Protected Sub DataBind()
         Dim dtReservation As DataTable
         Dim clsReservation As Reservation = New Reservation(Session("userid"))
+        clsReservation.fromdate = txtFromDate.Text.Trim()
+        clsReservation.todate = txtToDate.Text.Trim()
         dtReservation = clsReservation.GetReservationHistory()
         gvReservation.DataSource = dtReservation
         gvReservation.DataBind()
 
         Dim dtDelivery As DataTable
         Dim clsDelivery As OrderDetail = New OrderDetail()
+        clsDelivery.fromdate = txtFromDate.Text.Trim()
+        clsDelivery.todate = txtToDate.Text.Trim()
         clsDelivery.userId = Session("userid")
         dtDelivery = clsDelivery.GetDeliveryOrderHistory()
         gvDelivery.DataSource = dtDelivery
@@ -275,7 +279,7 @@
                 btnCancel.Visible = True
                 btnCancel.Attributes("onclick") = "return confirm('Do you want to cancel this delivery order?');"
 
-            ElseIf (e.Row.Cells(3).Text = "Completed") Then
+            ElseIf (e.Row.Cells(3).Text = "Delivered") Then
                 btnFeedback = e.Row.FindControl("btnFeedback")
                 btnFeedback.Visible = True
             End If
@@ -410,5 +414,9 @@
 
     Protected Sub chkFollowUp2_CheckedChanged(sender As Object, e As EventArgs)
         divShowHide2.Visible = IIf(chkFollowUp2.Checked, True, False)
+    End Sub
+
+    Protected Sub btnSearch_Click(sender As Object, e As EventArgs)
+        DataBind()
     End Sub
 End Class

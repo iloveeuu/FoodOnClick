@@ -261,6 +261,32 @@
 		</tr>
     </table>
     <div>
+        <h2>Search Restaurant</h2>
+    </div>
+    <br/>
+	<div class="container">
+        <div class="row">
+			<div class="col-20">
+			<asp:Label ID="Label9" runat="server" Text="From Date:"></asp:Label>
+			</div>
+          <div class="col-30">
+				<asp:TextBox ID="txtFromDate" CssClass="textWidthCustSearch" TextMode="Date" runat="server"></asp:TextBox>
+			  </div>
+			<div class="col-20">
+			<asp:Label ID="Label10" runat="server" Text="To Date:"></asp:Label>
+			</div>
+          <div class="col-30">
+			<asp:TextBox ID="txtToDate" CssClass="textWidthCustSearch" TextMode="Date" runat="server"></asp:TextBox>
+			</div>
+        </div>
+		<div class="row">
+			<div class="col-100" style="text-align: center;">
+				<asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click"  Width="50%" Text="Search" />
+			</div>
+		</div>
+   </div>
+	<br />
+    <div>
         <h2>Reservation List</h2>
     </div>
     <br/>
@@ -271,7 +297,7 @@
                     <asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="20%" />
                     <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="30%" />
                     <asp:BoundField DataField="pax" HeaderText="Pax" HeaderStyle-Width="5%" />
-                    <asp:BoundField DataField="date" HeaderText="Date" DataFormatString = {0:d} HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="date" HeaderText="Reservation Date" DataFormatString="{0:dd-M-yyyy}" HeaderStyle-Width="10%" />
                     <asp:BoundField DataField="time" HeaderText="Time" HeaderStyle-Width="10%" />
                     <asp:BoundField DataField="duration" HeaderText="Duration" HeaderStyle-Width="10%" />
                     <asp:BoundField DataField="status" HeaderText="Status" HeaderStyle-Width="15%" />
@@ -301,8 +327,9 @@
                 <Columns>
                     <asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="20%" />
                     <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="30%" />
-                    <asp:BoundField DataField="orderNum" HeaderText="Order ID" HeaderStyle-Width="30%" />
-                    <asp:BoundField DataField="status" HeaderText="Status" HeaderStyle-Width="15%" />
+                    <asp:BoundField DataField="orderNum" HeaderText="Order ID" HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="orderdate" HeaderText="Order Date" DataFormatString="{0:dd-M-yyyy}" HeaderStyle-Width="20%" />
+                    <asp:BoundField DataField="status" HeaderText="Status" DataFormatString="&lt;div style=&quot;text-transform:capitalize&quot;&gt;{0}&lt;/div&gt;" HtmlEncode="false" HeaderStyle-Width="10%" />
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <asp:HiddenField ID="hfBranchId" runat="server" Value='<%# Eval("branchId") %>' />
