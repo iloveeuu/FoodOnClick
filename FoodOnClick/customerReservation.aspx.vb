@@ -38,8 +38,9 @@
     End Sub
 
     Protected Sub btnNo_Click(sender As Object, e As EventArgs)
+        Dim duration As String = Convert.ToString(txtDuration.Text.Trim()) + " hrs"
         Dim user As User = New User()
-        Dim resv As Reservation = New Reservation("No", txtDate.Text.Trim(), txtTime.Text.Trim(), txtPax.Text.Trim(), "Pending", Session("branchid"), Session("userid"), Nothing)
+        Dim resv As Reservation = New Reservation("No", txtDate.Text.Trim(), txtTime.Text.Trim(), txtPax.Text.Trim(), "Pending", Session("branchid"), Session("userid"), Nothing, duration)
         resv.InsertReservation()
 
         Dim subject As String = "Reservation from " & Session("firstname") & " " & Session("lastname") & ", " & txtDate.Text.Trim()
@@ -61,24 +62,12 @@
         Dim email() As String = {Session("email")}
         smtp.SendMail(email, subject, body, Nothing, True)
 
-        'Dim sb As New System.Text.StringBuilder()
-        'sb.Append("<script type = 'text/javascript'>")
-        'sb.Append("window.onload=function(){")
-        'sb.Append("alert('")
-        'sb.Append("")
-        'sb.Append("')};")
-        'sb.Append("window.location = '")
-        'sb.Append(Request.ApplicationPath + "customerHome.aspx")
-        'sb.Append("'; }")
-        'sb.Append("</script>")
-        'ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
-
         Response.Write("<script language='javascript'>window.alert('Reservation Created, Please Wait for Confirmation');window.location='customerHome.aspx';</script>")
 
-        'Response.Redirect("customerHome.aspx")
     End Sub
 
     Protected Sub btnYes_Click(sender As Object, e As EventArgs)
+        Dim duration As String = Convert.ToString(txtDuration.Text.Trim()) + " hrs"
 
         Session("userid") = Session("userid")
         Session("email") = Session("email")
@@ -89,6 +78,7 @@
         Session("pax") = txtPax.Text.Trim()
         Session("date") = txtDate.Text.Trim()
         Session("time") = txtTime.Text.Trim()
+        Session("duration") = duration
 
         Response.Redirect("customerPreOrder.aspx")
     End Sub

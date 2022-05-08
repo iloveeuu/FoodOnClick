@@ -140,6 +140,24 @@ Partial Public Class customerReservation
     Protected WithEvents rvTime As Global.System.Web.UI.WebControls.RangeValidator
 
     '''<summary>
+    '''txtDuration control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDuration As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''CompareValidator3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator3 As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
     '''btnReserve control.
     '''</summary>
     '''<remarks>
