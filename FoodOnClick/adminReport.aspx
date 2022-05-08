@@ -61,7 +61,7 @@
                                 <td width="30%">Restaurant</td>
                                 <td width="40%">Period</td>
                                 <td width="15%">OrderNum</td>
-                                <td widht="15%">Sales</td>
+                                <td widht="15%">Income</td>
                            </tr>
                            
                        </table>
