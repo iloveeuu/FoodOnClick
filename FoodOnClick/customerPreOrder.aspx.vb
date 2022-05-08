@@ -13,6 +13,7 @@
                 lblDate.Text = Session("date")
                 lblTime.Text = Session("time")
                 lblPax.Text = Session("pax")
+                lblDuration.Text = Session("duration")
             End If
 
             Session("compare_menuid") = ""
@@ -311,17 +312,36 @@
             errorText2.Attributes("style") = "display: none;"
             errorText.Attributes("style") = "display: none;"
 
+            If ddlPayment.SelectedValue <> "Cash" Then
+
+                Dim masterCardRegex As String = "^(?:5[1-5][0-9]{14})$"
+                Dim visaCardRegex As String = "^(?:4[0-9]{12})(?:[0-9]{3})$"
+
+                If ddlPayment.SelectedValue = "Master" Then
+                    Dim mcRegex As New Regex(masterCardRegex)
+
+                    If mcRegex.IsMatch(txtCardNo.Text.Trim()) = False Then
+                        errorText3.Attributes("style") = "display: block; text-align: center; color:red;"
+
+                        Exit Sub
+                    End If
+                ElseIf ddlPayment.SelectedValue = "Visa" Then
+                    Dim vRegex As New Regex(visaCardRegex)
+
+                    If vRegex.IsMatch(txtCardNo.Text.Trim()) = False Then
+                        errorText3.Attributes("style") = "display: block; text-align: center; color:red;"
+
+                        Exit Sub
+                    End If
+                End If
+            End If
+
+            errorText3.Attributes("style") = "display: none;"
+
             dtAdd = Session("dtTable")
 
             Dim dNow As Date = Date.Now
             Dim dTotalCharges As Double = Convert.ToDouble(dtAdd.Compute("SUM(totPrice)", String.Empty))
-
-            'Dim bo As BatchOrder = New BatchOrder(dNow, dNow.ToString("H:mm"), Session("branchid"),
-            '           Session("userid"), Nothing, 10, Nothing)
-            'bo.InsertBatchOrder()
-
-            'Dim order As Order = New Order(Nothing, dTotalCharges, 6, Nothing, Nothing, Nothing, Nothing)
-            'order.InsertOrder()
 
             Dim od As OrderDetail = New OrderDetail()
             od.orderDate = dNow
@@ -335,7 +355,7 @@
 
             Dim iBatchId As Integer = od.InsertBatchOrder()
 
-            Dim resv As Reservation = New Reservation("Yes", lblDate.Text.Trim(), lblTime.Text.Trim(), lblPax.Text.Trim(), "Pending", Session("branchid"), Session("userid"), iBatchId)
+            Dim resv As Reservation = New Reservation("Yes", lblDate.Text.Trim(), lblTime.Text.Trim(), lblPax.Text.Trim(), "Pending", Session("branchid"), Session("userid"), iBatchId, lblDuration.Text.Trim())
             resv.InsertReservation()
 
             od.batchId = iBatchId
@@ -376,21 +396,8 @@
             Dim email() As String = {Session("email")}
             smtp.SendMail(email, subject, body, Nothing, True)
 
-            'Dim sb As New System.Text.StringBuilder()
-            'sb.Append("<script type = 'text/javascript'>")
-            'sb.Append("window.onload=function(){")
-            'sb.Append("alert('")
-            'sb.Append("Reservation Created, Please Wait for Confirmation")
-            'sb.Append("')};")
-            'sb.Append("window.location = '")
-            'sb.Append("customerHome.aspx")
-            'sb.Append("'; }")
-            'sb.Append("</script>")
-            'ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
-
             Response.Write("<script language='javascript'>window.alert('Reservation Created, Please Wait for Confirmation');window.location='customerHome.aspx';</script>")
 
-            'Response.Redirect("customerHome.aspx")
         End If
     End Sub
 
@@ -536,5 +543,9 @@
             my_popup2.Style.Add("display", "block")
             compare_popup.Style.Add("display", "block")
         End If
+    End Sub
+
+    Protected Sub ddlPayment_SelectedIndexChanged(sender As Object, e As EventArgs)
+        divShowHide.Visible = IIf(ddlPayment.SelectedValue = "Cash", False, True)
     End Sub
 End Class

@@ -86,13 +86,43 @@
 				<asp:Label ID="Label4" runat="server" Text="Payment Method:"></asp:Label>
 			</div>
           <div class="col-50">
-			  <asp:DropDownList ID="ddlPayment" runat="server">
+			  <asp:DropDownList ID="ddlPayment" runat="server" OnSelectedIndexChanged="ddlPayment_SelectedIndexChanged">
                         <asp:ListItem Value="Cash" Selected="True">Cash</asp:ListItem>
                         <asp:ListItem Value="Credit Card">Credit Card</asp:ListItem>
                         <asp:ListItem Value="Debit Card">Debit Card</asp:ListItem>
                     </asp:DropDownList>
 			  </div>
 		</div>
+		<div id="divShowHide" runat="server">
+
+            <div class="row">
+			    <div class="col-50" style="text-align: right;">
+				    <asp:Label ID="Label5" runat="server" Text="Card Type:"></asp:Label>
+			    </div>
+              <div class="col-50">
+			      <asp:DropDownList ID="ddlCardType" runat="server">
+                            <asp:ListItem Value="Visa">Visa</asp:ListItem>
+                            <asp:ListItem Value="Master">Master</asp:ListItem>
+                        </asp:DropDownList>
+			      </div>
+		    </div>
+			<div class="row">
+			        <div class="col-50" style="text-align: right;">
+				        <asp:Label ID="Label6" runat="server" Text="Card No:"></asp:Label>
+			        </div>
+                  <div class="col-50">
+                      <asp:TextBox ID="txtCardNo" runat="server"></asp:TextBox>
+		            </div>
+		    </div>
+			<div class="row">
+				<div class="col-100">
+				  <p id="errorText" width="100%" runat="server" style="display:none;">
+					Invalid Card
+					</p>
+				</div>
+			</div>
+		</div>
+        </div>
         <table width="100%">
 		<tr>
 			<td>

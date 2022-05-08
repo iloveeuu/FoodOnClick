@@ -197,6 +197,14 @@
 				<asp:Label ID="lblTime" runat="server"></asp:Label>
 			  </div>
         </div>
+        <div class="row">
+          <div class="col-50" style="text-align: right;" >
+			  Duration:
+          </div>
+			<div class="col-50">
+				<asp:Label ID="lblDuration" runat="server"></asp:Label>
+			  </div>
+        </div>
    </div>
     <br/>
     <div>
@@ -321,13 +329,42 @@
 				<asp:Label ID="Label4" runat="server" Text="Payment Method:"></asp:Label>
 			</div>
           <div class="col-50">
-			  <asp:DropDownList ID="ddlPayment" runat="server">
+			  <asp:DropDownList ID="ddlPayment" runat="server" OnSelectedIndexChanged="ddlPayment_SelectedIndexChanged">
                         <asp:ListItem Value="Cash" Selected="True">Cash</asp:ListItem>
                         <asp:ListItem Value="Credit Card">Credit Card</asp:ListItem>
                         <asp:ListItem Value="Debit Card">Debit Card</asp:ListItem>
                     </asp:DropDownList>
 			  </div>
 		</div>
+        <div id="divShowHide" runat="server">
+
+            <div class="row">
+			    <div class="col-50" style="text-align: right;">
+				    <asp:Label ID="Label5" runat="server" Text="Card Type:"></asp:Label>
+			    </div>
+              <div class="col-50">
+			      <asp:DropDownList ID="ddlCardType" runat="server">
+                            <asp:ListItem Value="Visa">Visa</asp:ListItem>
+                            <asp:ListItem Value="Master">Master</asp:ListItem>
+                        </asp:DropDownList>
+			      </div>
+		    </div>
+            <div class="row">
+			        <div class="col-50" style="text-align: right;">
+				        <asp:Label ID="Label6" runat="server" Text="Card No:"></asp:Label>
+			        </div>
+                  <div class="col-50">
+                      <asp:TextBox ID="txtCardNo" runat="server"></asp:TextBox>
+		            </div>
+		        </div>
+            <div class="row">
+				<div class="col-100">
+				  <p id="errorText3" width="100%" runat="server" style="display:none;">
+					Invalid Card
+					</p>
+				</div>
+			</div>
+        </div>
         <div class="row">
             <div class="col-50" style="text-align: center;">
                 <asp:Button ID="btnCompare" runat="server" Width="50%" OnClick="btnCompare_Click" Text="Comparison" />
@@ -340,9 +377,6 @@
 				No pre-order added
 			</p>
     </div>
-	<%--<div align="center">
-        <asp:Button ID="btnPreOrder" runat="server" OnClick="btnPreOrder_Click"  Width="30%" Text="Confirm Pre-Order" />
-    </div>--%>
 	<br />
 	<a runat="server" id="my_popup" class="popup"></a>
     <div runat="server" id="popup" class="popup">
