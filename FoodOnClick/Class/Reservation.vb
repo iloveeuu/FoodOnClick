@@ -227,7 +227,7 @@ Public Class Reservation
 
         Dim dtReservation = New DataTable()
 
-        Dim Query As String = "SELECT re.reservationId, b.email, r.name as restName, b.address, re.pax, re.date, re.time, re.status, ISNULL(re.batchid,'') as batchId, b.branchid, r.duration  from branch as b " &
+        Dim Query As String = "SELECT re.reservationId, b.email, r.name as restName, b.address, re.pax, re.date, re.time, re.status, ISNULL(re.batchid,'') as batchId, b.branchid, re.duration  from branch as b " &
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join reservation as re on re.branchId = b.branchId " &
                                 " left join batchOrders as bo on bo.batchid = re.batchid " &
