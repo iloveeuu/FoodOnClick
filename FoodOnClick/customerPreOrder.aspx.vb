@@ -45,6 +45,8 @@
                 gvPreOrder.DataSource = Session("dtTable")
                 gvPreOrder.DataBind()
             End If
+
+            divShowHide.Visible = False
         End If
     End Sub
 
@@ -202,68 +204,6 @@
         End If
     End Sub
 
-    'Protected Sub gvMenu_RowCommand(sender As Object, e As GridViewCommandEventArgs)
-
-    '    Dim boolDataExist = False
-    '    Dim Index As Int32 = -1
-
-    '    Dim iMenuId As Integer = 0
-    '    Dim hfMenuId As HiddenField = Nothing
-    '    Dim sMenu As String = ""
-    '    Dim txtQty As TextBox = Nothing
-    '    Dim dbPrice As Double = 0
-    '    Dim iQty As Integer = 0
-
-    '    Dim dbTotPrice As Double = 0
-
-    '    If e.CommandName = "doAdd" Then
-
-    '        Index = Convert.ToInt32(e.CommandArgument)
-
-    '        sMenu = gvMenu.Rows(Index).Cells(0).Text
-    '        dbPrice = Convert.ToDouble(gvMenu.Rows(Index).Cells(1).Text)
-    '        txtQty = gvMenu.Rows(Index).FindControl("txtQty")
-
-    '        hfMenuId = gvMenu.Rows(Index).FindControl("hfMenuId")
-    '        iMenuId = hfMenuId.Value
-
-    '        dtAdd = Session("dtTable")
-
-    '        If txtQty.Text = "" Then
-    '            errorText.Attributes("style") = "display: block; text-align: center; color:red;"
-    '            errorText2.Attributes("style") = "display: none;"
-    '        Else
-    '            errorText.Attributes("style") = "display: none;"
-    '            errorText2.Attributes("style") = "display: none;"
-
-    '            iQty = txtQty.Text
-
-    '            dbTotPrice = dbPrice * Convert.ToDouble(iQty)
-
-    '            For Each row As DataRow In dtAdd.Rows
-    '                If (row("menu").ToString() = sMenu) Then
-    '                    row("qty") += iQty
-    '                    row("totPrice") += dbTotPrice
-
-    '                    boolDataExist = True
-    '                End If
-    '            Next
-
-    '            If boolDataExist = False Then
-    '                dtAdd.Rows.Add(iMenuId, sMenu, iQty, dbTotPrice)
-    '            End If
-
-    '            Session("dtTable") = dtAdd
-
-    '            gvPreOrder.DataSource = dtAdd
-    '            gvPreOrder.DataBind()
-
-    '            lblTotal.Text = " $" + Convert.ToString(dtAdd.Compute("SUM(totPrice)", String.Empty))
-    '        End If
-
-    '    End If
-    'End Sub
-
     Protected Sub Unnamed_Click(sender As Object, e As EventArgs)
         my_popup.Style.Add("display", "none")
         popup.Style.Add("display", "none")
@@ -312,12 +252,12 @@
             errorText2.Attributes("style") = "display: none;"
             errorText.Attributes("style") = "display: none;"
 
-            If ddlPayment.SelectedValue <> "Cash" Then
+            If ddlCardType.SelectedValue <> "Cash" Then
 
                 Dim masterCardRegex As String = "^(?:5[1-5][0-9]{14})$"
                 Dim visaCardRegex As String = "^(?:4[0-9]{12})(?:[0-9]{3})$"
 
-                If ddlPayment.SelectedValue = "Master" Then
+                If ddlCardType.SelectedValue = "Master" Then
                     Dim mcRegex As New Regex(masterCardRegex)
 
                     If mcRegex.IsMatch(txtCardNo.Text.Trim()) = False Then
@@ -325,7 +265,7 @@
 
                         Exit Sub
                     End If
-                ElseIf ddlPayment.SelectedValue = "Visa" Then
+                ElseIf ddlCardType.SelectedValue = "Visa" Then
                     Dim vRegex As New Regex(visaCardRegex)
 
                     If vRegex.IsMatch(txtCardNo.Text.Trim()) = False Then

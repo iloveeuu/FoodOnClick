@@ -86,7 +86,7 @@
 				<asp:Label ID="Label4" runat="server" Text="Payment Method:"></asp:Label>
 			</div>
           <div class="col-50">
-			  <asp:DropDownList ID="ddlPayment" runat="server" OnSelectedIndexChanged="ddlPayment_SelectedIndexChanged">
+			  <asp:DropDownList ID="ddlPayment" runat="server"  Width="50%" AutoPostBack="true" OnSelectedIndexChanged="ddlPayment_SelectedIndexChanged">
                         <asp:ListItem Value="Cash" Selected="True">Cash</asp:ListItem>
                         <asp:ListItem Value="Credit Card">Credit Card</asp:ListItem>
                         <asp:ListItem Value="Debit Card">Debit Card</asp:ListItem>
@@ -100,7 +100,7 @@
 				    <asp:Label ID="Label5" runat="server" Text="Card Type:"></asp:Label>
 			    </div>
               <div class="col-50">
-			      <asp:DropDownList ID="ddlCardType" runat="server">
+			      <asp:DropDownList ID="ddlCardType" runat="server" Width="50%">
                             <asp:ListItem Value="Visa">Visa</asp:ListItem>
                             <asp:ListItem Value="Master">Master</asp:ListItem>
                         </asp:DropDownList>
@@ -111,7 +111,7 @@
 				        <asp:Label ID="Label6" runat="server" Text="Card No:"></asp:Label>
 			        </div>
                   <div class="col-50">
-                      <asp:TextBox ID="txtCardNo" runat="server"></asp:TextBox>
+                      <asp:TextBox ID="txtCardNo" runat="server" Width="48%"></asp:TextBox>
 		            </div>
 		    </div>
 			<div class="row">

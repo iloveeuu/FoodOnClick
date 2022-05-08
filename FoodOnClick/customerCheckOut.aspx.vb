@@ -8,6 +8,8 @@
             Else
                 DataBind()
             End If
+
+            divShowHide.Visible = False
         End If
     End Sub
 
@@ -31,12 +33,12 @@
 
     Protected Sub btnOrder_Click(sender As Object, e As EventArgs)
 
-        If ddlPayment.SelectedValue <> "Cash" Then
+        If ddlCardType.SelectedValue <> "Cash" Then
 
             Dim masterCardRegex As String = "^(?:5[1-5][0-9]{14})$"
             Dim visaCardRegex As String = "^(?:4[0-9]{12})(?:[0-9]{3})$"
 
-            If ddlPayment.SelectedValue = "Master" Then
+            If ddlCardType.SelectedValue = "Master" Then
                 Dim mcRegex As New Regex(masterCardRegex)
 
                 If mcRegex.IsMatch(txtCardNo.Text.Trim()) = False Then
@@ -44,7 +46,7 @@
 
                     Exit Sub
                 End If
-            ElseIf ddlPayment.SelectedValue = "Visa" Then
+            ElseIf ddlCardType.SelectedValue = "Visa" Then
                 Dim vRegex As New Regex(visaCardRegex)
 
                 If vRegex.IsMatch(txtCardNo.Text.Trim()) = False Then

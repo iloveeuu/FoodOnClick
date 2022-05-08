@@ -166,7 +166,7 @@ Public Class OrderDetail
 
         Dim dtHistory = New DataTable()
 
-        Dim Query As String = "SELECT b.email, o.orderNum,r.name as restName, b.address, bo.batchid, os.type as status, b.branchid, bo.orderdate " &
+        Dim Query As String = "SELECT b.email, o.orderNum,r.name as restName, b.address, bo.batchid, os.type as status, b.branchid, bo.orderdate, Isnull(o.riderID,'') as riderID " &
                                 "from branch as b " &
                                 "inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 "inner join batchOrders as bo on bo.branchid = b.branchid " &

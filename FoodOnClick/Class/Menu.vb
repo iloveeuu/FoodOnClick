@@ -865,12 +865,7 @@ Public Class Menu
         If iMenuId <> 0 Then
             Query += "And m.menuid = @menuId "
         End If
-        '"(m.description + '<br/><br/>Protein: ' + m.energy + ' cal.<br/>' " &
-        '                    "Protein: ' + m.protein + ' g<br/>' " &
-        '                    "Carbs: ' + m.carbonhydrate + ' g<br/>' " &
-        '                    "Sugar: ' + m.glucose + ' g<br/>' " &
-        '                    "Fat: ' + m.fats + ' g<br/>' " &
-        '                    "Sodium: ' + m.sodium + ' g') As desc " &
+
         Dim sFoodType As String
         Dim sDishName As String
 

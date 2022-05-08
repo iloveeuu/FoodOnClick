@@ -8,9 +8,6 @@
             Else
                 DataBind()
             End If
-
-            divShowHide.Visible = False
-            divShowHide2.Visible = False
         End If
     End Sub
 
@@ -140,6 +137,9 @@
 
             DataBind()
         ElseIf e.CommandName = "doFeedback" Then
+            If chkFollowUp.Checked = True Then
+                divShowHide.Style.Add("display", "block")
+            End If
             lblRest1.Text = gvReservation.Rows(Index).Cells(0).Text
             hfPopUpBatchId.Value = iBatchId
             hfPopUpBranchId.Value = iBranchId
@@ -179,9 +179,11 @@
         Dim hfBatchId As HiddenField = Nothing
         Dim hfBranchId As HiddenField = Nothing
         Dim hfEmail As HiddenField = Nothing
+        Dim hfRiderId As HiddenField = Nothing
         Dim sEmail As String = ""
         Dim iBatchId As Integer = 0
         Dim iBranchId As Integer = 0
+        Dim iRiderId As Integer = 0
         Dim btnFeedback As Button = Nothing
         Dim message As String = ""
         Index = Convert.ToInt32(e.CommandArgument)
@@ -189,11 +191,14 @@
         hfBatchId = gvDelivery.Rows(Index).FindControl("hfBatchId")
         iBatchId = hfBatchId.Value
 
-        hfBranchId = gvReservation.Rows(Index).FindControl("hfBranchId")
+        hfBranchId = gvDelivery.Rows(Index).FindControl("hfBranchId")
         iBranchId = hfBranchId.Value
 
-        hfEmail = gvReservation.Rows(Index).FindControl("hfEmail")
+        hfEmail = gvDelivery.Rows(Index).FindControl("hfEmail")
         sEmail = hfEmail.Value
+
+        hfRiderId = gvDelivery.Rows(Index).FindControl("hfRiderId")
+        iRiderId = hfRiderId.Value
 
         If e.CommandName = "doCheckOrder" Then
 
@@ -237,7 +242,7 @@
                                     "</body>" &
                                     "</html>"
 
-                hfEmail = gvReservation.Rows(Index).FindControl("hfEmail")
+                hfEmail = gvDelivery.Rows(Index).FindControl("hfEmail")
                 sEmail = hfEmail.Value
 
                 Dim smtp As SMTP = New SMTP()
@@ -257,11 +262,14 @@
 
             DataBind()
         ElseIf e.CommandName = "doFeedback" Then
-            lblRest2.Text = gvReservation.Rows(Index).Cells(0).Text
+            If chkFollowUp2.Checked = True Then
+                divShowHide2.Style.Add("display", "block")
+            End If
+            lblRest2.Text = gvDelivery.Rows(Index).Cells(0).Text
             hfPopUpBatchIdDel.Value = iBatchId
             hfPopUpBranchIdDel.Value = iBranchId
             hfPopUpOrderIdDel.Value = gvDelivery.Rows(Index).Cells(2).Text
-            hfPopUpEmailDel.Value = sEmail
+            hfPopUpRiderIdDel.Value = iRiderId
             my_popup2.Style.Add("display", "block")
             popup2.Style.Add("display", "block")
         End If
@@ -274,12 +282,12 @@
         Dim hfBatchId As HiddenField = Nothing
 
         If (e.Row.RowType = DataControlRowType.DataRow) Then
-            If (e.Row.Cells(3).Text = "pending") Then
+            If (e.Row.Cells(4).Text = "<div style=""text-transform:capitalize"">pending</div>") Then
                 btnCancel = e.Row.FindControl("btnCancel")
                 btnCancel.Visible = True
                 btnCancel.Attributes("onclick") = "return confirm('Do you want to cancel this delivery order?');"
 
-            ElseIf (e.Row.Cells(3).Text = "Delivered") Then
+            ElseIf (e.Row.Cells(4).Text = "<div style=""text-transform:capitalize"">delivered</div>") Then
                 btnFeedback = e.Row.FindControl("btnFeedback")
                 btnFeedback.Visible = True
             End If
@@ -299,30 +307,22 @@
         rating = hfRating.Value
 
         If chkFollowUp.Checked = True And txtPhone.Text.Trim() = "" Then
-            Dim sb As New System.Text.StringBuilder()
-            sb.Append("<script type = 'text/javascript'>")
-            sb.Append("window.onload=function(){")
-            sb.Append("alert('")
-            sb.Append("Please filled up phone number!")
-            sb.Append("')};")
-            sb.Append("</script>")
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
-
+            errorText.Attributes("style") = "display: block; text-align: center; color:red;"
+            divShowHide.Style.Add("display", "block")
             Exit Sub
         End If
 
         If rating = "" OrElse txtFeedback.Text.Trim() = "" Then
-            Dim sb As New System.Text.StringBuilder()
-            sb.Append("<script type = 'text/javascript'>")
-            sb.Append("window.onload=function(){")
-            sb.Append("alert('")
-            sb.Append("Please filled up all fields!")
-            sb.Append("')};")
-            sb.Append("</script>")
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            errorText.Attributes("style") = "display: block; text-align: center; color:red;"
+            If chkFollowUp.Checked Then
+                divShowHide.Style.Add("display", "block")
+            Else
+                divShowHide.Style.Add("display", "none")
+            End If
         Else
-            Dim strFeedback As String = txtFeedback.Text.Trim()
-            strFeedback = txtFeedback.Text.Trim().Replace("\n", "CHAR(13)")
+            errorText.Attributes("style") = "display: none; text-align: center; color:red;"
+
+            Dim strFeedback As String = txtFeedback.Text.Trim().Replace(Environment.NewLine, "CHAR(13)")
 
             If chkFollowUp.Checked = True Then
                 strFeedback += "CHAR(13)Follow Up: " + txtPhone.Text.Trim()
@@ -360,34 +360,37 @@
         Dim ratingRider As String
         ratingRider = hfRatingRider.Value
 
+        If chkFollowUp2.Checked = True And txtPhone2.Text.Trim() = "" Then
+            errorText2.Attributes("style") = "display: block; text-align: center; color:red;"
+            divShowHide2.Style.Add("display", "block")
+            Exit Sub
+        End If
+
         If ratingRest = "" OrElse ratingRider = "" OrElse txtFeedbackRest.Text.Trim() = "" OrElse txtFeedbackRider.Text.Trim() = "" Then
-            Dim sb As New System.Text.StringBuilder()
-            sb.Append("<script type = 'text/javascript'>")
-            sb.Append("window.onload=function(){")
-            sb.Append("alert('")
-            sb.Append("Please filled up all fields!")
-            sb.Append("')};")
-            sb.Append("</script>")
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            errorText2.Attributes("style") = "display: block; text-align: center; color:red;"
+            If chkFollowUp2.Checked Then
+                divShowHide2.Style.Add("display", "block")
+            Else
+                divShowHide2.Style.Add("display", "none")
+            End If
         Else
+            errorText2.Attributes("style") = "display: none; text-align: center; color:red;"
 
-            Dim strFeedbackRest As String = txtFeedbackRest.Text.Trim()
-            strFeedbackRest = txtFeedbackRest.Text.Trim().Replace("\n", "CHAR(13)")
+            Dim strFeedbackRest As String = txtFeedbackRest.Text.Trim().Replace(Environment.NewLine, "CHAR(13)")
 
-            If chkFollowUp.Checked = True Then
+            If chkFollowUp2.Checked = True Then
                 strFeedbackRest += "CHAR(13)Follow Up: " + txtPhone2.Text.Trim()
             End If
 
-            Dim strFeedbackRider As String = txtFeedbackRider.Text.Trim()
-            strFeedbackRider = txtFeedbackRider.Text.Trim().Replace("\n", "CHAR(13)")
+            Dim strFeedbackRider As String = txtFeedbackRider.Text.Trim().Replace(Environment.NewLine, "CHAR(13)")
 
             Dim rev As Review = New Review()
             rev.Description = strFeedbackRest
             rev.DescriptionDel = strFeedbackRider
             rev.Userid = Session("userid")
-            rev.Batchid = hfPopUpBatchId.Value
-            rev.BranchID = hfPopUpBranchId.Value
-            rev.ReservationId = hfPopUpReservationId.Value
+            rev.Batchid = hfPopUpBatchIdDel.Value
+            rev.BranchID = hfPopUpBranchIdDel.Value
+            rev.RiderID = hfPopUpRiderIdDel.Value
             rev.RatingRest = ratingRest
             rev.RatingDel = ratingRider
             rev.InsertReviewDelivery()
@@ -406,14 +409,6 @@
 
             DataBind()
         End If
-    End Sub
-
-    Protected Sub chkFollowUp_CheckedChanged(sender As Object, e As EventArgs)
-        divShowHide.Visible = IIf(chkFollowUp.Checked, True, False)
-    End Sub
-
-    Protected Sub chkFollowUp2_CheckedChanged(sender As Object, e As EventArgs)
-        divShowHide2.Visible = IIf(chkFollowUp2.Checked, True, False)
     End Sub
 
     Protected Sub btnSearch_Click(sender As Object, e As EventArgs)

@@ -230,6 +230,15 @@ Partial Public Class customerHistory
     Protected WithEvents btnSubmit As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''errorText control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents errorText As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''my_popup2 control.
     '''</summary>
     '''<remarks>
@@ -275,13 +284,13 @@ Partial Public Class customerHistory
     Protected WithEvents hfPopUpBatchIdDel As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''hfPopUpEmailDel control.
+    '''hfPopUpRiderIdDel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hfPopUpEmailDel As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents hfPopUpRiderIdDel As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''lblRest2 control.
@@ -399,4 +408,13 @@ Partial Public Class customerHistory
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSubmitDel As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''errorText2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents errorText2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 End Class
