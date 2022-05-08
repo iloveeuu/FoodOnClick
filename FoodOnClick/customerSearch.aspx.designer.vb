@@ -219,4 +219,13 @@ Partial Public Class customerSearch
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rptSearch As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''lblDefaultMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDefaultMessage As Global.System.Web.UI.WebControls.Label
 End Class
