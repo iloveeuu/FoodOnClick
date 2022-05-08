@@ -30,14 +30,12 @@
         Dim hfBatchId As HiddenField = Nothing
 
         If (e.Row.RowType = DataControlRowType.DataRow) Then
-            If (e.Row.Cells(5).Text = "Pending") Then
+            If (e.Row.Cells(6).Text = "Pending") Then
                 btnCancel = e.Row.FindControl("btnCancel")
                 btnCancel.Visible = True
                 btnCancel.Attributes("onclick") = "return confirm('Do you want to cancel this reservation?');"
 
-                btnFeedback = e.Row.FindControl("btnFeedback")
-                btnFeedback.Visible = True
-            ElseIf (e.Row.Cells(5).Text = "Completed") Then
+            ElseIf (e.Row.Cells(6).Text = "Completed") Then
                 btnFeedback = e.Row.FindControl("btnFeedback")
                 btnFeedback.Visible = True
             End If
@@ -79,7 +77,8 @@
             Session("pax") = gvReservation.Rows(Index).Cells(2).Text
             Session("date") = gvReservation.Rows(Index).Cells(3).Text
             Session("time") = gvReservation.Rows(Index).Cells(4).Text
-            Session("status") = gvReservation.Rows(Index).Cells(5).Text
+            Session("duration") = gvReservation.Rows(Index).Cells(5).Text
+            Session("status") = gvReservation.Rows(Index).Cells(6).Text
 
             Response.Redirect("customerPreOrderDetail.aspx")
         ElseIf e.CommandName = "doCancel" Then
@@ -276,8 +275,6 @@
                 btnCancel.Visible = True
                 btnCancel.Attributes("onclick") = "return confirm('Do you want to cancel this delivery order?');"
 
-                btnFeedback = e.Row.FindControl("btnFeedback")
-                btnFeedback.Visible = True
             ElseIf (e.Row.Cells(3).Text = "Completed") Then
                 btnFeedback = e.Row.FindControl("btnFeedback")
                 btnFeedback.Visible = True
@@ -402,42 +399,6 @@
             sb.Append("')};")
             sb.Append("</script>")
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
-
-            'Dim subject As String = "Review for Delivery Order ID: " & hfPopUpOrderIdDel.Value.ToString()
-
-            'Dim body As String = "<html> " &
-            '                    "<body>" &
-            '                    "<p>Dear " & lblRest2.Text & ",</p>" &
-            '                    "<br/>" &
-            '                    "<p>You have review sent from customer</p>" &
-            '                    "<p>Please check it</p>" &
-            '                    "<br/>" &
-            '                    "<p>Regards,</p>" &
-            '                    "<p>Food on Click</p>" &
-            '                    "</body>" &
-            '                    "</html>"
-
-            'Dim smtp As SMTP = New SMTP()
-            'Dim email() As String = {hfPopUpEmailDel.Value}
-
-            'smtp.SendMail(email, subject, body, Nothing, True)
-
-            'Dim body2 As String = "<html> " &
-            '                    "<body>" &
-            '                    "<p>Dear " & lblRest2.Text & ",</p>" &
-            '                    "<br/>" &
-            '                    "<p>You have review sent from customer</p>" &
-            '                    "<p>Please check it</p>" &
-            '                    "<br/>" &
-            '                    "<p>Regards,</p>" &
-            '                    "<p>Food on Click</p>" &
-            '                    "</body>" &
-            '                    "</html>"
-
-            'Dim smtp2 As SMTP = New SMTP()
-            'Dim email2() As String = {hfPopUpEmailDel.Value}
-
-            'smtp2.SendMail(email2, subject, body2, Nothing, True)
 
             DataBind()
         End If

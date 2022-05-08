@@ -272,7 +272,8 @@
                     <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="30%" />
                     <asp:BoundField DataField="pax" HeaderText="Pax" HeaderStyle-Width="5%" />
                     <asp:BoundField DataField="date" HeaderText="Date" DataFormatString = {0:d} HeaderStyle-Width="10%" />
-                    <asp:BoundField DataField="time" HeaderText="Time" HeaderStyle-Width="20%" />
+                    <asp:BoundField DataField="time" HeaderText="Time" HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="duration" HeaderText="Duration" HeaderStyle-Width="10%" />
                     <asp:BoundField DataField="status" HeaderText="Status" HeaderStyle-Width="15%" />
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>

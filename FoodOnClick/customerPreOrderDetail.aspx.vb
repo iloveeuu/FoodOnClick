@@ -104,6 +104,7 @@
         lblTime.Text = Session("time")
         lblTotal.Text = "$" + dtTable.Rows(0)(4).ToString()
         lblStatus.Text = dtTable.Rows(0)(5).ToString()
+        lblDuration.Text = Session("duration")
 
     End Sub
 End Class

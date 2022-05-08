@@ -68,6 +68,15 @@ Partial Public Class CustomerPreOrderDetail
     Protected WithEvents lblTime As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lblDuration control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDuration As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lblTotal control.
     '''</summary>
     '''<remarks>
