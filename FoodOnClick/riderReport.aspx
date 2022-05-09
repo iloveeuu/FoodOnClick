@@ -46,8 +46,8 @@
                        <table style="width:60%" border="1">
                            <tr>
                                 <td width="40%">Period</td>
-                                <td width="30%">OrderNum</td>
-                                <td width="30%">Income</td>
+                                <td width="30%">TotalOrder</td>
+                                <td width="30%">Income($)</td>
                            </tr>
                            
                        </table>

@@ -49,8 +49,8 @@
                                 <td width="30%">Branch</td>
                                 <td width="20%">Period</td>
                                 <td width="30%">Menu</td>
-                                <td width="10%">OrderNum</td>
-                                <td widht="10%">Sales</td>
+                                <td width="10%">TotalOrder</td>
+                                <td widht="10%">Sales($)</td>
                            </tr>
                            
                        </table>
