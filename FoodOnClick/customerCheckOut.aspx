@@ -94,7 +94,6 @@
 			  </div>
 		</div>
 		<div id="divShowHide" runat="server">
-
             <div class="row">
 			    <div class="col-50" style="text-align: right;">
 				    <asp:Label ID="Label5" runat="server" Text="Card Type:"></asp:Label>
