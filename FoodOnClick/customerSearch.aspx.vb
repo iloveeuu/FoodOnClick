@@ -142,12 +142,14 @@ Public Class customerSearch
             Dim distanceArr As String() = jsonResult("routes")(0)("legs")(0)("distance")("text").ToString().Split(" ")
             response.Dispose()
             If (Convert.ToDecimal(distanceArr(0)) <= 4) Then
-                dtFiltered.Rows.Add(row(0), row(1), row(2), row(3), row(4), row(5), row(6), row(7), row(8))
+                dtFiltered.Rows.Add(row(0), row(1), row(2), row(3), row(4), row(5), row(6), row(7), row(8), row(9))
             End If
         Next row
         If dtFiltered.Rows.Count = 0 Then
             lblDefaultMessage.Visible = True
             dtFiltered = New DataTable()
+            rptSearch.DataSource = dtFiltered
+            rptSearch.DataBind()
         Else
             lblDefaultMessage.Visible = False
             rptSearch.DataSource = dtFiltered
