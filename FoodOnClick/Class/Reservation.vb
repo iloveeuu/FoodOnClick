@@ -226,7 +226,7 @@ Public Class Reservation
                     .Parameters.Add("@branchId", SqlDbType.Int).Value = Me.int_branchId
                     .Parameters.Add("@userId", SqlDbType.Int).Value = Me.userid
                     .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchid
-                    .Parameters.Add("@duration", SqlDbType.Int).Value = Me.duration
+                    .Parameters.Add("@duration", SqlDbType.VarChar).Value = Me.duration
                 End With
                 Try
                     conn.Open()
