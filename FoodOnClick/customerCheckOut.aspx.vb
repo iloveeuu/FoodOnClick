@@ -8,6 +8,9 @@
             Else
                 DataBind()
             End If
+
+            divShowHide.Visible = False
+
         End If
     End Sub
 
@@ -30,6 +33,33 @@
     End Sub
 
     Protected Sub btnOrder_Click(sender As Object, e As EventArgs)
+
+        If ddlPayment.SelectedValue <> "Cash" Then
+
+            Dim masterCardRegex As String = "^(?:5[1-5][0-9]{14})$"
+            Dim visaCardRegex As String = "^(?:4[0-9]{12})(?:[0-9]{3})$"
+
+            If ddlCardType.SelectedValue = "Master" Then
+                Dim mcRegex As New Regex(masterCardRegex)
+
+                If mcRegex.IsMatch(txtCardNo.Text.Trim()) = False Then
+                    errorText.Attributes("style") = "display: block; text-align: center; color:red;"
+
+                    Exit Sub
+                End If
+            ElseIf ddlCardType.SelectedValue = "Visa" Then
+                Dim vRegex As New Regex(visaCardRegex)
+
+                If vRegex.IsMatch(txtCardNo.Text.Trim()) = False Then
+                    errorText.Attributes("style") = "display: block; text-align: center; color:red;"
+
+                    Exit Sub
+                End If
+            End If
+        End If
+
+        errorText.Attributes("style") = "display: none;"
+
         Dim clsSC As ShoppingCartDetail = New ShoppingCartDetail()
         clsSC.cartID = Session("cartId")
         clsSC.userID = Session("userid")
@@ -88,7 +118,6 @@
         Dim smtp As SMTP = New SMTP()
         Dim email() As String = {dtTable.Rows(0)(10)}
 
-        'Dim email() As String = {"will.ariez@gmail.com"}
         smtp.SendMail(email, subject, body, Nothing, True)
 
         clsSC.DeleteShoppingCart()
@@ -138,4 +167,9 @@
 
         Return charges
     End Function
+
+    Protected Sub ddlPayment_SelectedIndexChanged(sender As Object, e As EventArgs)
+        divShowHide.Visible = IIf(ddlPayment.SelectedValue = "Cash", False, True)
+        errorText.Attributes("style") = "display: none;"
+    End Sub
 End Class

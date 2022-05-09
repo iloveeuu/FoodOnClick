@@ -185,6 +185,15 @@ Partial Public Class customerOrder
     Protected WithEvents rptMenu As Global.System.Web.UI.WebControls.Repeater
 
     '''<summary>
+    '''lblDefaultMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDefaultMessage As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''btnCompare control.
     '''</summary>
     '''<remarks>

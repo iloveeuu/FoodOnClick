@@ -113,64 +113,6 @@
         End If
     End Sub
 
-    'Protected Sub gvCart_RowDataBound(sender As Object, e As GridViewRowEventArgs)
-
-    '    Dim hCartId As HiddenField = Nothing
-    '    Dim hPrevCartId As HiddenField = Nothing
-    '    Dim iCartID As Integer = 0
-    '    Dim iPreviousCatID As String = 0
-
-    '    If (e.Row.RowType = DataControlRowType.DataRow) Then
-    '        'merge rows
-    '        For i As Integer = gvCart.Rows.Count - 1 To 1 Step -1
-    '            Dim row As GridViewRow = gvCart.Rows(i)
-    '            Dim previousRow As GridViewRow = gvCart.Rows(i - 1)
-
-    '            For j As Integer = 0 To row.Cells.Count - 1
-    '                If row.Cells(j).Text = previousRow.Cells(j).Text And j <> 4 And j <> 5 Then
-
-    '                    If row.Cells(j).RowSpan = 0 Then
-    '                        previousRow.Cells(j).RowSpan += 2
-    '                    Else
-    '                        previousRow.Cells(j).RowSpan = row.Cells(j).RowSpan + 1
-    '                    End If
-    '                    row.Cells(j).Visible = False
-    '                End If
-
-    '                boolMerged = True
-    '            Next
-    '        Next
-    '    End If
-
-    '    If boolMerged = False And ViewState("rowCount") = 2 Then
-    '        For i As Integer = gvCart.Rows.Count - 1 To 1 Step -1
-    '            Dim row As GridViewRow = gvCart.Rows(i)
-    '            Dim previousRow As GridViewRow = gvCart.Rows(i - 1)
-
-    '            hCartId = gvCart.Rows(i).FindControl("hfCartId")
-    '            iCartID = hCartId.Value
-
-    '            hPrevCartId = gvCart.Rows(i - 1).FindControl("hfCartId")
-    '            iPreviousCatID = hPrevCartId.Value
-
-    '            If iCartID = iPreviousCatID Then
-    '                For j As Integer = 0 To row.Cells.Count - 1
-    '                    If row.Cells(j).Text = previousRow.Cells(j).Text And j <> 7 And j <> 6 Then
-
-    '                        If row.Cells(j).RowSpan = 0 Then
-    '                            previousRow.Cells(j).RowSpan += 2
-    '                        Else
-    '                            previousRow.Cells(j).RowSpan = row.Cells(j).RowSpan + 1
-    '                        End If
-    '                        row.Cells(j).Visible = False
-    '                    End If
-    '                Next
-    '            End If
-
-    '        Next
-    '    End If
-    'End Sub
-
     Protected Sub btnProfile_Click(sender As Object, e As EventArgs)
         Response.Redirect("customerProfile.aspx")
     End Sub

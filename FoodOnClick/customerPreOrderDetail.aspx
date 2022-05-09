@@ -51,6 +51,14 @@
         </div>
 		<div class="row">
           <div class="col-50"  style="text-align: right;" >
+			  Duration:
+          </div>
+			<div class="col-50">
+				<asp:Label ID="lblDuration" runat="server"></asp:Label>
+			  </div>
+        </div>
+		<div class="row">
+          <div class="col-50"  style="text-align: right;" >
 			  Total Price:
           </div>
 			<div class="col-50">

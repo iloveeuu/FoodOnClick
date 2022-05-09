@@ -82,6 +82,23 @@
 
         });
 
+        function chkbox1() {
+            if (document.getElementById('<%=chkFollowUp.ClientID%>').checked) {
+                document.getElementById("<%=divShowHide.ClientID%>").style.display = 'block';
+            }
+            else {
+                document.getElementById("<%=divShowHide.ClientID%>").style.display = 'none';
+            }
+        };
+
+        function chkbox2() {
+            if (document.getElementById('<%=chkFollowUp2.ClientID%>').checked) {
+                document.getElementById("<%=divShowHide2.ClientID%>").style.display = 'block';
+            }
+            else {
+                document.getElementById("<%=divShowHide2.ClientID%>").style.display = 'none';
+            }
+        };
     </script>
     <style>
         .rating-star-block .star.outline {
@@ -157,9 +174,9 @@
             display: none;
             background: white;
             width: 30%;
-            height: 40%;
+            height: 50%;
             position: fixed;
-            top: 35%;
+            top: 25%;
             left: 35%;
             z-index: 4;
             -webkit-box-sizing: border-box;
@@ -203,9 +220,9 @@
             display: none;
             background: white;
             width: 30%;
-            height: 60%;
+            height: 70%;
             position: fixed;
-            top: 35%;
+            top: 25%;
             left: 35%;
             z-index: 4;
             -webkit-box-sizing: border-box;
@@ -261,6 +278,32 @@
 		</tr>
     </table>
     <div>
+        <h2>Search Restaurant</h2>
+    </div>
+    <br/>
+	<div class="container">
+        <div class="row">
+			<div class="col-20">
+			<asp:Label ID="Label9" runat="server" Text="From Date:"></asp:Label>
+			</div>
+          <div class="col-30">
+				<asp:TextBox ID="txtFromDate" CssClass="textWidthCustSearch" TextMode="Date" runat="server"></asp:TextBox>
+			  </div>
+			<div class="col-20">
+			<asp:Label ID="Label10" runat="server" Text="To Date:"></asp:Label>
+			</div>
+          <div class="col-30">
+			<asp:TextBox ID="txtToDate" CssClass="textWidthCustSearch" TextMode="Date" runat="server"></asp:TextBox>
+			</div>
+        </div>
+		<div class="row">
+			<div class="col-100" style="text-align: center;">
+				<asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click"  Width="50%" Text="Search" />
+			</div>
+		</div>
+   </div>
+	<br />
+    <div>
         <h2>Reservation List</h2>
     </div>
     <br/>
@@ -271,8 +314,9 @@
                     <asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="20%" />
                     <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="30%" />
                     <asp:BoundField DataField="pax" HeaderText="Pax" HeaderStyle-Width="5%" />
-                    <asp:BoundField DataField="date" HeaderText="Date" DataFormatString = {0:d} HeaderStyle-Width="10%" />
-                    <asp:BoundField DataField="time" HeaderText="Time" HeaderStyle-Width="20%" />
+                    <asp:BoundField DataField="date" HeaderText="Reservation Date" DataFormatString="{0:dd-M-yyyy}" HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="time" HeaderText="Time" HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="duration" HeaderText="Duration" HeaderStyle-Width="10%" />
                     <asp:BoundField DataField="status" HeaderText="Status" HeaderStyle-Width="15%" />
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
@@ -300,13 +344,15 @@
                 <Columns>
                     <asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="20%" />
                     <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="30%" />
-                    <asp:BoundField DataField="orderNum" HeaderText="Order ID" HeaderStyle-Width="30%" />
-                    <asp:BoundField DataField="status" HeaderText="Status" HeaderStyle-Width="15%" />
+                    <asp:BoundField DataField="orderNum" HeaderText="Order ID" HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="orderdate" HeaderText="Order Date" DataFormatString="{0:dd-M-yyyy}" HeaderStyle-Width="20%" />
+                    <asp:BoundField DataField="status" HeaderText="Status" DataFormatString="&lt;div style=&quot;text-transform:capitalize&quot;&gt;{0}&lt;/div&gt;" HtmlEncode="false" HeaderStyle-Width="10%" />
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <asp:HiddenField ID="hfBranchId" runat="server" Value='<%# Eval("branchId") %>' />
                             <asp:HiddenField ID="hfBatchId" runat="server" Value='<%# Eval("batchId") %>' />
                             <asp:HiddenField ID="hfEmail" runat="server" Value='<%# Eval("email") %>' />
+                            <asp:HiddenField ID="hfRiderId" runat="server" Value='<%# Eval("riderID") %>' />
                             <asp:Button ID="btnCancel" runat="server" Text="Cancel" CommandArgument='<%# Container.DataItemIndex %>' Visible="false" CommandName="doCancel"/>
                             <asp:Button ID="btnOrder" runat="server" Text="Order List" CommandArgument='<%# Container.DataItemIndex %>'  CommandName="doCheckOrder"/>
                             <asp:Button ID="btnFeedback" runat="server" Text="Feedback" CommandArgument='<%# Container.DataItemIndex %>'   Visible="false" CommandName="doFeedback"/>
@@ -347,10 +393,10 @@
                 </div>
                 <div class="row">
                   <div class="col-100"  style="text-align: center;" >
-                      <asp:CheckBox ID="chkFollowUp" runat="server" Text="Follow Up" AutoPostBack="True" OnCheckedChanged="chkFollowUp_CheckedChanged"/>
+                      <asp:CheckBox ID="chkFollowUp" runat="server" Text="Follow Up" onchange="chkbox1()"/>
                   </div>
                 </div>
-                <div id="divShowHide" runat="server">
+                <div id="divShowHide" runat="server" style="display:none;">
                     <div class="row">
                       <div class="col-100"  style="text-align: center;" >
                           <asp:Label ID="Label3" runat="server" style=" text-transform: capitalize;" Text="Phone Number" Font-Bold="True"></asp:Label>
@@ -377,6 +423,13 @@
                       <asp:Button ID="btnSubmit" runat="server" Text="Submit" Width="100%" OnClick="btnSubmit_Click"/>
                   </div>
                 </div>
+                <div class="row">
+				    <div class="col-100" style="text-align: center;">
+				      <p id="errorText" width="100%" runat="server" style="display:none;">
+					    Please fill up all fields
+					    </p>
+				    </div>
+			    </div>
            </div>
         <a class="close x"><asp:LinkButton runat="server" CssClass="close x" OnClick="Unnamed_Click">X</asp:LinkButton></a>
     </div>
@@ -390,7 +443,7 @@
                       <asp:HiddenField ID="hfPopUpOrderIdDel" runat="server" />
                       <asp:HiddenField ID="hfPopUpBranchIdDel" runat="server" />
                       <asp:HiddenField ID="hfPopUpBatchIdDel" runat="server" />
-                      <asp:HiddenField ID="hfPopUpEmailDel" runat="server" />
+                      <asp:HiddenField ID="hfPopUpRiderIdDel" runat="server" />
                       <asp:Label ID="lblRest2" runat="server" style="text-transform: capitalize;" Font-Bold="True"></asp:Label>
                   </div>
                 </div>
@@ -417,10 +470,10 @@
                 </div>
                 <div class="row">
                   <div class="col-100"  style="text-align: center;" >
-                      <asp:CheckBox ID="chkFollowUp2" runat="server" Text="Follow Up" AutoPostBack="True" OnCheckedChanged="chkFollowUp2_CheckedChanged"/>
+                      <asp:CheckBox ID="chkFollowUp2" runat="server" Text="Follow Up" onchange="chkbox2()"/>
                   </div>
                 </div>
-                <div id="divShowHide2" runat="server">
+                <div id="divShowHide2" runat="server" style="display:none;">
                     <div class="row">
                       <div class="col-100"  style="text-align: center;" >
                           <asp:Label ID="Label4" runat="server" style=" text-transform: capitalize;" Text="Phone Number" Font-Bold="True"></asp:Label>
@@ -469,6 +522,13 @@
                       <asp:Button ID="btnSubmitDel" runat="server" Text="Submit" Width="100%" OnClick="btnSubmitDel_Click"/>
                   </div>
                 </div>
+                <div class="row">
+				    <div class="col-100" style="text-align: center;">
+				      <p id="errorText2" width="100%" runat="server" style="display:none;">
+					     Please fill up all fields
+					    </p>
+				    </div>
+			    </div>
            </div>
         <a class="close x"><asp:LinkButton runat="server" CssClass="close x" OnClick="Unnamed_Click">X</asp:LinkButton></a>
     </div>

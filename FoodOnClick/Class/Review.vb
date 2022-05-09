@@ -107,8 +107,8 @@ Public Class Review
     End Sub
     Public Sub InsertReviewReservation()
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "INSERT INTO restaurant_review (description, userid, batchid, branchID, rating) " &
-                                "VALUES (@description, @userid, @batchid, @branchID, @rating); "
+        Dim Query As String = "INSERT INTO restaurant_review (description, userid, batchid, branchID, rating, reviewDate) " &
+                                "VALUES (@description, @userid, @batchid, @branchID, @rating, Getdate()); "
 
         If Me.Batchid <> 0 Then
             Query += "UPDATE orders SET orderStatusID = 10 WHERE batchid = @batchid; "
@@ -145,11 +145,12 @@ Public Class Review
 
     Public Sub InsertReviewDelivery()
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "INSERT INTO restaurant_review (description, userid, batchid, branchID, rating) " &
-                                "VALUES (@description, @userid, @batchid, @branchID, @rating); "
+        Dim Query As String = "INSERT INTO restaurant_review (description, userid, batchid, branchID, rating, reviewDate) " &
+                                "VALUES (@description, @userid, @batchid, @branchID, @rating, GetDate()); "
         Query += "UPDATE orders SET orderStatusID = 10 WHERE batchid = @batchid; "
-        Query += "INSERT INTO rider_review (description, reviewerID, riderID, rating) " &
-                                "VALUES (@descriptionDel, @reviewerID, @riderID, @ratingDel); "
+        Query += "INSERT INTO rider_review (description, reviewerID, riderID, rating, reviewDate) " &
+                                "VALUES (@descriptionDel, @reviewerID, @riderID, @ratingDel, GetDate()); "
+        Query += "UPDATE orders set riderReviewId = (SELECT SCOPE_IDENTITY()) Where batchid = @batchid; "
 
         Using conn As New SqlConnection(connectionString)
 
@@ -164,7 +165,6 @@ Public Class Review
                     .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.Batchid
                     .Parameters.Add("@branchID", SqlDbType.Int).Value = Me.BranchID
                     .Parameters.Add("@rating", SqlDbType.Int).Value = Me.RatingRest
-                    .Parameters.Add("@reservationId", SqlDbType.Int).Value = Me.ReservationId
                     .Parameters.Add("@descriptionDel", SqlDbType.NVarChar).Value = Me.DescriptionDel
                     .Parameters.Add("@reviewerID", SqlDbType.Int).Value = Me.Userid
                     .Parameters.Add("@riderID", SqlDbType.Int).Value = Me.RiderID

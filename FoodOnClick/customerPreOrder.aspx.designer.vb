@@ -95,6 +95,15 @@ Partial Public Class customerPreOrder
     Protected WithEvents lblTime As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lblDuration control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDuration As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''Label11 control.
     '''</summary>
     '''<remarks>
@@ -255,6 +264,60 @@ Partial Public Class customerPreOrder
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlPayment As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''divShowHide control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents divShowHide As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Label5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddlCardType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlCardType As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Label6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtCardNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCardNo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''errorText3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents errorText3 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''btnCompare control.

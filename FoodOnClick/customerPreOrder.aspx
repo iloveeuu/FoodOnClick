@@ -197,6 +197,14 @@
 				<asp:Label ID="lblTime" runat="server"></asp:Label>
 			  </div>
         </div>
+        <div class="row">
+          <div class="col-50" style="text-align: right;" >
+			  Duration:
+          </div>
+			<div class="col-50">
+				<asp:Label ID="lblDuration" runat="server"></asp:Label>
+			  </div>
+        </div>
    </div>
     <br/>
     <div>
@@ -247,24 +255,6 @@
         <p id="errorText" width="100%" runat="server" style="display:none;">
 				Please fill up quantity
 			</p>
-		<%--<asp:GridView ID="gvMenu" Class="gvMenu" OnRowCommand="gvMenu_RowCommand" runat="server" AutoGenerateColumns="false" Height="100%">
-                <Columns>
-                    <asp:BoundField DataField="dishName" HeaderText="Menu" HeaderStyle-Width="30%" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="price" HeaderText="Price ($)" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="describe" HeaderText="Description" HtmlEncode="false" HeaderStyle-Width="40%" />
-                    <asp:TemplateField ItemStyle-HorizontalAlign="Center">
-                        <ItemTemplate>
-                            <asp:HiddenField ID="hfMenuId" runat="server" Value='<%# Eval("menuid") %>' />
-                            <asp:TextBox ID="txtQty" runat="server" TextMode="Number" Width="20%"></asp:TextBox><br />
-                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="txtQty" ErrorMessage="Must be more than 0" Operator="GreaterThan" 
-					Type="Integer" ValueToCompare="0" ForeColor="Red" /><br />
-                            <asp:Button ID="btnAdd" runat="server" Text="Add" CommandArgument='<%# Container.DataItemIndex %>'   CommandName="doAdd"/>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    
-                </Columns>
-               
-            </asp:GridView>--%>
         <asp:Repeater runat="server" ID="rptMenu" EnableViewState="true" OnItemCommand="rptMenu_ItemCommand">
             <ItemTemplate>
             <div style="border: 1px solid black;display:inline-grid;text-align:center;width:150px;height:270px;" >
@@ -321,13 +311,42 @@
 				<asp:Label ID="Label4" runat="server" Text="Payment Method:"></asp:Label>
 			</div>
           <div class="col-50">
-			  <asp:DropDownList ID="ddlPayment" runat="server">
+			  <asp:DropDownList ID="ddlPayment" runat="server" Width="50%" AutoPostBack="true" OnSelectedIndexChanged="ddlPayment_SelectedIndexChanged">
                         <asp:ListItem Value="Cash" Selected="True">Cash</asp:ListItem>
                         <asp:ListItem Value="Credit Card">Credit Card</asp:ListItem>
                         <asp:ListItem Value="Debit Card">Debit Card</asp:ListItem>
                     </asp:DropDownList>
 			  </div>
 		</div>
+        <div id="divShowHide" runat="server">
+
+            <div class="row">
+			    <div class="col-50" style="text-align: right;">
+				    <asp:Label ID="Label5" runat="server" Text="Card Type:"></asp:Label>
+			    </div>
+              <div class="col-50">
+			      <asp:DropDownList ID="ddlCardType" Width="50%" runat="server">
+                            <asp:ListItem Value="Visa">Visa</asp:ListItem>
+                            <asp:ListItem Value="Master">Master</asp:ListItem>
+                        </asp:DropDownList>
+			      </div>
+		    </div>
+            <div class="row">
+			        <div class="col-50" style="text-align: right;">
+				        <asp:Label ID="Label6" runat="server" Text="Card No:"></asp:Label>
+			        </div>
+                  <div class="col-50">
+                      <asp:TextBox ID="txtCardNo" Width="48%" runat="server"></asp:TextBox>
+		            </div>
+		        </div>
+            <div class="row">
+				<div class="col-100">
+				  <p id="errorText3" width="100%" runat="server" style="display:none;">
+					Invalid Card
+					</p>
+				</div>
+			</div>
+        </div>
         <div class="row">
             <div class="col-50" style="text-align: center;">
                 <asp:Button ID="btnCompare" runat="server" Width="50%" OnClick="btnCompare_Click" Text="Comparison" />
@@ -340,9 +359,6 @@
 				No pre-order added
 			</p>
     </div>
-	<%--<div align="center">
-        <asp:Button ID="btnPreOrder" runat="server" OnClick="btnPreOrder_Click"  Width="30%" Text="Confirm Pre-Order" />
-    </div>--%>
 	<br />
 	<a runat="server" id="my_popup" class="popup"></a>
     <div runat="server" id="popup" class="popup">

@@ -82,9 +82,19 @@
           </div>
 			<div class="col-50">
 				<asp:TextBox ID="txtTime" CssClass="textWidth"  Width="30%" runat="server" TextMode="Time"></asp:TextBox>
-				<asp:RangeValidator runat="server" ID="rvTime" ErrorMessage="Must be between opening and closing time" 
+				<asp:RangeValidator runat="server" ID="rvTime" ErrorMessage="Timing Invalid" 
 					ForeColor="Red"
 					ControlToValidate="txtTime" Type="String"/>
+			  </div>
+        </div>
+		<div class="row">
+          <div class="col-50" style="text-align: right;" >
+			  Duration (hrs):
+          </div>
+			<div class="col-50">
+				<asp:TextBox ID="txtDuration" CssClass="textWidth"  Width="30%" runat="server" TextMode="Number"></asp:TextBox>
+				<asp:CompareValidator ID="CompareValidator3" runat="server" ControlToValidate="txtDuration" ErrorMessage="Cannot < 1" Operator="GreaterThan" 
+					        Type="Integer" ValueToCompare="0" ForeColor="Red" />
 			  </div>
         </div>
 		<div class="row">

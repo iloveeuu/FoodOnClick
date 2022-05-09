@@ -15,6 +15,9 @@ Public Class Reservation
     Protected dec_tempTotalCost As Decimal
     Protected str_tempPaymentType As String
     Protected dec_tempDeliveryCharges As Decimal
+    Protected str_duration As String
+    Protected str_fromdate As String
+    Protected str_todate As String
 
 
 #Region "Objects"
@@ -134,7 +137,32 @@ Public Class Reservation
         End Set
     End Property
 
+    Public Property duration() As String
+        Get
+            duration = str_duration
+        End Get
+        Set(ByVal Value As String)
+            str_duration = Value
+        End Set
+    End Property
 
+    Public Property fromdate() As String
+        Get
+            fromdate = str_fromdate
+        End Get
+        Set(ByVal Value As String)
+            str_fromdate = Value
+        End Set
+    End Property
+
+    Public Property todate() As String
+        Get
+            todate = str_todate
+        End Get
+        Set(ByVal Value As String)
+            str_todate = Value
+        End Set
+    End Property
 #End Region
 
     Public Sub New()
@@ -157,7 +185,7 @@ Public Class Reservation
 
     Public Sub New(ByVal preordermeals As String, ByVal dtdate As Date,
                    ByVal strtime As String, ByVal pax As Int32,
-                   ByVal status As String, ByVal branchId As Int32, ByVal userid As Int32, ByVal batchid As Int32)
+                   ByVal status As String, ByVal branchId As Int32, ByVal userid As Int32, ByVal batchid As Int32, ByVal duration As String)
         Me.preordermeals = preordermeals
         Me.dtdate = dtdate
         Me.strtime = strtime
@@ -166,6 +194,7 @@ Public Class Reservation
         Me.branchId = branchId
         Me.userid = userid
         Me.batchid = batchid
+        Me.str_duration = duration
     End Sub
 
     Public Sub InsertReservation()
@@ -173,12 +202,12 @@ Public Class Reservation
         Dim Query As String = ""
 
         If Me.str_preordermeals = "No" Then
-            Query = "INSERT INTO Reservation (preordermeals, date, time, pax, status, branchId, userId) " &
-                            "VALUES (@preordermeals, @dtdate, @strtime, @pax, @status, @branchId, @userId) "
+            Query = "INSERT INTO Reservation (preordermeals, date, time, pax, status, branchId, userId, duration) " &
+                            "VALUES (@preordermeals, @dtdate, @strtime, @pax, @status, @branchId, @userId, @duration) "
         Else
-            Query = "INSERT INTO Reservation (preordermeals, date, time, pax, status, branchId, userId, batchid) " &
+            Query = "INSERT INTO Reservation (preordermeals, date, time, pax, status, branchId, userId, batchid, duration) " &
                             "VALUES (@preordermeals, @dtdate, @strtime, @pax, @status, @branchId, @userId, " &
-                            "@batchid) "
+                            "@batchid, @duration) "
         End If
 
         Using conn As New SqlConnection(connectionString)
@@ -197,6 +226,7 @@ Public Class Reservation
                     .Parameters.Add("@branchId", SqlDbType.Int).Value = Me.int_branchId
                     .Parameters.Add("@userId", SqlDbType.Int).Value = Me.userid
                     .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchid
+                    .Parameters.Add("@duration", SqlDbType.VarChar).Value = Me.duration
                 End With
                 Try
                     conn.Open()
@@ -215,11 +245,20 @@ Public Class Reservation
 
         Dim dtReservation = New DataTable()
 
-        Dim Query As String = "SELECT re.reservationId, b.email, r.name as restName, b.address, re.pax, re.date, re.time, re.status, ISNULL(re.batchid,'') as batchId, b.branchid  from branch as b " &
+        Dim Query As String = "SELECT re.reservationId, b.email, r.name as restName, b.address, re.pax, re.date, re.time, re.status, ISNULL(re.batchid,'') as batchId, b.branchid, re.duration  from branch as b " &
                                 " inner join restaurant as r on r.restaurantId = b.restaurantId " &
                                 " inner join reservation as re on re.branchId = b.branchId " &
                                 " left join batchOrders as bo on bo.batchid = re.batchid " &
-                                " where re.userID = @userId"
+                                " where re.userID = @userId "
+
+        If fromdate.Trim() <> "" Then
+            Query += " And re.date >= '" + fromdate.Trim() + "' "
+        End If
+
+        If todate.Trim() <> "" Then
+            Query += " And re.date <= '" + todate.Trim() + "' "
+        End If
+
 
         Using conn As New SqlConnection(connectionString)
 

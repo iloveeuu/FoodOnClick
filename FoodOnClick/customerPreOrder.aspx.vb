@@ -13,6 +13,7 @@
                 lblDate.Text = Session("date")
                 lblTime.Text = Session("time")
                 lblPax.Text = Session("pax")
+                lblDuration.Text = Session("duration")
             End If
 
             Session("compare_menuid") = ""
@@ -44,6 +45,8 @@
                 gvPreOrder.DataSource = Session("dtTable")
                 gvPreOrder.DataBind()
             End If
+
+            divShowHide.Visible = False
         End If
     End Sub
 
@@ -201,68 +204,6 @@
         End If
     End Sub
 
-    'Protected Sub gvMenu_RowCommand(sender As Object, e As GridViewCommandEventArgs)
-
-    '    Dim boolDataExist = False
-    '    Dim Index As Int32 = -1
-
-    '    Dim iMenuId As Integer = 0
-    '    Dim hfMenuId As HiddenField = Nothing
-    '    Dim sMenu As String = ""
-    '    Dim txtQty As TextBox = Nothing
-    '    Dim dbPrice As Double = 0
-    '    Dim iQty As Integer = 0
-
-    '    Dim dbTotPrice As Double = 0
-
-    '    If e.CommandName = "doAdd" Then
-
-    '        Index = Convert.ToInt32(e.CommandArgument)
-
-    '        sMenu = gvMenu.Rows(Index).Cells(0).Text
-    '        dbPrice = Convert.ToDouble(gvMenu.Rows(Index).Cells(1).Text)
-    '        txtQty = gvMenu.Rows(Index).FindControl("txtQty")
-
-    '        hfMenuId = gvMenu.Rows(Index).FindControl("hfMenuId")
-    '        iMenuId = hfMenuId.Value
-
-    '        dtAdd = Session("dtTable")
-
-    '        If txtQty.Text = "" Then
-    '            errorText.Attributes("style") = "display: block; text-align: center; color:red;"
-    '            errorText2.Attributes("style") = "display: none;"
-    '        Else
-    '            errorText.Attributes("style") = "display: none;"
-    '            errorText2.Attributes("style") = "display: none;"
-
-    '            iQty = txtQty.Text
-
-    '            dbTotPrice = dbPrice * Convert.ToDouble(iQty)
-
-    '            For Each row As DataRow In dtAdd.Rows
-    '                If (row("menu").ToString() = sMenu) Then
-    '                    row("qty") += iQty
-    '                    row("totPrice") += dbTotPrice
-
-    '                    boolDataExist = True
-    '                End If
-    '            Next
-
-    '            If boolDataExist = False Then
-    '                dtAdd.Rows.Add(iMenuId, sMenu, iQty, dbTotPrice)
-    '            End If
-
-    '            Session("dtTable") = dtAdd
-
-    '            gvPreOrder.DataSource = dtAdd
-    '            gvPreOrder.DataBind()
-
-    '            lblTotal.Text = " $" + Convert.ToString(dtAdd.Compute("SUM(totPrice)", String.Empty))
-    '        End If
-
-    '    End If
-    'End Sub
-
     Protected Sub Unnamed_Click(sender As Object, e As EventArgs)
         my_popup.Style.Add("display", "none")
         popup.Style.Add("display", "none")
@@ -311,17 +252,36 @@
             errorText2.Attributes("style") = "display: none;"
             errorText.Attributes("style") = "display: none;"
 
+            If ddlPayment.SelectedValue <> "Cash" Then
+
+                Dim masterCardRegex As String = "^(?:5[1-5][0-9]{14})$"
+                Dim visaCardRegex As String = "^(?:4[0-9]{12})(?:[0-9]{3})$"
+
+                If ddlCardType.SelectedValue = "Master" Then
+                    Dim mcRegex As New Regex(masterCardRegex)
+
+                    If mcRegex.IsMatch(txtCardNo.Text.Trim()) = False Then
+                        errorText3.Attributes("style") = "display: block; text-align: center; color:red;"
+
+                        Exit Sub
+                    End If
+                ElseIf ddlCardType.SelectedValue = "Visa" Then
+                    Dim vRegex As New Regex(visaCardRegex)
+
+                    If vRegex.IsMatch(txtCardNo.Text.Trim()) = False Then
+                        errorText3.Attributes("style") = "display: block; text-align: center; color:red;"
+
+                        Exit Sub
+                    End If
+                End If
+            End If
+
+            errorText3.Attributes("style") = "display: none;"
+
             dtAdd = Session("dtTable")
 
             Dim dNow As Date = Date.Now
             Dim dTotalCharges As Double = Convert.ToDouble(dtAdd.Compute("SUM(totPrice)", String.Empty))
-
-            'Dim bo As BatchOrder = New BatchOrder(dNow, dNow.ToString("H:mm"), Session("branchid"),
-            '           Session("userid"), Nothing, 10, Nothing)
-            'bo.InsertBatchOrder()
-
-            'Dim order As Order = New Order(Nothing, dTotalCharges, 6, Nothing, Nothing, Nothing, Nothing)
-            'order.InsertOrder()
 
             Dim od As OrderDetail = New OrderDetail()
             od.orderDate = dNow
@@ -335,7 +295,7 @@
 
             Dim iBatchId As Integer = od.InsertBatchOrder()
 
-            Dim resv As Reservation = New Reservation("Yes", lblDate.Text.Trim(), lblTime.Text.Trim(), lblPax.Text.Trim(), "Pending", Session("branchid"), Session("userid"), iBatchId)
+            Dim resv As Reservation = New Reservation("Yes", lblDate.Text.Trim(), lblTime.Text.Trim(), lblPax.Text.Trim(), "Pending", Session("branchid"), Session("userid"), iBatchId, lblDuration.Text.Trim())
             resv.InsertReservation()
 
             od.batchId = iBatchId
@@ -376,21 +336,8 @@
             Dim email() As String = {Session("email")}
             smtp.SendMail(email, subject, body, Nothing, True)
 
-            'Dim sb As New System.Text.StringBuilder()
-            'sb.Append("<script type = 'text/javascript'>")
-            'sb.Append("window.onload=function(){")
-            'sb.Append("alert('")
-            'sb.Append("Reservation Created, Please Wait for Confirmation")
-            'sb.Append("')};")
-            'sb.Append("window.location = '")
-            'sb.Append("customerHome.aspx")
-            'sb.Append("'; }")
-            'sb.Append("</script>")
-            'ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
-
             Response.Write("<script language='javascript'>window.alert('Reservation Created, Please Wait for Confirmation');window.location='customerHome.aspx';</script>")
 
-            'Response.Redirect("customerHome.aspx")
         End If
     End Sub
 
@@ -536,5 +483,10 @@
             my_popup2.Style.Add("display", "block")
             compare_popup.Style.Add("display", "block")
         End If
+    End Sub
+
+    Protected Sub ddlPayment_SelectedIndexChanged(sender As Object, e As EventArgs)
+        divShowHide.Visible = IIf(ddlPayment.SelectedValue = "Cash", False, True)
+        errorText.Attributes("style") = "display: none;"
     End Sub
 End Class

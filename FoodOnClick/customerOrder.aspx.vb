@@ -450,15 +450,7 @@
             gvCompare.DataSource = dtCompare
             gvCompare.DataBind()
 
-
             my_popup2.Style.Add("display", "block")
-
-            'compare_popup.Style.Add("height", Convert.ToString((gvCompare.Height.Value * 3)) + "px;")
-
-            'Dim height As String = Convert.ToString((gvCompare.Height.Value * gvCompare.Rows.Count * 8)) + "px;"
-            'compare_popup.Style.Add("height", height)
-            'compare_popup.Style.Add("height", "100%")
-
             compare_popup.Style.Add("display", "block")
         End If
     End Sub

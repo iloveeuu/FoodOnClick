@@ -223,23 +223,6 @@
 		</div>
    </div>
 	<br />
-		<%--<asp:GridView ID="gvMenu" Class="gvMenu" OnRowCommand="gvMenu_RowCommand" runat="server" AutoGenerateColumns="false" Height="100%">
-                <Columns>
-                    <asp:BoundField DataField="dishName" HeaderText="Menu" HeaderStyle-Width="30%" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="price" HeaderText="Price ($)" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="describe" HeaderText="Description" HtmlEncode="false" HeaderStyle-Width="40%" />
-                    <asp:TemplateField ItemStyle-HorizontalAlign="Center">
-                        <ItemTemplate>
-                            <asp:HiddenField ID="hfMenuId" runat="server" Value='<%# Eval("menuid") %>' />
-                            <asp:HiddenField ID="hfBranchId" runat="server" Value='<%# Eval("branchid") %>' />
-                            <asp:TextBox ID="txtQty" runat="server" TextMode="Number" Width="20%"></asp:TextBox><br />
-                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="txtQty" ErrorMessage="Must be more than 0" Operator="GreaterThan" 
-					            Type="Integer" ValueToCompare="0" ForeColor="Red" /><br />
-                            <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" CommandArgument='<%# Container.DataItemIndex %>'   CommandName="doAddCart"/>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>--%>
 	<div style="text-align:center;">
 			<p id="errorText" width="100%" runat="server" style="display:none;">
 				Please fill up correct quantity
@@ -263,6 +246,7 @@
 			</div>
             </ItemTemplate>
         </asp:Repeater>
+        <asp:Label ID="lblDefaultMessage" Font-Size="Larger" runat="server" Text="Sorry, There is no restaurant available nearby" Visible="false"></asp:Label>
 	</div>
 	<br />
     <div class="container">
