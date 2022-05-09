@@ -147,10 +147,12 @@ Public Class customerSearch
         Next row
         If dtFiltered.Rows.Count = 0 Then
             lblDefaultMessage.Visible = True
+            dtFiltered = New DataTable()
         Else
             lblDefaultMessage.Visible = False
             rptSearch.DataSource = dtFiltered
             rptSearch.DataBind()
+            dtFiltered = New DataTable()
         End If
 
     End Sub
