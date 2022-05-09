@@ -33,7 +33,7 @@
 								 </center>
 								<asp:Label runat="server" ID="menu" Text='<%#Eval("dishName") %>'></asp:Label>
 								<asp:Label runat="server" ID="lblFType" style="text-transform: capitalize;" Text='<%#Eval("foodType") %>'></asp:Label>
-                                <asp:Label runat="server" ID="lblPrice" Text='<%# "$ " + Eval("price").ToString() %>'></asp:Label>
+                                <asp:Label runat="server" ID="lblPrice" Text='<%# "$ " + Eval("unitprice").ToString() %>'></asp:Label>
 							</div>
 						</ItemTemplate>
                     </asp:TemplateField>

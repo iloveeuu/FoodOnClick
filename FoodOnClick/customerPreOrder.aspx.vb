@@ -252,7 +252,7 @@
             errorText2.Attributes("style") = "display: none;"
             errorText.Attributes("style") = "display: none;"
 
-            If ddlCardType.SelectedValue <> "Cash" Then
+            If ddlPayment.SelectedValue <> "Cash" Then
 
                 Dim masterCardRegex As String = "^(?:5[1-5][0-9]{14})$"
                 Dim visaCardRegex As String = "^(?:4[0-9]{12})(?:[0-9]{3})$"
@@ -487,5 +487,6 @@
 
     Protected Sub ddlPayment_SelectedIndexChanged(sender As Object, e As EventArgs)
         divShowHide.Visible = IIf(ddlPayment.SelectedValue = "Cash", False, True)
+        errorText.Attributes("style") = "display: none;"
     End Sub
 End Class
