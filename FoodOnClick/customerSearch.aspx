@@ -1,19 +1,5 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="customerSearch.aspx.vb" Inherits="FoodOnClick.customerSearch" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-	<script type="text/javascript">
-		function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-
-        function showPosition(position) {
-            window.location = 'customerSearch.aspx?lat=' + position.coords.latitude + '&long=' + position.coords.longitude;
-
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 	<table id="tableStyle">
@@ -106,46 +92,6 @@
    </div>
 	<br />
 	<br />
-	<%--<div style="overflow-x:auto;overflow:auto;">
-		<asp:GridView ID="gvSearch" Class="gvSearch" OnRowCommand="gvSearch_RowCommand" OnRowDataBound="gvSearch_RowDataBound"  runat="server" AutoGenerateColumns="false" Height="100%">
-                <Columns>
-					<asp:TemplateField HeaderText="Restaurant" HeaderStyle-Width="50%">
-                        <ItemTemplate>
-							<div style="border: 1px solid black;display:inline-grid;text-align:center;">
-								 <center><asp:Image runat="server" ID="imgRest" Width="200px" Height="200px" ImageUrl='<%#Eval("logo") %>' />
-									 </center>
-								<asp:Label runat="server" ID="lblRestName" Text='<%#Eval("restName") %>'></asp:Label>
-								<asp:Label runat="server" ID="lblHalal" Text='<%#Eval("halal") %>'></asp:Label>
-							</div>
-						</ItemTemplate>
-                    </asp:TemplateField>--%>
-                    <%--<asp:BoundField DataField="restName" HeaderText="Restaurant" HeaderStyle-Width="10%" />
-                    <asp:BoundField DataField="halal" HeaderText="Halal" HeaderStyle-Width="3%" />
-                    <asp:BoundField DataField="address" HeaderText="Address" HeaderStyle-Width="10%" />--%>
-                    <%--<asp:BoundField DataField="dishName" HeaderText="Menu" HeaderStyle-Width="30%" />
-                    <asp:BoundField DataField="price" HeaderText="Price ($)" HeaderStyle-Width="15%" />--%>
-					<%--<asp:TemplateField HeaderText="Menu" HeaderStyle-Width="30%">
-                        <ItemTemplate>
-							<asp:Image runat="server" ID="menuImage" Width="50px" Height="50px" ImageUrl='<%#Eval("image") %>' />
-								<asp:Label runat="server" ID="menuFoodtitle" Text='<%#Eval("dishName") %>'></asp:Label>
-								<asp:Label runat="server" ID="menuPrice" Text='<%#Eval("price") %>'></asp:Label>
-						</ItemTemplate>
-                    </asp:TemplateField>--%>
-                    <%--<asp:TemplateField HeaderStyle-Width="10%">
-                        <ItemTemplate>
-                            <asp:Button ID="btnReserve" runat="server" Text="Reserve" CommandArgument='<%# Container.DataItemIndex %>'   CommandName="doReservation"/>
-							<asp:Button ID="btnDelivery" runat="server" Text="Delivery Order" CommandArgument='<%# Container.DataItemIndex %>'   CommandName="doDelivery"/>
-                            <asp:HiddenField ID="hfRestId" runat="server" Value='<%# Eval("restaurantID") %>' />
-                            <asp:HiddenField ID="hfUserId" runat="server" Value='<%# Eval("firstname") %>' />
-                            <asp:HiddenField ID="hfBranchId" runat="server" Value='<%# Eval("branchid") %>' />
-                            <asp:HiddenField ID="hfEmail" runat="server" Value='<%# Eval("email") %>' />
-                            <asp:HiddenField ID="hfTimeOpen" runat="server" Value='<%# Eval("time_open") %>' />
-                            <asp:HiddenField ID="hfTimeClosed" runat="server" Value='<%# Eval("time_closed") %>' />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
-	</div>--%>
 	<div style="text-align:center;border-radius: 5px;background-color: #f2f2f2;">
 		<asp:Repeater ID="rptSearch" runat="server" EnableViewState="true" OnItemCommand="rptSearch_ItemCommand">
             <ItemTemplate>

@@ -29,12 +29,6 @@ Public Class customerSearch
                 ddlType.Items.Insert(0, New ListItem("Please select", ""))
                 ddlType.SelectedIndex = 0
             End If
-
-            If (Request.QueryString("lat") Is Nothing AndAlso Request.QueryString("long") Is Nothing) Then
-                'Javascript is not postback
-                Dim script As String = "window.onload = function() { getLocation(); };"
-                ClientScript.RegisterStartupScript(Me.GetType(), "UpdateTime", script, True)
-            End If
         End If
     End Sub
 
@@ -45,20 +39,7 @@ Public Class customerSearch
             bindReservationOrder()
 
         ElseIf Session("orderType") = "delivery" Then
-
-            If (Request.QueryString("lat") Is Nothing AndAlso Request.QueryString("long") Is Nothing) Then
-                Dim message As String = "Please allow geolocation services to our website. Please refresh the page after turning it on"
-                Dim sb As New System.Text.StringBuilder()
-                sb.Append("<script type = 'text/javascript'>")
-                sb.Append("window.onload=function(){")
-                sb.Append("alert('")
-                sb.Append(message)
-                sb.Append("')};")
-                sb.Append("</script>")
-                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
-            Else
-                bindDeliveryOrder()
-            End If
+            bindDeliveryOrder()
         End If
 
     End Sub
@@ -98,7 +79,6 @@ Public Class customerSearch
         Dim request As HttpWebRequest
         Dim response As HttpWebResponse = Nothing
         Dim reader As StreamReader
-        Dim latlong As String = Page.Request.QueryString("lat") + "," + Page.Request.QueryString("long")
 
         If txtMinPrice.Text.Trim() = "" Then
             dblMinPrice = 0
@@ -128,10 +108,13 @@ Public Class customerSearch
         dtSearch = clsMenu.GetSearchDelivery(txtLocation.Text.Trim(), txtRestaurant.Text.Trim(), ddlCategory.SelectedItem.ToString(), ddlType.SelectedItem.ToString(),
                                            txtDishName.Text.Trim(), ddlHalal.SelectedItem.ToString(), dblMinPrice, dblMaxPrice)
 
+        Dim clsUserInfo As Customer = New Customer()
+        Dim user As Customer = clsUserInfo.GetCustomerDetail(Convert.ToInt32(Session("userid")))
+
         For Each row As DataRow In dtSearch.Rows
             sAddress = row.Item("address")
 
-            Dim api As String = "https://maps.googleapis.com/maps/api/directions/json?destination=" + sAddress.Replace("#", "%23") + "&origin=" + latlong + "&region=SG&mode=bicycling&key=AIzaSyCb_ivGtmAoh8YrYAPOobiiVfU0hvabH-U"
+            Dim api As String = "https://maps.googleapis.com/maps/api/directions/json?destination=" + sAddress.Replace("#", "%23") + "&origin=" + user.address + "&region=SG&mode=bicycling&key=AIzaSyCb_ivGtmAoh8YrYAPOobiiVfU0hvabH-U"
             request = DirectCast(WebRequest.Create(api), HttpWebRequest)
             request.Timeout = 3000
             response = DirectCast(request.GetResponse(), HttpWebResponse)
