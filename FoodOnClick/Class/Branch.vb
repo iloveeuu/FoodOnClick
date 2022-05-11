@@ -16,7 +16,6 @@ Public Class Branch
     Protected str_branchCuisine As String
     Protected str_branchReservation As String
     Protected int_branchReservationCapacity As Integer
-    'Protected str_branchdrivethru As String
     Protected dec_branchwallet As Decimal
 #Region "Objects"
     Public Property branchId() As Integer

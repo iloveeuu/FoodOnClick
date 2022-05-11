@@ -650,24 +650,6 @@ Public Class Menu
                             "Group By r.restaurantID, ua.firstname, b.email, b.branchid, r.name, b.city, b.address, b.halal, b.time_open, b.time_closed, d.url " &
                             "Order By r.restaurantID, b.branchid "
 
-        'Select r.restaurantID, ua.firstname, b.email, b.branchid, (r.name + ' - ' + b.city) as restName, b.address, " &
-        '                    "ISNULL(m.name,'') as dishName, ('Halal: ' + b.halal) as halal, ('~/images/menu/' + m.image) as image, '$ ' + CONVERT(NVARCHAR(30), m.cost) as price, " &
-        '                    "b.time_open, b.time_closed, (d.url) as logo " &
-        '                    "from branch as b " &
-        '                    "inner join restaurant as r on r.restaurantId = b.restaurantId " &
-        '                    "inner join useraccount as ua on ua.userid = r.userid " &
-        '                    "inner join document as d on d.userid = r.userid and d.type = 'Restaurant Logo' " &
-        '                    "inner join CuisineType As c On c.cuisine_Typeid = b.cuisineTypeID " &
-        '                    "left join Menu as m on b.branchid = m.branchid And m.name Like (@dish_name) And " &
-        '                    "(m.cost >= @minPrice) And m.cost <= IIF(@maxPrice = '0', (m.cost), (@maxPrice)) " &
-        '                    "inner join MenuStatus As ms On m.Statusid = ms.menu_status_id And ms.type = 'Available' " &
-        '                    "Left Join FoodType As ft On m.foodtypeID = ft.foodtypeID " &
-        '                    "WHERE b.reservation = 'Allowed' and r.status = 'IN BUSINESS' AND b.status = 'IN BUSINESS' And " &
-        '                    "(CONCAT(b.address, ' ', b.city, ' ', b.postalcode) LIKE @location) AND " &
-        '                    "r.name Like (@restaurant_name) AND " &
-        '                    "c.foodtype Like @cuisine_type AND " &
-        '                    "ft.type like (@food_type) AND " &
-        '                    "(b.halal like @halal) Order By r.restaurantID, b.branchid
         Dim sLocation As String
         Dim sRestName As String
         Dim sCuisinceType As String
