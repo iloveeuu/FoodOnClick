@@ -35,11 +35,11 @@
             <td>
                 <asp:TextBox runat="server" ID="txtpostalcode" Width="100%"></asp:TextBox></td>
         </tr>
-        <tr>
+<%--        <tr>
             <td>Reservation capacity:</td>
             <td>
                 <asp:TextBox runat="server" ID="txtReservationCapacity" Width="100%" TextMode="Number"></asp:TextBox></td>
-        </tr>
+        </tr>--%>
         <tr>
             <td>Cuisine:</td>
             <td>

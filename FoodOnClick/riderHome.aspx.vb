@@ -99,10 +99,16 @@ Public Class riderHome
         Dim latlong As String = Page.Request.QueryString("lat") + "," + Page.Request.QueryString("long")
         'btnRefresh.Visible = True
         divRpt.Style.Add("border", "1px solid black")
+        Dim RiderAllowedDistance As Integer = 0
+        If rbtn1.Checked Then
+            RiderAllowedDistance = rbtn1.Text.Substring(1, 1)
+        ElseIf rbtn2.Checked Then
+            RiderAllowedDistance = rbtn2.Text.Substring(1, 1)
+        ElseIf rbtn4.Checked Then
+            RiderAllowedDistance = rbtn4.Text.Substring(1, 1)
+        End If
         For Each item In listOfOrders
             'Distance between Rider and Restaurant
-
-            'Dim api As String = "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyCb_ivGtmAoh8YrYAPOobiiVfU0hvabH-U&libraries=places"
             Dim api As String = "https://maps.googleapis.com/maps/api/directions/json?destination=" + item.timeDelivered.Replace("#", "%23") + "&origin=" + latlong + "&region=SG&mode=bicycling&key=AIzaSyCb_ivGtmAoh8YrYAPOobiiVfU0hvabH-U"
             request = DirectCast(WebRequest.Create(api), HttpWebRequest)
             request.Timeout = 3000
@@ -113,19 +119,20 @@ Public Class riderHome
             Dim jsonResult = JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(rawresp)
             Dim distanceArr As String() = jsonResult("routes")(0)("legs")(0)("distance")("text").ToString().Split(" ")
             response.Dispose()
-            'If (Convert.ToDecimal(distanceArr(0)) <= 4.5) Then
-            item.orderTime = distanceArr(0) & " " & distanceArr(1)
-            api = "https://maps.googleapis.com/maps/api/directions/json?destination=" + item.timeDelivered.Replace("#", "%23") + "&origin=" + item.timePicked.Replace("#", "%23") + "&region=SG&mode=bicycling&key=AIzaSyCb_ivGtmAoh8YrYAPOobiiVfU0hvabH-U"
-            request = DirectCast(WebRequest.Create(api), HttpWebRequest)
-            request.Timeout = 3000
-            response = DirectCast(request.GetResponse(), HttpWebResponse)
-            reader = New StreamReader(response.GetResponseStream())
-            rawresp = reader.ReadToEnd()
-            jsonResult = JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(rawresp)
-            Dim distance As String = jsonResult("routes")(0)("legs")(0)("distance")("text").ToString()
-            item.temp = distance
-            listOfAvailableBranch.Add(item)
-            'End If
+            'Only show jobs available within this distance
+            If (Convert.ToDecimal(distanceArr(0)) <= RiderAllowedDistance) Then
+                item.orderTime = distanceArr(0) & " " & distanceArr(1)
+                api = "https://maps.googleapis.com/maps/api/directions/json?destination=" + item.timeDelivered.Replace("#", "%23") + "&origin=" + item.timePicked.Replace("#", "%23") + "&region=SG&mode=bicycling&key=AIzaSyCb_ivGtmAoh8YrYAPOobiiVfU0hvabH-U"
+                request = DirectCast(WebRequest.Create(api), HttpWebRequest)
+                request.Timeout = 3000
+                response = DirectCast(request.GetResponse(), HttpWebResponse)
+                reader = New StreamReader(response.GetResponseStream())
+                rawresp = reader.ReadToEnd()
+                jsonResult = JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(rawresp)
+                Dim distance As String = jsonResult("routes")(0)("legs")(0)("distance")("text").ToString()
+                item.temp = distance
+                listOfAvailableBranch.Add(item)
+            End If
         Next
         If listOfAvailableBranch.Count = 0 Then
             lblDefaultMessage.Visible = True

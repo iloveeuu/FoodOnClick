@@ -60,20 +60,25 @@
         </tr>--%>
         <tr>
             <td colspan="3">
-                <asp:Button runat="server" ID="btnStart" Text="Start" OnClick="btnStart_Click" />
+                <asp:Button runat="server" ID="btnStart" Text="Start" OnClick="btnStart_Click" Width="50%" Height="30px" />
+            </td>
+        </tr>
+        <tr>
+            <td><asp:RadioButton runat="server" ID="rbtn1" Checked="true" Text="~2 km" GroupName="rbtnDistance"/></td>
+            <td><asp:RadioButton runat="server" ID="rbtn2" Text="~3 km" GroupName="rbtnDistance"/></td>
+            <td><asp:RadioButton runat="server" ID="rbtn4" Text="~4 km" GroupName="rbtnDistance"/></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <asp:Button runat="server" ID="report" Text="View Report" OnClick="report_click" Width="50%" Height="30px" />
             </td>
         </tr>
         <tr>
             <td colspan="3">
-                <asp:Button runat="server" ID="report" Text="View Report" OnClick="report_click" />
-            </td>
-        </tr>
-        <tr>
-            <td>
                 <div id="divRpt" runat="server" style="height: 400px; overflow-y: auto;overflow-x:auto; width: 100%;">
                     <asp:Repeater runat="server" ID="rptOrders" EnableViewState="true" OnItemDataBound="rptOrders_ItemDataBound" OnItemCommand="rptOrders_ItemCommand">
                         <ItemTemplate>
-                            <table style="margin:0px 0px">
+                            <table style="margin:0px 0px;width:100%;">
                                 <tr>
                                     <td style="text-align: left;">
                                         <asp:Label runat="server" ID="lblOrderId" Font-Bold="true"></asp:Label></td>
@@ -114,7 +119,7 @@
                                 </tr>
                                 <tr>
                                     <td style="text-align: left;">
-                                        <asp:Button runat="server" ID="btnAccept" CommandName="Accept" CommandArgument='<%#Eval("batchid") %>' Text="Accept Order" /></td>
+                                        <asp:Button runat="server" ID="btnAccept" CommandName="Accept" CommandArgument='<%#Eval("batchid") %>' Text="Accept Order" Width="50%" Height="30px" /></td>
                                 </tr>
                             </table>
                         </ItemTemplate>

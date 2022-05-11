@@ -23,7 +23,7 @@
                 txtpostalcode.Text = editInfo.branchPostalcode
                 txtCity.Text = editInfo.branchCity
                 txtaddress.Text = editInfo.branchAddress
-                txtReservationCapacity.Text = editInfo.branchReservationCapacity
+                'txtReservationCapacity.Text = editInfo.branchReservationCapacity
                 ddlReservation.SelectedValue = editInfo.branchReservation
                 'ddlDrivethru.SelectedValue = editInfo.branchdrivethru
                 ddlStatus.SelectedValue = editInfo.branchStatus
@@ -39,7 +39,7 @@
 
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs)
         Dim message As String = ""
-        If (txtReservationCapacity.Text = "" Or txtEmail.Text = "" Or txtPassword.Text = "" Or txtCity.Text = "" Or txtaddress.Text = "" Or txtpostalcode.Text = "" Or txtStart.Text = "" Or txtEnd.Text = "") Then
+        If (txtEmail.Text = "" Or txtPassword.Text = "" Or txtCity.Text = "" Or txtaddress.Text = "" Or txtpostalcode.Text = "" Or txtStart.Text = "" Or txtEnd.Text = "") Then
             message = "Please fill up the form properly"
             Dim sb As New System.Text.StringBuilder()
             sb.Append("<script type = 'text/javascript'>")
@@ -50,23 +50,23 @@
             sb.Append("</script>")
             ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
             Return
-        ElseIf (Convert.ToInt32(txtReservationCapacity.Text) < 0) Then
-            message = "Please fill up the form properly"
-            Dim sb As New System.Text.StringBuilder()
-            sb.Append("<script type = 'text/javascript'>")
-            sb.Append("window.onload=function(){")
-            sb.Append("alert('")
-            sb.Append(message)
-            sb.Append("')};")
-            sb.Append("</script>")
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
-            Return
+            'ElseIf (Convert.ToInt32(txtReservationCapacity.Text) < 0) Then
+            '    message = "Please fill up the form properly"
+            '    Dim sb As New System.Text.StringBuilder()
+            '    sb.Append("<script type = 'text/javascript'>")
+            '    sb.Append("window.onload=function(){")
+            '    sb.Append("alert('")
+            '    sb.Append(message)
+            '    sb.Append("')};")
+            '    sb.Append("</script>")
+            '    ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            '    Return
         End If
         Dim pass As Encryption = New Encryption(txtPassword.Text)
         Dim encrypted As String = pass.Encrypt()
 
         If (btnSubmit.Text = "Create branch") Then
-            Dim clsBranch As Branch = New Branch(txtReservationCapacity.Text.Trim(), ddlReservation.SelectedValue, txtEmail.Text.Trim(), encrypted, txtStart.Text.Trim(), txtEnd.Text.Trim(), ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue)
+            Dim clsBranch As Branch = New Branch(ddlReservation.SelectedValue, txtEmail.Text.Trim(), encrypted, txtStart.Text.Trim(), txtEnd.Text.Trim(), ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue)
             Dim msg As String = clsBranch.CreateBranch()
             If (msg = "True") Then
                 message = "Successfully created branch"
@@ -91,7 +91,7 @@
                 ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
             End If
         ElseIf (btnSubmit.Text = "Update branch") Then
-            Dim clsBranch As Branch = New Branch(txtReservationCapacity.Text.Trim(), ddlReservation.SelectedValue, txtEmail.Text.Trim(), encrypted, txtStart.Text.Trim(), txtEnd.Text.Trim(), ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue, Convert.ToInt32(Session("branchid")))
+            Dim clsBranch As Branch = New Branch(ddlReservation.SelectedValue, txtEmail.Text.Trim(), encrypted, txtStart.Text.Trim(), txtEnd.Text.Trim(), ddlHalal.SelectedValue, Convert.ToInt32(Session("restaurantid")), txtaddress.Text.Trim(), txtpostalcode.Text.Trim(), ddlStatus.SelectedValue, txtCity.Text.Trim(), ddlCuisine.SelectedValue, Convert.ToInt32(Session("branchid")))
             Dim msg As String = clsBranch.UpdateBranch()
             If (msg = "True") Then
                 message = "Successfully updated branch"

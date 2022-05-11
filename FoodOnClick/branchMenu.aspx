@@ -12,10 +12,8 @@
 
         <table class="tableStyle">
             <tr>
-                <td></td>
-                <td colspan="2">
+                <td colspan="4">
                     <asp:Button runat="server" ID="btnHome" OnClick="btnHome_Click" Text="Home" Width="100%" /></td>
-                <td></td>
             </tr>
             <tr>
                 <td colspan="4">
@@ -23,20 +21,20 @@
                         <asp:Label runat="server" ID="lblTitle"></asp:Label></h1>
                 </td>
             </tr>
-            <tr>
-                <td colspan="4">
+<%--            <tr>
+                <td colspan="3">
                     <h2><asp:Label runat="server" ID="lblWallet"></asp:Label></h2>
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
-                <td>
-                    <asp:Button runat="server" ID="btnAnnouncements" Text="Manage Announcements" Width="100%" /></td>
+                                <td> 
+                </td>
                 <td>
                     <asp:Button runat="server" ID="btnReservations" Text="Manage Reservations" Width="100%" OnClick="btnReservations_Click" /></td>
                 <td>
                     <asp:Button runat="server" ID="btnOrders" Text="Manage Orders" Width="100%" OnClick="btnOrders_Click" /></td>
                 <td>
-                    <asp:Button runat="server" ID="btnReviews" Text="View reviews" Width="100%" /></td>
+                    <asp:Button runat="server" ID="btnReviews" Text="View reviews" Width="100%" OnClick="btnReviews_Click"/></td>
 
             </tr>
         </table>

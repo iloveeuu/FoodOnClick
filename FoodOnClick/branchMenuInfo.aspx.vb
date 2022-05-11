@@ -13,8 +13,8 @@ Public Class branchMenuInfo
             Dim ddlMenuInfo As Menu = New Menu()
             ddlStatus.DataSource = ddlMenuInfo.RetrieveAllMenuStatus()
             ddlStatus.DataBind()
-            ddlDiscount.DataSource = ddlMenuInfo.RetrieveAllMenuDiscount()
-            ddlDiscount.DataBind()
+            'ddlDiscount.DataSource = ddlMenuInfo.RetrieveAllMenuDiscount()
+            'ddlDiscount.DataBind()
             ddlFoodType.DataSource = ddlMenuInfo.RetrieveAllMenuFoodType()
             ddlFoodType.DataBind()
             If (Session("menuid")) Is Nothing Then
@@ -27,7 +27,7 @@ Public Class branchMenuInfo
                 txtDescription.Text = editInfo.menuDescription
                 txtCost.Text = editInfo.menuCost
                 ddlStatus.SelectedValue = editInfo.menuStatusId
-                ddlDiscount.SelectedValue = editInfo.menuDiscountId
+                'ddlDiscount.SelectedValue = editInfo.menuDiscountId
                 ddlFoodType.SelectedValue = editInfo.menuFoodTypeId
                 txtProtein.Text = editInfo.menuProtein
                 txtEnergy.Text = editInfo.menuEnergy
@@ -56,7 +56,7 @@ Public Class branchMenuInfo
                 FileUpload.SaveAs(Server.MapPath("images//menu//" + ID + Path.GetExtension(FileUpload.FileName)))
                 imageUrl = ID + Path.GetExtension(FileUpload.FileName)
             End If
-            Dim clsMenu As Menu = New Menu(txtName.Text.Trim(), txtDescription.Text.Trim(), txtCost.Text.Trim(), imageUrl, ddlStatus.SelectedValue, ddlDiscount.SelectedValue, Convert.ToInt32(Session("branchid")), ddlFoodType.SelectedValue, txtProtein.Text.Trim(), txtEnergy.Text.Trim(), txtCarbonhydrate.Text.Trim(), txtGlucose.Text.Trim(), txtFats.Text.Trim(), txtSodium.Text.Trim())
+            Dim clsMenu As Menu = New Menu(txtName.Text.Trim(), txtDescription.Text.Trim(), txtCost.Text.Trim(), imageUrl, ddlStatus.SelectedValue, 1, Convert.ToInt32(Session("branchid")), ddlFoodType.SelectedValue, txtProtein.Text.Trim(), txtEnergy.Text.Trim(), txtCarbonhydrate.Text.Trim(), txtGlucose.Text.Trim(), txtFats.Text.Trim(), txtSodium.Text.Trim())
             Dim msg As String = clsMenu.CreateMenu()
             If (msg = "True") Then
                 message = "Successfully created menu"
@@ -95,7 +95,7 @@ Public Class branchMenuInfo
             Else
                 imageUrl = imgurl.Value
             End If
-            Dim clsMenu As Menu = New Menu(txtName.Text.Trim(), txtDescription.Text.Trim(), txtCost.Text.Trim(), imageUrl, ddlStatus.SelectedValue, ddlDiscount.SelectedValue, Convert.ToInt32(Session("branchid")), ddlFoodType.SelectedValue, txtProtein.Text.Trim(), txtEnergy.Text.Trim(), txtCarbonhydrate.Text.Trim(), txtGlucose.Text.Trim(), txtFats.Text.Trim(), txtSodium.Text.Trim(), Convert.ToInt32(Session("menuid")))
+            Dim clsMenu As Menu = New Menu(txtName.Text.Trim(), txtDescription.Text.Trim(), txtCost.Text.Trim(), imageUrl, ddlStatus.SelectedValue, 1, Convert.ToInt32(Session("branchid")), ddlFoodType.SelectedValue, txtProtein.Text.Trim(), txtEnergy.Text.Trim(), txtCarbonhydrate.Text.Trim(), txtGlucose.Text.Trim(), txtFats.Text.Trim(), txtSodium.Text.Trim(), Convert.ToInt32(Session("menuid")))
             Dim msg As String = clsMenu.UpdateMenu()
             If (msg = "True") Then
                 message = "Successfully updated menu"
@@ -123,5 +123,9 @@ Public Class branchMenuInfo
 
     Protected Sub btnCancel_Click(sender As Object, e As EventArgs)
         Response.Redirect("branchMenu.aspx")
+    End Sub
+
+    Protected Sub btnCancel_Click1(sender As Object, e As EventArgs)
+
     End Sub
 End Class

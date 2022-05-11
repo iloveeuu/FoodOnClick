@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class branchMenu
+Partial Public Class branchReviews
 
     '''<summary>
     '''btnHome control.
@@ -23,74 +23,47 @@ Partial Public Class branchMenu
     Protected WithEvents btnHome As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''lblTitle control.
+    '''dateFrom control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblTitle As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents dateFrom As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnReservations control.
+    '''dateTo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnReservations As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents dateTo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnOrders control.
+    '''btnSearch control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnOrders As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnReviews control.
+    '''btnClear control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnReviews As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnClear As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''lblTitleMenu control.
+    '''rptReview control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblTitleMenu As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''btnAdd control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''lblNothing control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNothing As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rptBranch control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rptBranch As Global.System.Web.UI.WebControls.Repeater
+    Protected WithEvents rptReview As Global.System.Web.UI.WebControls.Repeater
 End Class

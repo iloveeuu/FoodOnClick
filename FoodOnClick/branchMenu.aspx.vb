@@ -43,7 +43,7 @@
         Dim clsRestaurantMenuInfo As Menu = New Menu(Convert.ToInt32(Session("branchid").ToString()))
         Dim clsBranch As Branch = clsRestaurantMenuInfo.RetrieveRestaurantBranchInfoByBranchId()
         lblTitle.Text = clsBranch.restaurantName & " - " & clsBranch.branchCity & " Branch"
-        lblWallet.Text = "Wallet: $" & clsBranch.branchwallet.ToString()
+        'lblWallet.Text = "Wallet: $" & clsBranch.branchwallet.ToString()
         Dim listOfBranch As List(Of Menu) = clsRestaurantMenuInfo.RetrieveMenuInfo()
         If listOfBranch.Count() > 0 Then
             rptBranch.DataSource = listOfBranch
@@ -63,6 +63,12 @@
     End Sub
 
     Protected Sub btnOrders_Click(sender As Object, e As EventArgs)
+        System.Web.HttpContext.Current.Session("branchid") = Convert.ToInt32(Session("branchid").ToString())
         Response.Redirect("branchOrder.aspx")
+    End Sub
+
+    Protected Sub btnReviews_Click(sender As Object, e As EventArgs)
+        System.Web.HttpContext.Current.Session("branchid") = Convert.ToInt32(Session("branchid").ToString())
+        Response.Redirect("branchReviews.aspx")
     End Sub
 End Class

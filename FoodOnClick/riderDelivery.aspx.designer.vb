@@ -122,6 +122,15 @@ Partial Public Class riderDelivery
     Protected WithEvents lblCustomerName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lblCustomerAddress control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCustomerAddress As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lblPhoneNumber control.
     '''</summary>
     '''<remarks>
@@ -138,15 +147,6 @@ Partial Public Class riderDelivery
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPaymentMethod As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblDeliveryCharges control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDeliveryCharges As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblTotalCharges control.

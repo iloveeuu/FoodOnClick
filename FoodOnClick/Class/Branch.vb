@@ -158,8 +158,8 @@ Public Class Branch
     Public Sub New(ByVal branchid As Integer)
         Me.branchId = branchid
     End Sub
-    Public Sub New(ByVal capacity As Integer, ByVal reservation As String, ByVal email As String, ByVal password As String, ByVal startTime As String, ByVal endTime As String, ByVal halal As String, ByVal restaurantId As Integer, ByVal address As String, ByVal postalCode As String, ByVal status As String, ByVal city As String, ByVal cuisineid As String, Optional ByVal branchid As Integer = 0)
-        Me.branchReservationCapacity = capacity
+    Public Sub New(ByVal reservation As String, ByVal email As String, ByVal password As String, ByVal startTime As String, ByVal endTime As String, ByVal halal As String, ByVal restaurantId As Integer, ByVal address As String, ByVal postalCode As String, ByVal status As String, ByVal city As String, ByVal cuisineid As String, Optional ByVal branchid As Integer = 0)
+        'Me.branchReservationCapacity = capacity
         Me.branchReservation = reservation
         Me.branchEmail = email
         Me.branchPassword = password
@@ -313,7 +313,7 @@ Public Class Branch
     Public Function RetrieveAllCuisineType()
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim returnObject As List(Of Branch) = New List(Of Branch)
-        Dim Query As String = "SELECT * from CuisineType"
+        Dim Query As String = "SELECT * from CuisineType where status='Enabled'"
         Using conn As New SqlConnection(connectionString)
 
             Using comm As New SqlCommand()
@@ -368,7 +368,7 @@ Public Class Branch
                         returnObject.branchStatus = reader("status")
                         returnObject.branchwallet = reader("wallet")
                         returnObject.branchReservation = reader("reservation")
-                        returnObject.branchReservationCapacity = reader("capacity")
+                        'returnObject.branchReservationCapacity = reader("capacity")
                     End While
                 Catch ex As SqlException
                 End Try

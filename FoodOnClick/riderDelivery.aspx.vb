@@ -14,15 +14,24 @@ Public Class riderDelivery
             'ClientScript.RegisterStartupScript(Me.GetType(), "UpdateTime", Script, True)
             Dim clsOrder As Order = New Order(Convert.ToInt32(System.Web.HttpContext.Current.Session("orderbatchid")))
             clsOrder = clsOrder.RetrieveOrderDetailsByBatchId()
-            lblOrderNum.Text = clsOrder.orderNum
-            lblRestaurantName.Text = clsOrder.name
-            lblRestaurantAddress.Text = clsOrder.timePicked
-            lblOrderTime.Text = clsOrder.orderTime
             If (clsOrder.branchId = 1) Then
+                lblOrderNum.Text = clsOrder.orderNum
+                lblRestaurantName.Text = clsOrder.name
+                lblRestaurantAddress.Text = clsOrder.timePicked
+                lblOrderTime.Text = clsOrder.orderTime
                 tblDelivering.Visible = False
                 tblPickUp.Visible = True
                 iframee.Src = "directionToRestaurant.aspx"
             ElseIf (clsOrder.branchId = 2) Then
+                clsOrder = New Order(Convert.ToInt32(System.Web.HttpContext.Current.Session("orderbatchid")))
+                clsOrder = clsOrder.RetrieveCustomerOrderDetailsByBatchId()
+                lblOrderNum1.Text = clsOrder.orderNum
+                lblCustomerName.Text = clsOrder.name
+                lblCustomerAddress.Text = clsOrder.timePicked
+                lblPhoneNumber.Text = clsOrder.timeDelivered
+                lblPaymentMethod.Text = clsOrder.paymentMethod
+                'lblDeliveryCharges.Text = clsOrder.deliverycharges
+                lblTotalCharges.Text = "$" & clsOrder.totalcharges
                 tblDelivering.Visible = True
                 tblPickUp.Visible = False
                 iframee.Src = "directionToCustomer.aspx"
@@ -45,11 +54,14 @@ Public Class riderDelivery
         iframee.Src = "directionToCustomer.aspx"
         clsOrder = clsOrder.RetrieveCustomerOrderDetailsByBatchId()
         lblOrderNum1.Text = clsOrder.orderNum
+        lblCustomerAddress.Text = clsOrder.timePicked
         lblCustomerName.Text = clsOrder.name
-        lblPhoneNumber.Text = clsOrder.timePicked
-        lblPaymentMethod.Text = clsOrder.orderTime
-        lblDeliveryCharges.Visible = False
-        lblTotalCharges.Visible = True
+        lblPhoneNumber.Text = clsOrder.timeDelivered
+        lblPaymentMethod.Text = clsOrder.paymentMethod
+        'lblDeliveryCharges.Text = clsOrder.deliverycharges
+        lblTotalCharges.Text = "$" & clsOrder.totalcharges
+        'lblDeliveryCharges.Visible = False
+        'lblTotalCharges.Visible = True
     End Sub
 
     Protected Sub btnDelivery_Click(sender As Object, e As EventArgs)

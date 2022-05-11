@@ -24,6 +24,9 @@
             If Session("type") = "Administrator" Then
                 Response.Redirect("customerProfile.aspx")
             End If
+            If Session("type") = "Rider" Then
+                Response.Redirect("customerProfile.aspx")
+            End If
             If Convert.ToInt32(Session("userid")) = 0 Then
                 Response.Redirect("branchMenu.aspx")
             End If
@@ -50,6 +53,9 @@
             End If
             If Session("type") = "Administrator" Then
                 Response.Redirect("administratorHome.aspx")
+            End If
+            If Session("type") = "Rider" Then
+                Response.Redirect("riderHome.aspx")
             End If
             If Convert.ToInt32(Session("userid")) = 0 Then
                 Response.Redirect("branchMenu.aspx")

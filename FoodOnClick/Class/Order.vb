@@ -510,7 +510,8 @@ Public Class Order
                         While (reader.Read())
                             returnObject.orderNum = Convert.ToInt32(reader("ordernum").ToString())
                             returnObject.name = reader("name").ToString()
-                            returnObject.orderTime = reader("ordertime").ToString()
+                            'returnObject.orderTime = reader("ordertime").ToString()
+                            'returnObject.orderTime = reader("ordertime").ToString()
                             returnObject.paymentMethod = reader("paymentMethod").ToString()
                             returnObject.totalcharges = Convert.ToDecimal(reader("totalcharges").ToString())
                             returnObject.deliverycharges = Convert.ToDecimal(reader("deliverycharges").ToString())
@@ -540,7 +541,8 @@ Public Class Order
                     .CommandType = CommandType.Text
                     .CommandText = Query
                     .Parameters.Add("@batchId", SqlDbType.Decimal).Value = Me.batchId
-                    .Parameters.Add("@timenow", SqlDbType.Decimal).Value = DateTime.Now.AddHours(13).ToString("HH:mm:ss")
+                    .Parameters.Add("@timenow", SqlDbType.VarChar).Value = DateTime.Now.AddHours(13)
+                    '.Parameters.Add("@timenow", SqlDbType.VarChar).Value = DateTime.Now.AddHours(13).ToString("HH:mm:ss")
                 End With
                 Try
                     conn.Open()
@@ -594,7 +596,8 @@ Public Class Order
                     .CommandType = CommandType.Text
                     .CommandText = Query
                     .Parameters.Add("@batchid", SqlDbType.Int).Value = Me.batchId
-                    .Parameters.Add("@timenow", SqlDbType.Int).Value = DateTime.Now.AddHours(13).ToString("HH:mm:ss")
+                    .Parameters.Add("@timenow", SqlDbType.VarChar).Value = DateTime.Now.AddHours(13)
+                    '.Parameters.Add("@timenow", SqlDbType.VarChar).Value = DateTime.Now.AddHours(13).ToString("HH:mm:ss")
                 End With
                 Try
                     conn.Open()

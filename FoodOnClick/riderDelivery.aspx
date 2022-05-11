@@ -82,7 +82,7 @@
     <asp:HiddenField ID="hfLocLatitude" runat="server" Value="0" />
     <asp:HiddenField ID="hfLocLongitude" runat="server" Value="0" />
     <div style="width: 100%">
-        <iframe style="width: 100%; height: 400px;" runat="server" id="iframee"></iframe>
+        <iframe style="width: 100%; height: 500px;" runat="server" id="iframee"></iframe>
     </div>
     <table class="tableStyle" id="tblPickUp" runat="server">
         <tr>
@@ -110,7 +110,7 @@
 
         <tr>
             <td colspan="2">
-                <asp:Button runat="server" ID="btnPickUp" Text="Collected Food" OnClick="btnPickUp_Click" />
+                <asp:Button runat="server" ID="btnPickUp" Text="Collected Food" OnClick="btnPickUp_Click" Width="100%" Height="30px"  />
             </td>
         </tr>
     </table>
@@ -127,6 +127,12 @@
             </td>
         </tr>
         <tr>
+            <td>Address:</td>
+            <td>
+                <asp:Label runat="server" ID="lblCustomerAddress"></asp:Label>
+            </td>
+        </tr>
+        <tr>
             <td>Phone:</td>
             <td>
                 <asp:Label runat="server" ID="lblPhoneNumber"></asp:Label></td>
@@ -137,12 +143,12 @@
                 <asp:Label runat="server" ID="lblPaymentMethod"></asp:Label>
             </td>
         </tr>
-        <tr>
+<%--        <tr>
             <td>Delivery Charges:</td>
             <td>
                 <asp:Label runat="server" ID="lblDeliveryCharges"></asp:Label>
             </td>
-        </tr>
+        </tr>--%>
         <tr>
             <td>Total cost:</td>
             <td>
@@ -151,7 +157,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <asp:Button runat="server" ID="btnDelivery" Text="Delivered Food" OnClick="btnDelivery_Click" />
+                <asp:Button runat="server" ID="btnDelivery" Text="Delivered Food" OnClick="btnDelivery_Click" Width="100%" Height="30px" />
             </td>
         </tr>
     </table>

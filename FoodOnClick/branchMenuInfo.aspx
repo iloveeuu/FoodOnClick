@@ -35,11 +35,11 @@
             <td>
                 <asp:DropDownList runat="server" ID="ddlStatus" Width="100%" DataTextField="FKmenuStatusType" DataValueField="FKmenuStatusId"></asp:DropDownList></td>
         </tr>
-        <tr>
+<%--        <tr>
             <td>Discount:</td>
             <td>
                 <asp:DropDownList runat="server" ID="ddlDiscount" Width="100%" DataTextField="FKmenuDiscountString" DataValueField="FKmenuDiscountId"></asp:DropDownList></td>
-        </tr>
+        </tr>--%>
         <tr>
             <td>Type:</td>
             <td>

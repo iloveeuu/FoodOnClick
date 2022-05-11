@@ -12,6 +12,7 @@ Public Class Review
     Protected iRatingRest As Integer
     Protected iRatingDel As Integer
     Protected iReservationId As Integer
+    Protected iDate As String
 
     Public Property RestaurantReviewId() As Integer
         Get
@@ -103,6 +104,15 @@ Public Class Review
         End Set
     End Property
 
+    Public Property DateID() As String
+        Get
+            DateID = iDate
+        End Get
+        Set(ByVal Value As String)
+            iDate = Value
+        End Set
+    End Property
+
     Public Sub New()
     End Sub
     Public Sub InsertReviewReservation()
@@ -179,4 +189,74 @@ Public Class Review
             End Using
         End Using
     End Sub
+
+    Public Function RetrieveBranchReviews(ByVal branchid As Integer)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As List(Of Review) = New List(Of Review)
+        Dim Query As String = "SELECT concat(firstName, ' ' ,lastName) as name, description,batchid,rating,reviewdate from restaurant_review as rv join useraccount as uc on rv.userid = uc.userid where branchid = @branchid"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = branchid
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        Dim tempobj As Review = New Review()
+                        'tempobj.RestaurantReviewId = Convert.ToInt32(reader("restaurantReviewId").ToString())
+                        tempobj.Description = reader("description").ToString()
+                        tempobj.DescriptionDel = reader("name").ToString()
+                        tempobj.Batchid = Convert.ToInt32(reader("batchid").ToString())
+                        'tempobj.BranchID = Convert.ToInt32(reader("branchid").ToString())
+                        tempobj.RatingRest = Convert.ToInt32(reader("rating").ToString())
+                        tempobj.DateID = reader("reviewDate")
+                        returnObject.Add(tempobj)
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+
+    Public Function RetrieveBranchReviewsByDate(ByVal branchid As Integer, ByVal dateFrom As String, ByVal dateTo As String)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As List(Of Review) = New List(Of Review)
+        Dim Query As String = "SELECT concat(firstName, ' ' ,lastName) as name, description,batchid,rating,reviewdate from restaurant_review as rv join useraccount as uc on rv.userid = uc.userid where branchid = @branchid and reviewDate between '" & dateFrom & "' and '" & dateTo & "'"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@branchid", SqlDbType.Int).Value = branchid
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        Dim tempobj As Review = New Review()
+                        'tempobj.RestaurantReviewId = Convert.ToInt32(reader("restaurantReviewId").ToString())
+                        tempobj.Description = reader("description").ToString()
+                        tempobj.DescriptionDel = reader("name").ToString()
+                        tempobj.Batchid = Convert.ToInt32(reader("batchid").ToString())
+                        'tempobj.BranchID = Convert.ToInt32(reader("branchid").ToString())
+                        tempobj.RatingRest = Convert.ToInt32(reader("rating").ToString())
+                        tempobj.DateID = reader("reviewDate")
+                        returnObject.Add(tempobj)
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
 End Class

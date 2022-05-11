@@ -23,6 +23,33 @@ Partial Public Class riderHome
     Protected WithEvents btnStart As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''rbtn1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rbtn1 As Global.System.Web.UI.WebControls.RadioButton
+
+    '''<summary>
+    '''rbtn2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rbtn2 As Global.System.Web.UI.WebControls.RadioButton
+
+    '''<summary>
+    '''rbtn4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rbtn4 As Global.System.Web.UI.WebControls.RadioButton
+
+    '''<summary>
     '''report control.
     '''</summary>
     '''<remarks>
