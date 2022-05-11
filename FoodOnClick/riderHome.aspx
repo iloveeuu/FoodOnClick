@@ -60,7 +60,7 @@
         </tr>--%>
         <tr>
             <td colspan="3">
-                <asp:Button runat="server" ID="btnStart" Text="Start" OnClick="btnStart_Click" Width="50%" Height="30px" />
+                <asp:Button runat="server" ID="btnStart" Text="Start" OnClick="btnStart_Click" Width="100%" Height="30px" />
             </td>
         </tr>
         <tr>
@@ -69,8 +69,10 @@
             <td><asp:RadioButton runat="server" ID="rbtn4" Text="~4 km" GroupName="rbtnDistance"/></td>
         </tr>
         <tr>
-            <td colspan="3">
-                <asp:Button runat="server" ID="report" Text="View Report" OnClick="report_click" Width="50%" Height="30px" />
+            <td></td>
+            <td><asp:Button runat="server" ID="btnReview" Text="View Reviews" OnClick="btnReview_Click" Width="100%" Height="30px" /></td>
+            <td>
+                <asp:Button runat="server" ID="report" Text="View Report" OnClick="report_click" Width="100%" Height="30px" />
             </td>
         </tr>
         <tr>

@@ -66,5 +66,8 @@ Public Class notifySupport
         End If
 
     End Sub
+    Protected Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Response.Redirect("notifySupportHome.aspx")
+    End Sub
 
 End Class

@@ -259,4 +259,74 @@ Public Class Review
         End Using
         Return returnObject
     End Function
+
+    Public Function RetrieveRiderReviews(ByVal Userid As Integer)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As List(Of Review) = New List(Of Review)
+        Dim Query As String = "SELECT concat(firstName, ' ' ,lastName) as name, description,rating,reviewdate from rider_review as rv join useraccount as uc on rv.reviewerID = uc.userid where riderID = (select riderid from rider where userid = @riderid)"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@riderid", SqlDbType.Int).Value = Userid
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        Dim tempobj As Review = New Review()
+                        'tempobj.RestaurantReviewId = Convert.ToInt32(reader("restaurantReviewId").ToString())
+                        tempobj.Description = reader("description").ToString()
+                        tempobj.DescriptionDel = reader("name").ToString()
+                        'tempobj.Batchid = Convert.ToInt32(reader("batchid").ToString())
+                        'tempobj.BranchID = Convert.ToInt32(reader("branchid").ToString())
+                        tempobj.RatingRest = Convert.ToInt32(reader("rating").ToString())
+                        tempobj.DateID = reader("reviewDate")
+                        returnObject.Add(tempobj)
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
+
+    Public Function RetrieveRiderReviewsByDate(ByVal userid As Integer, ByVal dateFrom As String, ByVal dateTo As String)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
+        Dim returnObject As List(Of Review) = New List(Of Review)
+        Dim Query As String = "SELECT concat(firstName, ' ' ,lastName) as name, description,rating,reviewdate from rider_review as rv join useraccount as uc on rv.reviewerID = uc.userid where riderID = (select riderid from rider where userid = @riderid) and reviewDate between '" & dateFrom & "' and '" & dateTo & "'"
+        Using conn As New SqlConnection(connectionString)
+
+            Using comm As New SqlCommand()
+                With comm
+                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
+                    .Connection = conn
+                    .CommandType = CommandType.Text
+                    .CommandText = Query
+                    .Parameters.Add("@riderid", SqlDbType.Int).Value = userid
+                End With
+                Try
+                    conn.Open()
+                    Dim reader As SqlDataReader = comm.ExecuteReader
+                    While reader.Read()
+                        Dim tempobj As Review = New Review()
+                        'tempobj.RestaurantReviewId = Convert.ToInt32(reader("restaurantReviewId").ToString())
+                        tempobj.Description = reader("description").ToString()
+                        tempobj.DescriptionDel = reader("name").ToString()
+                        'tempobj.Batchid = Convert.ToInt32(reader("batchid").ToString())
+                        'tempobj.BranchID = Convert.ToInt32(reader("branchid").ToString())
+                        tempobj.RatingRest = Convert.ToInt32(reader("rating").ToString())
+                        tempobj.DateID = reader("reviewDate")
+                        returnObject.Add(tempobj)
+                    End While
+                Catch ex As SqlException
+                End Try
+            End Using
+        End Using
+        Return returnObject
+    End Function
 End Class

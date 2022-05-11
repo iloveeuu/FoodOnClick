@@ -217,5 +217,7 @@ Public Class riderHome
 
     End Sub
 
-
+    Protected Sub btnReview_Click(sender As Object, e As EventArgs)
+        Response.Redirect("riderReviews.aspx")
+    End Sub
 End Class
