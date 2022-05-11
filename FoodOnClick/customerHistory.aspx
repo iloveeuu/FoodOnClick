@@ -307,6 +307,10 @@
         <h2>Reservation List</h2>
     </div>
     <br/>
+    <div style="text-align: center;">
+        <img src="../Images/reservationcycle.png" alt="ReservationCycle"/>
+    </div>
+    <br/>
     <div style="overflow-x:auto;">
         <%--CssClass="table table-responsive table-striped"--%>
 		<asp:GridView ID="gvReservation" Width="70%" runat="server" OnRowCommand="gvReservation_RowCommand" OnRowDataBound="gvReservation_RowDataBound" AutoGenerateColumns="false" Height="100%" >
@@ -334,8 +338,13 @@
             </asp:GridView>
 	</div>
     <br />
+    <br />
     <div>
         <h2>Delivery Order List</h2>
+    </div>
+    <br/>
+    <div style="text-align: center;">
+        <img src="../Images/deliverycycle.png" alt="DeliveryCycle"/>
     </div>
     <br/>
     <div style="overflow-x:auto;">
