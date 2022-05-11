@@ -330,11 +330,7 @@ Public Class User
         cmd.ExecuteNonQuery()
 
         con.Close()
-
-
     End Sub
-
-
 
     Public Sub updateStatusDuringRegitration(e As RepeaterCommandEventArgs, statusType As String, usertype As String)
         Dim con As New SqlConnection
@@ -367,14 +363,7 @@ Public Class User
             cmd.ExecuteNonQuery()
 
         End If
-
-
-
         con.Close()
-
-
-
-
     End Sub
 
 
