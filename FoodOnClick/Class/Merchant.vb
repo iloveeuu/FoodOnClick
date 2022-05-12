@@ -60,32 +60,6 @@ Public Class Merchant
 
     End Sub
 
-    Public Sub InsertMerchant()
-        Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
-        Dim Query As String = "INSERT INTO Account (Username, Password, Type) VALUES (@username, @Name, @Type) "
-        Using conn As New SqlConnection(connectionString)
-
-            Using comm As New SqlCommand()
-                With comm
-                    Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()
-                    .Connection = conn
-                    .CommandType = CommandType.Text
-                    .CommandText = Query
-                    .Parameters.Add("@username", SqlDbType.NVarChar).Value = MyBase.str_username
-                    .Parameters.Add("@Name", SqlDbType.NVarChar).Value = MyBase.str_password
-                    .Parameters.Add("@Type", SqlDbType.VarChar).Value = MyBase.str_type
-                End With
-                Try
-                    conn.Open()
-                    comm.ExecuteNonQuery()
-                Catch ex As SqlException
-                    Dim a As String = ex.Message
-                End Try
-            End Using
-        End Using
-    End Sub
-
-
     Public Function GetRestaurantDetailByAdmin()
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
         Dim returnObject As List(Of Merchant) = New List(Of Merchant)
