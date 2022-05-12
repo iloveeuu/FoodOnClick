@@ -12,7 +12,7 @@
             'ClientScript.RegisterStartupScript(Me.GetType(), "UpdateTime", Script, True)
             System.Web.HttpContext.Current.Session("orderbatchid") = Convert.ToInt32(System.Web.HttpContext.Current.Session("orderbatchid"))
             Dim clsOrder As Order = New Order(Convert.ToInt32(System.Web.HttpContext.Current.Session("orderbatchid")))
-            hfCustomerAddress.Value = clsOrder.RetrieveOrderDetailsByBatchId.timeDelivered
+            hfCustomerAddress.Value = clsOrder.RetrieveOrderDetailsByBatchId.timeDelivered.Replace("#", "%23")
         Else
 
             'Dim Script As String = "window.onload = function() { getLocation(); };"
