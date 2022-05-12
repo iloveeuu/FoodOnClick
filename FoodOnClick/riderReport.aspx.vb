@@ -29,5 +29,7 @@
 
     End Sub
 
+    Protected Sub riderReport_RowCommand(sender As Object, e As GridViewCommandEventArgs)
 
+    End Sub
 End Class
