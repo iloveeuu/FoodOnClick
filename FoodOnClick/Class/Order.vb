@@ -393,7 +393,7 @@ Public Class Order
                     returnObject = False
                 End Try
             End Using
-            Query = "update rider set deliverystatus = 'Deliverying' where userid = @riderid"
+            Query = "update rider set deliverystatus = 'Delivering' where userid = @riderid"
             Using comm As New SqlCommand()
                 With comm
                     Dim mycommand As SqlClient.SqlCommand = New SqlClient.SqlCommand()

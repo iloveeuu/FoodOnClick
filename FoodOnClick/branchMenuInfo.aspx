@@ -54,42 +54,42 @@
             <td>Protein:
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtProtein" Width="100%"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtProtein" Width="100%" Text="0"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td>Energy:
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtEnergy" Width="100%"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtEnergy" Width="100%" Text="0"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td>Carbonhydrate:
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtCarbonhydrate" Width="100%"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtCarbonhydrate" Width="100%" Text="0"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td>Glucose:
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtGlucose" Width="100%"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtGlucose" Width="100%" Text="0"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td>Fats:
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtFats" Width="100%"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtFats" Width="100%" Text="0"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td>Sodium:
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtSodium" Width="100%"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtSodium" Width="100%" Text="0"></asp:TextBox>
             </td>
         </tr>
         <tr>

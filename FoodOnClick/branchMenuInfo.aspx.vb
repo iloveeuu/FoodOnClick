@@ -44,6 +44,19 @@ Public Class branchMenuInfo
 
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs)
         Dim message As String = ""
+        If (txtName.Text = "" Or txtDescription.Text = "" Or txtCost.Text = "" Or txtProtein.Text = "" Or txtEnergy.Text = "" Or txtCarbonhydrate.Text = "" Or txtGlucose.Text = "" Or txtFats.Text = "" Or txtSodium.Text = "") Then
+            message = "Please fill up the form"
+            Dim sb As New System.Text.StringBuilder()
+            sb.Append("<script type = 'text/javascript'>")
+            sb.Append("window.onload=function(){")
+            sb.Append("alert('")
+            sb.Append(message)
+            sb.Append("')};")
+            sb.Append("</script>")
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            Return
+        End If
+
         If (btnSubmit.Text = "Create menu") Then
             Dim imageUrl As String = ""
             If (FileUpload.HasFile) Then
