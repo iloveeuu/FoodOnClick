@@ -1,10 +1,12 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Masterpage.Master" CodeBehind="riderReviews.aspx.vb" Inherits="FoodOnClick.riderReviews" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <table class="tableStyle">
+    <table class="tableStyle">
         <tr>
-            <td><asp:Button runat="server" ID="btnHome" OnClick="btnHome_Click" Text="Home" Width="100%" /></td>
+            <td>
+                <asp:Button runat="server" ID="btnHome" OnClick="btnHome_Click" Text="Home" Width="100%" /></td>
         </tr>
     </table>
     <div class="alignTxtMid">
@@ -16,7 +18,7 @@
         <%--        <h2>
             <asp:Label runat="server" ID="lblTitle"></asp:Label></h2>--%>
     </div>
-    <div style="width: 80%; margin-left: 30%">
+    <div style="width: 100%;">
         <asp:Repeater runat="server" ID="rptReview" OnItemDataBound="rptReview_ItemDataBound">
             <ItemTemplate>
                 <table style="text-align: left !important; display: block; margin: 24px 0px 24px 0px">
@@ -24,7 +26,7 @@
                         <td>
                             <asp:Label runat="server" Text="Name: "></asp:Label>
                         </td>
-                        <td style="text-align: left; padding: 2px 0px 2px 0px">
+                        <td style="text-align: left; padding: 2px 0px 2px 0px;word-wrap: break-word;">
                             <asp:Label runat="server" ID="lblName"></asp:Label></td>
                     </tr>
                     <tr style="margin: 12px 0px 12px 0px">
@@ -34,8 +36,8 @@
                             <asp:Label runat="server" ID="lblRating"></asp:Label><asp:Label runat="server" ID="lblDate"></asp:Label></td>
                     </tr>
                     <tr style="margin: 12px 0px 12px 0px">
-                        <td style="vertical-align:top">Feedback: </td>
-                        <td style="text-align: left; padding: 2px 0px 2px 0px">
+                        <td style="vertical-align: top">Feedback: </td>
+                        <td style="text-align: left; padding: 2px 0px 2px 0px;word-wrap: break-word;">
 
                             <asp:Label runat="server" ID="lblDescription"></asp:Label></td>
                     </tr>
