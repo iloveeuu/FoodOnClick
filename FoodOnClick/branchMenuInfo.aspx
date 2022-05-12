@@ -13,7 +13,7 @@
         <tr>
             <td>Name:</td>
             <td>
-                <asp:TextBox runat="server" ID="txtName" Width="100%"></asp:TextBox></td>
+                <asp:TextBox runat="server" ID="txtName" Width="100%" MaxLength="20"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Description:</td>
