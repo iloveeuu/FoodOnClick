@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <td>
-                    <asp:button runat="server" ID="restaurantManagement" Text="Restuarant Management"/>
+                    <asp:button runat="server" ID="restaurantManagement" Text="Restaurant Management"/>
                 </td>
             </tr>
             <tr>
