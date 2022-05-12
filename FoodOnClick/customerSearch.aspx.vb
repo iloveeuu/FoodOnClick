@@ -114,7 +114,7 @@ Public Class customerSearch
         For Each row As DataRow In dtSearch.Rows
             sAddress = row.Item("address")
 
-            Dim api As String = "https://maps.googleapis.com/maps/api/directions/json?destination=" + sAddress.Replace("#", "%23") + "&origin=" + user.address + "&region=SG&mode=bicycling&key=AIzaSyCb_ivGtmAoh8YrYAPOobiiVfU0hvabH-U"
+            Dim api As String = "https://maps.googleapis.com/maps/api/directions/json?destination=" + sAddress.Replace("#", "%23") + "&origin=" + user.address.Replace("#", "%23") + "&region=SG&mode=bicycling&key=AIzaSyCb_ivGtmAoh8YrYAPOobiiVfU0hvabH-U"
             request = DirectCast(WebRequest.Create(api), HttpWebRequest)
             request.Timeout = 3000
             response = DirectCast(request.GetResponse(), HttpWebResponse)
@@ -156,19 +156,6 @@ Public Class customerSearch
         Dim sBranchID As String = ""
         Dim sPreviousBranchID As String = ""
 
-
-        'If (e.Row.RowType = DataControlRowType.DataRow) Then
-        '    If (e.Row.RowIndex > 0) Then
-        '        Dim previousRow As GridViewRow = gvSearch.Rows(e.Row.RowIndex - 1)
-        '        If (e.Row.Cells(0).Text = previousRow.Cells(0).Text) Then
-        '            If (previousRow.Cells(0).RowSpan = 0) Then
-        '                previousRow.Cells(0).RowSpan += 3
-        '                e.Row.Cells(0).Visible = False
-        '            End If
-        '        End If
-        '    End If
-        'End If
-
         If (e.Row.RowType = DataControlRowType.DataRow) Then
 
             'hide button
@@ -184,34 +171,6 @@ Public Class customerSearch
                 btnDelivery.Visible = True
             End If
 
-            'merge rows
-            'For i As Integer = gvSearch.Rows.Count - 1 To 1 Step -1
-            '    Dim row As GridViewRow = gvSearch.Rows(i)
-            '    Dim previousRow As GridViewRow = gvSearch.Rows(i - 1)
-
-            '    'hBranchId = gvSearch.Rows(i).FindControl("hfBranchId")
-            '    'sBranchID = hBranchId.Value.ToString()
-
-            '    'hPrevBranchId = gvSearch.Rows(i - 1).FindControl("hfBranchId")
-            '    'sPreviousBranchID = hPrevBranchId.Value.ToString()
-
-
-            '    'merge only if branch id same
-            '    'If sBranchID = sPreviousBranchID Then
-            '    For j As Integer = 0 To row.Cells.Count - 1
-            '        If row.Cells(j).Text = previousRow.Cells(j).Text Then
-
-            '            If row.Cells(j).RowSpan = 0 Then
-            '                previousRow.Cells(j).RowSpan += 2
-            '            Else
-            '                previousRow.Cells(j).RowSpan = row.Cells(j).RowSpan + 1
-            '            End If
-            '            row.Cells(j).Visible = False
-            '        End If
-
-            '    Next
-            '    'End If
-            'Next
         End If
 
     End Sub
