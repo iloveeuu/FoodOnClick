@@ -80,6 +80,7 @@
         Session("time") = txtTime.Text.Trim()
         Session("duration") = duration
 
+        Session("dtTable") = Nothing
         Response.Redirect("customerPreOrder.aspx")
     End Sub
 
