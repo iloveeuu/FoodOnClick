@@ -41,9 +41,6 @@
                     <HeaderTemplate>
                      
                        <br />
-                       <br />
-                       <br />
-                       <br />
                        <table style="width:80%" border="1">
                            <tr>
                                 <td width="30%">Branch</td>
@@ -51,24 +48,20 @@
                                 <td width="30%">Menu</td>
                                 <td width="10%">TotalOrder</td>
                                 <td widht="10%">Sales($)</td>
-                           </tr>
-                           
-                       </table>
                   </HeaderTemplate>
                  
             <ItemTemplate>
-                 <table style="width:80%">
                      <tr>
                            <td width="30%"><asp:Label runat="server" ID="branch" Text='<%#Eval("address") %>'></asp:Label></td>
                            <td width="20%"><asp:Label runat="server" ID="period" Text='<%#Eval("period") %>'></asp:Label></td>
                            <td width="30%"><asp:Label runat="server" ID="menu" Text='<%#Eval("cuisineName") %>'></asp:Label></td>
                            <td width="10%"><asp:Label runat="server" ID="OrderNum" Text='<%#Eval("totalOrder") %>'></asp:Label></td>
                            <td width="10%"><asp:Label runat="server" ID="Sales" Text='<%#Eval("sales") %>'></asp:Label></td>
-                     </tr>
-  
-                </table>   
-                <br />
+                     </tr> 
             </ItemTemplate>
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>
         </asp:Repeater>
         </div>
         </div>
