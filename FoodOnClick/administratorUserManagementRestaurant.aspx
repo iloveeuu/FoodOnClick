@@ -50,10 +50,11 @@
                      
                      </tr>
   
-                </table>   
                 <br />
             </ItemTemplate>
-
+                    <FooterTemplate>
+                </table>
+            </FooterTemplate>
            </asp:Repeater>
                                       
 

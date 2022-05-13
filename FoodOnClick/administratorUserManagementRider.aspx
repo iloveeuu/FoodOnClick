@@ -52,6 +52,9 @@
                 </table>   
                 <br />
             </ItemTemplate>
+                    <FooterTemplate>
+                </table>
+            </FooterTemplate>
         </asp:Repeater>
         </div>
         </div>

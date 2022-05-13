@@ -40,9 +40,6 @@
                     <HeaderTemplate>
                      
                        <br />
-                       <br />
-                       <br />
-                       <br />
                        <table style="width:60%" border="1">
                            <tr>
                                 <td width="40%">Period</td>
@@ -57,11 +54,12 @@
                            <td width="40%"><asp:Label runat="server" ID="period" Text='<%#Eval("period") %>'></asp:Label></td>
                            <td width="30%"><asp:Label runat="server" ID="orderNum" Text='<%#Eval("totalOrder") %>'></asp:Label></td>
                            <td width="30%"><asp:Label runat="server" ID="deliveryCharges" Text='<%#Eval("totalDeliveryCharges") %>'></asp:Label></td>
-                     </tr>
-  
-                </table>   
+                     </tr> 
                 <br />
             </ItemTemplate>
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>
         </asp:Repeater>
         </div>
         </div>

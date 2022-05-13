@@ -86,11 +86,12 @@
                            <td width="10%"><asp:Label runat="server" ID="dateclose" Text='<%#Eval("dateclose") %>'></asp:Label></td>
                            <td width="10%"><asp:Button ID="replySupport" Text="Reply" CommandName="Reply" runat="server" CommandArgument='<%#Eval("supportid") %>'/></td>
                         
-                     </tr>
-  
-                </table>   
+                     </tr> 
                 <br />
             </ItemTemplate>
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>
         </asp:Repeater>
         </div>
         </div>

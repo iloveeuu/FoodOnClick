@@ -45,11 +45,12 @@
                            <td width="15%"><asp:Button ID="sysAdminCustomerActivate_Approve" Text="Activate" CommandName="Activate" runat="server" CommandArgument='<%#Eval("userId") %>'/></td>
                            <td width="15%"><asp:Button ID="sysAdminCustomerBlock" Text="Block" CommandName="Block" runat="server" CommandArgument='<%#Eval("userId") %>' /></td>
                      
-                     </tr>
-  
-                </table>   
+                     </tr>  
                 <br />
             </ItemTemplate>
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>
         </asp:Repeater>
         </div>
         </div>

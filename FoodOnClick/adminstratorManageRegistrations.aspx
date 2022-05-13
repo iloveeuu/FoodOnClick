@@ -37,6 +37,7 @@
              </HeaderTemplate>
 
             <ItemTemplate>
+                <table style="width:100%" border="1">
                      <tr>
                            <td width="5%"><asp:Label runat="server" ID="lblUserId" Text='<%#Eval("userId") %>'></asp:Label></td>
                            <td width="5%"><asp:Label runat="server" ID="firstName" Text='<%#Eval("firstName") %>'></asp:Label></td>
@@ -48,11 +49,12 @@
                            <td width="15%"><asp:HyperLink runat="server" ID="halal"></asp:HyperLink></td>
                            <td width="10%"><asp:Button ID="systemAdminRegistration_Approve" Text="Approve" CommandName="Approve" runat="server" CommandArgument='<%#Eval("userId") %>'/></td>
                            <td width="10%"><asp:Button ID="systemAdminRegistration_Reject" Text="Reject" CommandName="Reject" runat="server" CommandArgument='<%#Eval("userId") %>' /></td>
-                     </tr>
-                       
-                </table>   
+                     </tr> 
                 <br />
             </ItemTemplate>
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>
         </asp:Repeater>
             </div>
     </div>
