@@ -54,7 +54,7 @@
                 sb1.Append("window.onload=function(){")
                 sb1.Append("alert('")
                 sb1.Append(message1)
-                sb1.Append("');window.location='administratorReplySupportDetail.aspx';};")
+                sb1.Append("');window.location='administratorReplySupport.aspx';};")
                 sb1.Append("</script>")
                 ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb1.ToString())
 

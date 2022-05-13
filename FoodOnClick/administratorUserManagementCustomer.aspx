@@ -26,9 +26,8 @@
                                 <th width="10%">DateofBirth</th>
                                 <th width="9%">UserStatus</th>
                                 <th width="5%">TotalOrder</th>
-                                <th width="10%">Activate</th>
-                                <th width="10%">Deactivate</th>
-                                <th width="10%">Block</th>
+                                <th width="15%">Activate</th>
+                                <th width="15%">Block</th>
                             </tr>
                   </HeaderTemplate>
 
@@ -43,9 +42,8 @@
                            <td width="10%"><asp:Label runat="server" ID="dateofBirth" Text='<%#Eval("dateofbirth") %>'></asp:Label></td>
                            <td width="9%"><asp:Label runat="server" ID="statusAfterApproved" Text='<%#Eval("userStatus") %>'></asp:Label></td>
                            <td width="5%"><asp:Label runat="server" ID="countNumber" Text='<%#Eval("countOrder") %>'></asp:Label></td>
-                           <td width="10%"><asp:Button ID="sysAdminCustomerActivate_Approve" Text="Activate" CommandName="Activate" runat="server" CommandArgument='<%#Eval("userId") %>'/></td>
-                           <td width="10%"><asp:Button ID="sysAdminCustomerDeactivate" Text="Deactivate" CommandName="Deactivate" runat="server" CommandArgument='<%#Eval("userId") %>' /></td>
-                           <td width="10%"><asp:Button ID="sysAdminCustomerBlock" Text="Block" CommandName="Block" runat="server" CommandArgument='<%#Eval("userId") %>' /></td>
+                           <td width="15%"><asp:Button ID="sysAdminCustomerActivate_Approve" Text="Activate" CommandName="Activate" runat="server" CommandArgument='<%#Eval("userId") %>'/></td>
+                           <td width="15%"><asp:Button ID="sysAdminCustomerBlock" Text="Block" CommandName="Block" runat="server" CommandArgument='<%#Eval("userId") %>' /></td>
                      
                      </tr>
   
