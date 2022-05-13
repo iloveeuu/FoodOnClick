@@ -412,7 +412,7 @@
                                  <center>
 									 <asp:Image runat="server" ID="imgRest" Width="100px" Height="100px" ImageUrl='<%#Eval("path") %>' />
 								 </center>
-								<asp:Label runat="server" ID="menu" Text='<%#Eval("dishName") %>'></asp:Label>
+								<asp:Label runat="server" ID="lblDishName" Text='<%#Eval("dishName") %>'></asp:Label>
 								<asp:Label runat="server" ID="lblFType" style="text-transform: capitalize;" Text='<%#Eval("type") %>'></asp:Label>
                                 <asp:Label runat="server" ID="lblPrice" Text='<%# "$ " + Eval("price").ToString() %>'></asp:Label>
                                 <asp:HiddenField ID="hfMenuId" runat="server" Value='<%# Eval("menuid") %>' />
@@ -435,7 +435,7 @@
 						    <center>
 				                    <asp:TextBox ID="txtQty" runat="server" TextMode="Number" Width="50%"></asp:TextBox>
 				                </center>
-				                <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" CommandName="doAddCart" CommandArgument='<%# Container.DataItemIndex %>'/>
+				                <asp:Button ID="btnAdd" runat="server" Text="Add" CommandName="doAdd" CommandArgument='<%# Container.DataItemIndex %>'/>
                                 
                         </ItemTemplate>
                     </asp:TemplateField>
