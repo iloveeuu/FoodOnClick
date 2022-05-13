@@ -26,9 +26,8 @@
                                 <th width="7.5%">DeliveryStatus</th>
                                 <th width="10%">TotalOrder</th>
                                 <th width="10%">TotalDeliveryCharges</th>
-                                <th width="5%">Activate</th>
-                                <th width="5%">Deactivate</th>
-                                <th width="5%">Block</th>
+                                <th width="7.5%">Activate</th>              
+                                <th width="7.5%">Block</th>
                             </tr>
                        </table>
                   </HeaderTemplate>
@@ -47,9 +46,8 @@
                            <td width="7.5%"><asp:Label runat="server" ID="deliveryStatus" Text='<%#Eval("deliveryStatus") %>'></asp:Label></td>
                            <td width="10%"><asp:Label runat="server" ID="countNumber" Text='<%#Eval("totalOrder") %>'></asp:Label></td>
                            <td width="10%"><asp:Label runat="server" ID="totalDeliveryCharges" Text='<%#Eval("totalDeliveryCharges") %>'></asp:Label></td>
-                           <td width="5%"><asp:Button ID="sysAdminCustomerActivate_Approve" Text="Activate" CommandName="Activate" runat="server" CommandArgument='<%#Eval("userId") %>'/></td>
-                           <td width="5%"><asp:Button ID="sysAdminCustomerDeactivate" Text="Deactivate" CommandName="Deactivate" runat="server" CommandArgument='<%#Eval("userId") %>' /></td>
-                           <td width="5%"><asp:Button ID="sysAdminCustomerBlock" Text="Block" CommandName="Block" runat="server" CommandArgument='<%#Eval("userId") %>' /></td>
+                           <td width="7.5%"><asp:Button ID="sysAdminCustomerActivate_Approve" Text="Activate" CommandName="Activate" runat="server" CommandArgument='<%#Eval("userId") %>'/></td>
+                           <td width="7.5%"><asp:Button ID="sysAdminCustomerBlock" Text="Block" CommandName="Block" runat="server" CommandArgument='<%#Eval("userId") %>' /></td>
                      
                      </tr>
   
