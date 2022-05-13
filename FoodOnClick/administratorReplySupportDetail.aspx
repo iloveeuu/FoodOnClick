@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td >
-                    <asp:TextBox runat="server" ID="AdminReplyBox" TextMode="MultiLine" Rows="10" width="100%" Text="Please input your reply"/>
+                    <asp:TextBox runat="server" ID="AdminReplyBox" TextMode="MultiLine" Rows="10" width="100%" placeholder="Please input your reply"/>
                 </td>
             </tr>
             <tr>
