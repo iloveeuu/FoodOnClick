@@ -5,7 +5,10 @@
         If (Not Session("userid") Is Nothing) Then
             lbLoginSignUp.Text = "Welcome " & Session("firstname") & " " & Session("lastname")
             lblLogOut.Visible = True
-            lbNotifySupport.Visible = True
+            'lbNotifySupport.Visible = True
+            If Session("type") = "Administrator" Then
+                lbNotifySupport.Visible = False
+            End If
         Else
             lbLoginSignUp.Text = "Login/Sign Up"
             lblLogOut.Visible = False
@@ -68,9 +71,7 @@
     Protected Sub lbNotifySupport_Click(sender As Object, e As EventArgs)
 
         If (Not Session("userid") Is Nothing) Then
-
             Response.Redirect("notifySupportHome.aspx")
-
         Else
             Response.Redirect("login.aspx")
         End If
