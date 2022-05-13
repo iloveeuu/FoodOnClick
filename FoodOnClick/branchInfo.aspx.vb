@@ -62,6 +62,18 @@
             '    ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
             '    Return
         End If
+        If (txtStart.Text > txtEnd.Text) Then
+            message = "Start time cannot be later then end time"
+            Dim sb As New System.Text.StringBuilder()
+            sb.Append("<script type = 'text/javascript'>")
+            sb.Append("window.onload=function(){")
+            sb.Append("alert('")
+            sb.Append(message)
+            sb.Append("')};")
+            sb.Append("</script>")
+            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            Return
+        End If
         Dim pass As Encryption = New Encryption(txtPassword.Text)
         Dim encrypted As String = pass.Encrypt()
 
