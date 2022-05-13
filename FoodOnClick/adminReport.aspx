@@ -70,7 +70,6 @@
                            <td width="15%"><asp:Label runat="server" ID="OrderNum" Text='<%#Eval("totalOrder") %>'></asp:Label></td>
                            <td width="15%"><asp:Label runat="server" ID="Sales" Text='<%#Eval("sales") %>'></asp:Label></td>
                      </tr> 
-                <br />
             </ItemTemplate>
         <FooterTemplate>
                 </table>

@@ -46,7 +46,6 @@
                            <td width="15%"><asp:Button ID="sysAdminCustomerBlock" Text="Block" CommandName="Block" runat="server" CommandArgument='<%#Eval("userId") %>' /></td>
                      
                      </tr>  
-                <br />
             </ItemTemplate>
             <FooterTemplate>
                 </table>

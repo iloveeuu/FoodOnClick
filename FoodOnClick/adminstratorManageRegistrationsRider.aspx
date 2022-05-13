@@ -33,7 +33,6 @@
                            <th width="10%">Approve</th>
                            <th width="10%">Reject</th>
                        </tr>
-                   </table>
              </HeaderTemplate>
 
             <ItemTemplate>
@@ -47,7 +46,6 @@
                            <td width="10%"><asp:Button ID="systemAdminRegistration_Approve" Text="Approve" CommandName="Approve" runat="server" CommandArgument='<%#Eval("userId") %>'/></td>
                            <td width="10%"><asp:Button ID="systemAdminRegistration_Reject" Text="Reject" CommandName="Reject" runat="server" CommandArgument='<%#Eval("userId") %>' /></td>
                      </tr>  
-                <br />
             </ItemTemplate>
             <FooterTemplate>
                 </table>

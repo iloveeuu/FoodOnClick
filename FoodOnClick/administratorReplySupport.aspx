@@ -87,7 +87,6 @@
                            <td width="10%"><asp:Button ID="replySupport" Text="Reply" CommandName="Reply" runat="server" CommandArgument='<%#Eval("supportid") %>'/></td>
                         
                      </tr> 
-                <br />
             </ItemTemplate>
             <FooterTemplate>
                 </table>
