@@ -64,11 +64,9 @@
                                 <td widht="15%">Income($)</td>
                            </tr>
                            
-                       </table>
                   </HeaderTemplate>
                  
             <ItemTemplate>
-                 <table style="width:80%">
                      <tr>
                            <td width="30%"><asp:Label runat="server" ID="restaurant" Text='<%#Eval("username") %>'></asp:Label></td>
                            <td width="40%"><asp:Label runat="server" ID="period" Text='<%#Eval("period") %>'></asp:Label></td>

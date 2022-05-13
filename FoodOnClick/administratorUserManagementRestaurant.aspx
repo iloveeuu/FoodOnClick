@@ -30,13 +30,11 @@
                                 <th width="5%">Deactivate</th>
                                 <th width="5%">Block</th>
                             </tr>
-                       </table>
                   </HeaderTemplate>
 
 
 
             <ItemTemplate>
-                 <table style="width:100%">
                      <tr>
                            <td width="5%"><asp:Label runat="server" ID="lblUserId" Text='<%#Eval("userId") %>'></asp:Label></td>
                            <td width="5%"><asp:Label runat="server" ID="firstName" Text='<%#Eval("firstName") %>'></asp:Label></td>

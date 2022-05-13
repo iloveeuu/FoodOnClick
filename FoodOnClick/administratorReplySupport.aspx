@@ -66,9 +66,7 @@
                      
                            </tr>
                            
-                       </table>
-
-
+                      
     
 
                   </HeaderTemplate>
@@ -77,7 +75,6 @@
 
 
             <ItemTemplate>
-                 <table style="width:100%">
                      <tr>
                            <td width="5%"><asp:Label runat="server" ID="supportID" Text='<%#Eval("supportid") %>'></asp:Label></td>
                            <td width="5%"><asp:Label runat="server" ID="status" Text='<%#Eval("status") %>'></asp:Label></td>
