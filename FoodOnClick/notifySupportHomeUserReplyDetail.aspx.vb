@@ -28,7 +28,7 @@
         clsSupport.updateSupportConversation(replyMessage, Session("SupportID"))
 
 
-        Dim ToAddressies As String() = {"fypfoodonclick@gmail.com"}
+        Dim ToAddressies As String() = {"will.ariez@gmail.com"}
         Dim attachs() As String = {}
         Dim subject As String = "SupportID " + Session("SupportID") + "---Reply from User"
         Dim body As String = "Dear Admin   " + vbNewLine + AdminReplyBox.Text + vbNewLine
