@@ -8,7 +8,7 @@
      <div>
         <br />
         <br />
-        <h1>Restaurant Report </h1>
+        <h1>Restaurant Sales Report </h1>
         </div>
         
 

@@ -6,7 +6,7 @@
      <div>
         <br />
         <br />
-        <h1>Admin Report </h1>
+        <h1>Admin Business Report </h1>
         </div>
         
 
