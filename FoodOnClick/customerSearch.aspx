@@ -95,7 +95,7 @@
 	<div style="text-align:center;border-radius: 5px;background-color: #f2f2f2;">
 		<asp:Repeater ID="rptSearch" runat="server" EnableViewState="true" OnItemCommand="rptSearch_ItemCommand">
             <ItemTemplate>
-                        <div style="border: 1px solid black;display:inline-grid;text-align:center;width:250px;height:250px;" >
+                        <div style="border: 1px solid black;display:inline-grid;text-align:center;width:280px;height:280px;" >
 								<center><asp:ImageButton runat="server" CommandName="viewMenu" CommandArgument='<%#Eval("restaurantID") %>' ID="imgRest" Width="200px" Height="200px" ImageUrl='<%#Eval("logo") %>' />
 									 </center>
 								<asp:Label runat="server" ID="lblRestName" Text='<%#Eval("restName") %>'></asp:Label>

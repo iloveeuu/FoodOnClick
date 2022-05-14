@@ -263,7 +263,7 @@
 	<a runat="server" id="my_popup" class="popup"></a>
     <div runat="server" id="popup" class="popup">
         <h3>Menu Detail</h3>
-            <div class="container">
+            <%--<div class="container">--%>
 		        <div class="row">
                   <div class="col-100"  style="text-align: center;" >
 			          <asp:Label ID="lblPopUpDishName" runat="server" style="text-transform: capitalize;"></asp:Label>
@@ -294,7 +294,7 @@
 			          <asp:Label ID="lblPopUpDesc" runat="server"></asp:Label>
                   </div>
                 </div>
-           </div>
+           <%--</div>--%>
         <a class="close x">
             <asp:LinkButton runat="server" CssClass="close x" OnClick="Unnamed_Click">x</asp:LinkButton></a>
         <a class="close word">
