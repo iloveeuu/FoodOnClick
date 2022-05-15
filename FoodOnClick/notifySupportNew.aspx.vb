@@ -25,16 +25,28 @@ Public Class notifySupport
 
             Dim clsSupport As Support = New Support()
             clsSupport.insertIntoNewRecord(ddlMsgType.SelectedValue, txtMsg.Text, Session("userid"))
+            If Session("type") = "Rider" Then
+                message = "Support form submitted!"
+                Dim sb As New System.Text.StringBuilder()
+                sb.Append("<script type = 'text/javascript'>")
+                sb.Append("window.onload=function(){")
+                sb.Append("alert('")
+                sb.Append(message)
+                sb.Append("');window.location='riderHome.aspx';};")
+                sb.Append("</script>")
+                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            Else
+                message = "Support form submitted!"
+                Dim sb As New System.Text.StringBuilder()
+                sb.Append("<script type = 'text/javascript'>")
+                sb.Append("window.onload=function(){")
+                sb.Append("alert('")
+                sb.Append(message)
+                sb.Append("');window.location='customerHome.aspx';};")
+                sb.Append("</script>")
+                ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
+            End If
 
-            message = "Support form submitted!"
-            Dim sb As New System.Text.StringBuilder()
-            sb.Append("<script type = 'text/javascript'>")
-            sb.Append("window.onload=function(){")
-            sb.Append("alert('")
-            sb.Append(message)
-            sb.Append("');window.location='customerHome.aspx';};")
-            sb.Append("</script>")
-            ClientScript.RegisterClientScriptBlock(Me.GetType(), "alert", sb.ToString())
 
 
             Dim clsSupport2 As Support = New Support()
