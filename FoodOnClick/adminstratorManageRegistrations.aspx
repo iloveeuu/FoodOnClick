@@ -30,7 +30,7 @@
                            <th width="10%">Email</th>
                            <th width="15%">BusinessLogo</th>
                            <th width="15%">RestaurantLogo</th>
-                           <th width="15%">Hala</th>
+                           <th width="15%">Halal</th>
                            <th width="10%">Approve</th>
                            <th width="10%">Reject</th>
                        </tr>
