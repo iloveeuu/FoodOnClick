@@ -46,12 +46,34 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Geohash, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\geohash-dotnet.1.0.4\lib\netstandard2.0\Geohash.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleMaps.LocationServices, Version=1.2.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\GoogleMaps.LocationServices.1.2.0.5\lib\netstandard2.0\GoogleMaps.LocationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="NetTopologySuite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
+      <HintPath>packages\NetTopologySuite.2.0.0\lib\netstandard2.0\NetTopologySuite.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -131,12 +153,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="administratorChangeCuisineType.aspx" />
     <Content Include="administratorHome.aspx" />
+    <Content Include="administratorReplySupport.aspx" />
+    <Content Include="administratorReplySupportDetail.aspx" />
+    <Content Include="administratorUserManagement.aspx" />
+    <Content Include="administratorUserManagementCustomer.aspx" />
+    <Content Include="administratorUserManagementRestaurant.aspx" />
+    <Content Include="administratorUserManagementRider.aspx" />
+    <Content Include="adminReport.aspx" />
     <Content Include="adminstratorManageRegistrations.aspx" />
+    <Content Include="adminstratorManageRegistrationsRider.aspx" />
     <Content Include="branch.aspx" />
     <Content Include="branchInfo.aspx" />
     <Content Include="branchMenu.aspx" />
     <Content Include="branchMenuInfo.aspx" />
+    <Content Include="branchOrder.aspx" />
+    <Content Include="branchOrderSelection.aspx" />
+    <Content Include="branchReservation.aspx" />
+    <Content Include="branchReviews.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -151,14 +186,25 @@
     <Content Include="customerFoodList.aspx" />
     <Content Include="customerHistory.aspx" />
     <Content Include="customerHome.aspx" />
+    <Content Include="customerOrder.aspx" />
+    <Content Include="customerOrderDetail.aspx" />
+    <Content Include="customerPreOrder.aspx" />
+    <Content Include="customerPreOrderDetail.aspx" />
+    <Content Include="customerProfile.aspx" />
     <Content Include="customerReservation.aspx" />
     <Content Include="customerReservationOrder.aspx" />
+    <Content Include="customerReservationSearch.aspx" />
     <Content Include="customerRestaurant.aspx" />
+    <Content Include="customerRestaurantMenu.aspx" />
     <Content Include="customerSearch.aspx" />
+    <Content Include="customerSearch1.aspx" />
     <Content Include="customerSelectedFood.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="directionToCustomer.aspx" />
+    <Content Include="directionToRestaurant.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="forgetPassword.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -170,6 +216,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Images\background-purple.jpg" />
     <Content Include="Images\background.jpg" />
+    <Content Include="Images\Capture.JPG" />
     <Content Include="Images\delivery.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\pexels-cottonbro-4604599.jpg" />
@@ -177,11 +224,20 @@
     <Content Include="login.aspx" />
     <Content Include="Masterpage.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="notifySupportHome.aspx" />
+    <Content Include="notifySupportHomeUserReplyDetail.aspx" />
+    <Content Include="notifySupportNew.aspx" />
     <Content Include="restaurantBranch.aspx" />
     <Content Include="restaurantHome.aspx" />
     <Content Include="restaurantInfo.aspx" />
     <Content Include="restaurantMenu.aspx" />
+    <Content Include="restaurantReport.aspx" />
+    <Content Include="restaurantUploadDocuments.aspx" />
+    <Content Include="riderDelivery.aspx" />
     <Content Include="riderHome.aspx" />
+    <Content Include="riderReport.aspx" />
+    <Content Include="riderReviews.aspx" />
+    <Content Include="riderUploadDocuments.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -212,6 +268,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="SendMailExample.aspx" />
     <Content Include="signUp.aspx" />
+    <Content Include="signUpHome.aspx" />
     <Content Include="signUpMerchant.aspx" />
     <Content Include="SystemAdministrator\admin.js" />
     <Content Include="SystemAdministrator\adminHome.aspx" />
@@ -223,10 +280,38 @@
     <Content Include="SystemAdministrator\adminManageSupportIssues.aspx" />
     <Content Include="SystemAdministrator\stylecss.css" />
     <Content Include="testConnection.txt" />
+    <Content Include="uploadDocuments\46_Business_brandLogo.png" />
+    <Content Include="uploadDocuments\46_Halal_Blue Line Lunch Food Logo.png" />
+    <Content Include="uploadDocuments\46_RestaurantLogo_pngegg.png" />
+    <Content Include="uploadDocuments\47_Business_pngegg.png" />
+    <Content Include="uploadDocuments\47_Halal_Blue Line Lunch Food Logo.png" />
+    <Content Include="uploadDocuments\47_RestaurantLogo_brandLogo.png" />
+    <Content Include="uploadDocuments\48_Business_BrandLogo22.png" />
+    <Content Include="uploadDocuments\48_Halal_Blue Line Lunch Food Logo.png" />
+    <Content Include="uploadDocuments\48_RestaurantLogo_brandLogo.png" />
+    <Content Include="uploadDocuments\49_Business_pngegg.png" />
+    <Content Include="uploadDocuments\49_Halal_brandLogo.png" />
+    <Content Include="uploadDocuments\49_RestaurantLogo_Blue Line Lunch Food Logo.png" />
+    <Content Include="uploadDocuments\50_Business_BrandLogo22.png" />
+    <Content Include="uploadDocuments\50_Halal_brandLogo.png" />
+    <Content Include="uploadDocuments\50_RestaurantLogo_BrandLogo22.png" />
+    <Content Include="uploadDocuments\52_Business_Blue Line Lunch Food Logo.png" />
+    <Content Include="uploadDocuments\52_Halal_brandLogo.png" />
+    <Content Include="uploadDocuments\52_RestaurantLogo_pngegg.png" />
+    <Content Include="uploadDocuments\53_Business_BrandLogo22.png" />
+    <Content Include="uploadDocuments\53_Halal_Blue Line Lunch Food Logo.png" />
+    <Content Include="uploadDocuments\53_RestaurantLogo_brandLogo.png" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="administratorChangeCuisineType.aspx.designer.vb">
+      <DependentUpon>administratorChangeCuisineType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administratorChangeCuisineType.aspx.vb">
+      <DependentUpon>administratorChangeCuisineType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="administratorHome.aspx.designer.vb">
       <DependentUpon>administratorHome.aspx</DependentUpon>
     </Compile>
@@ -234,12 +319,68 @@
       <DependentUpon>administratorHome.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="administratorReplySupport.aspx.designer.vb">
+      <DependentUpon>administratorReplySupport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administratorReplySupport.aspx.vb">
+      <DependentUpon>administratorReplySupport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administratorReplySupportDetail.aspx.designer.vb">
+      <DependentUpon>administratorReplySupportDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administratorReplySupportDetail.aspx.vb">
+      <DependentUpon>administratorReplySupportDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administratorUserManagement.aspx.designer.vb">
+      <DependentUpon>administratorUserManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administratorUserManagement.aspx.vb">
+      <DependentUpon>administratorUserManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administratorUserManagementCustomer.aspx.designer.vb">
+      <DependentUpon>administratorUserManagementCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administratorUserManagementCustomer.aspx.vb">
+      <DependentUpon>administratorUserManagementCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administratorUserManagementRestaurant.aspx.designer.vb">
+      <DependentUpon>administratorUserManagementRestaurant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administratorUserManagementRestaurant.aspx.vb">
+      <DependentUpon>administratorUserManagementRestaurant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administratorUserManagementRider.aspx.designer.vb">
+      <DependentUpon>administratorUserManagementRider.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administratorUserManagementRider.aspx.vb">
+      <DependentUpon>administratorUserManagementRider.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminReport.aspx.designer.vb">
+      <DependentUpon>adminReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminReport.aspx.vb">
+      <DependentUpon>adminReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="adminstratorManageRegistrations.aspx.designer.vb">
       <DependentUpon>adminstratorManageRegistrations.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminstratorManageRegistrations.aspx.vb">
       <DependentUpon>adminstratorManageRegistrations.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="adminstratorManageRegistrationsRider.aspx.designer.vb">
+      <DependentUpon>adminstratorManageRegistrationsRider.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminstratorManageRegistrationsRider.aspx.vb">
+      <DependentUpon>adminstratorManageRegistrationsRider.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
@@ -278,16 +419,54 @@
       <DependentUpon>branchMenuInfo.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="branchOrder.aspx.designer.vb">
+      <DependentUpon>branchOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="branchOrder.aspx.vb">
+      <DependentUpon>branchOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="branchOrderSelection.aspx.designer.vb">
+      <DependentUpon>branchOrderSelection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="branchOrderSelection.aspx.vb">
+      <DependentUpon>branchOrderSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="branchReservation.aspx.designer.vb">
+      <DependentUpon>branchReservation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="branchReservation.aspx.vb">
+      <DependentUpon>branchReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="branchReviews.aspx.designer.vb">
+      <DependentUpon>branchReviews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="branchReviews.aspx.vb">
+      <DependentUpon>branchReviews.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Class\BatchOrder.vb" />
     <Compile Include="Class\Branch.vb" />
+    <Compile Include="Class\CuisineType.vb" />
     <Compile Include="Class\Customer.vb" />
+    <Compile Include="Class\Document.vb" />
     <Compile Include="Class\Encryption.vb" />
     <Compile Include="Class\Menu.vb" />
     <Compile Include="Class\Merchant.vb" />
+    <Compile Include="Class\Order.vb" />
+    <Compile Include="Class\OrderDetail.vb" />
+    <Compile Include="Class\Report.vb" />
     <Compile Include="Class\Reservation.vb" />
     <Compile Include="Class\Restaurant.vb" />
+    <Compile Include="Class\Review.vb" />
     <Compile Include="Class\Rider.vb" />
     <Compile Include="Class\Search.vb" />
+    <Compile Include="Class\ShoppingCart.vb" />
+    <Compile Include="Class\ShoppingCartDetail.vb" />
     <Compile Include="Class\SMTP.vb" />
+    <Compile Include="Class\Support .vb" />
     <Compile Include="Class\User.vb" />
     <Compile Include="Contact.aspx.designer.vb">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -331,6 +510,41 @@
       <DependentUpon>customerHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="customerOrder.aspx.designer.vb">
+      <DependentUpon>customerOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerOrder.aspx.vb">
+      <DependentUpon>customerOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerOrderDetail.aspx.designer.vb">
+      <DependentUpon>customerOrderDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerOrderDetail.aspx.vb">
+      <DependentUpon>customerOrderDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerPreOrder.aspx.designer.vb">
+      <DependentUpon>customerPreOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerPreOrder.aspx.vb">
+      <DependentUpon>customerPreOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerPreOrderDetail.aspx.designer.vb">
+      <DependentUpon>customerPreOrderDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerPreOrderDetail.aspx.vb">
+      <DependentUpon>customerPreOrderDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerProfile.aspx.designer.vb">
+      <DependentUpon>customerProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerProfile.aspx.vb">
+      <DependentUpon>customerProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="customerReservation.aspx.designer.vb">
       <DependentUpon>customerReservation.aspx</DependentUpon>
     </Compile>
@@ -345,11 +559,25 @@
       <DependentUpon>customerReservationOrder.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="customerReservationSearch.aspx.designer.vb">
+      <DependentUpon>customerReservationSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerReservationSearch.aspx.vb">
+      <DependentUpon>customerReservationSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="customerRestaurant.aspx.designer.vb">
       <DependentUpon>customerRestaurant.aspx</DependentUpon>
     </Compile>
     <Compile Include="customerRestaurant.aspx.vb">
       <DependentUpon>customerRestaurant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerRestaurantMenu.aspx.designer.vb">
+      <DependentUpon>customerRestaurantMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerRestaurantMenu.aspx.vb">
+      <DependentUpon>customerRestaurantMenu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="customerSearch.aspx.designer.vb">
@@ -358,6 +586,13 @@
     <Compile Include="customerSearch.aspx.vb">
       <DependentUpon>customerSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="customerSearch1.aspx.designer.vb">
+      <DependentUpon>customerSearch1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="customerSearch1.aspx.vb">
+      <DependentUpon>customerSearch1.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="customerSelectedFood.aspx.designer.vb">
       <DependentUpon>customerSelectedFood.aspx</DependentUpon>
@@ -372,6 +607,27 @@
     </Compile>
     <Compile Include="Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="directionToCustomer.aspx.designer.vb">
+      <DependentUpon>directionToCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="directionToCustomer.aspx.vb">
+      <DependentUpon>directionToCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="directionToRestaurant.aspx.designer.vb">
+      <DependentUpon>directionToRestaurant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="directionToRestaurant.aspx.vb">
+      <DependentUpon>directionToRestaurant.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="forgetPassword.aspx.designer.vb">
+      <DependentUpon>forgetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forgetPassword.aspx.vb">
+      <DependentUpon>forgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -409,6 +665,27 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="notifySupportHome.aspx.designer.vb">
+      <DependentUpon>notifySupportHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notifySupportHome.aspx.vb">
+      <DependentUpon>notifySupportHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="notifySupportHomeUserReplyDetail.aspx.designer.vb">
+      <DependentUpon>notifySupportHomeUserReplyDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notifySupportHomeUserReplyDetail.aspx.vb">
+      <DependentUpon>notifySupportHomeUserReplyDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="notifySupportNew.aspx.designer.vb">
+      <DependentUpon>notifySupportNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notifySupportNew.aspx.vb">
+      <DependentUpon>notifySupportNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="restaurantBranch.aspx.designer.vb">
       <DependentUpon>restaurantBranch.aspx</DependentUpon>
     </Compile>
@@ -430,12 +707,54 @@
       <DependentUpon>restaurantInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="restaurantReport.aspx.designer.vb">
+      <DependentUpon>restaurantReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="restaurantReport.aspx.vb">
+      <DependentUpon>restaurantReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="restaurantUploadDocuments.aspx.designer.vb">
+      <DependentUpon>restaurantUploadDocuments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="restaurantUploadDocuments.aspx.vb">
+      <DependentUpon>restaurantUploadDocuments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="riderDelivery.aspx.designer.vb">
+      <DependentUpon>riderDelivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="riderDelivery.aspx.vb">
+      <DependentUpon>riderDelivery.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="riderHome.aspx.designer.vb">
       <DependentUpon>riderHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="riderHome.aspx.vb">
       <DependentUpon>riderHome.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="riderReport.aspx.designer.vb">
+      <DependentUpon>riderReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="riderReport.aspx.vb">
+      <DependentUpon>riderReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="riderReviews.aspx.designer.vb">
+      <DependentUpon>riderReviews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="riderReviews.aspx.vb">
+      <DependentUpon>riderReviews.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="riderUploadDocuments.aspx.designer.vb">
+      <DependentUpon>riderUploadDocuments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="riderUploadDocuments.aspx.vb">
+      <DependentUpon>riderUploadDocuments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SendMailExample.aspx.designer.vb">
       <DependentUpon>SendMailExample.aspx</DependentUpon>
@@ -449,6 +768,13 @@
     </Compile>
     <Compile Include="signUp.aspx.vb">
       <DependentUpon>signUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="signUpHome.aspx.designer.vb">
+      <DependentUpon>signUpHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="signUpHome.aspx.vb">
+      <DependentUpon>signUpHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="signUpMerchant.aspx.designer.vb">
